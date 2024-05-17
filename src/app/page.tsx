@@ -4,7 +4,7 @@ import { TracingBeam } from "@/components/ui/tracing-beam";
 export default function Home() {
   return (
     <main>
-        <MacbookScrollDemo></MacbookScrollDemo>
+        <h1>Hello</h1>
     </main>
   );
 }
