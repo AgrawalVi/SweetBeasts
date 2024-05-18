@@ -16,6 +16,9 @@ const transitionIn = {
 const transitionOut = {
   type: "spring",
   mass: 0.7,
+  stiffness: 100,
+  restDelta: 0.001,
+  restSpeed: 0.001,
 };
 
 export const MenuItem = ({
