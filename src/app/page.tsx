@@ -1,13 +1,5 @@
 import MacbookScrollDemo from "@/components/aceternity/MacbookScrollDemo";
 import { TracingBeam } from "@/components/ui/tracing-beam";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
 import { CardBody, CardContainer, CardItem } from "@/components/ui/3d-card";
 import Image from 'next/image';
 import { BackgroundBeams } from "@/components/ui/background-beams";
@@ -41,7 +33,7 @@ export default function Home() {
       </CardContainer>
       <div className="h-[40rem] w-full rounded-md bg-[hsl(var(--background))] relative flex flex-col items-center justify-center antialiased">
       <div className="max-w-2xl mx-auto p-4">
-        <h1 className="relative z-10 text-lg md:text-7xl  bg-clip-text text-transparent bg-gradient-to-b from-red-400 to-red-600  text-center font-sans font-bold">
+        <h1 className="relative z-10 text-lg md:text-7xl drop-shadow-md bg-clip-text text-transparent bg-gradient-to-b from-red-400 to-red-600  text-center font-sans font-bold">
           Join Our Mailing List
         </h1>
         <p></p>
