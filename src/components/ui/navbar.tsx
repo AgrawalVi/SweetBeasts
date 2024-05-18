@@ -24,8 +24,8 @@ export function Navbar({ className }: { className?: string }) {
            /> 
           </div>
         <div className="flex-1 flex justify-center">
-          <Menu setActive={setActive} className="flex items-center space-x-8">
-            <MenuItem setActive={setActive} active={active} item="Services">
+          <Menu setActive={setActive} active={active} setLastActive={setLastActive} className="flex items-center space-x-8">
+            <MenuItem setActive={setActive} active={active} lastActive={lastActive} setLastActive={setLastActive} item="Services">
               <div className="flex flex-col space-y-4 text-sm">
                 <HoveredLink href="/web-dev">Web Development</HoveredLink>
                 <HoveredLink href="/interface-design">Interface Design</HoveredLink>
@@ -33,7 +33,7 @@ export function Navbar({ className }: { className?: string }) {
                 <HoveredLink href="/branding">Branding</HoveredLink>
               </div>
             </MenuItem>
-            <MenuItem setActive={setActive} active={active} item="Products">
+            <MenuItem setActive={setActive} active={active} lastActive={lastActive} setLastActive={setLastActive} item="Products">
               <div className="text-sm grid grid-cols-2 gap-10 p-4">
                 <ProductItem
                   title="Pogo"
@@ -61,7 +61,7 @@ export function Navbar({ className }: { className?: string }) {
                 />
               </div>
             </MenuItem>
-            <MenuItem setActive={setActive} active={active} item="Pricing">
+            <MenuItem setActive={setActive} active={active} setLastActive={setLastActive} lastActive={lastActive} item="Pricing">
               <div className="flex flex-col space-y-4 text-sm">
                 <HoveredLink href="/hobby">Hobby</HoveredLink>
                 <HoveredLink href="/individual">Individual</HoveredLink>
