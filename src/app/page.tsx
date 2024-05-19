@@ -1,16 +1,18 @@
+'use client';
 import { CardBody, CardContainer, CardItem } from "@/components/aceternity/3d-card";
 import Image from 'next/image';
-import { BackgroundBeams } from "@/components/ui/background-beams";
+import { BackgroundBeams } from "@/components/aceternity/background-beams";
 import { BackgroundGradient } from "@/components/aceternity/background-gradient";
-
 
 export default function Home() {
   return (
     <main className="flex flex-col items-start justify-start min-h-screen p-4 bg-[hsl(var(--background))] gap-4">
-      <BackgroundGradient>
-      <CardContainer className="w-64 shadow-lg rounded-lg bg-[#F08080] shadow-[0_10px_20px_rgba(240,_46,_170,_0.7)]">
+      
+      <BackgroundGradient className="w-64 rounded-lg">
+
+      <CardContainer className="w-64 rounded-lg bg-gradient-to-br from-bg-[#F08080] to-bg-[#ed9696] shadow-[0_10px_20px_rgba(240,_46,_170,_0.7)]">
         <CardBody className="relative group/card w-full h-auto rounded-xl p-4 border border-gray-200 bg-[#F08080]">
-          <CardItem translateZ="50" className="text-xl font-bold text-neutral-600 dark:text-white">
+          <CardItem translateZ="50" className="text-xl font-bold text-neutral-600 dark:text-white ">
             Make things float in air
           </CardItem>
           <CardItem as="p" translateZ="60" className="text-neutral-500 text-sm max-w-sm mt-2 dark:text-neutral-300">
@@ -21,7 +23,7 @@ export default function Home() {
               src="/pogo.jpg"
               width={150}
               height={150}
-              className="object-cover rounded-xl"
+              className="object-cover rounded-xl shadow-[rgba(17,_17,_26,_0.1)_0px_0px_16px]"
               alt="thumbnail"
             />
           </CardItem>
