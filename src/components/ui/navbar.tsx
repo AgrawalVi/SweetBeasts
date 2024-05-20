@@ -24,7 +24,7 @@ export function Navbar({ className }: { className?: string }) {
            /> 
           </div>
         <div className="flex-1 flex justify-center">
-          <Menu setActive={setActive} active={active} setLastActive={setLastActive} className="flex items-center space-x-8">
+          <Menu setActive={setActive} active={active} setLastActive={setLastActive}>
             <MenuItem setActive={setActive} active={active} lastActive={lastActive} setLastActive={setLastActive} item="Services">
               <div className="flex flex-col space-y-4 text-sm">
                 <HoveredLink href="/web-dev">Web Development</HoveredLink>
