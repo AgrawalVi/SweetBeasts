@@ -19,17 +19,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="light"
-          enableSystem={false}
-          disableTransitionOnChange
-        >
-          <Navbar></Navbar>
-          <div className="m-10">
-            {children}
-          </div>
-      </ThemeProvider>
+        {children}
       </body>
     </html>
   );
