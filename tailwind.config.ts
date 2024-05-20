@@ -42,6 +42,7 @@ const config = {
         border: 'hsl(var(--border))',
         input: 'hsl(var(--input))',
         ring: 'hsl(var(--ring))',
+        nav: 'rgb(233, 188, 188)'
       },
       borderRadius: {
         lg: "var(--radius)",
