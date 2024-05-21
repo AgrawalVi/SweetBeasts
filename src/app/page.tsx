@@ -5,6 +5,7 @@ import { Input } from "@/components/aceternity/input"
 import {ModeToggle} from "@/components/ui/mode-toggle"
 import { cn } from "@/lib/utils"
 import React, { useEffect, useState } from "react"
+import { addToEmailList } from "@/actions/email-list"
 
 import { Josefin_Sans, Nunito } from "next/font/google"
 import GradientButton from "@/components/aceternity/gradient-button"
@@ -33,6 +34,12 @@ export default function Home() {
 
   useEffect(() => {
   }, [])
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    addToEmailList(email)
+    console.log("form contents: ", email)
+  }
 
   return (
     <main
@@ -69,16 +76,17 @@ export default function Home() {
         >
           Join our mailing list to be the first to know when we go live!
         </p>
-        <form className="flex flex-col place-items-center justify-center w-full">
+        <form className="flex flex-col place-items-center justify-center w-full" onSubmit={handleSubmit}>
           <div className="w-full flex justify-center">
             <Input
               type="text"
               placeholder="welcome@sweetbeasts.shop"
               className="w-[40rem] relative z-10 bg-neutral-950 placeholder:text-neutral-400 text-white"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
             />
           </div>
-
-          <GradientButton className='relative z-10 w-40 flex justify-center mt-5'>Sign Up</GradientButton>
+          <GradientButton className='relative z-10 w-40 flex justify-center mt-5' type="submit">Sign Up</GradientButton>
         </form>
       </div>
       <BackgroundBeams />
