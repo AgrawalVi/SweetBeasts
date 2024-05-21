@@ -4,7 +4,7 @@
 
 
   :root {
-    --background: 352.6 100% 95%;
+    --background: hsl(352.6 100% 95%);
     --foreground: 352.6 5% 2%;
     --card: 352.6 50% 90%;
     --card-foreground: 352.6 5% 10%;
@@ -27,7 +27,7 @@
   }
   
   .dark {
-    --background: 352.6 50% 5%;
+    --background: hsl(352.6 50% 5%);
     --foreground: 352.6 5% 90%;
     --card: 352.6 50% 2%;
     --card-foreground: 352.6 5% 90%;
