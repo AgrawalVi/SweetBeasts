@@ -1,12 +1,13 @@
-'use client'
-import { cn } from "@/utils/cn";
+"use client"
+
+import { cn } from "@/utils/cn"
 
 export const BentoGrid = ({
   className,
   children,
 }: {
-  className?: string;
-  children?: React.ReactNode;
+  className?: string
+  children?: React.ReactNode
 }) => {
   return (
     <div
@@ -17,8 +18,8 @@ export const BentoGrid = ({
     >
       {children}
     </div>
-  );
-};
+  )
+}
 
 export const BentoGridItem = ({
   className,
@@ -27,11 +28,11 @@ export const BentoGridItem = ({
   header,
   icon,
 }: {
-  className?: string;
-  title?: string | React.ReactNode;
-  description?: string | React.ReactNode;
-  header?: React.ReactNode;
-  icon?: React.ReactNode;
+  className?: string
+  title?: string | React.ReactNode
+  description?: string | React.ReactNode
+  header?: React.ReactNode
+  icon?: React.ReactNode
 }) => {
   return (
     <div
@@ -51,5 +52,5 @@ export const BentoGridItem = ({
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
