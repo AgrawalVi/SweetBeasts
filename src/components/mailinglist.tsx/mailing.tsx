@@ -14,7 +14,7 @@ export default function MailingComponent() {
             type="text"
             placeholder="Email"
             className="rounded-lg border border-red-800 focus:ring-2 focus:ring-pink-500 w-full relative z-10 mt-4 bg-card placeholder:text-neutral-700"
-          />
+          /> 
         </div>
         <BackgroundBeams />
       </div>
