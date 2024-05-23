@@ -43,19 +43,19 @@ export function Navbar({ className }: { className?: string }) {
                 />
                 <ProductItem
                   title="Pineapple Parrot"
-                  href="https://tailwindmasterkit.com"
+                  href="/products/pineapple-parrot"
                   src="/pineapple-parrot.jpg"
                   description="The Pineapple Parrot"
                 />
                 <ProductItem
                   title="Tangerine Turtle"
-                  href="https://gomoonbeam.com"
+                  href="/products/tangerine-turtle"
                   src="/tangerine-turtle.jpg"
                   description="The Tangerine Turtle."
                 />
                 <ProductItem
                   title="Lemon Lion"
-                  href="https://userogue.com"
+                  href="/products/lemon-lion"
                   src="/lemon-lion.jpg"
                   description="The Lemon Lion."
                 />
