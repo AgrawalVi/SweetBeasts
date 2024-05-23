@@ -16,10 +16,17 @@ import {
   SelectValue,
 } from "@/components/ui/select"
 import { Button } from "@/components/ui/button";
+import Image from "next/image";
 
 export default function Pogo() {
   return (
     <div className="container mx-auto flex justify-end space-x-4">
+      <Image className="h-4/6"
+        src="/pogo.jpg" 
+        width={500} 
+        height={300}
+        alt="Pogo the Peachy Penguin" 
+      />
       <Card className="w-full md:w-3/4 lg:w-[47%] xl:w-[32%] h-96 lg:h-[600px]">
         <CardHeader className="mb-8">
           <CardTitle className="text-center">Pogo the Peachy Penguin</CardTitle>
