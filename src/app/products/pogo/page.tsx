@@ -42,12 +42,12 @@ export default function Pogo() {
       <Card className="w-full md:w-3/4 lg:w-[47%] xl:w-[32%] h-96 lg:h-[500px]">
         <CardHeader className="mb-8">
           <CardTitle>Buy Now</CardTitle>
-          <CardDescription>15.99</CardDescription>
+          <CardDescription className="text-3xl">15.99</CardDescription>
         </CardHeader>
         <CardContent className="mb-48">
           <p>Want it Now? Order before it runs out!</p>
         </CardContent>
-        <div className="mb-8 flex justify-center">
+        <div className="mb-6 flex justify-center">
           <Select>
             <SelectTrigger className="w-[180px]">
               <SelectValue placeholder="Quantity" />
