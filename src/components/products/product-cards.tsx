@@ -1,6 +1,7 @@
 import { CardBody, CardContainer, CardItem } from "@/components/aceternity/3d-card";
 import Image from "next/image";
 import { BentoGrid } from "@/components/aceternity/bento-grid";
+import Link from "next/link";
 
 export default function ProductCards() {
   return (
@@ -23,8 +24,12 @@ export default function ProductCards() {
             />
           </CardItem>
           <div className="flex justify-between items-center mt-4">
-            <CardItem translateZ={20} as="button" className="px-4 py-2 rounded-xl bg-black dark:bg-white dark:text-black text-white text-xs font-bold">
-              Buy Now
+            <CardItem translateZ={20}>
+              <Link href="/products/pogo" passHref>
+                <button className="px-4 py-2 rounded-xl bg-black dark:bg-white dark:text-black text-white text-xs font-bold">
+                  Buy Now
+                </button>
+              </Link>
             </CardItem>
           </div>
         </CardBody>
@@ -48,8 +53,12 @@ export default function ProductCards() {
             />
           </CardItem>
           <div className="flex justify-between items-center mt-4">
-            <CardItem translateZ={20} as="button" className="px-4 py-2 rounded-xl bg-black dark:bg-white dark:text-black text-white text-xs font-bold">
-              Buy Now
+            <CardItem translateZ={20}>
+              <Link href="/products/lemon-lion" passHref>
+                <button className="px-4 py-2 rounded-xl bg-black dark:bg-white dark:text-black text-white text-xs font-bold">
+                  Buy Now
+                </button>
+              </Link>
             </CardItem>
           </div>
         </CardBody>
@@ -73,8 +82,12 @@ export default function ProductCards() {
             />
           </CardItem>
           <div className="flex justify-between items-center mt-4">
-            <CardItem translateZ={20} as="button" className="px-4 py-2 rounded-xl bg-black dark:bg-white dark:text-black text-white text-xs font-bold">
-              Buy Now
+            <CardItem translateZ={20}>
+              <Link href="/products/pineapple-parrot" passHref>
+                <button className="px-4 py-2 rounded-xl bg-black dark:bg-white dark:text-black text-white text-xs font-bold">
+                  Buy Now
+                </button>
+              </Link>
             </CardItem>
           </div>
         </CardBody>
@@ -98,8 +111,12 @@ export default function ProductCards() {
             />
           </CardItem>
           <div className="flex justify-between items-center mt-4">
-            <CardItem translateZ={20} as="button" className="px-4 py-2 rounded-xl bg-black dark:bg-white dark:text-black text-white text-xs font-bold">
-              Buy Now
+            <CardItem translateZ={20}>
+              <Link href="/products/tangerine-turtle" passHref>
+                <button className="px-4 py-2 rounded-xl bg-black dark:bg-white dark:text-black text-white text-xs font-bold">
+                  Buy Now
+                </button>
+              </Link>
             </CardItem>
           </div>
         </CardBody>
