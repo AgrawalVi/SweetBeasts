@@ -29,7 +29,7 @@ export default function Home() {
   return (
     <main
       className={cn(
-        "h-screen w-screen bg-neutral-950 relative flex flex-col items-center justify-center antialiased",
+        "h-dvf w-screen bg-neutral-950 relative flex flex-col items-center justify-center antialiased",
         josefinSans.className
       )}
     >
