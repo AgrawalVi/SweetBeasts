@@ -13,8 +13,8 @@ const nunito = Nunito({ subsets: ["latin"] })
 import localFont from 'next/font/local'
 
 const motleyForces = localFont({
-  src: '/fonts/MotleyForces.ttf',
-  
+  src: '../../public/fonts/MotleyForces.ttf',
+
 })
 
 export default function Home() {
