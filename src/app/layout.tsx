@@ -9,6 +9,9 @@ const inter = Inter({ subsets: ["latin"] })
 export const metadata: Metadata = {
   title: "SweetBeasts",
   description: "Created by SweetBeasts, Inc",
+  icons: {
+    icon: "/favicon.ico",
+  },
 }
 
 export default function RootLayout({
@@ -26,6 +29,7 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <main>{children}</main>
+          <link rel="icon" href="/favicon.ico" sizes="any" />
           <Toaster />
         </ThemeProvider>
       </body>
