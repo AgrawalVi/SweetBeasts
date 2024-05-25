@@ -8,7 +8,7 @@ import { addToEmailList } from "@/actions/email-list"
 import { Josefin_Sans, Nunito, Coiny } from "next/font/google"
 import JoinEmailListForm from "@/components/general/email-list/join-email-list-form"
 import { Button } from "@/components/ui/button"
-import { IconBrandInstagram, IconBrandDiscord } from "@tabler/icons-react"
+import { IconBrandInstagram, IconBrandDiscord, IconBrandTiktok } from "@tabler/icons-react"
 import Link from "next/link"
 
 const josefinSans = Josefin_Sans({ subsets: ["latin"] })
@@ -70,6 +70,11 @@ export default function Home() {
         <Link href="https://www.instagram.com/sweetbeastsshop" target="_blank" rel="noopener noreferrer">
           <Button size="icon" variant="outline">
             <IconBrandInstagram />
+          </Button>
+        </Link>
+        <Link href="https://www.tiktok.com/@sweetbeasts" target="_blank" rel="noopener noreferrer">
+          <Button size="icon" variant="outline">
+            <IconBrandTiktok />
           </Button>
         </Link>
       </div>
