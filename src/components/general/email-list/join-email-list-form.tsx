@@ -56,7 +56,7 @@ const JoinEmailListForm = () => {
                 <Input
                   {...field}
                   placeholder="welcome@sweetbeasts.shop"
-                  className="w-[40rem]"
+                  className="w-[20rem] lg:w-[40rem]"
                 />
               </FormControl>
               <FormMessage />

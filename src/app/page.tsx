@@ -5,17 +5,14 @@ import { cn } from "@/lib/utils"
 import React, { useEffect, useState } from "react"
 import { addToEmailList } from "@/actions/email-list"
 
-import { Josefin_Sans, Nunito } from "next/font/google"
+import { Josefin_Sans, Nunito, Coiny } from "next/font/google"
 import JoinEmailListForm from "@/components/general/email-list/join-email-list-form"
+import localFont from 'next/font/local'
 
 const josefinSans = Josefin_Sans({ subsets: ["latin"] })
 const nunito = Nunito({ subsets: ["latin"] })
-import localFont from 'next/font/local'
+const coiny = Coiny({ subsets: ["latin"], weight: '400' })
 
-const motleyForces = localFont({
-  src: '../../public/fonts/MotleyForces.ttf',
-
-})
 
 export default function Home() {
   const [email, setEmail] = useState("")
@@ -36,16 +33,16 @@ export default function Home() {
         josefinSans.className
       )}
     >
-      <div className="max-w-[50rem] mx-auto space-y-4">
-        <h1 className="relative z-10 text-4xl md:text-9xl bg-clip-text text-transparent bg-gradient-to-br from-rose-300 to-rose-700 text-center font-sans font-bold">
+      <div className="max-w-[60rem] mx-auto space-y-4">
+        <h1 className={cn("relative z-10 text-4xl md:text-9xl bg-clip-text text-transparent bg-gradient-to-br from-rose-300 to-rose-700 text-center font-sans", coiny.className)}>
           SweetBeasts
         </h1>
-        <h1 className="relative z-10 text-xl md:text-5xl bg-clip-text text-transparent bg-gradient-to-br from-rose-200 to-rose-600 text-center font-sans font-bold pb-2">
+        <h1 className={cn("relative z-10 text-2xl md:text-5xl bg-clip-text text-transparent bg-gradient-to-br from-rose-200 to-rose-600 text-center font-sans font-bold pb-2", coiny.className)}>
           Coming Soon
         </h1>
         <p
           className={cn(
-            "text-neutral-500 max-w-lg mx-auto my-2 text-sm text-center relative z-10",
+            "text-neutral-500 max-w-lg mx-auto my-2 text-sm text-center relative z-10 px-5",
             nunito.className
           )}
         >
