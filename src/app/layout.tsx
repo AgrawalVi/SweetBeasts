@@ -1,10 +1,21 @@
 import type { Metadata } from "next"
-import { Inter } from "next/font/google"
+import { Coiny, Nunito, Josefin_Sans } from "next/font/google"
 import "./globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
 import { Toaster } from "@/components/ui/toaster"
 
-const inter = Inter({ subsets: ["latin"] })
+const nunito = Nunito({ subsets: ["latin"] })
+
+const coiny = Coiny({
+  subsets: ["latin"],
+  weight: "400",
+  variable: "--font-coiny",
+})
+
+const josefinSans = Josefin_Sans({
+  subsets: ["latin"],
+  variable: "--font-josefin",
+})
 
 export const metadata: Metadata = {
   title: "SweetBeasts",
@@ -21,7 +32,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={inter.className}>
+      <body className={nunito.className}>
         <ThemeProvider
           attribute="class"
           defaultTheme="dark"
