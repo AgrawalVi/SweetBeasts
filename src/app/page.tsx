@@ -62,12 +62,12 @@ export default function Home() {
         <JoinEmailListForm />
       </div>
       <div className="absolute z-10 bottom-10 space-x-5">
-        <Link href="https://discord.gg/NsyQ2wP46t">
+        <Link href="https://discord.gg/NsyQ2wP46t" target="_blank" rel="noopener noreferrer">
           <Button size="icon" variant="outline">
             <IconBrandDiscord />
           </Button>
         </Link>
-        <Link href="https://www.instagram.com/sweetbeastsshop">
+        <Link href="https://www.instagram.com/sweetbeastsshop" target="_blank" rel="noopener noreferrer">
           <Button size="icon" variant="outline">
             <IconBrandInstagram />
           </Button>
