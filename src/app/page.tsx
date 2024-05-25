@@ -64,17 +64,17 @@ export default function Home() {
       <div className="absolute z-10 bottom-10 space-x-5">
         <Link href="https://discord.gg/NsyQ2wP46t" target="_blank" rel="noopener noreferrer">
           <Button size="icon" variant="outline">
-            <IconBrandDiscord />
+            <IconBrandDiscord className="text-neutral-300" />
           </Button>
         </Link>
         <Link href="https://www.instagram.com/sweetbeastsshop" target="_blank" rel="noopener noreferrer">
           <Button size="icon" variant="outline">
-            <IconBrandInstagram />
+            <IconBrandInstagram className="text-neutral-300" />
           </Button>
         </Link>
         <Link href="https://www.tiktok.com/@sweetbeasts" target="_blank" rel="noopener noreferrer">
           <Button size="icon" variant="outline">
-            <IconBrandTiktok />
+            <IconBrandTiktok className="text-neutral-300"/>
           </Button>
         </Link>
       </div>
