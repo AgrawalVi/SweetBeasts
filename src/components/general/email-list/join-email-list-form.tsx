@@ -1,70 +1,78 @@
-'use client'
+"use client"
 
-import * as z from 'zod';
-import { JoinEmailListSchema } from '@/schemas';
+import * as z from "zod"
+import { JoinEmailListSchema } from "@/schemas"
 import {
-  Form, FormControl, FormField, FormItem, FormLabel, FormMessage
-} from '@/components/ui/form';
-import { useForm } from 'react-hook-form';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { addToEmailList } from '@/actions/email-list';
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form"
+import { useForm } from "react-hook-form"
+import { zodResolver } from "@hookform/resolvers/zod"
+import { addToEmailList } from "@/actions/email-list"
+import { useToast } from "@/components/ui/use-toast"
 
-import { useState, useTransition } from 'react';
-import { Input } from '@/components/aceternity/input';
+import { useState, useTransition } from "react"
+import { Input } from "@/components/aceternity/input"
+import { HoverBorderGradient } from "@/components/aceternity/hover-border-gradient"
+import { toast } from "@/components/ui/use-toast"
 
 const JoinEmailListForm = () => {
-
-  const [isPending, startTransition] = useTransition();
-  const {error, setError} = useState<string | undefined>(null);
-  const {success, setSuccess} = useState<string | undefined>(false);
+  const { toast } = useToast()
 
   const form = useForm<z.infer<typeof JoinEmailListSchema>>({
     resolver: zodResolver(JoinEmailListSchema),
     defaultValues: {
-      email: ''
-    }
-  });
+      email: "",
+    },
+  })
 
   const onSubmit = (values: z.infer<typeof JoinEmailListSchema>) => {
-    setSuccess(false)
-    setError("")
-    startTransition(() => {
-      addToEmailList(values.email).then((data) => {
-        setError(data.error)
-        setSuccess(data.success)
-      })
+    addToEmailList(values.email).then((data) => {
+      if (data.error) {
+        toast({ description: data.error, variant: "destructive" })
+      }
+      else {
+        toast({ description: "Welcome to the SweetBeasts family, You're all set! 🎉" })
+      }
     })
   }
 
-
-  return ( 
-    <Form { ...form }>
+  return (
+    <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className='space-y-6 relative z-10'
+        className="space-y-6 relative z-10 flex w-full place-items-center flex-col"
       >
-        <FormField 
+        <FormField
           control={form.control}
-          name='email'
+          name="email"
           render={({ field }) => (
             <FormItem>
               <FormControl>
                 <Input
-                  { ...field }
-                  type='email'
-                  placeholder='welcome@sweetbeasts.com'
-                  />
+                  {...field}
+                  placeholder="welcome@sweetbeasts.shop"
+                  className="w-[40rem]"
+                />
               </FormControl>
-              <FormMessage/>
+              <FormMessage />
             </FormItem>
           )}
         />
-        <Button>
-
-        </Button>
+        <HoverBorderGradient
+          className="z-10 w-40"
+          containerClassName="mt-5"
+          type="submit"
+        >
+          Sign Up
+        </HoverBorderGradient>
       </form>
     </Form>
-   );
+  )
 }
- 
-export default JoinEmailListForm;
+
+export default JoinEmailListForm
