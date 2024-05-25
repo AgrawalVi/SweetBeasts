@@ -4,7 +4,10 @@ import "./globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
 import { Toaster } from "@/components/ui/toaster"
 
-const nunito = Nunito({ subsets: ["latin"] })
+const nunito = Nunito({
+  subsets: ["latin"],
+  variable: "--font-nunito",
+})
 
 const coiny = Coiny({
   subsets: ["latin"],
@@ -32,7 +35,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={nunito.className}>
+      <body className={`${nunito.variable} ${josefinSans.variable} ${coiny.variable}`}>
         <ThemeProvider
           attribute="class"
           defaultTheme="dark"
