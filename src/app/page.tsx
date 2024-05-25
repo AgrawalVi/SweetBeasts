@@ -7,24 +7,15 @@ import { addToEmailList } from "@/actions/email-list"
 
 import { Josefin_Sans, Nunito, Coiny } from "next/font/google"
 import JoinEmailListForm from "@/components/general/email-list/join-email-list-form"
-import localFont from 'next/font/local'
+import { Button } from "@/components/ui/button"
+import { IconBrandInstagram, IconBrandDiscord } from "@tabler/icons-react"
+import Link from "next/link"
 
 const josefinSans = Josefin_Sans({ subsets: ["latin"] })
 const nunito = Nunito({ subsets: ["latin"] })
-const coiny = Coiny({ subsets: ["latin"], weight: '400' })
-
+const coiny = Coiny({ subsets: ["latin"], weight: "400" })
 
 export default function Home() {
-  const [email, setEmail] = useState("")
-  const [mounted, setMounted] = useState(false)
-
-  useEffect(() => {}, [])
-
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
-    addToEmailList(email)
-    console.log("form contents: ", email)
-  }
 
   return (
     <main
@@ -34,10 +25,20 @@ export default function Home() {
       )}
     >
       <div className="max-w-[60rem] mx-auto space-y-4">
-        <h1 className={cn("relative z-10 text-4xl md:text-9xl bg-clip-text text-transparent bg-gradient-to-br from-rose-300 to-rose-700 text-center font-sans", coiny.className)}>
+        <h1
+          className={cn(
+            "relative z-10 text-4xl md:text-9xl bg-clip-text text-transparent bg-gradient-to-br from-rose-300 to-rose-700 text-center font-sans",
+            coiny.className
+          )}
+        >
           SweetBeasts
         </h1>
-        <h1 className={cn("relative z-10 text-2xl md:text-5xl bg-clip-text text-transparent bg-gradient-to-br from-rose-200 to-rose-600 text-center font-sans font-bold pb-2", coiny.className)}>
+        <h1
+          className={cn(
+            "relative z-10 text-2xl md:text-5xl bg-clip-text text-transparent bg-gradient-to-br from-rose-200 to-rose-600 text-center font-sans font-bold pb-2",
+            coiny.className
+          )}
+        >
           Coming Soon
         </h1>
         <p
@@ -59,6 +60,18 @@ export default function Home() {
           Join our mailing list to be the first to know when we go live!
         </p>
         <JoinEmailListForm />
+      </div>
+      <div className="absolute z-10 bottom-10 space-x-5">
+        <Link href="https://discord.gg/NsyQ2wP46t">
+          <Button size="icon" variant="outline">
+            <IconBrandDiscord />
+          </Button>
+        </Link>
+        <Link href="https://www.instagram.com/sweetbeastsshop">
+          <Button size="icon" variant="outline">
+            <IconBrandInstagram />
+          </Button>
+        </Link>
       </div>
       <BackgroundBeams />
     </main>
