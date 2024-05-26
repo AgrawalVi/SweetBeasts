@@ -32,7 +32,6 @@ export default function CanvasRevealEffectDemo() {
             WHO WE ARE
           </h1>
         </div>
-        <MissionStatementSection />
       </div>
     </main>
   )
