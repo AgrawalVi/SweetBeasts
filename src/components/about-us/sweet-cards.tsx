@@ -7,7 +7,7 @@ import React from "react"
 export default function SweetCards() {
   return (
     <>
-      <div className="py-20 flex flex-col lg:flex-row flex-wrap xl:flex-nowrap items-center justify-center gap-4 mx-auto px-8">
+      <div className="py-10 flex flex-col lg:flex-row flex-wrap xl:flex-nowrap items-center justify-center gap-4 mx-auto px-8">
         <Card
           title="SUPPORT"
           icon={<S_Icon />}
@@ -20,7 +20,7 @@ export default function SweetCards() {
             dotSize={3}
           />
           {/* Radial gradient for the cute fade */}
-          <div className="absolute inset-0 [mask-image:radial-gradient(400px_at_center,white,transparent)] bg-black/40 dark:bg-black/90" />
+          <div className="absolute inset-0 [mask-image:radial-gradient(400px_at_center,white,transparent)] bg-purple-100/90 dark:bg-black/90" />
         </Card>
         <Card
           title="WELL-BEING"
@@ -34,7 +34,7 @@ export default function SweetCards() {
             dotSize={3}
           />
           {/* Radial gradient for the cute fade */}
-          <div className="absolute inset-0 [mask-image:radial-gradient(400px_at_center,white,transparent)] bg-black/40 dark:bg-black/90" />
+          <div className="absolute inset-0 [mask-image:radial-gradient(400px_at_center,white,transparent)] bg-purple-100/90 dark:bg-black/90" />
         </Card>
         <Card
           title="EMPATHY"
@@ -47,7 +47,7 @@ export default function SweetCards() {
             colors={[[228, 68, 253]]}
             dotSize={3}
           />
-          <div className="absolute inset-0 [mask-image:radial-gradient(400px_at_center,white,transparent)] bg-black/40 dark:bg-black/90" />
+          <div className="absolute inset-0 [mask-image:radial-gradient(400px_at_center,white,transparent)] bg-purple-100/90 dark:bg-black/90" />
         </Card>
         <Card
           title="ENGAGEMENT"
@@ -63,7 +63,7 @@ export default function SweetCards() {
             dotSize={3}
           />
           {/* Radial gradient for the cute fade */}
-          <div className="absolute inset-0 [mask-image:radial-gradient(400px_at_center,white,transparent)] bg-black/40 dark:bg-black/90" />
+          <div className="absolute inset-0 [mask-image:radial-gradient(400px_at_center,white,transparent)] bg-purple-100/90 dark:bg-black/90" />
         </Card>
         <Card
           title="TRANSFORMATION"
@@ -77,7 +77,7 @@ export default function SweetCards() {
             dotSize={3}
           />
           {/* Radial gradient for the cute fade */}
-          <div className="absolute inset-0 [mask-image:radial-gradient(400px_at_center,white,transparent)] bg-black/40 dark:bg-black/90" />
+          <div className="absolute inset-0 [mask-image:radial-gradient(400px_at_center,white,transparent)] bg-purple-100/90 dark:bg-black/90" />
         </Card>
       </div>
     </>
@@ -123,10 +123,10 @@ const Card = ({
         <div className="text-center group-hover/canvas-card:-translate-y-4 group-hover/canvas-card:opacity-0 transition duration-200 w-full mx-auto flex items-center justify-center absolute top-0 bottom-0 left-0 right-0">
           {icon}
         </div>
-        <h2 className="dark:text-white text-3xl opacity-0 group-hover/canvas-card:opacity-100 relative z-10 text-black mt-4  font-bold group-hover/canvas-card:text-white group-hover/canvas-card:-translate-y-2 transition duration-200 text-center">
+        <h2 className="text-xl xl:text-2xl opacity-0 group-hover/canvas-card:opacity-100 relative z-10 mt-4 font-bold group-hover/canvas-card:text-neutral-900 dark:group-hover/canvas-card:text-neutral-300 group-hover/canvas-card:-translate-y-2 transition duration-200 text-center">
           {title}
         </h2>
-        <h3 className="dark:text-white text-lg opacity-0 group-hover/canvas-card:opacity-100 relative z-10 text-black mt-4 font-semibold group-hover/canvas-card:text-white group-hover/canvas-card:-translate-y-2 transition duration-200 pt-4">
+        <h3 className="text-base xl:text-lg opacity-0 group-hover/canvas-card:opacity-100 relative z-10 mt-4 font-semibold group-hover/canvas-card:text-neutral-900 dark:group-hover/canvas-card:text-neutral-300 group-hover/canvas-card:-translate-y-2 transition duration-200 pt-4">
           {description}
         </h3>
       </div>

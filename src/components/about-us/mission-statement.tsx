@@ -2,12 +2,12 @@ import { BackgroundGradient } from "../aceternity/background-gradient"
 
 export default function MissionStatementSection() {
   return (
-    <div className="h-[35rem] w-full flex flex-col md:items-center md:justify-center antialiased bg-grid-white/[0.02] relative overflow-hidden">
+    <div className="w-full flex flex-col md:items-center md:justify-center antialiased bg-grid-white/[0.02] relative overflow-hidden">
         <h1 className="text-5xl md:text-7xl text-center bg-clip-text text-transparent bg-gradient-to-br dark:from-rose-300 dark:to-rose-700 from-cyan-500 to-cyan-900 drop-shadow-md bg-opacity-50 font-coiny mb-8">
           OUR MISSION
         </h1>
-        <BackgroundGradient className="rounded-[22px] p-4 sm:p-10 bg-background max-w-[60rem]" containerClassName="max-w-[60rem]">
-          <p className="mt-4 font-normal text-base md:text-lg text-neutral-800 dark:text-neutral-300 max-w-[60rem] text-center mx-auto">
+        <BackgroundGradient className="rounded-[22px] p-2 sm:p-10 bg-background max-w-[60rem]" containerClassName="max-w-[60rem] m-10">
+          <p className="m-1 font-normal text-base md:text-lg text-neutral-800 dark:text-neutral-300 max-w-[60rem] text-center mx-auto">
             At SweetBeasts, we craft delightful plushies that blend the charm of
             fruits with the joy of animals, inspiring healthier lifestyles and a
             spirit of compassion. By merging fun with education, each creation
