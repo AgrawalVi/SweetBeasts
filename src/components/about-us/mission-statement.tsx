@@ -6,7 +6,7 @@ export default function MissionStatementSection() {
         <h1 className="text-5xl md:text-7xl text-center bg-clip-text text-transparent header-gradient from-cyan-500 to-cyan-900 drop-shadow-md bg-opacity-50 font-coiny mb-8">
           OUR MISSION
         </h1>
-        <BackgroundGradient className="rounded-[22px] p-2 sm:p-10 bg-background max-w-[60rem]" containerClassName="max-w-[60rem] mx-8 my-10 md:mx-10">
+        <BackgroundGradient className="rounded-[22px] p-5 sm:p-10 bg-background max-w-[60rem]" containerClassName="max-w-[60rem] mx-8 my-10 md:mx-10">
           <p className="m-1 font-normal text-base md:text-lg text-neutral-800 dark:text-neutral-300 max-w-[60rem] text-center mx-auto">
             At SweetBeasts, we craft delightful plushies that blend the charm of
             fruits with the joy of animals, inspiring healthier lifestyles and a
