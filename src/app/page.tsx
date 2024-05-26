@@ -1,36 +1,100 @@
-import MacbookScrollDemo from "@/components/aceternity/MacbookScrollDemo";
-import { TracingBeam } from "@/components/ui/tracing-beam";
+"use client"
+
+import { BackgroundBeams } from "@/components/aceternity/background-beams"
+import { cn } from "@/lib/utils"
+
+import JoinEmailListForm from "@/components/general/email-list/join-email-list-form"
+import { Button } from "@/components/ui/button"
 import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import Image  from 'next/image'
+  IconBrandInstagram,
+  IconBrandDiscord,
+  IconBrandTiktok,
+} from "@tabler/icons-react"
+import Link from "next/link"
+import { HoverBorderGradient } from "@/components/aceternity/hover-border-gradient"
+import { ModeToggle } from "@/components/ui/mode-toggle"
 
 export default function Home() {
   return (
-    <main className="flex items-end justify-start min-h-screen p-4 bg-gray-900">
-      <Card style={{ backgroundColor: '#F08080' }} className="w-64 shadow-lg rounded-lg shadow-[0_10px_20px_rgba(240,_46,_170,_0.7)]">
-        <CardHeader className="p-4 border-b border-gray-200">
-          <CardTitle className="text-xl font-bold">Pogo</CardTitle>
-          <CardDescription className="text-gray-500">The Peachy Penguin</CardDescription>
-        </CardHeader>
-        <CardContent className="p-4 ">
-          < Image 
-            src="/pogo.jpg" 
-            width={100}
-            height={100}
-            alt="Pogo"
-          />
-        </CardContent>
-        <CardFooter className="p-4 border-t border-gray-200">
-          <p>Buy Now</p>
-        </CardFooter>
-      </Card>
+    <main
+      className={cn(
+        "min-h-dvh w-screen relative flex flex-col items-center justify-center antialiased"
+      )}
+    >
+      <ModeToggle className="absolute z-10 top-5 left-5"/>
+      <div className="max-w-[60rem] mx-auto space-y-4">
+        <h1
+          className={cn(
+            "relative z-10 text-4xl md:text-7xl lg:text-9xl bg-clip-text text-transparent header-gradient text-center font-coiny drop-shadow-lg"
+          )}
+        >
+          SweetBeasts
+        </h1>
+        <h1
+          className={cn(
+            "relative z-10 text-2xl md:text-4xl lg:text-6xl bg-clip-text text-transparent header-gradient text-center font-bold pb-2 font-coiny"
+          )}
+        >
+          Coming Soon
+        </h1>
+        <p
+          className={cn(
+            "text-neutral-500 max-w-lg mx-auto my-2 text-sm md:text-base text-center relative z-10 px-5"
+          )}
+        >
+          We've been working very hard to introduce SweetBeasts to the world.
+          While we add the finishing touches to our website, we'd love to keep
+          you in the loop.
+        </p>
+        <p
+          className={cn(
+            "text-neutral-500 max-w-lg mx-auto pb-2 mt-2 text-sm md:text-base text-center relative z-10"
+          )}
+        >
+          Join our mailing list to be the first to know when we go live!
+        </p>
+        <JoinEmailListForm />
+        <div className="w-full flex justify-center">
+          <Link href="/about-us">
+            <HoverBorderGradient
+              className="z-10 w-40"
+              containerClassName="md:absolute md:top-5 md:right-5"
+            >
+              Read About us
+            </HoverBorderGradient>
+          </Link>
+        </div>
+      </div>
+      <div className="absolute z-10 bottom-10 space-x-5 flex flex-row">
+        <Link
+          href="https://discord.gg/NsyQ2wP46t"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <Button size="icon" variant="outline">
+            <IconBrandDiscord />
+          </Button>
+        </Link>
+        <Link
+          href="https://www.instagram.com/sweetbeastsshop"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <Button size="icon" variant="outline">
+            <IconBrandInstagram />
+          </Button>
+        </Link>
+        <Link
+          href="https://www.tiktok.com/@sweetbeasts"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <Button size="icon" variant="outline">
+            <IconBrandTiktok />
+          </Button>
+        </Link>
+      </div>
+      <BackgroundBeams />
     </main>
-  );
+  )
 }
-
