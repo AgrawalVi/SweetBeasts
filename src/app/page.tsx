@@ -12,25 +12,27 @@ import {
 } from "@tabler/icons-react"
 import Link from "next/link"
 import { HoverBorderGradient } from "@/components/aceternity/hover-border-gradient"
+import { ModeToggle } from "@/components/ui/mode-toggle"
 
 export default function Home() {
   return (
     <main
       className={cn(
-        "min-h-dvh w-screen bg-neutral-950 relative flex flex-col items-center justify-center antialiased"
+        "min-h-dvh w-screen relative flex flex-col items-center justify-center antialiased"
       )}
     >
+      <ModeToggle className="absolute z-10 top-5 left-5"/>
       <div className="max-w-[60rem] mx-auto space-y-4">
         <h1
           className={cn(
-            "relative z-10 text-4xl md:text-7xl lg:text-9xl bg-clip-text text-transparent bg-gradient-to-br from-rose-300 to-rose-700 text-center font-coiny"
+            "relative z-10 text-4xl md:text-7xl lg:text-9xl bg-clip-text text-transparent bg-gradient-to-br dark:from-rose-300 dark:to-rose-700 from-cyan-500 to-cyan-900 text-center font-coiny drop-shadow-md"
           )}
         >
           SweetBeasts
         </h1>
         <h1
           className={cn(
-            "relative z-10 text-2xl md:text-4xl lg:text-6xl bg-clip-text text-transparent bg-gradient-to-br from-rose-200 to-rose-600 text-center font-bold pb-2 font-coiny"
+            "relative z-10 text-2xl md:text-4xl lg:text-6xl bg-clip-text text-transparent bg-gradient-to-br dark:from-rose-300 dark:to-rose-700 from-cyan-500 to-cyan-900 text-center font-bold pb-2 font-coiny"
           )}
         >
           Coming Soon

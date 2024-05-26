@@ -38,7 +38,7 @@ export default function RootLayout({
       <body className={`${nunito.variable} ${josefinSans.variable} ${coiny.variable}`}>
         <ThemeProvider
           attribute="class"
-          defaultTheme="dark"
+          defaultTheme="system"
           enableSystem
           disableTransitionOnChange
         >
