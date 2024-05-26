@@ -64,3 +64,7 @@
 body {
   font-family: var(--font-nunito);
 }
+
+.header-gradient {
+  @apply bg-gradient-to-br dark:from-rose-300 dark:to-rose-700 from-cyan-500 to-cyan-900 drop-shadow-md;
+}

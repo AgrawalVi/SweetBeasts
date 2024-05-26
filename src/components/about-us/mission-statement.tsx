@@ -3,7 +3,7 @@ import { BackgroundGradient } from "../aceternity/background-gradient"
 export default function MissionStatementSection() {
   return (
     <div className="w-full flex flex-col md:items-center md:justify-center antialiased relative overflow-hidden">
-        <h1 className="text-5xl md:text-7xl text-center bg-clip-text text-transparent bg-gradient-to-br dark:from-rose-300 dark:to-rose-700 from-cyan-500 to-cyan-900 drop-shadow-md bg-opacity-50 font-coiny mb-8">
+        <h1 className="text-5xl md:text-7xl text-center bg-clip-text text-transparent header-gradient from-cyan-500 to-cyan-900 drop-shadow-md bg-opacity-50 font-coiny mb-8">
           OUR MISSION
         </h1>
         <BackgroundGradient className="rounded-[22px] p-2 sm:p-10 bg-background max-w-[60rem]" containerClassName="max-w-[60rem] mx-8 my-10 md:mx-10">

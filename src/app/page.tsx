@@ -25,14 +25,14 @@ export default function Home() {
       <div className="max-w-[60rem] mx-auto space-y-4">
         <h1
           className={cn(
-            "relative z-10 text-4xl md:text-7xl lg:text-9xl bg-clip-text text-transparent bg-gradient-to-br dark:from-rose-300 dark:to-rose-700 from-cyan-500 to-cyan-900 text-center font-coiny drop-shadow-lg"
+            "relative z-10 text-4xl md:text-7xl lg:text-9xl bg-clip-text text-transparent header-gradient text-center font-coiny drop-shadow-lg"
           )}
         >
           SweetBeasts
         </h1>
         <h1
           className={cn(
-            "relative z-10 text-2xl md:text-4xl lg:text-6xl bg-clip-text text-transparent bg-gradient-to-br dark:from-rose-300 dark:to-rose-700 from-cyan-500 to-cyan-900 text-center font-bold pb-2 font-coiny"
+            "relative z-10 text-2xl md:text-4xl lg:text-6xl bg-clip-text text-transparent header-gradient text-center font-bold pb-2 font-coiny"
           )}
         >
           Coming Soon
