@@ -22,7 +22,7 @@ const josefinSans = Josefin_Sans({
 
 export const metadata: Metadata = {
   title: "SweetBeasts",
-  description: "Created by SweetBeasts, Inc",
+  description: "Luxurious Plushies Blending Fruits & Animals",
   icons: {
     icon: "/favicon.ico",
   },
