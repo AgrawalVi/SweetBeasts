@@ -20,8 +20,8 @@ export function Navbar({ className }: { className?: string }) {
   const [active, setActive] = useState<string | null>(null)
   const [lastActive, setLastActive] = useState<string | null>(null)
   return (
-    <>
-      <div className="relative w-screen z-50 hidden md:flex items-center justify-between bg-white dark:bg-black p-4">
+    <main className="sticky top-0">
+      <div className="w-screen z-50 hidden md:flex items-center justify-between bg-background p-4 border-b relative">
         <div className="flex items-center">
           <Image src="/logos/square-dark.svg" width={100} height={100} alt="Logo" />
         </div>
@@ -29,7 +29,7 @@ export function Navbar({ className }: { className?: string }) {
           <Menu
             setActive={setActive}
             active={active}
-            setLastActive={setLastActive}
+            setLastActive={setLastActive} 
           >
             <MenuItem
               setActive={setActive}
@@ -118,6 +118,6 @@ export function Navbar({ className }: { className?: string }) {
           </Sheet>
         </div>
       </div>
-    </>
+    </main>
   )
 }

@@ -112,7 +112,7 @@ export const Menu = ({
         setLastActive(active);
         setActive(null)
       }}
-      className="relative border-b-1 border-black/[0.1] dark:bg-black dark:border-white bg-white shadow-input flex justify-center items-center space-x-4 px-8 py-6 "
+      className="relative bg-background flex justify-center items-center space-x-4 px-8 py-6 "
     >
       {children}
     </nav>

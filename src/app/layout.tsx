@@ -45,8 +45,10 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <Navbar></Navbar>
-          <div className="m-10">{children}</div>
+          <main className="min-h-screen w-full flex flex-col">
+            <Navbar></Navbar>
+            <div className="m-10 flex-grow flex flex-col">{children}</div>
+          </main>
           <link rel="icon" href="/favicon.ico" sizes="any" />
           <Toaster />
         </ThemeProvider>

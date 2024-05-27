@@ -1,9 +1,6 @@
 'use client';
 
-
-import MailingComponent from "@/components/mailinglist.tsx/mailing";
 import ProductCards from "@/components/products/product-cards";
-import { InfiniteCards } from "@/components/reviews/scrollingreviews";
 
 export default function Home() {
   return (
