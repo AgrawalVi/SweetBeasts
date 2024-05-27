@@ -14,7 +14,7 @@ import { MenuIcon } from "lucide-react"
 
 import Image from "next/image"
 
-const productItems = []
+const productItems = [{name: 'Pogo'}, {image: '/'}, {href: ''}, {name: ''}, {image: ''}, {href: ''}, {name: ''}, {image: ''}, {href: ''}, {name: ''}, {image: ''}, {href: ''},]
 
 export function Navbar({ className }: { className?: string }) {
   const [active, setActive] = useState<string | null>(null)
@@ -23,7 +23,7 @@ export function Navbar({ className }: { className?: string }) {
     <>
       <div className="relative w-screen z-50 hidden md:flex items-center justify-between bg-white dark:bg-black p-4">
         <div className="flex items-center">
-          <Image src="/logo.jpg" width={100} height={100} alt="Logo" />
+          <Image src="/logos/square-dark.svg" width={100} height={100} alt="Logo" />
         </div>
         <div className="flex-1 flex justify-center">
           <Menu
