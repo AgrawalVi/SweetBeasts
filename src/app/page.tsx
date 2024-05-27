@@ -12,13 +12,7 @@ import Link from "next/link"
 import { HoverBorderGradient } from "@/components/aceternity/hover-border-gradient"
 import { ModeToggle } from "@/components/ui/mode-toggle"
 
-import { useState } from "react"
-import Realistic from "react-canvas-confetti/dist/presets/realistic";
-
 export default function Home() {
-
-  const [confetti, setConfetti] = useState(false)
-
   return (
     <main
       className={cn(
@@ -57,7 +51,7 @@ export default function Home() {
         >
           Join our mailing list to be the first to know when we go live!
         </p>
-        <JoinEmailListForm setConfetti={setConfetti}/>
+        <JoinEmailListForm />
         <div className="w-full flex justify-center">
           <Link href="/about-us">
             <HoverBorderGradient
