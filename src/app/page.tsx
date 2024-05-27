@@ -67,7 +67,7 @@ export default function Home() {
       </div>
       <div className="absolute z-10 bottom-10 space-x-5 flex flex-row">
         <Link
-          href="https://discord.gg/NsyQ2wP46t"
+          href="https://discord.gg/fFQ9evv7aA"
           target="_blank"
           rel="noopener noreferrer"
         >
