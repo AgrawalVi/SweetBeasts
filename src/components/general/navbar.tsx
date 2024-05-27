@@ -20,8 +20,8 @@ export function Navbar({ className }: { className?: string }) {
   const [active, setActive] = useState<string | null>(null)
   const [lastActive, setLastActive] = useState<string | null>(null)
   return (
-    <main className="sticky top-0">
-      <div className="w-screen z-50 hidden md:flex items-center justify-between bg-background p-4 border-b relative">
+    <main className="sticky top-0 z-50">
+      <div className="w-screen hidden md:flex items-center justify-between bg-background p-4 border-b relative">
         <div className="flex items-center">
           <Image src="/logos/square-dark.svg" width={100} height={100} alt="Logo" />
         </div>
