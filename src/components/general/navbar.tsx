@@ -5,7 +5,7 @@ import {
   Menu,
   MenuItem,
   ProductItem,
-} from "@/components/ui/navbar-menu"
+} from "@/components/aceternity/navbar-menu"
 import { cn } from "@/utils/cn"
 import { ModeToggle } from "@/components/ui/mode-toggle"
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"

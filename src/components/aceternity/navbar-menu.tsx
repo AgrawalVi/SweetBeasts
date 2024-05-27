@@ -73,6 +73,7 @@ export const MenuItem = ({
           initial={{opacity: 1, scale: 1, y: 0}}
           animate={{opacity: 0, scale: 0.85, y: 20}}
           transition={transitionOut}
+          className="pointer-events-none"
         >
           <div className="absolute top-[calc(100%_+_1.2rem)] left-1/2 transform -translate-x-1/2 pt-4">
             <motion.div

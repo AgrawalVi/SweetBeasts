@@ -3,6 +3,7 @@ import { Coiny, Nunito, Josefin_Sans } from "next/font/google"
 import "./globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
 import { Toaster } from "@/components/ui/toaster"
+import { Navbar } from "@/components/general/navbar"
 
 const nunito = Nunito({
   subsets: ["latin"],
@@ -35,14 +36,17 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${nunito.variable} ${josefinSans.variable} ${coiny.variable}`}>
+      <body
+        className={`${nunito.variable} ${josefinSans.variable} ${coiny.variable}`}
+      >
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
           enableSystem
           disableTransitionOnChange
         >
-          <main>{children}</main>
+          <Navbar></Navbar>
+          <div className="m-10">{children}</div>
           <link rel="icon" href="/favicon.ico" sizes="any" />
           <Toaster />
         </ThemeProvider>
