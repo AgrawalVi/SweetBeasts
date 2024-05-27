@@ -18,7 +18,7 @@ export function Navbar({ className }: { className?: string }) {
   const [lastActive, setLastActive] = useState<string | null>(null)
   return (
     <>
-      <div className="relative w-screen z-50 hidden md:flex items-center justify-between bg-black p-4">
+      <div className="relative w-screen z-50 hidden md:flex items-center justify-between bg-white dark:bg-black p-4">
         <div className="flex items-center">
           <Image src="/logo.jpg" width={100} height={100} alt="Logo" />
         </div>
@@ -62,19 +62,19 @@ export function Navbar({ className }: { className?: string }) {
                 />
                 <ProductItem
                   title="Pineapple Parrot"
-                  href="https://tailwindmasterkit.com"
+                  href="/products/pineapple-parrot"
                   src="/pineapple-parrot.jpg"
                   description="The Pineapple Parrot"
                 />
                 <ProductItem
                   title="Tangerine Turtle"
-                  href="https://gomoonbeam.com"
+                  href="/products/tangerine-turtle"
                   src="/tangerine-turtle.jpg"
                   description="The Tangerine Turtle."
                 />
                 <ProductItem
                   title="Lemon Lion"
-                  href="https://userogue.com"
+                  href="/products/lemon-lion"
                   src="/lemon-lion.jpg"
                   description="The Lemon Lion."
                 />

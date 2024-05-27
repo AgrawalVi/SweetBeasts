@@ -3,7 +3,11 @@
  */
 export const publicRoutes = [
     "/",
-    '/auth/verify-email'
+    '/auth/verify-email',
+    '/products/pogo',
+    '/products/pineapple-parrot',
+    '/products/tangerine-turtle',
+    '/products/lemon-lion',
 ]
 
 /**
