@@ -1,8 +1,13 @@
-import { LoginForm } from '@/components/auth/login-form'
+"use client"
+
+import { LoginForm } from "@/components/auth/login-form"
+import { Suspense } from "react"
 
 const LoginPage = () => {
   return (
-    <LoginForm />
+    <Suspense>
+      <LoginForm />
+    </Suspense>
   )
 }
 
