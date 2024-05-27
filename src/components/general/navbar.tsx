@@ -6,12 +6,15 @@ import {
   MenuItem,
   ProductItem,
 } from "@/components/aceternity/navbar-menu"
-import { cn } from "@/utils/cn"
 import { ModeToggle } from "@/components/ui/mode-toggle"
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
 import { Button } from "@/components/ui/button"
+
 import { MenuIcon } from "lucide-react"
+
 import Image from "next/image"
+
+const productItems = []
 
 export function Navbar({ className }: { className?: string }) {
   const [active, setActive] = useState<string | null>(null)
