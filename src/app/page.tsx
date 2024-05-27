@@ -1,5 +1,3 @@
-"use client"
-
 import { BackgroundBeams } from "@/components/aceternity/background-beams"
 import { cn } from "@/lib/utils"
 
