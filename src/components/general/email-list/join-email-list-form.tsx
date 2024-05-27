@@ -15,12 +15,15 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { addToEmailList } from "@/actions/email-list"
 import { useToast } from "@/components/ui/use-toast"
 
-import { useState, useTransition } from "react"
+import { SetStateAction, useState, useTransition } from "react"
 import { Input } from "@/components/aceternity/input"
 import { HoverBorderGradient } from "@/components/aceternity/hover-border-gradient"
-import { toast } from "@/components/ui/use-toast"
 
-const JoinEmailListForm = () => {
+interface JoinEmailListFormProps {
+  setConfetti: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+const JoinEmailListForm = ({setConfetti} : JoinEmailListFormProps) => {
   const { toast } = useToast()
 
   const form = useForm<z.infer<typeof JoinEmailListSchema>>({
@@ -37,6 +40,7 @@ const JoinEmailListForm = () => {
       }
       else {
         toast({ description: "Welcome to the SweetBeasts family, You're all set! 🎉" })
+        setConfetti(true)
       }
     })
   }
