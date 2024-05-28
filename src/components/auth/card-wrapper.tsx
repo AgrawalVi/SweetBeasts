@@ -24,7 +24,7 @@ export const CardWrapper = ({
   googleButtonText
 } : CardWrapperProps) => {
   return (
-      <Card className="w-[400px] shadow-pink-light dark:shadow-teal-light">
+      <Card className="w-[400px] shadow-pink-light dark:shadow-teal-light hover:shadow-pink-strong dark:hover:shadow-teal-strong transition-all duration-1000 hover:scale-[1.03]">
         <CardHeader>
           <Header label={headerLabel} />
         </CardHeader>
