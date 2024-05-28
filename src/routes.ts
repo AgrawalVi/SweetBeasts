@@ -1,13 +1,10 @@
 /**
- * Public routes available to any users
+ * private routes that you must be logged in to access
  */
-export const publicRoutes = [
-    "/",
-    '/auth/verify-email',
-    '/products/pogo',
-    '/products/pineapple-parrot',
-    '/products/tangerine-turtle',
-    '/products/lemon-lion',
+export const privateRoutes = [
+    "/my-account",
+    "/my-orders",
+    
 ]
 
 /**
