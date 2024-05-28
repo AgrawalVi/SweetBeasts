@@ -21,7 +21,7 @@ import Image from "next/image";
 export default function Pogo() {
   return (
     <div className="container mx-auto flex justify-center place-items-center space-x-4 flex-col">
-      <Card className="w-full md:w-3/4 lg:w-[47%] xl:w-[75%] h-96 lg:h-[500px] object-top">
+      <Card className="w-full md:w-3/4 lg:w-5/6 xl:w-9/12 h-108 lg:h-[700px] object-top">
         <CardHeader className="mb-8">
           <CardTitle className="text-center text-4xl">Pogo the Peachy Penguin</CardTitle>
           <CardDescription className="text-center text-2xl">#1 Best Seller</CardDescription>
@@ -44,13 +44,13 @@ export default function Pogo() {
           </p>
         </CardContent>
       </Card>
-      <Image className="h-4/6 flex-col"
+      <Image className="w-9/12 h-5/6 flex-col"
         src="/pogo.jpg" 
         width={500} 
         height={300}
         alt="Pogo the Peachy Penguin" 
       />
-      <Card className="w-full md:w-3/4 lg:w-[47%] xl:w-[75%] h-50 lg:h-[300px]">
+      <Card className="w-full md:w-3/4 lg:w-5/6 xl:w-9/12 h-72 lg:h-[300px] object-top">
         <CardHeader className="mb-8 text-center">
           <CardTitle className="text-4xl">Want it Now? Order before it runs out!</CardTitle>
           <CardDescription className="text-3xl">$15.99</CardDescription>
