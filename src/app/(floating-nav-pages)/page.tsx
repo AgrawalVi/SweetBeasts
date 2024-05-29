@@ -7,7 +7,7 @@ export default function Home() {
   const user = useCurrentUser()
 
   return (
-    <main className="flex flex-col items-start justify-start min-h-screen p-4 bg-background gap-4">
+    <main className="flex flex-col items-start justify-start min-h-screen p-10 bg-background gap-4">
       <ProductCards />
       {/* <MailingComponent /> */}
     </main>

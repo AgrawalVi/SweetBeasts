@@ -50,10 +50,9 @@ export default async function RootLayout({
             enableSystem
             disableTransitionOnChange
           >
-            <main className="min-h-screen w-full flex flex-col">
-              <Navbar></Navbar>
-              <div className="m-10 flex-grow flex w-full justify-center">{children}</div>
-            </main>
+            <div className="flex-grow flex w-full justify-center bg-background">
+              {children}
+            </div>
             <link rel="icon" href="/favicon.ico" sizes="any" />
             <Toaster />
           </ThemeProvider>
