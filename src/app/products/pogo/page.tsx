@@ -19,15 +19,21 @@ import {
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import ScrollFadeIn from "@/components/scrollfadein";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 
 export default function Pogo() {
   return (
-    <div className="container mx-auto flex justify-center items-center space-y-12 flex-col">
+    <div className="container mx-auto flex justify-center items-center space-y-24 flex-col">
       <ScrollFadeIn>
-        <Card className="w-full md:w-4/5 lg:w-3/4 xl:w-2/3 h-auto object-top">
+        <Card className="w-full md:w-4/5 lg:w-3/4 xl:w-10/12 h-auto object-top">
           <CardHeader className="mb-8">
-            <CardTitle className="text-center text-5xl">Pogo the Peachy Penguin</CardTitle>
-            <CardDescription className="text-center text-3xl">#1 Best Seller</CardDescription>
+            <CardTitle className="text-center text-6xl">Pogo the Peachy Penguin</CardTitle>
+            <CardDescription className="text-center text-4xl">#1 Best Seller</CardDescription>
           </CardHeader>
           <CardContent className="mb-8">
             <p className="text-lg">
@@ -49,43 +55,70 @@ export default function Pogo() {
         </Card>
       </ScrollFadeIn>
 
-      <ScrollFadeIn>
-        <Image className="w-3/4 h-auto flex"
-          src="/pogo.jpg" 
-          width={800} 
-          height={600}
-          alt="Pogo the Peachy Penguin" 
-        />
-      </ScrollFadeIn>
+      <div className="w-full md:w-4/5 lg:w-3/4 xl:w-10/12 flex flex-col lg:flex-row justify-between items-center space-y-8 lg:space-y-0 lg:space-x-8 h-[700px]">
+        <ScrollFadeIn>
+          <div className="relative w-full h-full">
+            <Image
+              className="object-cover"
+              src="/pogo.jpg"
+              layout="fill"
+              alt="Pogo the Peachy Penguin"
+            />
+          </div>
+        </ScrollFadeIn>
 
-      <ScrollFadeIn>
-        <Card className="w-full md:w-4/5 lg:w-3/4 xl:w-2/3 h-auto object-top">
-          <CardHeader className="mb-8 text-center">
-            <CardTitle className="text-5xl">Want it Now? Order before it runs out!</CardTitle>
-            <CardDescription className="text-3xl">$15.99</CardDescription>
-          </CardHeader>
-          <CardContent className="mb-6 flex flex-col items-center">
-            <div className="flex justify-center items-center space-x-8 mt-4">
-              <Button className="w-[150px] h-[60px] text-lg">Buy Now</Button>
-              <Select>
-                <SelectTrigger className="h-[60px] w-[150px] text-lg">
-                  <SelectValue placeholder="Quantity" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectGroup>
-                    <SelectLabel>Quantity</SelectLabel>
-                    <SelectItem value="1">1</SelectItem>
-                    <SelectItem value="2">2</SelectItem>
-                    <SelectItem value="3">3</SelectItem>
-                    <SelectItem value="4">4</SelectItem>
-                    <SelectItem value="5">5</SelectItem>
-                  </SelectGroup>
-                </SelectContent>
-              </Select>
-            </div>
-          </CardContent>
-        </Card>
-      </ScrollFadeIn>
+        <ScrollFadeIn>
+          <Card className="w-full h-full flex flex-col justify-between">
+            <CardHeader className="text-center">
+              <CardTitle className="text-4xl">Want it Now? Order before it runs out!</CardTitle>
+              <CardDescription className="text-2xl">$15.99</CardDescription>
+            </CardHeader>
+            <CardContent className="flex flex-col items-center">
+              <div className="flex justify-center items-center space-x-8 mt-2">
+                <Button className="w-[200px] h-[80px] text-xl">Add to Cart</Button>
+                <Select>
+                  <SelectTrigger className="h-[80px] w-[200px] text-xl">
+                    <SelectValue placeholder="Quantity" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectGroup>
+                      <SelectLabel>Quantity</SelectLabel>
+                      <SelectItem value="1">1</SelectItem>
+                      <SelectItem value="2">2</SelectItem>
+                      <SelectItem value="3">3</SelectItem>
+                      <SelectItem value="4">4</SelectItem>
+                      <SelectItem value="5">5</SelectItem>
+                    </SelectGroup>
+                  </SelectContent>
+                </Select>
+              </div>
+              {/* Adjusted Accordion placement */}
+              <div className="w-full mt-8">
+                <Accordion type="single" collapsible>
+                  <AccordionItem value="item-1">
+                    <AccordionTrigger>Details</AccordionTrigger>
+                    <AccordionContent>
+                      <p className="text-lg">
+                        - Size: 10 inches tall
+                      </p>
+                      <p className="text-lg">
+                        - Material: Soft plush
+                      </p>
+                      <p className="text-lg">
+                        - Scent: Peach
+                      </p>
+                    </AccordionContent>
+                  </AccordionItem>
+                </Accordion>
+              </div>
+            </CardContent>
+            <CardFooter className="flex justify-center items-center mt-8">
+              <p className="text-2xl text-center">Share with Friends</p>
+              {/* You can add social media icons and other content here */}
+            </CardFooter>
+          </Card>
+        </ScrollFadeIn>
+      </div>
     </div>
   );
 }

@@ -8,7 +8,7 @@ export default function ScrollFadeIn({ children }: { children: React.ReactNode }
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 1.5 }}
             viewport={{ once: false, amount: 0.1 }}
-            className="w-full flex justify-center"
+            className="w-full flex justify-center flex-1 h-full"
         >
             {children}
         </motion.div>
