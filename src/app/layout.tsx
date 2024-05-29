@@ -4,6 +4,8 @@ import "./globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
 import { Toaster } from "@/components/ui/toaster"
 import { Navbar } from "@/components/general/navbar"
+import { SessionProvider } from "next-auth/react"
+import { auth } from "@/auth"
 
 const nunito = Nunito({
   subsets: ["latin"],
@@ -29,30 +31,34 @@ export const metadata: Metadata = {
   },
 }
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode
 }>) {
+  const session = await auth()
+
   return (
-    <html lang="en" suppressHydrationWarning>
-      <body
-        className={`${nunito.variable} ${josefinSans.variable} ${coiny.variable}`}
-      >
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
+    <SessionProvider session={session}>
+      <html lang="en" suppressHydrationWarning>
+        <body
+          className={`${nunito.variable} ${josefinSans.variable} ${coiny.variable}`}
         >
-          <main className="min-h-screen w-full flex flex-col">
-            <Navbar></Navbar>
-            <div className="m-10 flex-grow flex flex-col">{children}</div>
-          </main>
-          <link rel="icon" href="/favicon.ico" sizes="any" />
-          <Toaster />
-        </ThemeProvider>
-      </body>
-    </html>
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+          >
+            <main className="min-h-screen w-full flex flex-col">
+              <Navbar></Navbar>
+              <div className="m-10 flex-grow flex w-full justify-center">{children}</div>
+            </main>
+            <link rel="icon" href="/favicon.ico" sizes="any" />
+            <Toaster />
+          </ThemeProvider>
+        </body>
+      </html>
+    </SessionProvider>
   )
 }

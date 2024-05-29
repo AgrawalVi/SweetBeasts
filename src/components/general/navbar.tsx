@@ -1,5 +1,5 @@
 "use client"
-import React, { useState } from "react"
+import React, { use, useEffect, useState } from "react"
 import {
   HoveredLink,
   Menu,
@@ -12,13 +12,19 @@ import { Button } from "@/components/ui/button"
 
 import { MenuIcon } from "lucide-react"
 
+import { useCurrentUser } from "@/hooks/use-current-user"
+
 import Image from "next/image"
+import { signOut, useSession } from "next-auth/react"
 
 const productItems = [{name: 'Pogo'}, {image: '/'}, {href: ''}, {name: ''}, {image: ''}, {href: ''}, {name: ''}, {image: ''}, {href: ''}, {name: ''}, {image: ''}, {href: ''},]
 
 export function Navbar({ className }: { className?: string }) {
   const [active, setActive] = useState<string | null>(null)
   const [lastActive, setLastActive] = useState<string | null>(null)
+  const user = useCurrentUser()
+  const session = useSession()
+
   return (
     <main className="sticky top-0 z-50">
       <div className="w-screen hidden md:flex items-center justify-between bg-background p-4 border-b relative">
@@ -98,6 +104,19 @@ export function Navbar({ className }: { className?: string }) {
               </div>
             </MenuItem>
           </Menu>
+          {
+            session.data?.user ? (
+              <Button onClick={() => {signOut()}}>
+                Logout
+              </Button>
+            ) : (
+              <a href='/auth/login'>
+                <Button>
+                  login
+                </Button>
+              </a>
+            )
+          }
         </div>
 
         {/* Mode Toggle Section */}

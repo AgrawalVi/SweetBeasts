@@ -80,3 +80,7 @@ export const NewPasswordSchema = z
       path: ["confirmPassword"],
     }
   )
+
+export const SettingsSchema = z.object({
+  name: z.optional(z.string())
+})
