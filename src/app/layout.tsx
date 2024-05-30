@@ -4,6 +4,7 @@ import "./globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
 import { Toaster } from "@/components/ui/toaster"
 import { Navbar } from "@/components/general/navbar"
+import { ShoppingCartProvider } from "@/app/context/shopping-cart-context"
 import { SessionProvider } from "next-auth/react"
 import { auth } from "@/auth"
 
@@ -44,18 +45,19 @@ export default async function RootLayout({
         <body
           className={`${nunito.variable} ${josefinSans.variable} ${coiny.variable}`}
         >
-          <ThemeProvider
-            attribute="class"
-            defaultTheme="system"
-            enableSystem
-            disableTransitionOnChange
-          >
-            <div className="flex-grow flex w-full justify-center bg-background">
-              {children}
-            </div>
-            <link rel="icon" href="/favicon.ico" sizes="any" />
-            <Toaster />
-          </ThemeProvider>
+          <ShoppingCartProvider>
+            <ThemeProvider
+              attribute="class"
+              defaultTheme="system"
+              enableSystem
+              disableTransitionOnChange
+            >
+              <Navbar />
+              <div className="flex w-full bg-background">{children}</div>
+              <link rel="icon" href="/favicon.ico" sizes="any" />
+              <Toaster />
+            </ThemeProvider>
+          </ShoppingCartProvider>
         </body>
       </html>
     </SessionProvider>

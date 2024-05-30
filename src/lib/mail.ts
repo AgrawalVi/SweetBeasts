@@ -32,5 +32,12 @@ export const sendTwoFactorEmail = async (email : string, token : string) => {
         subject: "Two Factor Authentication Code",
         html: `<p>Your two factor authentication code is: ${token}</p>`
     })
-
+    
+    export const confirmShoppingCart = async (email: string, firstName: string) => {
+        await resend.emails.send({
+            from: 'Acme <onboarding@resend.dev>',
+            to: email,
+            subject: "Shopping Cart Confirmation",
+            html: `<p>Click <a href="${}">here</a> to reset your password</p>`
+        });
 }
