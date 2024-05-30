@@ -4,6 +4,8 @@ import "./globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
 import { Toaster } from "@/components/ui/toaster"
 import { Navbar } from "@/components/general/navbar"
+import { ShoppingCartProvider } from "@/app/context/shoppingcartcontext";
+
 
 const nunito = Nunito({
   subsets: ["latin"],
@@ -39,17 +41,19 @@ export default function RootLayout({
       <body
         className={`${nunito.variable} ${josefinSans.variable} ${coiny.variable}`}
       >
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-        >
-          <Navbar></Navbar>
-          <div className="m-10">{children}</div>
-          <link rel="icon" href="/favicon.ico" sizes="any" />
-          <Toaster />
-        </ThemeProvider>
+        <ShoppingCartProvider>
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+          >
+            <Navbar />
+            <div className="m-10">{children}</div>
+            <link rel="icon" href="/favicon.ico" sizes="any" />
+            <Toaster />
+          </ThemeProvider>
+        </ShoppingCartProvider>
       </body>
     </html>
   )
