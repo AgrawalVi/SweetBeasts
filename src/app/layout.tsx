@@ -4,7 +4,7 @@ import "./globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
 import { Toaster } from "@/components/ui/toaster"
 import { Navbar } from "@/components/general/navbar"
-import { ShoppingCartProvider } from "@/app/context/shoppingcartcontext";
+import { ShoppingCartProvider } from "@/app/context/shopping-cart-context";
 
 
 const nunito = Nunito({
