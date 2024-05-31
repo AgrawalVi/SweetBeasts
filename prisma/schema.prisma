@@ -108,12 +108,13 @@ model CartItem {
 }
 
 model Product {
-  id              Int     @id @default(autoincrement())
-  name            String  @unique
-  priceInCents    Int
-  description     String
-  quantity        Int
-  stripeProductId String @unique
+  id               Int    @id @default(autoincrement())
+  name             String @unique
+  priceInCents     Int
+  description      String
+  quantity         Int
+  stripeProductId  String @unique
+  primaryImagePath String?
 
   cartItems CartItem[]
 }
