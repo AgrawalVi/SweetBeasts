@@ -10,6 +10,8 @@ interface CartItem {
 
 interface ShoppingCartContextType {
   cart: CartItem[];
+  isCartOpen: boolean;
+  setIsCartOpen: (open: boolean) => void;
   addToCart: (item: CartItem) => void;
   removeFromCart: (id: string) => void;
   clearCart: () => void;
@@ -26,28 +28,25 @@ export const ShoppingCartProvider = ({ children }: { children: ReactNode }) => {
     return [];
   });
 
-  // Save cart to local storage whenever it changes
+  const [isCartOpen, setIsCartOpen] = useState(false);
+
   useEffect(() => {
-    console.log('Saving cart to local storage:', cart);
     localStorage.setItem('shopping_cart', JSON.stringify(cart));
   }, [cart]);
 
   const addToCart = (item: CartItem) => {
     setCart((prevCart) => {
       const existingItem = prevCart.find((cartItem) => cartItem.id === item.id);
-      let updatedCart;
       if (existingItem) {
-        updatedCart = prevCart.map((cartItem) =>
+        return prevCart.map((cartItem) =>
           cartItem.id === item.id
             ? { ...cartItem, quantity: cartItem.quantity + item.quantity }
             : cartItem
         );
-      } else {
-        updatedCart = [...prevCart, item];
       }
-      console.log('Updated cart:', updatedCart);
-      return updatedCart;
+      return [...prevCart, item];
     });
+    setIsCartOpen(true);
   };
 
   const removeFromCart = (id: string) => {
@@ -59,7 +58,7 @@ export const ShoppingCartProvider = ({ children }: { children: ReactNode }) => {
   };
 
   return (
-    <ShoppingCartContext.Provider value={{ cart, addToCart, removeFromCart, clearCart }}>
+    <ShoppingCartContext.Provider value={{ cart, isCartOpen, setIsCartOpen, addToCart, removeFromCart, clearCart }}>
       {children}
     </ShoppingCartContext.Provider>
   );

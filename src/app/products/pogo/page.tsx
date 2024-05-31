@@ -1,4 +1,5 @@
 'use client';
+import React from 'react';
 import {
   Card,
   CardContent,
@@ -25,10 +26,26 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import { useShoppingCart } from '@/components/general/context/shopping-cart-context';
+import Cart from '@/components/general/cart';
 
 export default function Pogo() {
+  const { addToCart, setIsCartOpen } = useShoppingCart();
+
+  const handleAddToCart = () => {
+    const newItem = {
+      id: '1',
+      name: 'Pogo the Peachy Penguin',
+      price: 15.99,
+      quantity: 1
+    };
+    addToCart(newItem);
+    setIsCartOpen(true); // Open the cart when an item is added
+  };
+
   return (
     <div className="container mx-auto flex justify-center items-center space-y-24 flex-col">
+      <Cart /> {/* Include the Cart component */}
       <ScrollFadeIn>
         <Card className="w-full md:w-4/5 lg:w-3/4 xl:w-10/12 h-auto object-top">
           <CardHeader className="mb-8">
@@ -37,6 +54,7 @@ export default function Pogo() {
           </CardHeader>
           <CardContent className="mb-8">
             <p className="text-lg">
+              {/* Product description */}
               In a land where icy glaciers meet vibrant fruit groves, Pogo the Peachy Penguin was born. Pogo hails from the magical Fruity Fjords, a unique region in Antarctica where the cold is sweetened by the presence of lush, fruit-bearing plants. Amidst the typical snowy expanse, colorful fruit trees like peach, apple, and berry bushes flourish, creating a whimsical habitat unlike any other.
             </p>
             <p className="mt-4 text-lg">
@@ -75,7 +93,7 @@ export default function Pogo() {
             </CardHeader>
             <CardContent className="flex flex-col items-center">
               <div className="flex justify-center items-center space-x-8 mt-2">
-                <Button className="w-[200px] h-[80px] text-xl">Add to Cart</Button>
+                <Button className="w-[200px] h-[80px] text-xl" onClick={handleAddToCart}>Add to Cart</Button>
                 <Select>
                   <SelectTrigger className="h-[80px] w-[200px] text-xl">
                     <SelectValue placeholder="Quantity" />
@@ -92,7 +110,6 @@ export default function Pogo() {
                   </SelectContent>
                 </Select>
               </div>
-              {/* Adjusted Accordion placement */}
               <div className="w-full mt-8">
                 <Accordion type="single" collapsible>
                   <AccordionItem value="item-1">
@@ -114,7 +131,6 @@ export default function Pogo() {
             </CardContent>
             <CardFooter className="flex justify-center items-center mt-8">
               <p className="text-2xl text-center">Share with Friends</p>
-              {/* You can add social media icons and other content here */}
             </CardFooter>
           </Card>
         </ScrollFadeIn>
