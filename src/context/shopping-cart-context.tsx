@@ -1,8 +1,10 @@
 'use client';
 import React, { createContext, useState, useContext, useEffect, ReactNode } from 'react';
+import { useCurrentUser } from '@/hooks/use-current-user';
+import { addToCart as addToUserCart } from '@/actions/cart';
 
 interface CartItem {
-  id: string;
+  id: number;
   name: string;
   price: number;
   quantity: number;
@@ -11,13 +13,15 @@ interface CartItem {
 interface ShoppingCartContextType {
   cart: CartItem[];
   addToCart: (item: CartItem) => void;
-  removeFromCart: (id: string) => void;
+  removeFromCart: (id: number) => void;
   clearCart: () => void;
 }
 
 const ShoppingCartContext = createContext<ShoppingCartContextType | undefined>(undefined);
 
 export const ShoppingCartProvider = ({ children }: { children: ReactNode }) => {
+  const user = useCurrentUser();
+
   const [cart, setCart] = useState<CartItem[]>(() => {
     if (typeof window !== 'undefined') {
       const storedCart = localStorage.getItem('shopping_cart');
@@ -48,9 +52,12 @@ export const ShoppingCartProvider = ({ children }: { children: ReactNode }) => {
       console.log('Updated cart:', updatedCart);
       return updatedCart;
     });
+    if (user?.email) {
+      addToUserCart(user.email, item.id, item.quantity)
+    }
   };
 
-  const removeFromCart = (id: string) => {
+  const removeFromCart = (id: number) => {
     setCart((prevCart) => prevCart.filter((item) => item.id !== id));
   };
 

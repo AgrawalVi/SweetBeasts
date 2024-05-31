@@ -18,7 +18,7 @@ const TestPage = () => {
 
   const handleAddItem = () => {
     const newItem = {
-      id: '1',
+      id: 5,
       name: 'Test Item',
       price: 10.0,
       quantity: 1,
@@ -26,7 +26,7 @@ const TestPage = () => {
     addToCart(newItem);
   };
 
-  const handleRemoveItem = (id: string) => {
+  const handleRemoveItem = (id: number) => {
     removeFromCart(id);
   };
 
