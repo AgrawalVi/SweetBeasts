@@ -2,6 +2,7 @@
 
 import { getUserByEmail } from "@/data/auth/user";
 import { getProductById } from "@/data/shop/product";
+import { getCartItemByUserIdAndProductId } from "@/data/shop/cart";
 import { db } from "@/lib/db";
 
 export const addToCart = async (userEmail: string, productId: number, quantity: number) => {
@@ -19,6 +20,25 @@ export const addToCart = async (userEmail: string, productId: number, quantity: 
   if (quantity < 1) {
     return { error: "Quantity must be a positive number" }
   }
+  // Check if the user already has the product in their cart, and if they do, update the quantity by 1
+  let existingCartItem = await getCartItemByUserIdAndProductId(existingUser.id, productId)
+  if (existingCartItem) {
+    // Need to increment quantity of existing cart item by 1
+    try {
+      await db.cartItem.update({
+        where: {
+          id: existingCartItem.id
+        },
+        data: {
+          quantity: existingCartItem.quantity + 1
+        }
+      })
+      return { success: "Cart item updated" }
+    } catch {
+      return { error: "Error updating cart item" }
+    }
+  }
+
   // Add the product to the user's cart
   try {
     await db.cartItem.create({
