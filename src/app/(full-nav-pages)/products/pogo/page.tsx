@@ -25,8 +25,22 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import { useCurrentUser } from "@/hooks/use-current-user";
+import { addToCart } from "@/actions/cart";
 
 export default function Pogo() {
+
+  const user = useCurrentUser()
+
+  async function onClick() {
+    // Add to user cart
+    if (user?.email) {
+      let response = await addToCart(user.email, 5, 2)
+      console.log(response)
+    }
+
+  }
+
   return (
     <div className="container mx-auto flex justify-center items-center space-y-24 flex-col">
       <ScrollFadeIn>
@@ -75,7 +89,7 @@ export default function Pogo() {
             </CardHeader>
             <CardContent className="flex flex-col items-center">
               <div className="flex justify-center items-center space-x-8 mt-2">
-                <Button className="w-[200px] h-[80px] text-xl">Add to Cart</Button>
+                <Button className="w-[200px] h-[80px] text-xl" onClick={onClick}>Add to Cart</Button>
                 <Select>
                   <SelectTrigger className="h-[80px] w-[200px] text-xl">
                     <SelectValue placeholder="Quantity" />
