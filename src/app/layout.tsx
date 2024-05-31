@@ -4,14 +4,9 @@ import "./globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
 import { Toaster } from "@/components/ui/toaster"
 import { Navbar } from "@/components/general/navbar"
-<<<<<<< HEAD
-import { ShoppingCartProvider } from "@/components/general/context/shopping-cart-context";
-
-=======
-import { ShoppingCartProvider } from "@/app/context/shopping-cart-context"
+import { ShoppingCartProvider } from "@/components/general/context/shopping-cart-context"
 import { SessionProvider } from "next-auth/react"
 import { auth } from "@/auth"
->>>>>>> 1138f25f0979811ce2885387e2637ee5a7bd3523
 
 const nunito = Nunito({
   subsets: ["latin"],
