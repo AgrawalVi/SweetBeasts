@@ -9,7 +9,7 @@ import { AuthError } from "next-auth"
 import { generateVerificationToken, generateTwoFactorToken } from "@/lib/tokens"
 import { getUserByEmail } from "@/data/user"
 import { getTwoFactorTokenByEmail } from "@/data/two-factor-token"
-import { sendVerificationEmail, sendTwoFactorEmail } from "@/lib/mail"
+import { sendVerificationEmail, sendTwoFactorEmail } from "@/lib/resend"
 import { getTwoFactorConfirmationByUserId } from "@/data/two-factor-confirmation"
 
 export const login = async (values: z.infer<typeof LoginSchema>) => {
