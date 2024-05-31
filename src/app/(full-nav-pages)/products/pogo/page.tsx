@@ -26,18 +26,25 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { useCurrentUser } from "@/hooks/use-current-user";
-import { addToCart } from "@/actions/cart";
+import { addToCart as addToUserCart } from "@/actions/cart";
+import { useShoppingCart } from "@/context/shopping-cart-context";
 
 export default function Pogo() {
 
   const user = useCurrentUser()
+  const { addToCart } = useShoppingCart()
 
   async function onClick() {
     // Add to user cart
-    if (user?.email) {
-      let response = await addToCart(user.email, 5, 2)
-      console.log(response)
-    }
+    // if (user?.email) {
+    //   let response = await addToUserCart(user.email, 5, 2)
+    //   console.log(response)
+    //   // also add to session cart
+    //   // addToCart({})
+
+    // }
+
+    addToCart({id: 5, name: 'POGO', price: 10.0, quantity: 1})
 
   }
 

@@ -36,7 +36,7 @@ export const ShoppingCartProvider = ({ children }: { children: ReactNode }) => {
     localStorage.setItem('shopping_cart', JSON.stringify(cart));
   }, [cart]);
 
-  const addToCart = (item: CartItem) => {
+  const addToCart = async (item: CartItem) => {
     setCart((prevCart) => {
       const existingItem = prevCart.find((cartItem) => cartItem.id === item.id);
       let updatedCart;
@@ -53,7 +53,12 @@ export const ShoppingCartProvider = ({ children }: { children: ReactNode }) => {
       return updatedCart;
     });
     if (user?.email) {
-      addToUserCart(user.email, item.id, item.quantity)
+      console.log('Adding to user cart:', item);
+      const result = await addToUserCart(user.email, item.id, item.quantity)
+      console.log(result)
+    }
+    else {
+      console.log('no user')
     }
   };
 
