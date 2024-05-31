@@ -2,6 +2,7 @@
 
 import { useShoppingCart } from '@/components/general/context/shopping-cart-context';
 import { useEffect, useState } from 'react';
+import Cart from '@/components/general/cart';
 
 const TestPage = () => {
   const { cart, addToCart, removeFromCart, clearCart } = useShoppingCart();
@@ -39,6 +40,7 @@ const TestPage = () => {
 
   return (
     <div>
+      <Cart />
       <h1>Shopping Cart Test Page</h1>
       <button onClick={handleAddItem}>Add Item</button>
       <button onClick={handleClearCart}>Clear Cart</button>

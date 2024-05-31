@@ -4,8 +4,14 @@ import "./globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
 import { Toaster } from "@/components/ui/toaster"
 import { Navbar } from "@/components/general/navbar"
+<<<<<<< HEAD
 import { ShoppingCartProvider } from "@/components/general/context/shopping-cart-context";
 
+=======
+import { ShoppingCartProvider } from "@/app/context/shopping-cart-context"
+import { SessionProvider } from "next-auth/react"
+import { auth } from "@/auth"
+>>>>>>> 1138f25f0979811ce2885387e2637ee5a7bd3523
 
 const nunito = Nunito({
   subsets: ["latin"],
@@ -31,30 +37,34 @@ export const metadata: Metadata = {
   },
 }
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode
 }>) {
+  const session = await auth()
+
   return (
-    <html lang="en" suppressHydrationWarning>
-      <body
-        className={`${nunito.variable} ${josefinSans.variable} ${coiny.variable}`}
-      >
-        <ShoppingCartProvider>
-          <ThemeProvider
-            attribute="class"
-            defaultTheme="system"
-            enableSystem
-            disableTransitionOnChange
-          >
-            <Navbar />
-            <div className="m-10">{children}</div>
-            <link rel="icon" href="/favicon.ico" sizes="any" />
-            <Toaster />
-          </ThemeProvider>
-        </ShoppingCartProvider>
-      </body>
-    </html>
+    <SessionProvider session={session}>
+      <html lang="en" suppressHydrationWarning>
+        <body
+          className={`${nunito.variable} ${josefinSans.variable} ${coiny.variable}`}
+        >
+          <ShoppingCartProvider>
+            <ThemeProvider
+              attribute="class"
+              defaultTheme="system"
+              enableSystem
+              disableTransitionOnChange
+            >
+              <Navbar />
+              <div className="m-10">{children}</div>
+              <link rel="icon" href="/favicon.ico" sizes="any" />
+              <Toaster />
+            </ThemeProvider>
+          </ShoppingCartProvider>
+        </body>
+      </html>
+    </SessionProvider>
   )
 }
