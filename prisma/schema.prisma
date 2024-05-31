@@ -34,7 +34,7 @@ model User {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  cart Cart?
+  cartItems CartItem[]
 }
 
 model Account {
@@ -94,20 +94,24 @@ model TwoFactorConfirmation {
   @@unique([userId])
 }
 
-model Cart {
-  id         String   @id @default(cuid())
-  userId     String   @unique
-  productIds String[]
-  quantities Int[]
+model CartItem {
+  id        Int      @id @default(autoincrement())
+  userId    String
+  createdAt DateTime @default(now())
+  quantity  Int
+  productId Int
 
-  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  user    User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  Product Product? @relation(fields: [productId], references: [id])
 }
 
 model Product {
-  id Int @id @default(autoincrement())
-  name String @unique
-  priceInCents Int
-  description String
-  quantity Int
-  stripeProductId String? @unique
+  id              Int     @id @default(autoincrement())
+  name            String  @unique
+  priceInCents    Int
+  description     String
+  quantity        Int
+  stripeProductId String @unique
+
+  cartItems CartItem[]
 }
