@@ -4,9 +4,9 @@ import Link from "next/link";
 
 export default function ExploreSection() {
   return (
-    <div className="w-full h-full flex justify-center items-center bg-[hsl(var(--background))] dark:bg-black p-0 m-0">
+    <div className="w-full h-full flex justify-center items-center bg-background p-0 m-0">
       <CardContainer className="w-full h-full rounded-none shadow-none p-0 m-0">
-        <CardBody className="relative group/card w-full h-full rounded-none p-8 border-none bg-[hsl(var(--background))] dark:bg-black flex flex-col justify-center items-center">
+        <CardBody className="relative group/card w-full h-full rounded-none p-8 border-none bg-background flex flex-col justify-center items-center">
           <CardItem translateZ="30" className="text-9xl font-bold text-center bg-gradient-to-r from-cyan-500 to-cyan-900 bg-clip-text text-transparent">
             EXPLORE
           </CardItem>

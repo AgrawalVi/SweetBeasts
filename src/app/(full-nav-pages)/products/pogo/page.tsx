@@ -18,7 +18,7 @@ import {
 } from "@/components/ui/select";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
-import ScrollFadeIn from "@/components/scrollfadein";
+import ScrollFadeIn from "@/components/custom/scroll-fade-in";
 import {
   Accordion,
   AccordionContent,

@@ -1,6 +1,6 @@
 'use server'
 
-import { addToGeneralEmailList } from "@/utils/mail"
+import { addToGeneralEmailList } from "@/lib/resend"
 
 export async function addToEmailList(email: string) {
   try {

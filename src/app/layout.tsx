@@ -52,7 +52,6 @@ export default async function RootLayout({
               enableSystem
               disableTransitionOnChange
             >
-              <Navbar />
               <div className="flex w-full bg-background">{children}</div>
               <link rel="icon" href="/favicon.ico" sizes="any" />
               <Toaster />
