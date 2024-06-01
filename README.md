@@ -3,7 +3,7 @@
 ## Tech Stack
 
 - ### Programming Language
-  - **TypeScript**
+  - [**TypeScript**](https://www.typescriptlang.org/)
 
 - ### Frameworks and Libraries
   - [**Next.js**](https://nextjs.org/)
@@ -139,3 +139,10 @@
 ### [React Email](https://react.email/docs/introduction)
   - Used for making email templates
   - All components should be placed in `@/components/emails`
+  - Not yet configured, but will be used
+
+## Branch Naming
+  - **main** - current production branch, production website link [here](https://www.sweetbeasts.shop)
+  - **develop** - current branch with latest merged dev changes. Merged into main from here
+  - **dev/<YOUR_NAME>-main** - Developer's main branch, merged off develop, and all their branches merged into here, to be PRd into develop
+  - **<YOUR_NAME>/<FEATURE/PAGE/TICKET>** - Developer's branch for what is currently being worked on. 
