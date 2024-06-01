@@ -28,13 +28,13 @@
 ## File Structure
 
 - Naming Conventions:
-  - file names - `kebab-case`
+  - File names - `kebab-case`
   - TSX Component Names - `PascalCase`
   - TS Function Names - `camelCase`
 
 - `@/` import alias points to src folder. 
 
-- **Actions** - This program utilizes [server actions](https://nextjs.org/docs/app/building-your-application/data-fetching/server-actions-and-mutations)
+- `@/actions` - This program utilizes [server actions](https://nextjs.org/docs/app/building-your-application/data-fetching/server-actions-and-mutations)
   - Split into folders based on the type of action.
     - Customer contains any fetching to data regarding customer information such as orders and cart
     - Auth contains all actions for authentication
@@ -42,11 +42,11 @@
   - **Server actions create or delete data, while the functions in the data folder do all data fetching.**
     - They should return `{error: <ERROR_MESSAGE>}` upon any error, or `{success: <SUCCESS_MESSAGE>}` upon any success and the frontend should notify the user accordingly based on the error that's occurred. 
 
-- **App** -  Folder for App Router. Read more [here](https://nextjs.org/docs/app/building-your-application/routing)
+- `@/app` -  Folder for App Router. Read more [here](https://nextjs.org/docs/app/building-your-application/routing)
   - Should only contain api folder and folder for page routes
   - Pages inside `(floating-nav-pages)` contain the floating glass navbar, and pages inside `(full-nav-pages)` will have the wide navbar at the top of the page. There should be no page at the root of the app folder
 
-- **Components** - contains all modular components in the application. This folder is split into many subfolders"
+- `@/components` - contains all modular components in the application. This folder is split into many subfolders"
   - Aceternity: Only AceternityUI components used from online
   - Auth: Components used for any authentication portions in the website
   - Custom: Any custom components that can be used throughout the site for effects and wrappers
@@ -55,15 +55,15 @@
   - Map: Self Explanatory
   - UI: Only ShadCN components and a few ShadCN extensions found online
 
-  **Data** - contains all data fetching functions
+  `@/data` - contains all data fetching functions
     - Data fetching should be done in the data folder, while data creation is done in server actions after making all the necessary checks. 
     - Split into folders and files based on the actions that are made
   
-  **Hooks** - contains all the custom hooks used in the application
+  `@/hooks` - contains all the custom hooks used in the application
 
-  **Lib** - contains all the creation of classes that are used throughout the application. Take a look to see the types of files that are included here.
+  `@/lib` - contains all the creation of classes that are used throughout the application. Take a look to see the types of files that are included here.
 
-  **Schemas** - contains a sole file `index.ts` with all the zod schemas for any forms used throughout the application
+  `@/schemas` - contains a sole file `index.ts` with all the zod schemas for any forms used throughout the application
 
 ## Libraries being used and for what purpose:
 
