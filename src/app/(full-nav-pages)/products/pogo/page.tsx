@@ -28,7 +28,7 @@ import {
 } from "@/components/ui/accordion";
 import Cart from '@/components/general/cart';
 import { useCurrentUser } from "@/hooks/use-current-user";
-import { addToCart as addToUserCart } from "@/actions/cart";
+import { addToCart as addToUserCart } from "@/actions/customer/cart";
 import { useShoppingCart } from "@/context/shopping-cart-context";
 
 export default function Pogo() {
