@@ -6,8 +6,8 @@ import { PuffLoader } from "react-spinners"
 import { useSearchParams } from "next/navigation"
 import { newVerification } from "@/actions/auth/new-verification"
 
-import { FormError } from "@/components/general/form-error"
-import { FormSuccess } from "@/components/general/form-success"
+import { FormError } from "@/components/custom/form-error"
+import { FormSuccess } from "@/components/custom/form-success"
 
 const NewVerificationForm = () => {
   const [error, setError] = useState<string | undefined>()

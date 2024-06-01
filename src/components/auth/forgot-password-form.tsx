@@ -17,8 +17,8 @@ import {
 import * as z from "zod"
 import { ResetPasswordSchema } from "@/schemas"
 import { Button } from "@/components/ui/button"
-import { FormError } from "@/components/general/form-error"
-import { FormSuccess } from "@/components/general/form-success"
+import { FormError } from "@/components/custom/form-error"
+import { FormSuccess } from "@/components/custom/form-success"
 import { resetPassword } from "@/actions/auth/reset-password"
 
 
