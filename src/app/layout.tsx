@@ -4,7 +4,7 @@ import "./globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
 import { Toaster } from "@/components/ui/toaster"
 import { Navbar } from "@/components/general/navbar"
-import { ShoppingCartProvider } from "@/context/shopping-cart-context"
+import { ShoppingCartProvider } from "@/components/general/context/shopping-cart-context"
 import { SessionProvider } from "next-auth/react"
 import { auth } from "@/auth"
 
@@ -52,7 +52,7 @@ export default async function RootLayout({
               enableSystem
               disableTransitionOnChange
             >
-              <div className="flex w-full bg-background">{children}</div>
+              <div className="flex w-full h-full bg-background">{children}</div>
               <link rel="icon" href="/favicon.ico" sizes="any" />
               <Toaster />
             </ThemeProvider>
