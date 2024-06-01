@@ -18,9 +18,7 @@ const TestPage = () => {
 
   const handleAddItem = () => {
     const newItem = {
-      id: 5,
-      name: 'Test Item',
-      price: 10.0,
+      productId: 5,
       quantity: 1,
     };
     addToCart(newItem);
@@ -46,9 +44,9 @@ const TestPage = () => {
       <button onClick={handleClearCart}>Clear Cart</button>
       <ul>
         {cart.map((item) => (
-          <li key={item.id}>
-            {item.name} - ${item.price} x {item.quantity}
-            <button onClick={() => handleRemoveItem(item.id)}>Remove</button>
+          <li key={item.productId}>
+            {item.quantity}
+            <button onClick={() => handleRemoveItem(item.productId)}>Remove</button>
           </li>
         ))}
       </ul>

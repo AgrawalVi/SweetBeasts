@@ -9,6 +9,6 @@ export const getProductById = async(id: number) => {
     })
     return product
   } catch {
-    return null;
+    console.error("Error retrieving product")
   }
 }

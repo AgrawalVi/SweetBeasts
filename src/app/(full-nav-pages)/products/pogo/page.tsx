@@ -28,20 +28,19 @@ import {
 } from "@/components/ui/accordion";
 import Cart from '@/components/general/cart';
 import { useCurrentUser } from "@/hooks/use-current-user";
-import { addToCart as addToUserCart } from "@/actions/customer/cart";
 import { useShoppingCart } from "@/hooks/use-shopping-cart";
+import { Quando } from 'next/font/google';
 
 export default function Pogo() {
   const { addToCart, setIsCartOpen } = useShoppingCart();
 
-  const handleAddToCart = () => {
+  const handleAddToCart = async () => {
     const newItem = {
-      id: 5,
-      name: 'Pogo the Peachy Penguin',
-      price: 15.99,
-      quantity: 1
+      productId: 5,
+      quantity: 1,
     };
-    addToCart(newItem);
+    const response = await addToCart(newItem);
+    console.log(response)
     setIsCartOpen(true); // Open the cart when an item is added
   };
 
