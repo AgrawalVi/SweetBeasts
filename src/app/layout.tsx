@@ -4,7 +4,7 @@ import "./globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
 import { Toaster } from "@/components/ui/toaster"
 import { Navbar } from "@/components/general/navbar"
-import { ShoppingCartProvider } from "@/components/general/context/shopping-cart-context"
+import { ShoppingCartProvider } from "@/context/shopping-cart-context"
 import { SessionProvider } from "next-auth/react"
 import { auth } from "@/auth"
 

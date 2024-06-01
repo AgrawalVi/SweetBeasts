@@ -3,7 +3,7 @@ import React from 'react';
 import { Sheet, SheetContent, SheetTrigger, SheetClose, SheetTitle, SheetHeader } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
 import { ShoppingCart } from "lucide-react";
-import { useShoppingCart } from '@/components/general/context/shopping-cart-context';
+import { useShoppingCart } from '@/context/shopping-cart-context';
 
 export default function Cart() {
   const { isCartOpen, setIsCartOpen, cart } = useShoppingCart();

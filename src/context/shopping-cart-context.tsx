@@ -1,10 +1,8 @@
 'use client';
 import React, { createContext, useState, useContext, useEffect, ReactNode } from 'react';
-import { useCurrentUser } from '@/hooks/use-current-user';
-import { addToCart as addToUserCart } from '@/actions/cart';
 
 interface CartItem {
-  id: number;
+  id: string;
   name: string;
   price: number;
   quantity: number;
@@ -12,16 +10,16 @@ interface CartItem {
 
 interface ShoppingCartContextType {
   cart: CartItem[];
+  isCartOpen: boolean;
+  setIsCartOpen: (open: boolean) => void;
   addToCart: (item: CartItem) => void;
-  removeFromCart: (id: number) => void;
+  removeFromCart: (id: string) => void;
   clearCart: () => void;
 }
 
 const ShoppingCartContext = createContext<ShoppingCartContextType | undefined>(undefined);
 
 export const ShoppingCartProvider = ({ children }: { children: ReactNode }) => {
-  const user = useCurrentUser();
-
   const [cart, setCart] = useState<CartItem[]>(() => {
     if (typeof window !== 'undefined') {
       const storedCart = localStorage.getItem('shopping_cart');
@@ -30,39 +28,28 @@ export const ShoppingCartProvider = ({ children }: { children: ReactNode }) => {
     return [];
   });
 
-  // Save cart to local storage whenever it changes
+  const [isCartOpen, setIsCartOpen] = useState(false);
+
   useEffect(() => {
-    console.log('Saving cart to local storage:', cart);
     localStorage.setItem('shopping_cart', JSON.stringify(cart));
   }, [cart]);
 
-  const addToCart = async (item: CartItem) => {
+  const addToCart = (item: CartItem) => {
     setCart((prevCart) => {
       const existingItem = prevCart.find((cartItem) => cartItem.id === item.id);
-      let updatedCart;
       if (existingItem) {
-        updatedCart = prevCart.map((cartItem) =>
+        return prevCart.map((cartItem) =>
           cartItem.id === item.id
             ? { ...cartItem, quantity: cartItem.quantity + item.quantity }
             : cartItem
         );
-      } else {
-        updatedCart = [...prevCart, item];
       }
-      console.log('Updated cart:', updatedCart);
-      return updatedCart;
+      return [...prevCart, item];
     });
-    if (user?.email) {
-      console.log('Adding to user cart:', item);
-      const result = await addToUserCart(user.email, item.id, item.quantity)
-      console.log(result)
-    }
-    else {
-      console.log('no user')
-    }
+    setIsCartOpen(true);
   };
 
-  const removeFromCart = (id: number) => {
+  const removeFromCart = (id: string) => {
     setCart((prevCart) => prevCart.filter((item) => item.id !== id));
   };
 
@@ -71,7 +58,7 @@ export const ShoppingCartProvider = ({ children }: { children: ReactNode }) => {
   };
 
   return (
-    <ShoppingCartContext.Provider value={{ cart, addToCart, removeFromCart, clearCart }}>
+    <ShoppingCartContext.Provider value={{ cart, isCartOpen, setIsCartOpen, addToCart, removeFromCart, clearCart }}>
       {children}
     </ShoppingCartContext.Provider>
   );

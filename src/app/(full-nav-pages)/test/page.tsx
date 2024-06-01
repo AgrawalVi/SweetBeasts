@@ -1,6 +1,6 @@
 'use client';
 
-import { useShoppingCart } from '@/components/general/context/shopping-cart-context';
+import { useShoppingCart } from '@/context/shopping-cart-context';
 import { useEffect, useState } from 'react';
 import Cart from '@/components/general/cart';
 
