@@ -59,11 +59,11 @@
     - Data fetching should be done in the data folder, while data creation is done in server actions after making all the necessary checks. 
     - Split into folders and files based on the actions that are made
   
-  **hooks** - contains all the custom hooks used in the application
+  **Hooks** - contains all the custom hooks used in the application
 
-  **lib** - contains all the creation of classes that are used throughout the application. Take a look to see the types of files that are included here.
+  **Lib** - contains all the creation of classes that are used throughout the application. Take a look to see the types of files that are included here.
 
-  **schemas** - contains a sole file `index.ts` with all the zod schemas for any forms used throughout the application
+  **Schemas** - contains a sole file `index.ts` with all the zod schemas for any forms used throughout the application
 
 ## Libraries being used and for what purpose:
 
