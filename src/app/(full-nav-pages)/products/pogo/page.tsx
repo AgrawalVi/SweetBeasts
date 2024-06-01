@@ -29,7 +29,7 @@ import {
 import Cart from '@/components/general/cart';
 import { useCurrentUser } from "@/hooks/use-current-user";
 import { addToCart as addToUserCart } from "@/actions/customer/cart";
-import { useShoppingCart } from "@/context/shopping-cart-context";
+import { useShoppingCart } from "@/hooks/use-shopping-cart";
 
 export default function Pogo() {
   const { addToCart, setIsCartOpen } = useShoppingCart();
