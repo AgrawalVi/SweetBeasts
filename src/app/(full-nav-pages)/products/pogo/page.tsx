@@ -36,7 +36,7 @@ export default function Pogo() {
 
   const handleAddToCart = () => {
     const newItem = {
-      id: '1',
+      id: 5,
       name: 'Pogo the Peachy Penguin',
       price: 15.99,
       quantity: 1
