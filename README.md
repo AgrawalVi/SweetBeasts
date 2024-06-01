@@ -58,6 +58,7 @@
   `@/data` - contains all data fetching functions
     - Data fetching should be done in the data folder, while data creation is done in server actions after making all the necessary checks. 
     - Split into folders and files based on the actions that are made
+    - **ALL FUNCTIONS IN DATA FOLDER SHOULD BE CALLED BY SERVER ACTIONS. CALLING THESE FROM THE FRONTEND CODE WILL RESULT IN DATABASE SECRETS BEING LEAKED**
   
   `@/hooks` - contains all the custom hooks used in the application
 
