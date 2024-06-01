@@ -109,6 +109,7 @@
   - Copy Paste Animation components. Most of these have a cn import, so make sure to change the cn import at the top of the page to point to where our cn folder is: `@/lib/utils`
     - When importing components, follow instructions but keep in mind that our `cn` function is located at a different place in our folder, along with where we place them.
     - **DO NOT** put them in `@/components/ui`, but instead put them in the `@components/aceternity` folder
+  - These components will require a good amount of customization to be used properly in our app. 
 
 ### [Prisma](https://www.prisma.io/docs)
   - Using PostgreSQL
