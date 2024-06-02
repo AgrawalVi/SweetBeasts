@@ -8,11 +8,19 @@ import React, {
   ReactNode,
 } from "react"
 import { useCurrentUser } from "@/hooks/use-current-user"
-import useGuestId from "@/hooks/use-guest-id"
-import { addToUserCart, addToGuestCart } from "@/actions/customer/cart"
+import {
+  addToUserCart,
+  addToGuestCart,
+  clearGuestIdCart,
+} from "@/actions/customer/cart"
 import { getProductById } from "@/actions/products/products"
 import { getCartByGuestId, getCartByUserEmail } from "@/actions/customer/cart"
-import { ProductItem } from "@/components/aceternity/navbar-menu"
+
+import { signOut } from "next-auth/react"
+import { v4 as uuidv4 } from "uuid"
+
+import Cookies from "js-cookie"
+
 interface CartItem {
   productId: number
   quantity: number
@@ -22,16 +30,29 @@ interface ShoppingCartContextType {
   cart: CartItem[]
   isCartOpen: boolean
   setIsCartOpen: (open: boolean) => void
-  addToCart: (item: CartItem) => Promise<{ error: string } | { success: string }>
+  addToCart: (
+    item: CartItem
+  ) => Promise<{ error: string } | { success: string }>
   removeFromCart: (id: number) => void
   clearCart: () => void
+  handleLogout: () => Promise<void>
+  handleLogin: () => Promise<void>
+  guestId: string | null
 }
 
 const ShoppingCartContext = createContext<ShoppingCartContextType | undefined>(
   undefined
 )
 
+const generateGuestId = () => {
+  return `guest_${uuidv4()}`
+}
+
 export const ShoppingCartProvider = ({ children }: { children: ReactNode }) => {
+  const user = useCurrentUser()
+
+  const [guestId, setGuestId] = useState<string | null>(null)
+  const [isCartOpen, setIsCartOpen] = useState(false)
   const [cart, setCart] = useState<CartItem[]>(() => {
     if (typeof window !== "undefined") {
       const storedCart = localStorage.getItem("shopping_cart")
@@ -39,9 +60,21 @@ export const ShoppingCartProvider = ({ children }: { children: ReactNode }) => {
     }
     return []
   })
-  const user = useCurrentUser()
-  const { guestId, createNewGuestId, clearGuestId } = useGuestId()
-  const [isCartOpen, setIsCartOpen] = useState(false)
+
+  useEffect(() => {
+    if (!user) {
+      // retrieve guestId from cookie if there's no user
+      const storedGuestId = Cookies.get("guestId")
+      if (storedGuestId) {
+        setGuestId(storedGuestId)
+      } else {
+        // generate a new guestId if one doesn't exist
+        const newGuestId = generateGuestId()
+        Cookies.set("guestId", newGuestId, { expires: 365 })
+        setGuestId(newGuestId)
+      }
+    }
+  }, [user])
 
   useEffect(() => {
     if (user || guestId) {
@@ -125,7 +158,9 @@ export const ShoppingCartProvider = ({ children }: { children: ReactNode }) => {
       // If there is no guestID, create a new guestID, add the item to the cart in the database and localstorage
       if (!currentGuestId) {
         // Create a new guest if there's no guestId
-        currentGuestId = createNewGuestId()
+        currentGuestId = generateGuestId()
+        Cookies.set("guestId", currentGuestId, { expires: 365 })
+        setGuestId(currentGuestId)
       }
 
       // Then add to the database
@@ -160,8 +195,63 @@ export const ShoppingCartProvider = ({ children }: { children: ReactNode }) => {
   const removeFromCart = (id: number) => {
     setCart((prevCart) => prevCart.filter((item) => item.productId !== id))
   }
+  
+  const handleLogin = async () => {
+    if (cart.length > 0 && user?.email) {
+      const email = user.email
+      // add all the current items to the user's cart
+      await Promise.all(
+        cart.map(async (item) => {
+          const response = await addToUserCart(
+            email,
+            item.productId,
+            item.quantity
+          )
+          console.log(response)
+        })
+      )
 
-  const clearCart = () => {
+      // Retrieve the user's cart items from the database
+      const response = await getCartByUserEmail(email)
+      if (response.error) {
+        console.error(response.error)
+      }
+      const cartItems = response.success
+
+      // Clear the guest's cart if there's a guestId
+      if (guestId) {
+        const response = await clearGuestIdCart(guestId)
+        console.log(response)
+        clearGuestId()
+      }
+
+      // Extract necessary data from cart items and set the cart state
+      if (cartItems) {
+        const formattedCartItems = cartItems.map((item) => ({
+          productId: item.productId,
+          quantity: item.quantity,
+        }))
+        setCart(formattedCartItems)
+      } else {
+        setCart([])
+      }
+    }
+  }
+
+  const handleLogout = async () => {
+    clearLocalCart()
+    const newGuestId = generateGuestId()
+    Cookies.set("guestId", newGuestId, { expires: 365 })
+    setGuestId(newGuestId)
+    await signOut()
+  }
+
+  const clearGuestId = () => {
+    Cookies.remove("guestId")
+    setGuestId(null)
+  }
+
+  const clearLocalCart = () => {
     setCart([])
   }
 
@@ -173,7 +263,10 @@ export const ShoppingCartProvider = ({ children }: { children: ReactNode }) => {
         setIsCartOpen,
         addToCart,
         removeFromCart,
-        clearCart,
+        clearCart: clearLocalCart,
+        handleLogout,
+        handleLogin,
+        guestId
       }}
     >
       {children}
