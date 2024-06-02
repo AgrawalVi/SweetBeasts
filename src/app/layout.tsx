@@ -41,11 +41,11 @@ export default async function RootLayout({
 
   return (
     <SessionProvider session={session}>
-      <html lang="en" suppressHydrationWarning>
-        <body
-          className={`${nunito.variable} ${josefinSans.variable} ${coiny.variable}`}
-        >
-          <ShoppingCartProvider>
+      <ShoppingCartProvider>
+        <html lang="en" suppressHydrationWarning>
+          <body
+            className={`${nunito.variable} ${josefinSans.variable} ${coiny.variable}`}
+          >
             <ThemeProvider
               attribute="class"
               defaultTheme="system"
@@ -56,9 +56,9 @@ export default async function RootLayout({
               <link rel="icon" href="/favicon.ico" sizes="any" />
               <Toaster />
             </ThemeProvider>
-          </ShoppingCartProvider>
-        </body>
-      </html>
+          </body>
+        </html>
+      </ShoppingCartProvider>
     </SessionProvider>
   )
 }

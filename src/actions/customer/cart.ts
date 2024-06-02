@@ -137,3 +137,16 @@ export const getCartByUserEmail = async (email: string) => {
     return { error: "Error retrieving user cart" }
   }
 }
+
+export const clearGuestIdCart = (guestId : string) => {
+  try {
+    db.cartItem.deleteMany({
+      where: {
+        guestId: guestId,
+      },
+    })
+    return { success: "Cart cleared" }
+  } catch {
+    return { error: "Error clearing cart" }
+  }
+}

@@ -15,27 +15,47 @@ import { MenuIcon } from "lucide-react"
 import { useCurrentUser } from "@/hooks/use-current-user"
 
 import Image from "next/image"
-import { signOut, useSession } from "next-auth/react"
+import { useSession } from "next-auth/react"
+import { useShoppingCart } from "@/hooks/use-shopping-cart"
 
-const productItems = [{name: 'Pogo'}, {image: '/'}, {href: ''}, {name: ''}, {image: ''}, {href: ''}, {name: ''}, {image: ''}, {href: ''}, {name: ''}, {image: ''}, {href: ''},]
+const productItems = [
+  { name: "Pogo" },
+  { image: "/" },
+  { href: "" },
+  { name: "" },
+  { image: "" },
+  { href: "" },
+  { name: "" },
+  { image: "" },
+  { href: "" },
+  { name: "" },
+  { image: "" },
+  { href: "" },
+]
 
 export function Navbar({ className }: { className?: string }) {
   const [active, setActive] = useState<string | null>(null)
   const [lastActive, setLastActive] = useState<string | null>(null)
   const user = useCurrentUser()
   const session = useSession()
+  const { handleLogout } = useShoppingCart()
 
   return (
     <main className="sticky top-0 z-50">
       <div className="w-screen hidden md:flex items-center justify-between bg-background p-4 border-b relative">
         <div className="flex items-center">
-          <Image src="/logos/square-dark.svg" width={100} height={100} alt="Logo" />
+          <Image
+            src="/logos/square-dark.svg"
+            width={100}
+            height={100}
+            alt="Logo"
+          />
         </div>
         <div className="flex-1 flex justify-center">
           <Menu
             setActive={setActive}
             active={active}
-            setLastActive={setLastActive} 
+            setLastActive={setLastActive}
           >
             <MenuItem
               setActive={setActive}
@@ -104,19 +124,17 @@ export function Navbar({ className }: { className?: string }) {
               </div>
             </MenuItem>
           </Menu>
-          {
-            session.data?.user ? (
-              <Button onClick={() => {signOut()}}>
-                Logout
-              </Button>
-            ) : (
-              <a href='/auth/login'>
-                <Button>
-                  login
-                </Button>
-              </a>
-            )
-          }
+          {session.data?.user ? (
+            <Button
+              onClick={handleLogout}
+            >
+              Logout
+            </Button>
+          ) : (
+            <a href="/auth/login">
+              <Button>login</Button>
+            </a>
+          )}
         </div>
 
         {/* Mode Toggle Section */}
