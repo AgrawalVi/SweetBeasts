@@ -66,6 +66,8 @@
 
   `@/schemas` - contains a sole file `index.ts` with all the zod schemas for any forms used throughout the application
 
+  `@/utils` - contains any utility logic that is used. Usually a ts file that will be somewhat static to the context.
+  
 ## Libraries being used and for what purpose:
 
 ### [Next.js](https://nextjs.org/docs)
