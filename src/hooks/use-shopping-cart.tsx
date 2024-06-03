@@ -16,12 +16,13 @@ import {
 import { getProductById } from "@/actions/products/products"
 import { getCartByGuestId, getCartByUserEmail } from "@/actions/customer/cart"
 
+import { cartLoginHandler } from "@/utils/cart-utils"
+
 import { signOut } from "next-auth/react"
 import { v4 as uuidv4 } from "uuid"
 
-import Cookies from "js-cookie"
-
-interface CartItem {
+import Cookies from 'js-cookie'
+export interface CartItem {
   productId: number
   quantity: number
 }
@@ -61,6 +62,9 @@ export const ShoppingCartProvider = ({ children }: { children: ReactNode }) => {
     return []
   })
 
+  /**
+   * Make sure there's a guestId in the cookie if there's no user
+   */
   useEffect(() => {
     if (!user) {
       // retrieve guestId from cookie if there's no user
@@ -76,12 +80,14 @@ export const ShoppingCartProvider = ({ children }: { children: ReactNode }) => {
     }
   }, [user])
 
+  // Fetches cart items for a guest or user whenever there's a change in user or guestId
   useEffect(() => {
     if (user || guestId) {
       fetchCartItems()
     }
   }, [user, guestId])
 
+  // Sets the local storage to the updated cart whenever there's a change in the cart
   useEffect(() => {
     localStorage.setItem("shopping_cart", JSON.stringify(cart))
   }, [cart])
@@ -197,47 +203,16 @@ export const ShoppingCartProvider = ({ children }: { children: ReactNode }) => {
   }
   
   const handleLogin = async () => {
-    if (cart.length > 0 && user?.email) {
-      const email = user.email
-      // add all the current items to the user's cart
-      await Promise.all(
-        cart.map(async (item) => {
-          const response = await addToUserCart(
-            email,
-            item.productId,
-            item.quantity
-          )
-          console.log(response)
-        })
-      )
-
-      // Retrieve the user's cart items from the database
-      const response = await getCartByUserEmail(email)
-      if (response.error) {
-        console.error(response.error)
-      }
-      const cartItems = response.success
-
-      // Clear the guest's cart if there's a guestId
-      if (guestId) {
-        const response = await clearGuestIdCart(guestId)
-        console.log(response)
-        clearGuestId()
-      }
-
-      // Extract necessary data from cart items and set the cart state
-      if (cartItems) {
-        const formattedCartItems = cartItems.map((item) => ({
-          productId: item.productId,
-          quantity: item.quantity,
-        }))
-        setCart(formattedCartItems)
-      } else {
-        setCart([])
-      }
+    if (cart.length > 0 && user?.email && guestId) {
+      const updatedCart = await cartLoginHandler(cart, guestId, user.email)
+      clearGuestId()
+      setCart(updatedCart)
     }
   }
 
+  /**
+   * Universal logout function that handles clearing the cart and creating a new guestID
+   */
   const handleLogout = async () => {
     clearLocalCart()
     const newGuestId = generateGuestId()
