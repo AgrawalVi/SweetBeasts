@@ -123,7 +123,7 @@ export const addToGuestCart = async (
 export const getCartByGuestId = async (guestId: string) => {
   try {
     const cart = await getCartByGuestIdDB(guestId)
-    return { success: cart }
+    return { success: cart ? cart : []}
   } catch {
     return { error: "Error retrieving guest cart" }
   }
@@ -138,11 +138,11 @@ export const getCartByUserEmail = async (email: string) => {
   }
 }
 
-export const clearGuestIdCart = (guestId : string) => {
+export const clearGuestIdCart = async (guestId : string) => {
   try {
-    db.cartItem.deleteMany({
+    await db.cartItem.deleteMany({
       where: {
-        guestId: guestId,
+        guestId,
       },
     })
     return { success: "Cart cleared" }
