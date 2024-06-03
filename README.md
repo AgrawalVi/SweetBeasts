@@ -12,7 +12,7 @@
   - [**Framer Motion**](https://www.framer.com/motion/)
   - [**AuthJS**](https://authjs.dev/)
   - [**MDX**](https://mdxjs.com/)
-  - **Other Libraries:** [ShadCN UI Components](https://ui.shadcn.com/), [AceternityUI Components](https://ui.aceternity.com/), [React Email](https://react.email/), [Lucide](https://lucide.dev/), [Tabler](https://tablericons.com/), [Zod Form Validation](https://zod.dev/)
+  - **Other Libraries:** [ShadCN UI Components](https://ui.shadcn.com/), [Aceternity UI Components](https://ui.aceternity.com/), [React Email](https://react.email/), [Lucide](https://lucide.dev/), [Tabler](https://tablericons.com/), [Zod Form Validation](https://zod.dev/)
 
 - ### Database
   - [**PostgreSQL**](https://www.postgresql.org/)
@@ -109,7 +109,7 @@
 ### [Framer Motion](https://www.framer.com/motion/https://www.framer.com/motion/)
   - Animation library, take a look at the docs for more information
 
-### [AceternityUI](https://ui.aceternity.com/components)
+### [Aceternity UI](https://ui.aceternity.com/components)
   - Copy Paste Animation components. Most of these have a cn import, so make sure to change the cn import at the top of the page to point to where our cn folder is: `@/lib/utils`
     - When importing components, follow instructions but keep in mind that our `cn` function is located at a different place in our folder, along with where we place them.
     - **DO NOT** put them in `@/components/ui`, but instead put them in the `@components/aceternity` folder
