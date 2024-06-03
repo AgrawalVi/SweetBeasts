@@ -1,14 +1,14 @@
-import { db } from "@/lib/db";
+import { db } from '@/lib/db'
 
-export const getProductById = async(id: number) => {
+export const getProductById = async (id: number) => {
   try {
     const product = await db.product.findUnique({
       where: {
-        id: id
-      }
+        id: id,
+      },
     })
     return product
   } catch {
-    console.error("Error retrieving product")
+    console.error('Error retrieving product')
   }
 }

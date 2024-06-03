@@ -1,18 +1,18 @@
 'use client'
 
-import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card";
-import { Header } from "@/components/auth/header";
-import React from "react";
-import { Social } from "@/components/auth/social";
-import { BackButton } from "@/components/auth/back-button";
+import { Card, CardContent, CardFooter, CardHeader } from '@/components/ui/card'
+import { Header } from '@/components/auth/header'
+import React from 'react'
+import { Social } from '@/components/auth/social'
+import { BackButton } from '@/components/auth/back-button'
 
 interface CardWrapperProps {
-  children: React.ReactNode;
-  headerLabel: string;
-  backButtonLabel: string;
-  backButtonHref: string;
-  showSocial?: boolean;
-  googleButtonText?: string;
+  children: React.ReactNode
+  headerLabel: string
+  backButtonLabel: string
+  backButtonHref: string
+  showSocial?: boolean
+  googleButtonText?: string
 }
 
 export const CardWrapper = ({
@@ -21,28 +21,22 @@ export const CardWrapper = ({
   backButtonLabel,
   backButtonHref,
   showSocial,
-  googleButtonText
-} : CardWrapperProps) => {
+  googleButtonText,
+}: CardWrapperProps) => {
   return (
-      <Card className="w-[400px] shadow-pink-light dark:shadow-teal-light hover:shadow-pink-strong dark:hover:shadow-teal-strong transition-all duration-1000 hover:scale-[1.03]">
-        <CardHeader>
-          <Header label={headerLabel} />
-        </CardHeader>
-        <CardContent className="pb-3">
-          { children }
-        </CardContent>
-        {showSocial && (
-          <CardFooter className="pb-3">
-            <Social googleButtonText={googleButtonText} />
-          </CardFooter>
-        )}
-        <CardFooter>
-          <BackButton
-            label={backButtonLabel}
-            href={backButtonHref}
-          >
-          </BackButton>
+    <Card className="w-[400px] shadow-pink-light transition-all duration-1000 hover:scale-[1.03] hover:shadow-pink-strong dark:shadow-teal-light dark:hover:shadow-teal-strong">
+      <CardHeader>
+        <Header label={headerLabel} />
+      </CardHeader>
+      <CardContent className="pb-3">{children}</CardContent>
+      {showSocial && (
+        <CardFooter className="pb-3">
+          <Social googleButtonText={googleButtonText} />
         </CardFooter>
-      </Card>
-    )
+      )}
+      <CardFooter>
+        <BackButton label={backButtonLabel} href={backButtonHref}></BackButton>
+      </CardFooter>
+    </Card>
+  )
 }

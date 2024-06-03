@@ -1,6 +1,6 @@
-import { db } from "@/lib/db"
-import { getUserByEmail } from "../auth/user"
-import { CartItem } from "@prisma/client"
+import { db } from '@/lib/db'
+import { getUserByEmail } from '../auth/user'
+import { CartItem } from '@prisma/client'
 
 export const getCartByUserEmail = async (email: string) => {
   try {
@@ -18,7 +18,7 @@ export const getCartByUserEmail = async (email: string) => {
 
     return cart ? cart : []
   } catch {
-    console.error("Error retrieving user cart")
+    console.error('Error retrieving user cart')
   }
 }
 
@@ -32,13 +32,13 @@ export const getCartByGuestId = async (guestId: string) => {
 
     return cart ? cart : []
   } catch {
-    console.error("Error retrieving guest cart")
+    console.error('Error retrieving guest cart')
   }
 }
 
 export const getCartItemByGuestIdAndProductId = async (
   guestId: string,
-  productId: number
+  productId: number,
 ) => {
   try {
     const cartItem = await db.cartItem.findFirst({
@@ -50,13 +50,13 @@ export const getCartItemByGuestIdAndProductId = async (
 
     return cartItem
   } catch {
-    console.error("Error retrieving cart item")
+    console.error('Error retrieving cart item')
   }
 }
 
 export const getCartItemByEmailAndProductId = async (
   email: string,
-  productId: number
+  productId: number,
 ) => {
   try {
     const existingUser = await getUserByEmail(email)
@@ -74,13 +74,13 @@ export const getCartItemByEmailAndProductId = async (
 
     return cartItem
   } catch {
-    console.error("Error retrieving cart item")
+    console.error('Error retrieving cart item')
   }
 }
 
 export const getCartItemByUserIdAndProductId = async (
   userId: string,
-  productId: number
+  productId: number,
 ) => {
   try {
     const cartItem = await db.cartItem.findFirst({
@@ -92,6 +92,6 @@ export const getCartItemByUserIdAndProductId = async (
 
     return cartItem
   } catch {
-    console.error("Error retrieving cart item")
+    console.error('Error retrieving cart item')
   }
 }

@@ -1,11 +1,10 @@
-import { FloatingNav } from "../aceternity/floating-navbar"
+import { FloatingNav } from '../aceternity/floating-navbar'
 
 const navItems = [
-  { name: "Home", link: "/" },
-  { name: "Products", link: "/products"},
-  { name: "About", link: "/about" },
-  { name: "Contact", link: "/contact" },
-
+  { name: 'Home', link: '/' },
+  { name: 'Products', link: '/products' },
+  { name: 'About', link: '/about' },
+  { name: 'Contact', link: '/contact' },
 ]
 
 export default function FloatingNavbar() {

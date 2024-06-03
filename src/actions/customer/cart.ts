@@ -1,38 +1,38 @@
-"use server"
+'use server'
 
-import { getUserByEmail } from "@/data/auth/user"
-import { getProductById } from "@/data/shop/product"
+import { getUserByEmail } from '@/data/auth/user'
+import { getProductById } from '@/data/shop/product'
 import {
   getCartItemByUserIdAndProductId,
   getCartItemByGuestIdAndProductId,
   getCartByGuestId as getCartByGuestIdDB,
   getCartByUserEmail as getCartByUserEmailDB,
-} from "@/data/shop/cart"
-import { db } from "@/lib/db"
+} from '@/data/shop/cart'
+import { db } from '@/lib/db'
 
 export const addToUserCart = async (
   userEmail: string,
   productId: number,
-  quantity: number
+  quantity: number,
 ) => {
   // Verify that a user exists with the given userId
   let existingUser = await getUserByEmail(userEmail)
   if (!existingUser) {
-    return { error: "User does not exist" }
+    return { error: 'User does not exist' }
   }
   // Verify that a product exists with the given productId
   let existingProduct = await getProductById(productId)
   if (!existingProduct) {
-    return { error: "Product does not exist" }
+    return { error: 'Product does not exist' }
   }
   // Verify that the quantity is a positive number
   if (quantity < 1) {
-    return { error: "Quantity must be a positive number" }
+    return { error: 'Quantity must be a positive number' }
   }
   // Check if the user already has the product in their cart, and if they do, update the quantity by quantity
   let existingCartItem = await getCartItemByUserIdAndProductId(
     existingUser.id,
-    productId
+    productId,
   )
   if (existingCartItem) {
     // Need to increment quantity of existing cart item by 1
@@ -45,9 +45,9 @@ export const addToUserCart = async (
           quantity: existingCartItem.quantity + quantity,
         },
       })
-      return { success: "Cart item updated" }
+      return { success: 'Cart item updated' }
     } catch {
-      return { error: "Error updating cart item" }
+      return { error: 'Error updating cart item' }
     }
   }
 
@@ -60,32 +60,32 @@ export const addToUserCart = async (
         quantity: quantity,
       },
     })
-    return { success: "Product added to cart" }
+    return { success: 'Product added to cart' }
   } catch {
-    return { error: "Error adding product to cart" }
+    return { error: 'Error adding product to cart' }
   }
 }
 
 export const addToGuestCart = async (
   guestId: string,
   productId: number,
-  quantity: number
+  quantity: number,
 ) => {
   // Verify that the product exists
   const existingProduct = await getProductById(productId)
   if (!existingProduct) {
-    return { error: "Product does not exist" }
+    return { error: 'Product does not exist' }
   }
 
   // Verify that the quantity is a positive number
   if (quantity < 1) {
-    return { error: "Quantity must be a positive number" }
+    return { error: 'Quantity must be a positive number' }
   }
 
   // Check if the guest already has the product in their cart, and if they do, update the quantity by quantity
   const existingCartItem = await getCartItemByGuestIdAndProductId(
     guestId,
-    productId
+    productId,
   )
   if (existingCartItem) {
     // Need to increment the quantity of the existing cart item by quantity
@@ -98,10 +98,10 @@ export const addToGuestCart = async (
           quantity: existingCartItem.quantity + quantity,
         },
       })
-      return { success: "Cart item updated!" }
+      return { success: 'Cart item updated!' }
     } catch (e) {
       console.log(e)
-      return { error: "Error updating cart item" }
+      return { error: 'Error updating cart item' }
     }
   }
 
@@ -114,18 +114,18 @@ export const addToGuestCart = async (
         quantity: quantity,
       },
     })
-    return { success: "Product added to cart" }
+    return { success: 'Product added to cart' }
   } catch {
-    return { error: "Error adding product to cart" }
+    return { error: 'Error adding product to cart' }
   }
 }
 
 export const getCartByGuestId = async (guestId: string) => {
   try {
     const cart = await getCartByGuestIdDB(guestId)
-    return { success: cart ? cart : []}
+    return { success: cart ? cart : [] }
   } catch {
-    return { error: "Error retrieving guest cart" }
+    return { error: 'Error retrieving guest cart' }
   }
 }
 
@@ -134,19 +134,19 @@ export const getCartByUserEmail = async (email: string) => {
     const cart = await getCartByUserEmailDB(email)
     return { success: cart }
   } catch {
-    return { error: "Error retrieving user cart" }
+    return { error: 'Error retrieving user cart' }
   }
 }
 
-export const clearGuestIdCart = async (guestId : string) => {
+export const clearGuestIdCart = async (guestId: string) => {
   try {
     await db.cartItem.deleteMany({
       where: {
         guestId,
       },
     })
-    return { success: "Cart cleared" }
+    return { success: 'Cart cleared' }
   } catch {
-    return { error: "Error clearing cart" }
+    return { error: 'Error clearing cart' }
   }
 }

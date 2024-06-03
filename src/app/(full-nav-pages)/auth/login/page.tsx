@@ -1,7 +1,7 @@
-"use client"
+'use client'
 
-import { LoginForm } from "@/components/auth/login-form"
-import { Suspense } from "react"
+import { LoginForm } from '@/components/auth/login-form'
+import { Suspense } from 'react'
 
 const LoginPage = () => {
   return (

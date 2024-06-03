@@ -2,16 +2,16 @@ import {
   addToUserCart,
   clearGuestIdCart,
   getCartByUserEmail,
-} from "@/actions/customer/cart"
-import { CartItem } from "@/hooks/use-shopping-cart"
-import Cookies from "js-cookie"
+} from '@/actions/customer/cart'
+import { CartItem } from '@/hooks/use-shopping-cart'
+import Cookies from 'js-cookie'
 
 export const cartLoginHandler = async (
   guestCart: CartItem[],
   guestId: string,
-  userEmail: string
+  userEmail: string,
 ) => {
-  console.log("hello")
+  console.log('hello')
   if (guestCart.length > 0 && userEmail) {
     // add all the current items to the user's cart
     await Promise.all(
@@ -19,10 +19,10 @@ export const cartLoginHandler = async (
         const response = await addToUserCart(
           userEmail,
           item.productId,
-          item.quantity
+          item.quantity,
         )
         console.log(response)
-      })
+      }),
     )
 
     // Retrieve the user's cart items from the database
@@ -34,9 +34,9 @@ export const cartLoginHandler = async (
 
     // Clear the guest's cart if there's a guestId
     if (guestId) {
-      console.log("deleting guest cart", guestId)
+      console.log('deleting guest cart', guestId)
       await clearGuestIdCart(guestId)
-      Cookies.remove("guestId")
+      Cookies.remove('guestId')
     }
 
     // Extract necessary data from cart items and set the cart state

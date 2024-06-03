@@ -1,11 +1,9 @@
-import { Skeleton } from "../ui/skeleton"
+import { Skeleton } from '../ui/skeleton'
 
 const CartItemSkeleton = () => {
   return (
     <>
-      <div>
-        loading...
-      </div>
+      <div>loading...</div>
     </>
   )
 }

@@ -1,7 +1,7 @@
-"use client"
+'use client'
 
-import * as z from "zod"
-import { JoinEmailListSchema } from "@/schemas"
+import * as z from 'zod'
+import { JoinEmailListSchema } from '@/schemas'
 import {
   Form,
   FormControl,
@@ -9,16 +9,16 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "@/components/ui/form"
-import { useForm } from "react-hook-form"
-import { zodResolver } from "@hookform/resolvers/zod"
-import { addToEmailList } from "@/actions/customer/email-list"
-import { useToast } from "@/components/ui/use-toast"
+} from '@/components/ui/form'
+import { useForm } from 'react-hook-form'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { addToEmailList } from '@/actions/customer/email-list'
+import { useToast } from '@/components/ui/use-toast'
 
-import { useState, useTransition } from "react"
-import { Input } from "@/components/aceternity/input"
-import { HoverBorderGradient } from "@/components/aceternity/hover-border-gradient"
-import { toast } from "@/components/ui/use-toast"
+import { useState, useTransition } from 'react'
+import { Input } from '@/components/aceternity/input'
+import { HoverBorderGradient } from '@/components/aceternity/hover-border-gradient'
+import { toast } from '@/components/ui/use-toast'
 
 const JoinEmailListForm = () => {
   const { toast } = useToast()
@@ -26,17 +26,18 @@ const JoinEmailListForm = () => {
   const form = useForm<z.infer<typeof JoinEmailListSchema>>({
     resolver: zodResolver(JoinEmailListSchema),
     defaultValues: {
-      email: "",
+      email: '',
     },
   })
 
   const onSubmit = (values: z.infer<typeof JoinEmailListSchema>) => {
     addToEmailList(values.email).then((data) => {
       if (data.error) {
-        toast({ description: data.error, variant: "destructive" })
-      }
-      else {
-        toast({ description: "Welcome to the SweetBeasts family, You're all set! 🎉" })
+        toast({ description: data.error, variant: 'destructive' })
+      } else {
+        toast({
+          description: "Welcome to the SweetBeasts family, You're all set! 🎉",
+        })
       }
     })
   }
@@ -45,7 +46,7 @@ const JoinEmailListForm = () => {
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className="space-y-6 relative z-10 flex w-full place-items-center flex-col"
+        className="relative z-10 flex w-full flex-col place-items-center space-y-6"
       >
         <FormField
           control={form.control}
@@ -56,7 +57,7 @@ const JoinEmailListForm = () => {
                 <Input
                   {...field}
                   placeholder="welcome@sweetbeasts.shop"
-                  className="w-[20rem] lg:w-[40rem] font-josefin"
+                  className="w-[20rem] font-josefin lg:w-[40rem]"
                 />
               </FormControl>
               <FormMessage />

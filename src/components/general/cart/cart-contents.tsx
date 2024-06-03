@@ -1,7 +1,7 @@
-import CartItem from "./cart-item"
-import { useShoppingCart } from "@/hooks/use-shopping-cart"
-import { Suspense } from "react"
-import { Skeleton } from "@/components/ui/skeleton"
+import CartItem from './cart-item'
+import { useShoppingCart } from '@/hooks/use-shopping-cart'
+import { Suspense } from 'react'
+import { Skeleton } from '@/components/ui/skeleton'
 
 const CartContents = () => {
   const { cart } = useShoppingCart()

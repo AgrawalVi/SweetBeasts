@@ -1,36 +1,36 @@
-"use client"
-import React, { use, useEffect, useState } from "react"
+'use client'
+import React, { use, useEffect, useState } from 'react'
 import {
   HoveredLink,
   Menu,
   MenuItem,
   ProductItem,
-} from "@/components/aceternity/navbar-menu"
-import { ModeToggle } from "@/components/ui/mode-toggle"
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
-import { Button } from "@/components/ui/button"
+} from '@/components/aceternity/navbar-menu'
+import { ModeToggle } from '@/components/ui/mode-toggle'
+import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet'
+import { Button } from '@/components/ui/button'
 
-import { MenuIcon } from "lucide-react"
+import { MenuIcon } from 'lucide-react'
 
-import { useCurrentUser } from "@/hooks/use-current-user"
+import { useCurrentUser } from '@/hooks/use-current-user'
 
-import Image from "next/image"
-import { useSession } from "next-auth/react"
-import { useShoppingCart } from "@/hooks/use-shopping-cart"
+import Image from 'next/image'
+import { useSession } from 'next-auth/react'
+import { useShoppingCart } from '@/hooks/use-shopping-cart'
 
 const productItems = [
-  { name: "Pogo" },
-  { image: "/" },
-  { href: "" },
-  { name: "" },
-  { image: "" },
-  { href: "" },
-  { name: "" },
-  { image: "" },
-  { href: "" },
-  { name: "" },
-  { image: "" },
-  { href: "" },
+  { name: 'Pogo' },
+  { image: '/' },
+  { href: '' },
+  { name: '' },
+  { image: '' },
+  { href: '' },
+  { name: '' },
+  { image: '' },
+  { href: '' },
+  { name: '' },
+  { image: '' },
+  { href: '' },
 ]
 
 export function Navbar({ className }: { className?: string }) {
@@ -42,7 +42,7 @@ export function Navbar({ className }: { className?: string }) {
 
   return (
     <main className="sticky top-0 z-50">
-      <div className="w-screen hidden md:flex items-center justify-between bg-background p-4 border-b relative">
+      <div className="relative hidden w-screen items-center justify-between border-b bg-background p-4 md:flex">
         <div className="flex items-center">
           <Image
             src="/logos/square-dark.svg"
@@ -51,7 +51,7 @@ export function Navbar({ className }: { className?: string }) {
             alt="Logo"
           />
         </div>
-        <div className="flex-1 flex justify-center">
+        <div className="flex flex-1 justify-center">
           <Menu
             setActive={setActive}
             active={active}
@@ -82,7 +82,7 @@ export function Navbar({ className }: { className?: string }) {
               setLastActive={setLastActive}
               item="Products"
             >
-              <div className="text-sm grid grid-cols-2 gap-10 p-4">
+              <div className="grid grid-cols-2 gap-10 p-4 text-sm">
                 <ProductItem
                   title="Pogo"
                   href="/products/pogo"
@@ -125,11 +125,7 @@ export function Navbar({ className }: { className?: string }) {
             </MenuItem>
           </Menu>
           {session.data?.user ? (
-            <Button
-              onClick={handleLogout}
-            >
-              Logout
-            </Button>
+            <Button onClick={handleLogout}>Logout</Button>
           ) : (
             <a href="/auth/login">
               <Button>login</Button>
@@ -143,7 +139,7 @@ export function Navbar({ className }: { className?: string }) {
         </div>
       </div>
 
-      <div className="block md:hidden h-20 bg-white dark:bg-black w-screen border">
+      <div className="block h-20 w-screen border bg-white dark:bg-black md:hidden">
         <div className="flex justify-end">
           <Sheet>
             <SheetTrigger asChild>

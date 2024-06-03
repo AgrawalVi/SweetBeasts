@@ -1,17 +1,16 @@
 'use client'
 
-import { Card, CardHeader, CardContent } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import { settings } from "@/actions/auth/settings"
-import { useTransition } from "react"
+import { Card, CardHeader, CardContent } from '@/components/ui/card'
+import { Button } from '@/components/ui/button'
+import { settings } from '@/actions/auth/settings'
+import { useTransition } from 'react'
 
 export default function MyAccount() {
-
   const [isPending, startTransition] = useTransition()
 
   const onClick = () => {
     startTransition(() => {
-      settings({name: "New Name!"})
+      settings({ name: 'New Name!' })
     })
   }
 
@@ -19,9 +18,7 @@ export default function MyAccount() {
     <>
       <Card className="w=[600px]">
         <CardHeader>
-          <p className="text-2xl font-semibold text-center">
-            Settings
-          </p>
+          <p className="text-center text-2xl font-semibold">Settings</p>
         </CardHeader>
         <CardContent>
           <Button disabled={isPending} onClick={onClick}>

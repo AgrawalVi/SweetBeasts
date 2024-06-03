@@ -1,39 +1,39 @@
-'use client';
+'use client'
 
-import { useShoppingCart } from '@/hooks/use-shopping-cart';
-import { useEffect, useState } from 'react';
-import Cart from '@/components/general/cart/cart-button';
+import { useShoppingCart } from '@/hooks/use-shopping-cart'
+import { useEffect, useState } from 'react'
+import Cart from '@/components/general/cart/cart-button'
 
 const TestPage = () => {
-  const { cart, addToCart, removeFromCart, clearCart } = useShoppingCart();
-  const [isMounted, setIsMounted] = useState(false);
+  const { cart, addToCart, removeFromCart, clearCart } = useShoppingCart()
+  const [isMounted, setIsMounted] = useState(false)
 
   useEffect(() => {
-    setIsMounted(true);
-  }, []);
+    setIsMounted(true)
+  }, [])
 
   useEffect(() => {
-    console.log('Cart:', cart);
-  }, [cart]);
+    console.log('Cart:', cart)
+  }, [cart])
 
   const handleAddItem = () => {
     const newItem = {
       productId: 5,
       quantity: 1,
-    };
-    addToCart(newItem);
-  };
+    }
+    addToCart(newItem)
+  }
 
   const handleRemoveItem = (id: number) => {
-    removeFromCart(id);
-  };
+    removeFromCart(id)
+  }
 
   const handleClearCart = () => {
-    clearCart();
-  };
+    clearCart()
+  }
 
   if (!isMounted) {
-    return <div>Loading...</div>;
+    return <div>Loading...</div>
   }
 
   return (
@@ -46,12 +46,14 @@ const TestPage = () => {
         {cart.map((item) => (
           <li key={item.productId}>
             {item.quantity}
-            <button onClick={() => handleRemoveItem(item.productId)}>Remove</button>
+            <button onClick={() => handleRemoveItem(item.productId)}>
+              Remove
+            </button>
           </li>
         ))}
       </ul>
     </div>
-  );
-};
+  )
+}
 
-export default TestPage;
+export default TestPage

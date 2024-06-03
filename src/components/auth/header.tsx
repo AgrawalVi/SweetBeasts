@@ -1,19 +1,14 @@
 import { cn } from '@/lib/utils'
 
-
 interface HeaderProps {
-  label: string;
+  label: string
 }
 
 export const Header = ({ label }: HeaderProps) => {
   return (
-    <div className="w-full flex flex-col gap-y-4 items-center justify-center">
-      <h1 className="text-4xl font-coiny">
-        SweetBeasts
-      </h1>
-      <p className="text-muted-foreground text-sm">
-        { label }
-      </p>
+    <div className="flex w-full flex-col items-center justify-center gap-y-4">
+      <h1 className="font-coiny text-4xl">SweetBeasts</h1>
+      <p className="text-sm text-muted-foreground">{label}</p>
     </div>
   )
 }

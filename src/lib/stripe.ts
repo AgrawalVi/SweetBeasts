@@ -1,9 +1,9 @@
-import Stripe from "stripe"
+import Stripe from 'stripe'
 
 const API_KEY = process.env.STRIPE_SECRET_KEY
 
 if (!API_KEY) {
-  console.error("STRIPE API KEY UNAVAILABLE")
+  console.error('STRIPE API KEY UNAVAILABLE')
   process.exit(1)
 }
 
@@ -18,6 +18,6 @@ export async function createPaymentIntent(amount: number, currency: string) {
 
     return paymentIntent
   } catch (e) {
-    console.error("Error creating payment intent", e)
+    console.error('Error creating payment intent', e)
   }
 }

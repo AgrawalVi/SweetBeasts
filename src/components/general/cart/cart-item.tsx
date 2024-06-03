@@ -1,11 +1,11 @@
-import { Product } from "@prisma/client"
-import { CartItem as CartItemType } from "@/hooks/use-shopping-cart"
+import { Product } from '@prisma/client'
+import { CartItem as CartItemType } from '@/hooks/use-shopping-cart'
 
-import { getProductById } from "@/actions/products/products"
-import { useEffect, useState, Suspense } from "react"
+import { getProductById } from '@/actions/products/products'
+import { useEffect, useState, Suspense } from 'react'
 
-import { useToast } from "@/components/ui/use-toast"
-import CartItemSkeleton from "@/components/skeletons/cart-item-skeleton"
+import { useToast } from '@/components/ui/use-toast'
+import CartItemSkeleton from '@/components/skeletons/cart-item-skeleton'
 
 const CartItem = ({ item }: { item: CartItemType }) => {
   const { toast } = useToast()
@@ -17,7 +17,10 @@ const CartItem = ({ item }: { item: CartItemType }) => {
     const fetchProduct = async () => {
       const product = await getProductById(item.productId)
       if (product.error) {
-        toast({description: "Couldn't receive some products from the cart", variant: "destructive"})
+        toast({
+          description: "Couldn't receive some products from the cart",
+          variant: 'destructive',
+        })
         setError(product.error)
       } else if (product.success) {
         setProduct(product.success)

@@ -1,34 +1,34 @@
-import type { Metadata } from "next"
-import { Coiny, Nunito, Josefin_Sans } from "next/font/google"
-import "./globals.css"
-import { ThemeProvider } from "@/components/theme-provider"
-import { Toaster } from "@/components/ui/toaster"
-import { Navbar } from "@/components/general/navbar"
-import { ShoppingCartProvider } from "@/hooks/use-shopping-cart"
-import { SessionProvider } from "next-auth/react"
-import { auth } from "@/auth"
+import type { Metadata } from 'next'
+import { Coiny, Nunito, Josefin_Sans } from 'next/font/google'
+import './globals.css'
+import { ThemeProvider } from '@/components/theme-provider'
+import { Toaster } from '@/components/ui/toaster'
+import { Navbar } from '@/components/general/navbar'
+import { ShoppingCartProvider } from '@/hooks/use-shopping-cart'
+import { SessionProvider } from 'next-auth/react'
+import { auth } from '@/auth'
 
 const nunito = Nunito({
-  subsets: ["latin"],
-  variable: "--font-nunito",
+  subsets: ['latin'],
+  variable: '--font-nunito',
 })
 
 const coiny = Coiny({
-  subsets: ["latin"],
-  weight: "400",
-  variable: "--font-coiny",
+  subsets: ['latin'],
+  weight: '400',
+  variable: '--font-coiny',
 })
 
 const josefinSans = Josefin_Sans({
-  subsets: ["latin"],
-  variable: "--font-josefin",
+  subsets: ['latin'],
+  variable: '--font-josefin',
 })
 
 export const metadata: Metadata = {
-  title: "SweetBeasts",
-  description: "Created by SweetBeasts, Inc",
+  title: 'SweetBeasts',
+  description: 'Created by SweetBeasts, Inc',
   icons: {
-    icon: "/favicon.ico",
+    icon: '/favicon.ico',
   },
 }
 
@@ -52,7 +52,7 @@ export default async function RootLayout({
               enableSystem
               disableTransitionOnChange
             >
-              <div className="flex w-full h-full bg-background">{children}</div>
+              <div className="flex h-full w-full bg-background">{children}</div>
               <link rel="icon" href="/favicon.ico" sizes="any" />
               <Toaster />
             </ThemeProvider>

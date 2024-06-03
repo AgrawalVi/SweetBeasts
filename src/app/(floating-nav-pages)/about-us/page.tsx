@@ -1,19 +1,20 @@
-"use client"
+'use client'
 
-import SweetCards from "@/components/general/about-us/sweet-cards"
-import { TextGenerateEffect } from "@/components/aceternity/text-generate-effect"
-import TextSection from "@/components/custom/text-section"
+import SweetCards from '@/components/general/about-us/sweet-cards'
+import { TextGenerateEffect } from '@/components/aceternity/text-generate-effect'
+import TextSection from '@/components/custom/text-section'
 
 export default function CanvasRevealEffectDemo() {
   return (
-    <main className="relative dark:bg-dot-white/[0.2] bg-dot-black/[0.2]">
-      <div className="absolute pointer-events-none inset-0 flex items-center justify-center bg-background [mask-image:radial-gradient(ellipse_at_center,transparent_10%,black)]"></div>
-      <div className="pb-20 pt-10 relative space-y-10">
+    <main className="relative bg-dot-black/[0.2] dark:bg-dot-white/[0.2]">
+      <div className="pointer-events-none absolute inset-0 flex items-center justify-center bg-background [mask-image:radial-gradient(ellipse_at_center,transparent_10%,black)]"></div>
+      <div className="relative space-y-10 pb-20 pt-10">
         <div className="flex flex-col place-items-center">
-          <h1 className="text-5xl md:text-7xl text-center bg-clip-text text-transparent header-gradient from-cyan-500 to-cyan-900 drop-shadow-md bg-opacity-50 font-coiny">
+          <h1 className="header-gradient bg-opacity-50 from-cyan-500 to-cyan-900 bg-clip-text text-center font-coiny text-5xl text-transparent drop-shadow-md md:text-7xl">
             OUR STORY
           </h1>
-          <TextSection text='At SweetBeasts, we craft delightful plushies that blend the charm of
+          <TextSection
+            text="At SweetBeasts, we craft delightful plushies that blend the charm of
             fruits with the joy of animals, inspiring healthier lifestyles and a
             spirit of compassion. By merging fun with education, each creation
             serves as a playful advocate for a balanced diet, enhancing both
@@ -26,13 +27,15 @@ export default function CanvasRevealEffectDemo() {
             charities and providing our plushies as comfort items to children in
             need including those in hospitals, shelters, and other similar
             environments. Each purchase is a step towards building a more
-            caring, connected, and healthier world.'/>
+            caring, connected, and healthier world."
+          />
         </div>
         <div className="flex flex-col place-items-center">
-          <h1 className="text-5xl md:text-7xl text-center bg-clip-text text-transparent header-gradient from-cyan-500 to-cyan-900 drop-shadow-md bg-opacity-50 font-coiny">
+          <h1 className="header-gradient bg-opacity-50 from-cyan-500 to-cyan-900 bg-clip-text text-center font-coiny text-5xl text-transparent drop-shadow-md md:text-7xl">
             OUR MISSION
           </h1>
-          <TextSection text='At SweetBeasts, we craft delightful plushies that blend the charm of
+          <TextSection
+            text="At SweetBeasts, we craft delightful plushies that blend the charm of
             fruits with the joy of animals, inspiring healthier lifestyles and a
             spirit of compassion. By merging fun with education, each creation
             serves as a playful advocate for a balanced diet, enhancing both
@@ -45,24 +48,26 @@ export default function CanvasRevealEffectDemo() {
             charities and providing our plushies as comfort items to children in
             need including those in hospitals, shelters, and other similar
             environments. Each purchase is a step towards building a more
-            caring, connected, and healthier world.'/>
+            caring, connected, and healthier world."
+          />
         </div>
         <div>
-          <h1 className="text-5xl md:text-7xl text-center bg-clip-text text-transparent header-gradient from-cyan-500 to-cyan-900 drop-shadow-md bg-opacity-50 font-coiny">
+          <h1 className="header-gradient bg-opacity-50 from-cyan-500 to-cyan-900 bg-clip-text text-center font-coiny text-5xl text-transparent drop-shadow-md md:text-7xl">
             OUR VALUES
           </h1>
           <TextGenerateEffect
             words="At our core, we are SWEET"
-            className="text-center pt-5"
+            className="pt-5 text-center"
             wordClassName="text-5xl text-pink-600 dark:text-cyan-600"
           />
           <SweetCards />
         </div>
         <div className="flex flex-col place-items-center">
-          <h1 className="text-5xl md:text-7xl text-center bg-clip-text text-transparent header-gradient from-cyan-500 to-cyan-900 drop-shadow-md bg-opacity-50 font-coiny">
+          <h1 className="header-gradient bg-opacity-50 from-cyan-500 to-cyan-900 bg-clip-text text-center font-coiny text-5xl text-transparent drop-shadow-md md:text-7xl">
             WHO WE ARE
           </h1>
-          <TextSection text='At SweetBeasts, we craft delightful plushies that blend the charm of
+          <TextSection
+            text="At SweetBeasts, we craft delightful plushies that blend the charm of
             fruits with the joy of animals, inspiring healthier lifestyles and a
             spirit of compassion. By merging fun with education, each creation
             serves as a playful advocate for a balanced diet, enhancing both
@@ -75,7 +80,8 @@ export default function CanvasRevealEffectDemo() {
             charities and providing our plushies as comfort items to children in
             need including those in hospitals, shelters, and other similar
             environments. Each purchase is a step towards building a more
-            caring, connected, and healthier world.'/>
+            caring, connected, and healthier world."
+          />
         </div>
       </div>
     </main>
