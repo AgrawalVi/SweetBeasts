@@ -2,7 +2,7 @@
 
 import { useShoppingCart } from '@/hooks/use-shopping-cart';
 import { useEffect, useState } from 'react';
-import Cart from '@/components/general/cart';
+import Cart from '@/components/general/cart/cart-button';
 
 const TestPage = () => {
   const { cart, addToCart, removeFromCart, clearCart } = useShoppingCart();

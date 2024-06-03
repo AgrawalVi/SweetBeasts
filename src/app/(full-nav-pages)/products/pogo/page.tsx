@@ -26,7 +26,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import Cart from '@/components/general/cart';
+import Cart from '@/components/general/cart/cart-button';
 import { useCurrentUser } from "@/hooks/use-current-user";
 import { useShoppingCart } from "@/hooks/use-shopping-cart";
 import { Quando } from 'next/font/google';
