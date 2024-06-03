@@ -68,7 +68,7 @@
 
   `@/utils` - contains any utility logic that is used. Usually a ts file that will be somewhat static to the context.
   
-## Libraries being used and for what purpose:
+## Usage instructions for libraries and frameworks:
 
 ### [Next.js](https://nextjs.org/docs)
   - Version 14, using the app router. Whenever looking through forums for help, make sure to look for the **APP ROUTER** and **NOT** the **PAGES ROUTER**
@@ -76,18 +76,6 @@
 
 ### [React](https://react.dev/reference/react)
   - Version 18
-
-### [ShadCN](https://ui.shadcn.com/docs)
-- This is the UI library that we are using. All of the components that we can use are in the @/components/ui folder.
-- ShadCN also provides a universal color scheme for the application. This colorscheme has been customized to fit SweetBeasts colors, and it can be found in the `global.css` file, along with the variables associated, which can be found in `tailwind.config.js`
-- Some ShadCN components are built off Radix primitives, and the API reference for Radix is more in depth for those components. [Link to RadixUI Docs](https://www.radix-ui.com/primitives/docs/overview/introduction)
-  - Take a look at this for what kind of customization can be done to the components that are in ShadCN. Most of the components have the same structure as the ShadCN files, but for some, ShadCN either combines or omits some elements, so just watch for that. 
-
-### [Lucide-React](https://lucide.dev/icons/)
-  - 1 of 2 icon libraries being used
-
-### [Tabler React Icons](https://tabler.io/docs/icons/react) - [Icons](https://tablericons.com/)
-  - 2 of 2 icon libraries being used
 
 ### [TailwindCSS](https://tailwindcss.com/docs/installation)
   - Library for inline styling. Documentation is very good
@@ -97,22 +85,8 @@
   - If this is your first time using tailwind, I'd highly recommend reading through the core concepts tabs in the documentation. Those outline everything very nicely. As of now, mobile support and dark mode are not priorities.
   - The documentation for tailwind is generally very good so if you are ever wondering what a class does or how to do something searching there is always helpful.
 
-### [React-Spinners](https://www.davidhu.io/react-spinners/) - [Storybook](https://www.davidhu.io/react-spinners/storybook/?path=/docs/barloader--main)
-  - Loading spinners used throughout the application. 
-
-### [Zod](https://zod.dev/)
-  - Used for form validation
-  - ShadCN has a great write-up for how to use with their components [here](https://ui.shadcn.com/docs/components/form)
-  - Place all schemas in `@/schemas/index.ts` and verify validity on the server side as well as the client side. 
-
 ### [Framer Motion](https://www.framer.com/motion/https://www.framer.com/motion/)
   - Animation library, take a look at the docs for more information
-
-### [Aceternity UI](https://ui.aceternity.com/components)
-  - Copy Paste Animation components. Most of these have a cn import, so make sure to change the cn import at the top of the page to point to where our cn folder is: `@/lib/utils`
-    - When importing components, follow instructions but keep in mind that our `cn` function is located at a different place in our folder, along with where we place them.
-    - **DO NOT** put them in `@/components/ui`, but instead put them in the `@components/aceternity` folder
-  - These components will require a good amount of customization to be used properly in our app. 
 
 ### [Prisma](https://www.prisma.io/docs)
   - Using PostgreSQL
@@ -127,6 +101,32 @@
   - Using `next-auth v5`
   - Library used for Authentication
   - Using Credentials and Google as the main providers. 
+
+### [ShadCN](https://ui.shadcn.com/docs)
+- This is the UI library that we are using. All of the components that we can use are in the @/components/ui folder.
+- ShadCN also provides a universal color scheme for the application. This colorscheme has been customized to fit SweetBeasts colors, and it can be found in the `global.css` file, along with the variables associated, which can be found in `tailwind.config.js`
+- Some ShadCN components are built off Radix primitives, and the API reference for Radix is more in depth for those components. [Link to RadixUI Docs](https://www.radix-ui.com/primitives/docs/overview/introduction)
+  - Take a look at this for what kind of customization can be done to the components that are in ShadCN. Most of the components have the same structure as the ShadCN files, but for some, ShadCN either combines or omits some elements, so just watch for that. 
+
+### [Aceternity UI](https://ui.aceternity.com/components)
+  - Copy Paste Animation components. Most of these have a cn import, so make sure to change the cn import at the top of the page to point to where our cn folder is: `@/lib/utils`
+    - When importing components, follow instructions but keep in mind that our `cn` function is located at a different place in our folder, along with where we place them.
+    - **DO NOT** put them in `@/components/ui`, but instead put them in the `@components/aceternity` folder
+  - These components will require a good amount of customization to be used properly in our app. 
+
+### [Lucide-React](https://lucide.dev/icons/)
+  - 1 of 2 icon libraries being used
+
+### [Tabler React Icons](https://tabler.io/docs/icons/react) - [Icons](https://tablericons.com/)
+  - 2 of 2 icon libraries being used
+
+### [React-Spinners](https://www.davidhu.io/react-spinners/) - [Storybook](https://www.davidhu.io/react-spinners/storybook/?path=/docs/barloader--main)
+  - Loading spinners used throughout the application. 
+
+### [Zod](https://zod.dev/)
+  - Used for form validation
+  - ShadCN has a great write-up for how to use with their components [here](https://ui.shadcn.com/docs/components/form)
+  - Place all schemas in `@/schemas/index.ts` and verify validity on the server side as well as the client side. 
 
 ### [Resend](https://resend.com/docs/send-with-nodejs)
   - Email Client
