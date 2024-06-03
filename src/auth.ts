@@ -8,6 +8,10 @@ import authConfig from "@/auth.config"
 import { getUserById } from "@/data/auth/user"
 import { getTwoFactorConfirmationByUserId } from "@/data/auth/two-factor-confirmation"
 
+import { cookies } from "next/headers"
+import { cartLoginHandler } from "./utils/cart-utils"
+import { getCartByGuestId } from "./data/shop/cart"
+
 declare module "next-auth" {
   /**
    * Add any extra fields to the session that are not part of the default session
@@ -46,6 +50,15 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
     async signIn({ user, account }) {
       // allow 0Auth without email verification
       if (account?.provider !== "credentials") {
+        // Need to transfer cart information before completing the login if there's a guestId
+        const guestId = cookies().get("guestId")?.value
+
+        if (guestId && user.email) {
+          const guestCart = await getCartByGuestId(guestId)
+          if (guestCart) {
+            await cartLoginHandler(guestCart, guestId, user.email)
+          }
+        }
         return true
       }
 
@@ -74,11 +87,19 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
           where: { id: twoFactorConfirmation.id },
         })
       }
+      // Need to transfer cart information before completing the login if there's a guestId
+      const guestId = cookies().get("guestId")?.value
 
+      if (guestId && user.email) {
+        const guestCart = await getCartByGuestId(guestId)
+        if (guestCart) {
+          await cartLoginHandler(guestCart, guestId, user.email)
+        }
+      }
       return true
     },
     async session({ token, session, user }) {
-      console.log({ sessionToken: token })
+      // console.log({ sessionToken: token })
 
       if (token.role && session.user) {
         session.user.role = token.role
