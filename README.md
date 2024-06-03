@@ -12,7 +12,6 @@
   - [**Framer Motion**](https://www.framer.com/motion/)
   - [**Auth.js**](https://authjs.dev/)
   - [**MDX**](https://mdxjs.com/)
-  - **Other Libraries:** [ShadCN UI Components](https://ui.shadcn.com/), [Aceternity UI Components](https://ui.aceternity.com/), [React Email](https://react.email/), [Zod Form Validation](https://zod.dev/)
 
 - ### Database
   - [**PostgreSQL**](https://www.postgresql.org/)
