@@ -10,9 +10,9 @@
   - [**React**](https://react.dev/)
   - [**Tailwind CSS**](https://tailwindcss.com/)
   - [**Framer Motion**](https://www.framer.com/motion/)
-  - [**AuthJS**](https://authjs.dev/)
+  - [**Auth.js**](https://authjs.dev/)
   - [**MDX**](https://mdxjs.com/)
-  - **Other Libraries:** [ShadCN UI Components](https://ui.shadcn.com/), [Aceternity UI Components](https://ui.aceternity.com/), [React Email](https://react.email/), [Lucide](https://lucide.dev/), [Tabler](https://tablericons.com/), [Zod Form Validation](https://zod.dev/)
+  - **Other Libraries:** [ShadCN UI Components](https://ui.shadcn.com/), [Aceternity UI Components](https://ui.aceternity.com/), [React Email](https://react.email/), [Zod Form Validation](https://zod.dev/)
 
 - ### Database
   - [**PostgreSQL**](https://www.postgresql.org/)
@@ -124,7 +124,7 @@
   - `npx prisma studio` to open a localhost of the database (very useful!!)
   - `data` folder should contain all data fetching, while `server actions` contain calls to add new data as well as updates and deletes after making all the necessary checks
 
-### [AuthJS](https://authjs.dev/reference/overview)
+### [Auth.js](https://authjs.dev/reference/overview)
   - Using `next-auth v5`
   - Library used for Authentication
   - Using Credentials and Google as the main providers. 
