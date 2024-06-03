@@ -30,6 +30,8 @@ import { FormSuccess } from "@/components/custom/form-success"
 import { login } from "@/actions/auth/login"
 import Link from "next/link"
 
+import { useShoppingCart } from "@/hooks/use-shopping-cart"
+
 export const LoginForm = ({}) => {
   const searchParams = useSearchParams()
   const urlError =
@@ -41,6 +43,8 @@ export const LoginForm = ({}) => {
   const [showTwoFactor, setShowTwoFactor] = useState(false)
   const [error, setError] = useState<string | undefined>("")
   const [success, setSuccess] = useState<string | undefined>("")
+  
+  const { handleLogin } = useShoppingCart()
 
   const form = useForm<z.infer<typeof LoginSchema>>({
     resolver: zodResolver(LoginSchema),
@@ -52,7 +56,6 @@ export const LoginForm = ({}) => {
   })
 
   const onSubmit = (values: z.infer<typeof LoginSchema>) => {
-    console.log(values)
     setError("")
     startTransition(() => {
       login(values)
@@ -68,6 +71,7 @@ export const LoginForm = ({}) => {
           if (data?.twoFactor) {
             setShowTwoFactor(true)
           }
+          location.reload()
         })
         .catch(() => setError("Something went wrong"))
     })
