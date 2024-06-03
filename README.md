@@ -53,6 +53,7 @@
   - Custom: This contains components that are not necessarily specific to a necessary page and can be used among many pages. Look at the files in there to see what kind of Components fit in there. (They are usually smaller components)
   - General: Contains components used for specific pages throughout the site. Should be split up into folders similar to app router to show which page the component is fore
   - Map: Self Explanatory
+  - Skeleton: Used for all loading state components (Should be derived from ShadCN's Skeleton Component)
   - UI: Only ShadCN components and a few ShadCN extensions found online
 
   `@/data` - contains all data fetching functions
