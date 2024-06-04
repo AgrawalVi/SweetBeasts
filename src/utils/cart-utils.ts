@@ -1,7 +1,7 @@
 import {
   addToUserCart,
   clearGuestIdCart,
-  getCartByUserEmail,
+  getCartByUserId,
 } from '@/actions/customer/cart'
 import { CartItem } from '@/hooks/use-shopping-cart'
 import Cookies from 'js-cookie'
@@ -9,15 +9,15 @@ import Cookies from 'js-cookie'
 export const cartLoginHandler = async (
   guestCart: CartItem[],
   guestId: string,
-  userEmail: string,
+  userId: string,
 ) => {
   console.log('hello')
-  if (guestCart.length > 0 && userEmail) {
+  if (guestCart.length > 0 && userId) {
     // add all the current items to the user's cart
     await Promise.all(
       guestCart.map(async (item) => {
         const response = await addToUserCart(
-          userEmail,
+          userId,
           item.productId,
           item.quantity,
         )
@@ -26,7 +26,7 @@ export const cartLoginHandler = async (
     )
 
     // Retrieve the user's cart items from the database
-    const response = await getCartByUserEmail(userEmail)
+    const response = await getCartByUserId(userId)
     if (response.error) {
       console.error(response.error)
     }

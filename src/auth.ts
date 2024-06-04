@@ -53,10 +53,10 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         // Need to transfer cart information before completing the login if there's a guestId
         const guestId = cookies().get('guestId')?.value
 
-        if (guestId && user.email) {
+        if (guestId && user.id) {
           const guestCart = await getCartByGuestId(guestId)
           if (guestCart) {
-            await cartLoginHandler(guestCart, guestId, user.email)
+            await cartLoginHandler(guestCart, guestId, user.id)
           }
         }
         return true
@@ -90,10 +90,10 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       // Need to transfer cart information before completing the login if there's a guestId
       const guestId = cookies().get('guestId')?.value
 
-      if (guestId && user.email) {
+      if (guestId && user.id) {
         const guestCart = await getCartByGuestId(guestId)
         if (guestCart) {
-          await cartLoginHandler(guestCart, guestId, user.email)
+          await cartLoginHandler(guestCart, guestId, user.id)
         }
       }
       return true

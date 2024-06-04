@@ -155,11 +155,11 @@ export const ShoppingCartProvider = ({ children }: { children: ReactNode }) => {
     }
 
     // Check if user exists
-    if (user?.email) {
+    if (user?.id) {
       // If user exists, add the item to the cart in the database
       // add to database
       const response = await addToUserCart(
-        user.email,
+        user.id,
         item.productId,
         item.quantity,
       )
@@ -244,19 +244,21 @@ export const ShoppingCartProvider = ({ children }: { children: ReactNode }) => {
 
     // update local storage cart
     setCart((prevCart) =>
-      prevCart.map((item) =>
-        item.productId === productId
-          ? { ...item, quantity: item.quantity - 1 }
-          : item,
-      ),
+      prevCart
+        .map((item) =>
+          item.productId === productId
+            ? { ...item, quantity: item.quantity - 1 }
+            : item,
+        )
+        .filter((item) => item.quantity > 0),
     )
 
     return { success: 'Successfully removed from cart' }
   }
 
   const handleLogin = async () => {
-    if (cart.length > 0 && user?.email && guestId) {
-      const updatedCart = await cartLoginHandler(cart, guestId, user.email)
+    if (cart.length > 0 && user?.id && guestId) {
+      const updatedCart = await cartLoginHandler(cart, guestId, user.id)
       clearGuestId()
       setCart(updatedCart)
     }
