@@ -61,6 +61,7 @@ export const LoginForm = ({}) => {
       login(values)
         .then((data) => {
           if (data?.error) {
+            console.log(data.error)
             form.reset()
             setError(data.error)
           }
@@ -71,7 +72,6 @@ export const LoginForm = ({}) => {
           if (data?.twoFactor) {
             setShowTwoFactor(true)
           }
-          location.reload()
         })
         .catch(() => setError('Something went wrong'))
     })
