@@ -2,17 +2,11 @@ import { db } from '@/lib/db'
 import { getUserByEmail } from '../auth/user'
 import { CartItem } from '@prisma/client'
 
-export const getCartByUserEmail = async (email: string) => {
+export const getCartByUserId = async (id: string) => {
   try {
-    const existingUser = await getUserByEmail(email)
-
-    if (!existingUser) {
-      return null
-    }
-
     const cart = await db.cartItem.findMany({
       where: {
-        userId: existingUser.id,
+        userId: id,
       },
     })
 
@@ -44,30 +38,6 @@ export const getCartItemByGuestIdAndProductId = async (
     const cartItem = await db.cartItem.findFirst({
       where: {
         guestId: guestId,
-        productId: productId,
-      },
-    })
-
-    return cartItem
-  } catch {
-    console.error('Error retrieving cart item')
-  }
-}
-
-export const getCartItemByEmailAndProductId = async (
-  email: string,
-  productId: number,
-) => {
-  try {
-    const existingUser = await getUserByEmail(email)
-
-    if (!existingUser) {
-      return null
-    }
-
-    const cartItem = await db.cartItem.findFirst({
-      where: {
-        userId: existingUser.id,
         productId: productId,
       },
     })

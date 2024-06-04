@@ -8,20 +8,23 @@ import React, {
   ReactNode,
 } from 'react'
 import { useCurrentUser } from '@/hooks/use-current-user'
-import {
-  addToUserCart,
-  addToGuestCart,
-  clearGuestIdCart,
-} from '@/actions/customer/cart'
-import { getProductById } from '@/actions/products/products'
-import { getCartByGuestId, getCartByUserEmail } from '@/actions/customer/cart'
-
-import { cartLoginHandler } from '@/utils/cart-utils'
 
 import { signOut } from 'next-auth/react'
 import { v4 as uuidv4 } from 'uuid'
-
 import Cookies from 'js-cookie'
+
+import {
+  addToUserCart,
+  addToGuestCart,
+  getCartByGuestId,
+  getCartByUserId,
+  removeProductFromCartByIdAndProductId,
+  decrementProductFromCartByIdAndProductId,
+} from '@/actions/customer/cart'
+import { getProductById } from '@/actions/products/products'
+
+import { cartLoginHandler } from '@/utils/cart-utils'
+
 export interface CartItem {
   productId: number
   quantity: number
@@ -34,7 +37,12 @@ interface ShoppingCartContextType {
   addToCart: (
     item: CartItem,
   ) => Promise<{ error: string } | { success: string }>
-  removeFromCart: (id: number) => void
+  removeItemFromCart: (
+    id: number,
+  ) => Promise<{ error: string } | { success: string }>
+  decrementItemFromCart: (
+    id: number,
+  ) => Promise<{ error: string } | { success: string }>
   clearCart: () => void
   handleLogout: () => Promise<void>
   handleLogin: () => Promise<void>
@@ -93,10 +101,10 @@ export const ShoppingCartProvider = ({ children }: { children: ReactNode }) => {
   }, [cart])
 
   const fetchCartItems = async () => {
-    // If user exists, fetch cart items by user's email
-    if (user?.email) {
-      // Fetch cart items by user's email
-      const response = await getCartByUserEmail(user.email)
+    // If user exists, fetch cart items by userId
+    if (user?.id) {
+      // Fetch cart items by userId
+      const response = await getCartByUserId(user.id)
       if (response.error) {
         return { error: response.error }
       }
@@ -198,8 +206,52 @@ export const ShoppingCartProvider = ({ children }: { children: ReactNode }) => {
     return { success: `Successfully added ${product.name} to cart!` }
   }
 
-  const removeFromCart = (id: number) => {
-    setCart((prevCart) => prevCart.filter((item) => item.productId !== id))
+  const removeItemFromCart = async (productId: number) => {
+    const id = user?.id || guestId
+
+    if (id) {
+      // remove item from database
+      const response = await removeProductFromCartByIdAndProductId(
+        id,
+        productId,
+      )
+      if (response.error) {
+        return { error: response.error }
+      }
+    }
+    // remove item from local storage
+    setCart((prevCart) =>
+      prevCart.filter((item) => item.productId !== productId),
+    )
+
+    return { success: 'Successfully removed item from cart' }
+  }
+
+  const decrementItemFromCart = async (productId: number) => {
+    const id = user?.id || guestId
+
+    if (id) {
+      // decrement item from user's cart
+      const response = await decrementProductFromCartByIdAndProductId(
+        id,
+        productId,
+      )
+
+      if (response.error) {
+        return { error: response.error }
+      }
+    }
+
+    // update local storage cart
+    setCart((prevCart) =>
+      prevCart.map((item) =>
+        item.productId === productId
+          ? { ...item, quantity: item.quantity - 1 }
+          : item,
+      ),
+    )
+
+    return { success: 'Successfully removed from cart' }
   }
 
   const handleLogin = async () => {
@@ -237,7 +289,8 @@ export const ShoppingCartProvider = ({ children }: { children: ReactNode }) => {
         isCartOpen,
         setIsCartOpen,
         addToCart,
-        removeFromCart,
+        removeItemFromCart,
+        decrementItemFromCart,
         clearCart: clearLocalCart,
         handleLogout,
         handleLogin,

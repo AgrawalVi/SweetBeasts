@@ -1,22 +1,23 @@
 'use server'
 
-import { getUserByEmail } from '@/data/auth/user'
+import { getUserById } from '@/data/auth/user'
 import { getProductById } from '@/data/shop/product'
 import {
   getCartItemByUserIdAndProductId,
   getCartItemByGuestIdAndProductId,
   getCartByGuestId as getCartByGuestIdDB,
-  getCartByUserEmail as getCartByUserEmailDB,
+  getCartByUserId as getCartByUserIdDB,
 } from '@/data/shop/cart'
 import { db } from '@/lib/db'
+import { CartItem } from '@prisma/client'
 
 export const addToUserCart = async (
-  userEmail: string,
+  userId: string,
   productId: number,
   quantity: number,
 ) => {
   // Verify that a user exists with the given userId
-  let existingUser = await getUserByEmail(userEmail)
+  let existingUser = await getUserById(userId)
   if (!existingUser) {
     return { error: 'User does not exist' }
   }
@@ -129,9 +130,9 @@ export const getCartByGuestId = async (guestId: string) => {
   }
 }
 
-export const getCartByUserEmail = async (email: string) => {
+export const getCartByUserId = async (id: string) => {
   try {
-    const cart = await getCartByUserEmailDB(email)
+    const cart = await getCartByUserIdDB(id)
     return { success: cart }
   } catch {
     return { error: 'Error retrieving user cart' }
@@ -148,5 +149,72 @@ export const clearGuestIdCart = async (guestId: string) => {
     return { success: 'Cart cleared' }
   } catch {
     return { error: 'Error clearing cart' }
+  }
+}
+
+export const removeProductFromCartByIdAndProductId = async (
+  id: string,
+  productId: number,
+) => {
+  try {
+    if (id.slice(0, 6) === 'guest_') {
+      await db.cartItem.deleteMany({
+        where: {
+          guestId: id,
+          productId,
+        },
+      })
+    } else {
+      await db.cartItem.deleteMany({
+        where: {
+          userId: id,
+          productId,
+        },
+      })
+    }
+    return { success: 'Product removed from cart' }
+  } catch {
+    return { error: 'Error removing product from cart' }
+  }
+}
+
+export const decrementProductFromCartByIdAndProductId = async (
+  id: string,
+  productId: number,
+) => {
+  // first try and get existing cart
+  try {
+    let existingCartItem: CartItem | null | undefined = null
+
+    if (id.slice(0, 6) === 'guest_') {
+      existingCartItem = await getCartItemByGuestIdAndProductId(id, productId)
+    } else {
+      existingCartItem = await getCartItemByUserIdAndProductId(id, productId)
+    }
+    if (!existingCartItem) {
+      return { success: 'Product removed from cart' }
+    }
+
+    // if cart item exists with quantity > 2, decrement quantity by 1
+    if (existingCartItem.quantity > 1) {
+      await db.cartItem.update({
+        where: {
+          id: existingCartItem.id,
+        },
+        data: {
+          quantity: existingCartItem.quantity - 1,
+        },
+      })
+    } else {
+      await db.cartItem.delete({
+        where: {
+          id: existingCartItem.id,
+        },
+      })
+    }
+
+    return { success: 'Product decremented from cart' }
+  } catch {
+    return { error: 'Error decrementing product from cart' }
   }
 }
