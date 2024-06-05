@@ -9,7 +9,7 @@ import React, {
 } from 'react'
 import { useCurrentUser } from '@/hooks/use-current-user'
 
-import { signOut } from 'next-auth/react'
+import { logout } from '@/actions/auth/logout'
 import { v4 as uuidv4 } from 'uuid'
 import Cookies from 'js-cookie'
 
@@ -272,7 +272,8 @@ export const ShoppingCartProvider = ({ children }: { children: ReactNode }) => {
     const newGuestId = generateGuestId()
     Cookies.set('guestId', newGuestId, { expires: 365 })
     setGuestId(newGuestId)
-    await signOut()
+    console.log('signing out')
+    await logout()
   }
 
   const clearGuestId = () => {
