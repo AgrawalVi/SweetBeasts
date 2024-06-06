@@ -105,8 +105,11 @@ export const ShoppingCartProvider = ({ children }: { children: ReactNode }) => {
     if (user?.id) {
       // Fetch cart items by userId
       const response = await getCartByUserId(user.id)
-      if (response.error) {
-        return { error: response.error }
+      if (!response) {
+        return { error: 'Error retrieving item' }
+      }
+      if (!response.success) {
+        return { error: 'Error retrieving user cart' }
       }
       const cartItems = response.success
       // Extract necessary data from cart items and set the cart state

@@ -40,10 +40,6 @@ export function Navbar({ className }: { className?: string }) {
   const [lastActive, setLastActive] = useState<string | null>(null)
   const { handleLogout } = useShoppingCart()
 
-  useEffect(() => {
-    console.log(status)
-  }, [status])
-
   return (
     <main className="sticky top-0 z-50">
       <div className="relative hidden w-screen items-center justify-between border-b bg-background p-4 md:flex">
@@ -128,14 +124,14 @@ export function Navbar({ className }: { className?: string }) {
               </div>
             </MenuItem>
           </Menu>
+          {user ? (
+            <Button onClick={handleLogout}>Logout</Button>
+          ) : (
+            <a href="/auth/login">
+              <Button>login</Button>
+            </a>
+          )}
         </div>
-        {user ? (
-          <Button onClick={handleLogout}>Logout</Button>
-        ) : (
-          <a href="/auth/login">
-            <Button>login</Button>
-          </a>
-        )}
 
         {/* Mode Toggle Section */}
         <div className="flex items-center">

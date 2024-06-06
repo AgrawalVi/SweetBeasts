@@ -22,4 +22,4 @@ export const authRoutes = [
 export const apiAuthPrefix = '/api/auth'
 
 // The default route to redirect to after login
-export const DEFAULT_LOGIN_REDIRECT = '/my-account'
+export const DEFAULT_LOGIN_REDIRECT = '/products/pogo'
