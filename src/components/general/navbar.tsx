@@ -34,12 +34,6 @@ const productItems = [
 ]
 
 export function Navbar({ className }: { className?: string }) {
-  const { status } = useSession({
-    required: true,
-    onUnauthenticated() {
-      // do nothing
-    },
-  })
   const user = useCurrentUser()
 
   const [active, setActive] = useState<string | null>(null)
@@ -134,33 +128,14 @@ export function Navbar({ className }: { className?: string }) {
               </div>
             </MenuItem>
           </Menu>
-          {/* {status === 'loading' ? (
-            <Button onClick={handleLogout}>Logout</Button>
-          ) : (
-            <a href="/auth/login">
-              <Button>login</Button>
-            </a>
-          )} */}
-          {/* {status === 'loading' ? (
-            <div>Loading...</div>
-          ) : (
-            <>
-              {user ? (
-                
-              ) : (
-                
-              )}
-            </>
-          )} */}
-
-          {status === 'authenticated' ? (
-            <Button onClick={handleLogout}>Logout</Button>
-          ) : (
-            <a href="/auth/login">
-              <Button>Login</Button>
-            </a>
-          )}
         </div>
+        {user ? (
+          <Button onClick={handleLogout}>Logout</Button>
+        ) : (
+          <a href="/auth/login">
+            <Button>login</Button>
+          </a>
+        )}
 
         {/* Mode Toggle Section */}
         <div className="flex items-center">
