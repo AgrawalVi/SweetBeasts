@@ -1,4 +1,5 @@
 import Stripe from 'stripe'
+import { getProductById } from '@/data/shop/product'
 
 const API_KEY = process.env.STRIPE_SECRET_KEY
 
@@ -7,17 +8,6 @@ if (!API_KEY) {
   process.exit(1)
 }
 
-const stripe = new Stripe(API_KEY)
-
-export async function createPaymentIntent(amount: number, currency: string) {
-  try {
-    const paymentIntent = await stripe.paymentIntents.create({
-      amount: amount,
-      currency: currency,
-    })
-
-    return paymentIntent
-  } catch (e) {
-    console.error('Error creating payment intent', e)
-  }
-}
+export const stripe = new Stripe(API_KEY, {
+  apiVersion: '2024-04-10; custom_checkout_beta=v1' as any,
+})
