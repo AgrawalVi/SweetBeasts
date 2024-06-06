@@ -3,8 +3,9 @@ import { Coiny, Nunito, Josefin_Sans } from 'next/font/google'
 import './globals.css'
 import { ThemeProvider } from '@/components/theme-provider'
 import { Toaster } from '@/components/ui/toaster'
-import { Navbar } from '@/components/general/navbar'
+
 import { ShoppingCartProvider } from '@/hooks/use-shopping-cart'
+
 import { SessionProvider } from 'next-auth/react'
 import { auth } from '@/auth'
 
@@ -40,12 +41,12 @@ export default async function RootLayout({
   const session = await auth()
 
   return (
-    <SessionProvider session={session}>
-      <ShoppingCartProvider>
-        <html lang="en" suppressHydrationWarning>
-          <body
-            className={`${nunito.variable} ${josefinSans.variable} ${coiny.variable}`}
-          >
+    <html lang="en" suppressHydrationWarning>
+      <body
+        className={`${nunito.variable} ${josefinSans.variable} ${coiny.variable}`}
+      >
+        <SessionProvider session={session}>
+          <ShoppingCartProvider>
             <ThemeProvider
               attribute="class"
               defaultTheme="system"
@@ -56,9 +57,9 @@ export default async function RootLayout({
               <link rel="icon" href="/favicon.ico" sizes="any" />
               <Toaster />
             </ThemeProvider>
-          </body>
-        </html>
-      </ShoppingCartProvider>
-    </SessionProvider>
+          </ShoppingCartProvider>
+        </SessionProvider>
+      </body>
+    </html>
   )
 }

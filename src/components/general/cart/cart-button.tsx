@@ -9,12 +9,18 @@ import {
   SheetHeader,
 } from '@/components/ui/sheet'
 import { Button } from '@/components/ui/button'
+import Link from 'next/link'
 import { ShoppingCart } from 'lucide-react'
 import { useShoppingCart } from '@/hooks/use-shopping-cart'
 import CartContents from './cart-contents'
 
 export default function Cart() {
-  const { isCartOpen, setIsCartOpen } = useShoppingCart()
+  const { cart, isCartOpen, setIsCartOpen } = useShoppingCart()
+
+  const handleCheckout = async () => {
+    setIsCartOpen(false)
+    // await
+  }
 
   return (
     <Sheet open={isCartOpen} onOpenChange={setIsCartOpen}>
@@ -33,6 +39,9 @@ export default function Cart() {
           <Button onClick={() => setIsCartOpen(false)}>
             Continue Shopping
           </Button>
+          <Link href="/checkout">
+            <Button onClick={handleCheckout}>Checkout</Button>
+          </Link>
         </div>
       </SheetContent>
     </Sheet>

@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react'
 import Cart from '@/components/general/cart/cart-button'
 
 const TestPage = () => {
-  const { cart, addToCart, removeFromCart, clearCart } = useShoppingCart()
+  const { cart, addToCart, removeItemFromCart, clearCart } = useShoppingCart()
   const [isMounted, setIsMounted] = useState(false)
 
   useEffect(() => {
@@ -25,7 +25,7 @@ const TestPage = () => {
   }
 
   const handleRemoveItem = (id: number) => {
-    removeFromCart(id)
+    removeItemFromCart(id)
   }
 
   const handleClearCart = () => {

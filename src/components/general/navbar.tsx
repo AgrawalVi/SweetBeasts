@@ -1,5 +1,5 @@
 'use client'
-import React, { use, useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import {
   HoveredLink,
   Menu,
@@ -34,11 +34,21 @@ const productItems = [
 ]
 
 export function Navbar({ className }: { className?: string }) {
+  const { status } = useSession({
+    required: true,
+    onUnauthenticated() {
+      // do nothing
+    },
+  })
+  const user = useCurrentUser()
+
   const [active, setActive] = useState<string | null>(null)
   const [lastActive, setLastActive] = useState<string | null>(null)
-  const user = useCurrentUser()
-  const session = useSession()
   const { handleLogout } = useShoppingCart()
+
+  useEffect(() => {
+    console.log(status)
+  }, [status])
 
   return (
     <main className="sticky top-0 z-50">
@@ -124,11 +134,30 @@ export function Navbar({ className }: { className?: string }) {
               </div>
             </MenuItem>
           </Menu>
-          {session.data?.user ? (
+          {/* {status === 'loading' ? (
             <Button onClick={handleLogout}>Logout</Button>
           ) : (
             <a href="/auth/login">
               <Button>login</Button>
+            </a>
+          )} */}
+          {/* {status === 'loading' ? (
+            <div>Loading...</div>
+          ) : (
+            <>
+              {user ? (
+                
+              ) : (
+                
+              )}
+            </>
+          )} */}
+
+          {status === 'authenticated' ? (
+            <Button onClick={handleLogout}>Logout</Button>
+          ) : (
+            <a href="/auth/login">
+              <Button>Login</Button>
             </a>
           )}
         </div>
