@@ -49,7 +49,9 @@ export default function Cart() {
           <Button onClick={() => setIsCartOpen(false)}>
             Continue Shopping
           </Button>
-          <Button onClick={handleCheckout}>Checkout</Button>
+          <Link href="/checkout">
+            <Button>Checkout</Button>
+          </Link>
         </div>
       </SheetContent>
     </Sheet>
