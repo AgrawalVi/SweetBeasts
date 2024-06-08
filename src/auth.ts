@@ -20,6 +20,7 @@ declare module 'next-auth' {
     user: {
       role: UserRole
       isTwoFactorEnabled: boolean
+      stripeCustomerId: string | null
     } & DefaultSession['user']
   }
 }
@@ -28,6 +29,7 @@ declare module 'next-auth/jwt' {
   interface JWT {
     role?: UserRole
     isTwoFactorEnabled: boolean
+    stripeCustomerId: string | null
   }
 }
 
@@ -112,11 +114,10 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       if (session.user) {
         session.user.name = token.name
         session.user.email = token.email as string
+        session.user.isTwoFactorEnabled = token.isTwoFactorEnabled
+        session.user.stripeCustomerId = token.stripeCustomerId
       }
 
-      if (session.user) {
-        session.user.isTwoFactorEnabled = token.isTwoFactorEnabled
-      }
       return session
     },
     async jwt({ token }) {
@@ -130,6 +131,9 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       token.email = existingUser.email
       token.role = existingUser.role
       token.isTwoFactorEnabled = existingUser.isTwoFactorEnabled
+      token.stripeCustomerId = existingUser.stripeCustomerId
+        ? existingUser.stripeCustomerId
+        : null
       return token
     },
   },

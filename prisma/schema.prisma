@@ -31,6 +31,7 @@ model User {
   isTwoFactorEnabled    Boolean                @default(false)
   twoFactorConfirmation TwoFactorConfirmation?
   numPurchases          Int                    @default(0)
+  stripeCustomerId      String?
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
