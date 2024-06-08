@@ -9,5 +9,5 @@ if (!API_KEY) {
 }
 
 export const stripe = new Stripe(API_KEY, {
-  apiVersion: '2024-04-10; custom_checkout_beta=v1' as any,
+  apiVersion: '2024-04-10',
 })
