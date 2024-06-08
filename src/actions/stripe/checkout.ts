@@ -5,6 +5,7 @@ import { getProductById } from '../products/products'
 import { stripe } from '@/lib/stripe'
 import { getUserById } from '@/data/auth/user'
 import { RedirectType, redirect } from 'next/navigation'
+import Stripe from 'stripe'
 
 export type lineItem = {
   price: string
@@ -39,42 +40,52 @@ export const createCheckoutSession = async (
   // if there's a userId that's passed, we must validate that a user exists with that Id
   const existingUser = userId ? await getUserById(userId) : null
 
-  // If there's no userId, then we create a checkout session with a guest customer
-  if (!existingUser) {
-    let session
-    try {
-      session = await stripe.checkout.sessions.create({
-        line_items: lineItems,
-        mode: 'payment',
-        ui_mode: 'hosted',
-        success_url: `${process.env.NEXT_PUBLIC_BASE_URL}/thank-you?session_id={CHECKOUT_SESSION_ID}`,
-        cancel_url: `${process.env.NEXT_PUBLIC_BASE_URL}/`,
-        // automatic_tax: {
-        //   enabled: true,
-        // },
-        // customer_creation: 'always',
-        // shipping_address_collection: {
-        //   allowed_countries: ['US'],
-        // },
-      })
-    } catch (e) {
-      console.error(e)
-      return { error: 'An error occurred while creating a checkout session' }
-    }
-
-    if (session.url) {
-      redirect(session.url)
-    }
-    return { error: 'Unable to redirect to checkout' }
+  const checkoutSessionConfig: Stripe.Checkout.SessionCreateParams = {
+    line_items: lineItems,
+    mode: 'payment',
+    ui_mode: 'hosted',
+    success_url: `${process.env.NEXT_PUBLIC_BASE_URL}/success?session_id={CHECKOUT_SESSION_ID}`,
+    cancel_url: `${process.env.NEXT_PUBLIC_BASE_URL}/`,
+    automatic_tax: {
+      enabled: true,
+    },
+    customer_creation: 'always',
+    shipping_address_collection: {
+      allowed_countries: ['US'],
+    },
   }
 
-  return { error: 'Have not implemented checkout if a user is logged in' }
-  // if the user exists, we can check if  they have a stripeCustomerId
+  // If there's no userId, then we create a checkout session with a guest customer
+  if (!existingUser) {
+    return createCheckoutSessionHelper(checkoutSessionConfig)
+  }
 
-  // check if there's a stripeCustomerId and if so, use it to create a checkout session.
-  // if a stripeCustomerId exists, so does the user's email address
+  // if the user exists and they dont have a stripeCustomerId, we create a customer and open a new checkout session
+  if (!existingUser.stripeCustomerId) {
+    checkoutSessionConfig.customer_email = existingUser.email
+    return createCheckoutSessionHelper(checkoutSessionConfig)
+  }
 
-  //  if no stripeCustomerId, check if there's an email and if so, create a customer and open a new checkout session
+  // if the user exists and they have a stripeCustomerId, we can use it to create a checkout session
+  checkoutSessionConfig.customer = existingUser.stripeCustomerId
+  return createCheckoutSessionHelper(checkoutSessionConfig)
+}
+
+const createCheckoutSessionHelper = async (
+  checkoutSessionConfig: Stripe.Checkout.SessionCreateParams,
+) => {
+  let session
+  try {
+    session = await stripe.checkout.sessions.create(checkoutSessionConfig)
+  } catch (e) {
+    console.error(e)
+    return { error: 'An error occurred while creating a checkout session' }
+  }
+
+  if (session.url) {
+    redirect(session.url)
+  }
+  return { error: 'Unable to redirect to checkout' }
 }
 
 export const getCheckoutSession = async (sessionId: string) => {
