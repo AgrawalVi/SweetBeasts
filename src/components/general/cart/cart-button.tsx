@@ -13,13 +13,23 @@ import Link from 'next/link'
 import { ShoppingCart } from 'lucide-react'
 import { useShoppingCart } from '@/hooks/use-shopping-cart'
 import CartContents from './cart-contents'
+import { createCheckoutSession } from '@/actions/stripe/checkout'
+import { useRouter } from 'next/navigation'
 
 export default function Cart() {
   const { cart, isCartOpen, setIsCartOpen } = useShoppingCart()
+  const router = useRouter()
 
   const handleCheckout = async () => {
     setIsCartOpen(false)
     // await
+    const response = await createCheckoutSession(cart)
+    if (response.error) {
+      console.error(response.error)
+    } else {
+      // we have a client secret
+      router.push(`/checkout?client_secret=${response.success}`)
+    }
   }
 
   return (
@@ -39,9 +49,7 @@ export default function Cart() {
           <Button onClick={() => setIsCartOpen(false)}>
             Continue Shopping
           </Button>
-          <Link href="/checkout">
-            <Button onClick={handleCheckout}>Checkout</Button>
-          </Link>
+          <Button onClick={handleCheckout}>Checkout</Button>
         </div>
       </SheetContent>
     </Sheet>
