@@ -1,4 +1,5 @@
 'use client'
+
 import React from 'react'
 import {
   Sheet,
@@ -9,26 +10,29 @@ import {
   SheetHeader,
 } from '@/components/ui/sheet'
 import { Button } from '@/components/ui/button'
-import Link from 'next/link'
 import { ShoppingCart } from 'lucide-react'
 import { useShoppingCart } from '@/hooks/use-shopping-cart'
 import CartContents from './cart-contents'
 import { createCheckoutSession } from '@/actions/stripe/checkout'
 import { useRouter } from 'next/navigation'
+import { useCurrentUser } from '@/hooks/use-current-user'
+import { useToast } from '@/components/ui/use-toast'
 
 export default function Cart() {
   const { cart, isCartOpen, setIsCartOpen } = useShoppingCart()
   const router = useRouter()
+  const user = useCurrentUser()
+  const { toast } = useToast()
 
   const handleCheckout = async () => {
-    setIsCartOpen(false)
     // await
-    const response = await createCheckoutSession(cart)
-    if (response.error) {
-      console.error(response.error)
-    } else {
-      // we have a client secret
-      router.push(`/checkout?client_secret=${response.success}`)
+    const response = await createCheckoutSession(cart, user?.id)
+    if (response?.error) {
+      toast({
+        title: 'An error has occurred',
+        description: response.error,
+        variant: 'destructive',
+      })
     }
   }
 
@@ -49,9 +53,7 @@ export default function Cart() {
           <Button onClick={() => setIsCartOpen(false)}>
             Continue Shopping
           </Button>
-          <Link href="/checkout">
-            <Button>Checkout</Button>
-          </Link>
+          <Button onClick={handleCheckout}>Checkout</Button>
         </div>
       </SheetContent>
     </Sheet>
