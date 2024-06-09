@@ -11,9 +11,8 @@ export const InfiniteMovingCards = ({
   className,
 }: {
   items: {
-    quote: string
+    img: string
     name: string
-    title: string
   }[]
   direction?: 'left' | 'right'
   speed?: 'fast' | 'normal' | 'slow'
@@ -87,31 +86,17 @@ export const InfiniteMovingCards = ({
       >
         {items.map((item, idx) => (
           <li
-            className="relative w-[350px] max-w-full flex-shrink-0 rounded-2xl border border-b-0 border-red-600 px-8 py-6 md:w-[450px]"
+            className="relative w-[150px] max-w-full flex-shrink-0 rounded-2xl border border-b-0 border-red-600 px-4 py-4 md:w-[200px] xl:w-[500px]"
             style={{
-              background: 'linear-gradient(180deg, #F08080, #F08080)',
+              background: 'linear-gradient(180deg, #8A2BE2, #8A2BE2)', // Changed to a shade of purple
+              color: '#FFFFFF', // Text color
             }}
             key={item.name}
           >
-            <blockquote>
-              <div
-                aria-hidden="true"
-                className="user-select-none -z-1 pointer-events-none absolute -left-0.5 -top-0.5 h-[calc(100%_+_4px)] w-[calc(100%_+_4px)]"
-              ></div>
-              <span className="relative z-20 text-sm font-normal leading-[1.6] text-gray-100">
-                {item.quote}
-              </span>
-              <div className="relative z-20 mt-6 flex flex-row items-center">
-                <span className="flex flex-col gap-1">
-                  <span className="text-sm font-normal leading-[1.6] text-gray-400">
-                    {item.name}
-                  </span>
-                  <span className="text-sm font-normal leading-[1.6] text-gray-400">
-                    {item.title}
-                  </span>
-                </span>
-              </div>
-            </blockquote>
+            <div className="flex flex-col items-center">
+              <img src={item.img} alt={item.name} className="w-30 h-30 mb-4" />
+              <span className="text-4xl font-bold">{item.name}</span>
+            </div>
           </li>
         ))}
       </ul>
