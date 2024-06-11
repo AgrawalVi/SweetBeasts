@@ -24,6 +24,7 @@ import {
 import { getProductById } from '@/actions/products/products'
 
 import { cartLoginHandler } from '@/utils/cart-utils'
+import { signOut } from 'next-auth/react'
 
 export interface CartItem {
   productId: number
@@ -276,7 +277,7 @@ export const ShoppingCartProvider = ({ children }: { children: ReactNode }) => {
     Cookies.set('guestId', newGuestId, { expires: 365 })
     setGuestId(newGuestId)
     console.log('signing out')
-    await logout()
+    await signOut()
   }
 
   const clearGuestId = () => {
