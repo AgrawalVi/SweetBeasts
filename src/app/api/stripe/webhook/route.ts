@@ -4,19 +4,29 @@ import { NextResponse } from 'next/server'
 const webhookSecret = process.env.STRIPE_WEBHOOK_SECRET!
 
 export const POST = async (req: Request, res: Response) => {
-  const rawBody = await req.json()
-  const sig = req.headers.get('Stripe-Signature')
+  const rawBody = await req.text()
+  const body = JSON.parse(rawBody)
 
   let event
+
+  // verify the webhook signature to be sure that the request came from Stripe
   try {
-    event = stripe.webhooks.constructEvent(rawBody, sig!, webhookSecret)
+    const sig = req.headers.get('Stripe-Signature')
+    if (!sig) {
+      throw new Error('Stripe signature missing')
+    }
+
+    event = stripe.webhooks.constructEvent(rawBody, sig, webhookSecret)
   } catch (err) {
+    console.error('Webhook signature verification failed:', err)
     return NextResponse.json(
-      { error: 'Webhook Signature Verification Failed' },
+      { error: 'Webhook signature verification failed' },
       { status: 400 },
     )
   }
 
-  console.log(event)
-  console.log(event.type)
+  if (event.type === 'checkout.session.completed') {
+    console.log(event)
+  }
+  return NextResponse.json({ status: 200 })
 }
