@@ -31,7 +31,6 @@ model User {
   isTwoFactorEnabled    Boolean                @default(false)
   twoFactorConfirmation TwoFactorConfirmation?
   numPurchases          Int                    @default(0)
-  stripeCustomerId      String?
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -105,7 +104,7 @@ model CartItem {
   productId Int
 
   user    User?    @relation(fields: [userId], references: [id], onDelete: Cascade)
-  Product Product? @relation(fields: [productId], references: [id])
+  Product Product? @relation(fields: [productId], references: [id], onDelete: Cascade)
 
   @@unique([userId, productId]) // user can only have 1 product active at a time
   @@unique([guestId, productId]) // guest can only have 1 product active at a time
@@ -121,7 +120,7 @@ model Product {
   primaryImagePath String?
   numSold          Int      @default(0)
   dateCreated      DateTime @default(now())
-  inventory        Int      @default(0)
+  inventory        Int
   available        Boolean  @default(true)
 
   cartItems CartItem[]
