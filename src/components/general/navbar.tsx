@@ -86,25 +86,25 @@ export function Navbar({ className }: { className?: string }) {
                 <ProductItem
                   title="Pogo"
                   href="/products/pogo"
-                  src="/pogo.jpg"
+                  src="/product-images/pogo/main.jpg"
                   description="The Peachy Penguin."
                 />
                 <ProductItem
                   title="Pineapple Parrot"
                   href="/products/pineapple-parrot"
-                  src="/pineapple-parrot.jpg"
+                  src="/product-images/pavia/main.jpg"
                   description="The Pineapple Parrot"
                 />
                 <ProductItem
                   title="Tangerine Turtle"
                   href="/products/tangerine-turtle"
-                  src="/tangerine-turtle.jpg"
+                  src="/product-images/turpy/main.jpg"
                   description="The Tangerine Turtle."
                 />
                 <ProductItem
                   title="Lemon Lion"
                   href="/products/lemon-lion"
-                  src="/lemon-lion.jpg"
+                  src="/product-images/lemon-lion/main.jpg"
                   description="The Lemon Lion."
                 />
               </div>

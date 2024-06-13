@@ -106,7 +106,7 @@ export default function Pogo() {
           <div className="relative h-full w-full">
             <Image
               className="object-cover"
-              src="/pogo.jpg"
+              src="/product-images/pogo/main.jpg"
               layout="fill"
               alt="Pogo the Peachy Penguin"
             />
