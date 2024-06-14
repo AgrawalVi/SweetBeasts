@@ -19,6 +19,15 @@ enum UserRole {
   ADMIN
 }
 
+enum OrderStatus {
+  PROCESSING
+  CANCELLED
+  SHIPPED
+  DELIVERED
+  EXCEPTION
+  RETURNED
+}
+
 model User {
   id                    String                 @id @default(cuid())
   name                  String?
@@ -36,7 +45,8 @@ model User {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  cartItems CartItem[]
+  cartItems       CartItem[]
+  ShippingAddress ShippingAddress[]
 }
 
 model Account {
@@ -101,6 +111,7 @@ model CartItem {
   userId    String?
   guestId   String?
   createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
   quantity  Int
   productId Int
 
@@ -120,9 +131,67 @@ model Product {
   stripePriceId    String   @unique
   primaryImagePath String?
   numSold          Int      @default(0)
-  dateCreated      DateTime @default(now())
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
   inventory        Int
   available        Boolean  @default(true)
 
   cartItems CartItem[]
+  lineItems lineItem[]
+}
+
+model Order {
+  id        Int      @id @default(autoincrement())
+  userId    String?
+  email     String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  stripeOrderId    String @unique
+  stripeCustomreId String
+
+  shippingAddressId Int
+  shippingAddress   ShippingAddress @relation(fields: [shippingAddressId], references: [id])
+
+  pricePaidInCents Int
+  orderStatus      OrderStatus @default(PROCESSING)
+
+  lineItems lineItem[]
+}
+
+model lineItem {
+  id                  Int     @id @default(autoincrement())
+  userId              String?
+  email               String
+  pricePerUnitInCents Int
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  productId Int
+  quantity  Int
+
+  Order   Order?   @relation(fields: [orderId], references: [id])
+  Product Product? @relation(fields: [productId], references: [id])
+
+  orderId Int
+}
+
+model ShippingAddress {
+  id     Int     @id @default(autoincrement())
+  userId String?
+  email  String
+
+  recipientName String
+  addressLine1  String
+  addressLine2  String?
+  city          String
+  state         String
+  zipCode       String
+  countryCode   String
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  User      User?    @relation(fields: [userId], references: [id])
+  Order     Order[]
 }
