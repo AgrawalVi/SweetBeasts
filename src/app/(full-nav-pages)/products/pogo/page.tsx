@@ -34,9 +34,19 @@ import { Quando } from 'next/font/google'
 export default function Pogo() {
   const { addToCart, setIsCartOpen } = useShoppingCart()
 
-  const handleAddToCart = async () => {
+  const handleAddPinguToCart = async () => {
     const newItem = {
       productId: 3,
+      quantity: 1,
+    }
+    const response = await addToCart(newItem)
+    console.log(response)
+    setIsCartOpen(true) // Open the cart when an item is added
+  }
+
+  const handleAddBlimpersToCart = async () => {
+    const newItem = {
+      productId: 2,
       quantity: 1,
     }
     const response = await addToCart(newItem)
@@ -125,9 +135,15 @@ export default function Pogo() {
               <div className="mt-2 flex items-center justify-center space-x-8">
                 <Button
                   className="h-[80px] w-[200px] text-xl"
-                  onClick={handleAddToCart}
+                  onClick={handleAddPinguToCart}
                 >
-                  Add to Cart
+                  Add pingu to Cart
+                </Button>
+                <Button
+                  className="h-[80px] w-[200px] text-xl"
+                  onClick={handleAddBlimpersToCart}
+                >
+                  Add blimpers to Cart
                 </Button>
                 <Select>
                   <SelectTrigger className="h-[80px] w-[200px] text-xl">
