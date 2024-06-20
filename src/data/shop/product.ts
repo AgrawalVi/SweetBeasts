@@ -12,3 +12,16 @@ export const getProductById = async (id: number) => {
     console.error('Error retrieving product')
   }
 }
+
+export const getProductByStripePriceId = async (stripePriceId: string) => {
+  try {
+    const product = await db.product.findUnique({
+      where: {
+        stripePriceId: stripePriceId,
+      },
+    })
+    return product
+  } catch {
+    console.error('Error retrieving product')
+  }
+}
