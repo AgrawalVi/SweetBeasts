@@ -36,7 +36,7 @@ export default function Pogo() {
 
   const handleAddPinguToCart = async () => {
     const newItem = {
-      productId: 3,
+      productId: 1,
       quantity: 1,
     }
     const response = await addToCart(newItem)
