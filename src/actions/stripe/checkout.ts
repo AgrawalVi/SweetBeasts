@@ -1,11 +1,16 @@
 'use server'
 
 import { CartItem } from '@/hooks/use-shopping-cart'
-import { getProductById } from '../products/products'
 import { stripe } from '@/lib/stripe'
 import { getUserById } from '@/data/auth/user'
-import { RedirectType, redirect } from 'next/navigation'
+import { redirect } from 'next/navigation'
+import {
+  getProductById,
+  setProductNumAvailable,
+  getProductByStripePriceId,
+} from '@/data/shop/product'
 import Stripe from 'stripe'
+import { FileSignature } from 'lucide-react'
 
 export type lineItem = {
   price: string
@@ -17,14 +22,13 @@ export const createCheckoutSession = async (
   userId: string | null | undefined,
 ) => {
   // create lineItems for each product in the cart
-
   const lineItems: lineItem[] = (
     await Promise.all(
       cart.map(async (item) => {
-        const response = await getProductById(item.productId)
-        if (response.success) {
+        const product = await getProductById(item.productId)
+        if (product) {
           return {
-            price: response.success.stripePriceId,
+            price: product.stripePriceId,
             quantity: item.quantity,
           }
         }
@@ -37,11 +41,47 @@ export const createCheckoutSession = async (
     return { error: 'No valid products are in the cart' }
   }
 
+  console.log('lineItems before filter', lineItems)
+
+  function isNotNull<T>(value: T | null): value is T {
+    return value !== null
+  }
+  let filteredItems: lineItem[] = []
+  // check and chance inventory of all products in the cart. Make sure there ie enough inventory to sell
+  try {
+    const processedItems = await Promise.all(
+      lineItems.map(async (item) => {
+        const product = await getProductByStripePriceId(item.price)
+        console.log('product', product)
+        if (product) {
+          if (product.numAvailable < item.quantity) {
+            item.quantity = product.numAvailable
+            await setProductNumAvailable(product.id, 0)
+          } else {
+            await setProductNumAvailable(
+              product.id,
+              product.numAvailable - item.quantity,
+            )
+          }
+          return item
+        }
+        return null
+      }),
+    )
+
+    filteredItems = processedItems.filter(
+      (item): item is typeof item & { quantity: number } =>
+        isNotNull(item) && item.quantity > 0,
+    )
+  } catch {
+    return { error: 'Error changing inventory' }
+  }
+
   // if there's a userId that's passed, we must validate that a user exists with that Id
   const existingUser = userId ? await getUserById(userId) : null
 
   const checkoutSessionConfig: Stripe.Checkout.SessionCreateParams = {
-    line_items: lineItems,
+    line_items: filteredItems,
     mode: 'payment',
     ui_mode: 'hosted',
     success_url: `${process.env.NEXT_PUBLIC_BASE_URL}/success?session_id={CHECKOUT_SESSION_ID}`,
@@ -52,6 +92,14 @@ export const createCheckoutSession = async (
     customer_creation: 'always',
     shipping_address_collection: {
       allowed_countries: ['US'],
+    },
+    custom_text: {
+      after_submit: {
+        message: 'Thank you for your order!',
+      },
+      shipping_address: {
+        message: 'Please enter your shipping address',
+      },
     },
   }
 

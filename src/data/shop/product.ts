@@ -15,7 +15,7 @@ export const getProductById = async (id: number) => {
 
 export const getProductByStripePriceId = async (stripePriceId: string) => {
   try {
-    const product = await db.product.findUnique({
+    const product = await db.product.findFirst({
       where: {
         stripePriceId: stripePriceId,
       },
@@ -23,5 +23,24 @@ export const getProductByStripePriceId = async (stripePriceId: string) => {
     return product
   } catch {
     console.error('Error retrieving product')
+  }
+}
+
+export const setProductNumAvailable = async (
+  productId: number,
+  numAvailable: number,
+) => {
+  try {
+    const product = await db.product.update({
+      where: {
+        id: productId,
+      },
+      data: {
+        numAvailable: numAvailable,
+      },
+    })
+    return product
+  } catch {
+    console.error('Error updating product')
   }
 }
