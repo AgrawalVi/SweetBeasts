@@ -77,9 +77,6 @@ export const createCheckoutSession = async (
     return { error: 'Error changing inventory' }
   }
 
-  // if there's a userId that's passed, we must validate that a user exists with that Id
-  const existingUser = userId ? await getUserById(userId) : null
-
   const checkoutSessionConfig: Stripe.Checkout.SessionCreateParams = {
     line_items: filteredItems,
     mode: 'payment',
@@ -103,15 +100,16 @@ export const createCheckoutSession = async (
     },
   }
 
+  // if there's a userId that's passed, we must validate that a user exists with that Id
+  const existingUser = userId ? await getUserById(userId) : null
   // If there's no userId, then we create a checkout session with a guest customer
   if (!existingUser) {
     return createCheckoutSessionHelper(checkoutSessionConfig)
   }
 
-  // if the user exists and they dont have a stripeCustomerId, we create a customer and open a new checkout session
+  // if the user exists and they don't have a stripeCustomerId, we create a customer and open a new checkout session
   if (!existingUser.stripeCustomerId) {
     checkoutSessionConfig.customer_email = existingUser.email
-    checkoutSessionConfig.customer = existingUser.stripeCustomerId || undefined
     return createCheckoutSessionHelper(checkoutSessionConfig)
   }
 
