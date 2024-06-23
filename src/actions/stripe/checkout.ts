@@ -111,6 +111,7 @@ export const createCheckoutSession = async (
   // if the user exists and they dont have a stripeCustomerId, we create a customer and open a new checkout session
   if (!existingUser.stripeCustomerId) {
     checkoutSessionConfig.customer_email = existingUser.email
+    checkoutSessionConfig.customer = existingUser.stripeCustomerId || undefined
     return createCheckoutSessionHelper(checkoutSessionConfig)
   }
 
