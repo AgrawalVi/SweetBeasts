@@ -37,13 +37,22 @@ interface ShoppingCartContextType {
   setIsCartOpen: (open: boolean) => void
   addToCart: (
     item: CartItem,
-  ) => Promise<{ error: string } | { success: string }>
+  ) => Promise<
+    | { error: string; success: undefined }
+    | { error: undefined; success: string }
+  >
   removeItemFromCart: (
     id: number,
-  ) => Promise<{ error: string } | { success: string }>
+  ) => Promise<
+    | { error: string; success: undefined }
+    | { error: undefined; success: string }
+  >
   decrementItemFromCart: (
     id: number,
-  ) => Promise<{ error: string } | { success: string }>
+  ) => Promise<
+    | { error: string; success: undefined }
+    | { error: undefined; success: string }
+  >
   clearCart: () => void
   handleLogout: () => Promise<void>
   handleLogin: () => Promise<void>
@@ -220,7 +229,7 @@ export const ShoppingCartProvider = ({ children }: { children: ReactNode }) => {
         productId,
       )
       if (response.error) {
-        return { error: response.error }
+        return { error: 'Error removing cartItem from database' }
       }
     }
     // remove item from local storage

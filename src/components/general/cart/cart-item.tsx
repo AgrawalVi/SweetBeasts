@@ -9,73 +9,122 @@ import { useToast } from '@/components/ui/use-toast'
 import CartItemSkeleton from '@/components/skeletons/cart-item-skeleton'
 import { Button } from '@/components/ui/button'
 
+import { useQuery, useMutation } from '@tanstack/react-query'
+
 const CartItem = ({ item }: { item: CartItemType }) => {
   const { toast } = useToast()
-  const [isPending, startTransition] = useTransition()
-  const [loading, setLoading] = useState(true)
-  const [error, setError] = useState<string | null>(null)
-  const [product, setProduct] = useState<Product | null>(null)
+
   const { addToCart, removeItemFromCart, decrementItemFromCart } =
     useShoppingCart()
 
-  useEffect(() => {
-    const fetchProduct = async () => {
-      const product = await getProductById(item.productId)
-      if (product.error) {
+  const { data: product, isPending: productLoading } = useQuery({
+    queryKey: ['product', item.productId],
+    queryFn: async () => {
+      const response = await getProductById(item.productId)
+      if (response.error) {
         toast({
-          description: "Couldn't receive some products from the cart",
+          title: 'An error has occurred while fetching cart items',
+          description: response.error,
           variant: 'destructive',
         })
-        setError(product.error)
-      } else if (product.success) {
-        setProduct(product.success)
+        throw new Error(response.error)
       }
-    }
-    fetchProduct().then(() => setLoading(false))
-  }, [item])
+      return response.success
+    },
+    enabled: !!item.productId,
+  })
 
-  function removeProduct() {
-    startTransition(() => {
-      removeItemFromCart(item.productId)
+  const { mutate: removeProduct, isPending: removeProductPending } =
+    useMutation({
+      mutationKey: ['remove-product-from-cart', item.productId],
+      mutationFn: async () => {
+        const response = await removeItemFromCart(item.productId)
+        if (response.error) {
+          toast({
+            title:
+              'An error has occurred while removing a product from the cart',
+            description: response.error,
+            variant: 'destructive',
+          })
+          throw new Error(response.error)
+        } else {
+          return response.success
+        }
+      },
     })
-  }
 
-  function decrementProduct() {
-    startTransition(() => {
-      decrementItemFromCart(item.productId)
+  const { mutate: decrementProduct, isPending: decrementProductPending } =
+    useMutation({
+      mutationKey: ['decrement-product-from-cart', item.productId],
+      mutationFn: async () => {
+        const response = await decrementItemFromCart(item.productId)
+        if (response.error) {
+          toast({
+            title:
+              "An error has occurred while decrementing a product's quantity from the cart",
+            description: response.error,
+            variant: 'destructive',
+          })
+          throw new Error(response.error)
+        } else {
+          return response.success
+        }
+      },
     })
-  }
 
-  function incrementProduct() {
-    startTransition(() => {
-      addToCart({ productId: item.productId, quantity: 1 })
+  const { mutate: incrementProduct, isPending: incrementProductPending } =
+    useMutation({
+      mutationKey: ['increment-product', item.productId],
+      mutationFn: async () => {
+        const response = await addToCart({
+          productId: item.productId,
+          quantity: 1,
+        })
+        if (response.error) {
+          toast({
+            title:
+              "An error has occurred while incrementing a product's quantity in the cart",
+            description: response.error,
+            variant: 'destructive',
+          })
+          throw new Error(response.error)
+        } else {
+          return response.success
+        }
+      },
     })
+
+  if (productLoading) {
+    return <CartItemSkeleton />
   }
 
   return (
     <>
-      {loading ? (
-        <CartItemSkeleton />
-      ) : (
-        <>
-          {product ? (
-            <div>
-              <div>{product?.name}</div>
-              <div>{product?.priceInCents}</div>
-              <div>{item.quantity}</div>
-              <Button onClick={removeProduct} disabled={isPending}>
-                Remove
-              </Button>
-              <Button onClick={decrementProduct} disabled={isPending}>
-                Decrement
-              </Button>
-              <Button onClick={incrementProduct} disabled={isPending}>
-                Increment
-              </Button>
-            </div>
-          ) : null}
-        </>
-      )}
+      {product ? (
+        <div>
+          <div>{product?.name}</div>
+          <div>{product?.priceInCents}</div>
+          <div>{item.quantity}</div>
+          <Button
+            onClick={() => removeProduct()}
+            disabled={removeProductPending}
+          >
+            Remove
+          </Button>
+          <Button
+            onClick={() => decrementProduct()}
+            disabled={decrementProductPending}
+          >
+            Decrement
+          </Button>
+          <Button
+            onClick={() => incrementProduct()}
+            disabled={incrementProductPending}
+          >
+            Increment
+          </Button>
+        </div>
+      ) : null}
     </>
   )
 }
