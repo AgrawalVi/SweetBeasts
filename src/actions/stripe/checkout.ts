@@ -77,6 +77,13 @@ export const createCheckoutSession = async (
 
   console.log('filteredItems', filteredItems)
 
+  if (filteredItems.length === 0) {
+    return {
+      error:
+        'No products are currently available for sale (please wait a few minutes)',
+    }
+  }
+
   const checkoutSessionConfig: Stripe.Checkout.SessionCreateParams = {
     line_items: filteredItems,
     mode: 'payment',
