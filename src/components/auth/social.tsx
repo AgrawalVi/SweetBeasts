@@ -1,17 +1,19 @@
 'use client'
 
-import { IconBrandGoogle, IconBrandDiscord } from '@tabler/icons-react'
+import { IconBrandGoogle } from '@tabler/icons-react'
 import { Button } from '@/components/ui/button'
 import { signIn } from 'next-auth/react'
 import { DEFAULT_LOGIN_REDIRECT } from '@/routes'
 
 export const Social = ({
   googleButtonText = 'Sign in with Google',
+  redirectTo,
 }: {
   googleButtonText: string | undefined
+  redirectTo?: string
 }) => {
-  const onClick = (provider: 'google' | 'discord') => {
-    signIn(provider, { callbackUrl: DEFAULT_LOGIN_REDIRECT })
+  const onClick = (provider: 'google') => {
+    signIn(provider, { callbackUrl: redirectTo || DEFAULT_LOGIN_REDIRECT })
   }
 
   return (
