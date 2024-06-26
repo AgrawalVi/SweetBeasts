@@ -42,15 +42,12 @@ export const createCheckoutSession = async (
     return { error: 'No valid products are in the cart' }
   }
 
-  console.log('lineItems before filter', lineItems)
-
   let filteredItems: lineItem[] = []
   // check and chance inventory of all products in the cart. Make sure there is enough inventory to sell
   try {
     const processedItems = await Promise.all(
       lineItems.map(async (item) => {
         const product = await getProductByStripePriceId(item.price)
-        console.log('product', product)
         if (product) {
           if (product.numAvailable < item.quantity) {
             item.quantity = product.numAvailable
@@ -75,8 +72,6 @@ export const createCheckoutSession = async (
     return { error: 'Error changing not available inventory' }
   }
 
-  console.log('filteredItems', filteredItems)
-
   if (filteredItems.length === 0) {
     return {
       error:
@@ -84,6 +79,7 @@ export const createCheckoutSession = async (
     }
   }
 
+  // object to contain base checkout session config
   const checkoutSessionConfig: Stripe.Checkout.SessionCreateParams = {
     line_items: filteredItems,
     mode: 'payment',
