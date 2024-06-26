@@ -10,7 +10,8 @@ import {
   getProductByStripePriceId,
 } from '@/data/shop/product'
 import Stripe from 'stripe'
-import { FileSignature } from 'lucide-react'
+import { db } from '@/lib/db'
+import { notEmpty } from '@/lib/utils'
 
 export type lineItem = {
   price: string
@@ -43,11 +44,8 @@ export const createCheckoutSession = async (
 
   console.log('lineItems before filter', lineItems)
 
-  function isNotNull<T>(value: T | null): value is T {
-    return value !== null
-  }
   let filteredItems: lineItem[] = []
-  // check and chance inventory of all products in the cart. Make sure there ie enough inventory to sell
+  // check and chance inventory of all products in the cart. Make sure there is enough inventory to sell
   try {
     const processedItems = await Promise.all(
       lineItems.map(async (item) => {
@@ -71,11 +69,13 @@ export const createCheckoutSession = async (
 
     filteredItems = processedItems.filter(
       (item): item is typeof item & { quantity: number } =>
-        isNotNull(item) && item.quantity > 0,
+        notEmpty(item) && item.quantity > 0,
     )
   } catch {
-    return { error: 'Error changing inventory' }
+    return { error: 'Error changing not available inventory' }
   }
+
+  console.log('filteredItems', filteredItems)
 
   const checkoutSessionConfig: Stripe.Checkout.SessionCreateParams = {
     line_items: filteredItems,
@@ -108,13 +108,33 @@ export const createCheckoutSession = async (
   }
 
   // if the user exists and they don't have a stripeCustomerId, we create a customer and open a new checkout session
+  checkoutSessionConfig.customer_email = existingUser.email
   if (!existingUser.stripeCustomerId) {
-    checkoutSessionConfig.customer_email = existingUser.email
-    return createCheckoutSessionHelper(checkoutSessionConfig)
+    let customer
+    try {
+      customer = await stripe.customers.create({
+        email: existingUser.email,
+        name: existingUser.name || undefined,
+      })
+    } catch (e) {
+      console.error('error creating customer in stripe', e)
+      return { error: 'Error creating customer in Stripe' }
+    }
+    try {
+      await db.user.update({
+        where: { id: existingUser.id },
+        data: { stripeCustomerId: customer.id },
+      })
+    } catch (e) {
+      console.error('Error updating user in database', e)
+      return { error: 'Error updating user in database' }
+    }
+    checkoutSessionConfig.customer = customer.id
+  } else {
+    checkoutSessionConfig.customer = existingUser.stripeCustomerId
   }
 
   // if the user exists and they have a stripeCustomerId, we can use it to create a checkout session
-  checkoutSessionConfig.customer = existingUser.stripeCustomerId
   return createCheckoutSessionHelper(checkoutSessionConfig)
 }
 
@@ -125,7 +145,7 @@ const createCheckoutSessionHelper = async (
   try {
     session = await stripe.checkout.sessions.create(checkoutSessionConfig)
   } catch (e) {
-    console.error(e)
+    console.error('An error occurred while creating a checkout session', e)
     return { error: 'An error occurred while creating a checkout session' }
   }
 
@@ -142,7 +162,8 @@ export const getCheckoutSession = async (sessionId: string) => {
       return { success: session }
     }
     return { error: 'Unable to retrieve the checkout session' }
-  } catch {
+  } catch (e) {
+    console.error('An error occurred while retrieving the checkout session', e)
     return { error: 'An error occurred while retrieving the checkout session' }
   }
 }
