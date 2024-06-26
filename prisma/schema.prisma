@@ -40,13 +40,14 @@ model User {
   isTwoFactorEnabled    Boolean                @default(false)
   twoFactorConfirmation TwoFactorConfirmation?
 
-  stripeCustomerId String?
+  stripeCustomerId String? @unique
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
   cartItems       CartItem[]
   ShippingAddress ShippingAddress[]
+  Order           Order[]
 }
 
 model Account {
@@ -151,21 +152,20 @@ model Order {
   updatedAt DateTime @updatedAt
 
   stripeOrderId    String @unique
-  stripeCustomreId String
+  stripeCustomerId String
 
   shippingAddressId Int
-  shippingAddress   ShippingAddress @relation(fields: [shippingAddressId], references: [id])
+  ShippingAddress   ShippingAddress @relation(fields: [shippingAddressId], references: [id], onDelete: Restrict)
 
   pricePaidInCents Int
   orderStatus      OrderStatus @default(PROCESSING)
 
   lineItems lineItem[]
+  User      User?      @relation(fields: [userId], references: [id], onDelete: SetNull)
 }
 
 model lineItem {
-  id                  Int     @id @default(autoincrement())
-  userId              String?
-  email               String
+  id                  Int @id @default(autoincrement())
   pricePerUnitInCents Int
 
   createdAt DateTime @default(now())
@@ -174,8 +174,8 @@ model lineItem {
   productId Int
   quantity  Int
 
-  Order   Order?   @relation(fields: [orderId], references: [id])
-  Product Product? @relation(fields: [productId], references: [id])
+  Order   Order?   @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  Product Product? @relation(fields: [productId], references: [id], onDelete: Restrict)
 
   orderId Int
 }
@@ -185,17 +185,17 @@ model ShippingAddress {
   userId String?
   email  String
 
-  recipientName String
-  addressLine1  String
+  recipientName String?
+  addressLine1  String?
   addressLine2  String?
-  city          String
-  state         String
-  zipCode       String
-  countryCode   String
+  city          String?
+  state         String?
+  zipCode       String?
+  countryCode   String?
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  User  User?   @relation(fields: [userId], references: [id])
   Order Order[]
+  User  User?   @relation(fields: [userId], references: [id], onDelete: SetNull)
 }
