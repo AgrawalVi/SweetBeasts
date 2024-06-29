@@ -1,6 +1,6 @@
 'use client'
 
-import  ProductCards from '@/components/general/product-cards'
+import ProductCards from '@/components/general/product-cards'
 import ExploreSection from '@/components/general/explore/explore-section'
 
 export default function Home() {
@@ -10,7 +10,6 @@ export default function Home() {
       <div className="flex justify-center bg-background">
         <ProductCards />
       </div>
-        
     </main>
   )
 }
