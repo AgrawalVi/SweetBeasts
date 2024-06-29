@@ -55,6 +55,7 @@ const config = {
       fontFamily: {
         josefin: ['var(--font-josefin)'],
         coiny: ['var(--font-coiny)'],
+        nunito: ['var(--font-nunito)'],
       },
       keyframes: {
         'accordion-down': {
