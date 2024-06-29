@@ -17,16 +17,18 @@ import { createCheckoutSession } from '@/actions/stripe/checkout'
 import { useRouter } from 'next/navigation'
 import { useCurrentUser } from '@/hooks/use-current-user'
 import { useToast } from '@/components/ui/use-toast'
+import Cookies from 'js-cookie'
 
 export default function Cart() {
   const { cart, isCartOpen, setIsCartOpen } = useShoppingCart()
   const router = useRouter()
+  const guestId = Cookies.get('guestId')
   const user = useCurrentUser()
   const { toast } = useToast()
 
   const handleCheckout = async () => {
     // await
-    const response = await createCheckoutSession(cart, user?.id)
+    const response = await createCheckoutSession(cart, guestId, user?.id)
     if (response?.error) {
       toast({
         title: 'An error has occurred',

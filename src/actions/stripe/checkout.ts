@@ -20,6 +20,7 @@ export type lineItem = {
 
 export const createCheckoutSession = async (
   cart: CartItem[],
+  guestId: string | null | undefined,
   userId: string | null | undefined,
 ) => {
   // create lineItems for each product in the cart
@@ -79,6 +80,9 @@ export const createCheckoutSession = async (
     }
   }
 
+  console.log('guestId', guestId)
+  const metadata = userId ? null : { guestId: guestId ? guestId : null }
+
   // object to contain base checkout session config
   const checkoutSessionConfig: Stripe.Checkout.SessionCreateParams = {
     line_items: filteredItems,
@@ -86,10 +90,6 @@ export const createCheckoutSession = async (
     ui_mode: 'hosted',
     success_url: `${process.env.NEXT_PUBLIC_BASE_URL}/success?session_id={CHECKOUT_SESSION_ID}`,
     cancel_url: `${process.env.NEXT_PUBLIC_BASE_URL}/`,
-    automatic_tax: {
-      enabled: true,
-    },
-    customer_creation: 'always',
     shipping_address_collection: {
       allowed_countries: ['US'],
     },
@@ -101,6 +101,7 @@ export const createCheckoutSession = async (
         message: 'Please enter your shipping address',
       },
     },
+    ...(metadata ? { metadata: metadata } : null),
   }
 
   // if there's a userId that's passed, we must validate that a user exists with that Id
@@ -111,7 +112,6 @@ export const createCheckoutSession = async (
   }
 
   // if the user exists and they don't have a stripeCustomerId, we create a customer and open a new checkout session
-  checkoutSessionConfig.customer_email = existingUser.email
   if (!existingUser.stripeCustomerId) {
     let customer
     try {

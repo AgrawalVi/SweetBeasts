@@ -161,6 +161,19 @@ export const clearGuestIdCart = async (guestId: string) => {
   }
 }
 
+export const clearUserCart = async (userId: string) => {
+  try {
+    await db.cartItem.deleteMany({
+      where: {
+        userId,
+      },
+    })
+    return { success: 'Cart cleared' }
+  } catch {
+    return { error: 'Error clearing cart' }
+  }
+}
+
 export const removeProductFromCartByIdAndProductId = async (
   id: string,
   productId: number,

@@ -6,6 +6,7 @@ import { ShippingAddress, User } from '@prisma/client'
 import { getProductByStripePriceId } from '@/data/shop/product'
 import { notEmpty } from '@/lib/utils'
 import { getAddressByAddressAndEmail } from '@/data/shop/customer'
+import { clearGuestIdCart, clearUserCart } from '../customer/cart'
 
 export const createOrder = async (
   event: Stripe.CheckoutSessionCompletedEvent,
@@ -93,6 +94,24 @@ export const createOrder = async (
     let addressIdToAdd
     if (existingAddress) {
       addressIdToAdd = existingAddress.id
+    }
+
+    const guestId = checkoutSession.metadata?.guestId as string
+    console.log('guestId from new-order', guestId)
+
+    if (guestId) {
+      const response = await clearGuestIdCart(guestId)
+      if (response.error) {
+        console.error(
+          'error clearing guest cart after checkout',
+          response.error,
+        )
+      }
+    } else if (user?.id) {
+      const response = await clearUserCart(user?.id)
+      if (response.error) {
+        console.error('error clearing user cart after checkout', response.error)
+      }
     }
 
     // create the order in the database
