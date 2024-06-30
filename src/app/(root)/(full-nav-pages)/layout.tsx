@@ -1,3 +1,4 @@
+import Footer from '@/components/general/footer/footer'
 import { Navbar } from '@/components/general/navbar'
 
 export default function Layout({
@@ -7,6 +8,7 @@ export default function Layout({
     <div className="h-full w-full flex-grow justify-center align-middle">
       <Navbar />
       <div className="m-10">{children}</div>
+      <Footer />
     </div>
   )
 }

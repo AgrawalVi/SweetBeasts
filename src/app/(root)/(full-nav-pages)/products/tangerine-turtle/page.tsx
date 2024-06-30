@@ -21,14 +21,14 @@ import Image from 'next/image'
 export default function Pogo() {
   return (
     <div className="container mx-auto flex justify-end space-x-4">
-      <Image
+      {/* <Image
         className="h-4/6"
         src="/tangerine-turtle.jpg"
         width={500}
         height={300}
         alt="Tango the Tangerine Turtle"
-      />
-      <Card className="h-96 w-full md:w-3/4 lg:h-[600px] lg:w-[47%] xl:w-[32%]">
+      /> */}
+      {/* <Card className="h-96 w-full md:w-3/4 lg:h-[600px] lg:w-[47%] xl:w-[32%]">
         <CardHeader className="mb-6">
           <CardTitle className="text-center">
             Tango the Tangerine Turtle
@@ -59,8 +59,8 @@ export default function Pogo() {
             with warmth, laughter, and lots of love.
           </p>
         </CardContent>
-      </Card>
-      <Card className="h-96 w-full md:w-3/4 lg:h-[500px] lg:w-[47%] xl:w-[32%]">
+      </Card> */}
+      {/* <Card className="h-96 w-full md:w-3/4 lg:h-[500px] lg:w-[47%] xl:w-[32%]">
         <CardHeader className="mb-8">
           <CardTitle>Buy Now</CardTitle>
           <CardDescription className="text-3xl">15.99</CardDescription>
@@ -88,7 +88,7 @@ export default function Pogo() {
         <CardFooter className="flex justify-center">
           <Button>Buy Now</Button>
         </CardFooter>
-      </Card>
+      </Card> */}
     </div>
   )
 }
