@@ -19,16 +19,20 @@ const footerLinks = {
       href: '/my-account',
     },
     {
+      name: 'Product Updates',
+      href: '/product-updates',
+    },
+    {
+      name: 'Track your order',
+      href: '/track-order',
+    },
+    {
       name: 'Terms of service',
       href: '/terms-of-service',
     },
     {
       name: 'Return Policy',
       href: '/return-policy',
-    },
-    {
-      name: 'Track your order',
-      href: '/track-order',
     },
   ],
   sweetbeasts: [
@@ -45,12 +49,12 @@ const footerLinks = {
       href: '/feedback-form',
     },
     {
-      name: 'Product Updates',
-      href: '/product-updates',
+      name: 'FAQ',
+      href: '/support/faq',
     },
     {
       name: 'Contact Us',
-      href: '/contact',
+      href: '/support/contact-us',
     },
   ],
 }

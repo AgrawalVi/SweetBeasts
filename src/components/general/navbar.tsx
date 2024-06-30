@@ -62,17 +62,15 @@ export function Navbar({ className }: { className?: string }) {
               active={active}
               lastActive={lastActive}
               setLastActive={setLastActive}
-              item="Services"
+              item="Home"
+              href="/"
             >
               <div className="flex flex-col space-y-4 text-sm">
-                <HoveredLink href="/web-dev">Web Development</HoveredLink>
-                <HoveredLink href="/interface-design">
-                  Interface Design
+                <HoveredLink href="/about">About Us</HoveredLink>
+                <HoveredLink href="/about/team">Our Team</HoveredLink>
+                <HoveredLink href="/product-updates">
+                  Product Updates
                 </HoveredLink>
-                <HoveredLink href="/seo">
-                  Search Engine Optimization
-                </HoveredLink>
-                <HoveredLink href="/branding">Branding</HoveredLink>
               </div>
             </MenuItem>
             <MenuItem
@@ -81,6 +79,7 @@ export function Navbar({ className }: { className?: string }) {
               lastActive={lastActive}
               setLastActive={setLastActive}
               item="Products"
+              href="/products"
             >
               <div className="grid grid-cols-2 gap-10 p-4 text-sm">
                 <ProductItem
@@ -114,13 +113,14 @@ export function Navbar({ className }: { className?: string }) {
               active={active}
               setLastActive={setLastActive}
               lastActive={lastActive}
-              item="Pricing"
+              item="Support"
+              href="/support/contact-us"
             >
               <div className="flex flex-col space-y-4 text-sm">
-                <HoveredLink href="/hobby">Hobby</HoveredLink>
-                <HoveredLink href="/individual">Individual</HoveredLink>
-                <HoveredLink href="/team">Team</HoveredLink>
-                <HoveredLink href="/enterprise">Enterprise</HoveredLink>
+                <HoveredLink href="/track-order">Track Your Order</HoveredLink>
+                <HoveredLink href="/support/contact-us">Contact Us</HoveredLink>
+                <HoveredLink href="/support/faq">FAQ</HoveredLink>
+                <HoveredLink href="/feedback-form">Give Feedback</HoveredLink>
               </div>
             </MenuItem>
           </Menu>
