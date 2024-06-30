@@ -10,13 +10,14 @@ import { ModeToggle } from '@/components/ui/mode-toggle'
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet'
 import { Button } from '@/components/ui/button'
 
-import { MenuIcon } from 'lucide-react'
+import { MenuIcon, UserIcon } from 'lucide-react'
 
 import { useCurrentUser } from '@/hooks/use-current-user'
 
 import Image from 'next/image'
 import { useSession } from 'next-auth/react'
 import { useShoppingCart } from '@/hooks/use-shopping-cart'
+import Link from 'next/link'
 
 const productItems = [
   { name: 'Pogo' },
@@ -42,100 +43,97 @@ export function Navbar({ className }: { className?: string }) {
 
   return (
     <main className="sticky top-0 z-50">
-      <div className="relative hidden w-screen items-center justify-between border-b bg-background p-4 md:flex">
-        <div className="flex items-center">
-          <Image
-            src="/logos/square-dark.svg"
-            width={100}
-            height={100}
-            alt="Logo"
-          />
-        </div>
-        <div className="flex flex-1 justify-center">
-          <Menu
-            setActive={setActive}
-            active={active}
-            setLastActive={setLastActive}
-          >
-            <MenuItem
-              setActive={setActive}
-              active={active}
-              lastActive={lastActive}
-              setLastActive={setLastActive}
-              item="Home"
-              href="/"
-            >
-              <div className="flex flex-col space-y-4 text-sm">
-                <HoveredLink href="/about">About Us</HoveredLink>
-                <HoveredLink href="/about/team">Our Team</HoveredLink>
-                <HoveredLink href="/product-updates">
-                  Product Updates
-                </HoveredLink>
-              </div>
-            </MenuItem>
-            <MenuItem
-              setActive={setActive}
-              active={active}
-              lastActive={lastActive}
-              setLastActive={setLastActive}
-              item="Products"
-              href="/products"
-            >
-              <div className="grid grid-cols-2 gap-10 p-4 text-sm">
-                <ProductItem
-                  title="Pogo"
-                  href="/products/pogo"
-                  src="/product-images/pogo/main.jpg"
-                  description="The Peachy Penguin."
-                />
-                <ProductItem
-                  title="Pineapple Parrot"
-                  href="/products/pineapple-parrot"
-                  src="/product-images/pavia/main.jpg"
-                  description="The Pineapple Parrot"
-                />
-                <ProductItem
-                  title="Tangerine Turtle"
-                  href="/products/tangerine-turtle"
-                  src="/product-images/turpy/main.jpg"
-                  description="The Tangerine Turtle."
-                />
-                <ProductItem
-                  title="Lemon Lion"
-                  href="/products/lemon-lion"
-                  src="/product-images/lemon-lion/main.jpg"
-                  description="The Lemon Lion."
-                />
-              </div>
-            </MenuItem>
-            <MenuItem
+      <div className="relative hidden w-screen items-center justify-center border-b border-muted bg-background py-4 md:flex">
+        <div className="grid w-full max-w-screen-lg grid-cols-5 items-center justify-between">
+          <div className="inline-flex justify-start">logo</div>
+          <div></div>
+          <div className="relative flex items-center justify-center">
+            <Menu
               setActive={setActive}
               active={active}
               setLastActive={setLastActive}
-              lastActive={lastActive}
-              item="Support"
-              href="/support/contact-us"
             >
-              <div className="flex flex-col space-y-4 text-sm">
-                <HoveredLink href="/track-order">Track Your Order</HoveredLink>
-                <HoveredLink href="/support/contact-us">Contact Us</HoveredLink>
-                <HoveredLink href="/support/faq">FAQ</HoveredLink>
-                <HoveredLink href="/feedback-form">Give Feedback</HoveredLink>
-              </div>
-            </MenuItem>
-          </Menu>
-          {user ? (
-            <Button onClick={handleLogout}>Logout</Button>
-          ) : (
-            <a href="/auth/login">
-              <Button>login</Button>
-            </a>
-          )}
-        </div>
-
-        {/* Mode Toggle Section */}
-        <div className="flex items-center">
-          <ModeToggle className="" />
+              <MenuItem
+                setActive={setActive}
+                active={active}
+                lastActive={lastActive}
+                setLastActive={setLastActive}
+                item="Home"
+                href="/"
+              >
+                <div className="flex flex-col space-y-4 text-sm">
+                  <HoveredLink href="/about">About Us</HoveredLink>
+                  <HoveredLink href="/about/team">Our Team</HoveredLink>
+                  <HoveredLink href="/product-updates">
+                    Product Updates
+                  </HoveredLink>
+                </div>
+              </MenuItem>
+              <MenuItem
+                setActive={setActive}
+                active={active}
+                lastActive={lastActive}
+                setLastActive={setLastActive}
+                item="Products"
+                href="/products"
+              >
+                <div className="grid grid-cols-2 gap-10 p-4 text-sm">
+                  <ProductItem
+                    title="Pogo"
+                    href="/products/pogo"
+                    src="/product-images/pogo/main.jpg"
+                    description="The Peachy Penguin."
+                  />
+                  <ProductItem
+                    title="Pineapple Parrot"
+                    href="/products/pineapple-parrot"
+                    src="/product-images/pavia/main.jpg"
+                    description="The Pineapple Parrot"
+                  />
+                  <ProductItem
+                    title="Tangerine Turtle"
+                    href="/products/tangerine-turtle"
+                    src="/product-images/turpy/main.jpg"
+                    description="The Tangerine Turtle."
+                  />
+                  <ProductItem
+                    title="Lemon Lion"
+                    href="/products/lemon-lion"
+                    src="/product-images/lemon-lion/main.jpg"
+                    description="The Lemon Lion."
+                  />
+                </div>
+              </MenuItem>
+              <MenuItem
+                setActive={setActive}
+                active={active}
+                setLastActive={setLastActive}
+                lastActive={lastActive}
+                item="Support"
+                href="/support/contact-us"
+              >
+                <div className="flex flex-col space-y-4 text-sm">
+                  <HoveredLink href="/track-order">
+                    Track Your Order
+                  </HoveredLink>
+                  <HoveredLink href="/support/contact-us">
+                    Contact Us
+                  </HoveredLink>
+                  <HoveredLink href="/support/faq">FAQ</HoveredLink>
+                  <HoveredLink href="/feedback-form">Give Feedback</HoveredLink>
+                </div>
+              </MenuItem>
+            </Menu>
+          </div>
+          <div></div>
+          <div className="inline-flex justify-end space-x-3">
+            <Link href="/my-account">
+              <Button size="icon" variant="outline">
+                <UserIcon className="h-[1.2rem] w-[1.2rem]" />
+              </Button>
+            </Link>
+            <ModeToggle className="" />
+          </div>
         </div>
       </div>
 
