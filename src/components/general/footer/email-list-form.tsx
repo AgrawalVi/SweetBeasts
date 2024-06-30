@@ -20,7 +20,7 @@ import { Input } from '@/components/ui/input'
 import { HoverBorderGradient } from '@/components/aceternity/hover-border-gradient'
 import GradientButton from '@/components/aceternity/gradient-button'
 import { AnimatedSubscribeButton } from '@/components/magic/subscribe-button'
-import { ChevronRightIcon } from 'lucide-react'
+import { CheckIcon, ChevronRightIcon } from 'lucide-react'
 
 const JoinEmailListForm = () => {
   const { toast } = useToast()
@@ -38,10 +38,8 @@ const JoinEmailListForm = () => {
       if (data.error) {
         toast({ description: data.error, variant: 'destructive' })
       } else {
+        form.reset()
         setIsSubscribed(true)
-        toast({
-          description: "Welcome to the SweetBeasts family, You're all set! 🎉",
-        })
       }
     })
   }
@@ -81,7 +79,12 @@ const JoinEmailListForm = () => {
               <ChevronRightIcon className="ml-1 h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
             </span>
           }
-          changeText="Subscribed"
+          changeText={
+            <span className="group inline-flex items-center">
+              <CheckIcon className="mr-2 h-4 w-4" />
+              Subscribed{' '}
+            </span>
+          }
         />
       </form>
     </Form>
