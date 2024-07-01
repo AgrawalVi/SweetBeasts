@@ -19,7 +19,7 @@ import { useState } from 'react'
 import { Input } from '@/components/ui/input'
 import { HoverBorderGradient } from '@/components/aceternity/hover-border-gradient'
 import GradientButton from '@/components/aceternity/gradient-button'
-import { AnimatedSubscribeButton } from '@/components/magic/subscribe-button'
+import { AnimatedSubscribeButton } from '@/components/magic-ui/subscribe-button'
 import { CheckIcon, ChevronRightIcon } from 'lucide-react'
 
 const JoinEmailListForm = () => {
@@ -54,7 +54,7 @@ const JoinEmailListForm = () => {
           control={form.control}
           name="email"
           render={({ field }) => (
-            <FormItem className="3xl:w-[50rem] w-3/4">
+            <FormItem className="w-3/4 3xl:w-[50rem]">
               <FormLabel>
                 Join our email list to be notified about new products, restocks,
                 sales, and more!

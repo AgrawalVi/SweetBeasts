@@ -1,6 +1,6 @@
 'use client'
 
-import SweetCards from '@/components/general/about-us/sweet-cards'
+import SweetCards from '@/components/general/pages/about-us/sweet-cards'
 import { TextGenerateEffect } from '@/components/aceternity/text-generate-effect'
 import TextSection from '@/components/custom/text-section'
 

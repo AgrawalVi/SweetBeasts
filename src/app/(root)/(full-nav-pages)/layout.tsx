@@ -1,4 +1,4 @@
-import Footer from '@/components/general/footer/footer'
+import Footer from '@/components/sections/footer/footer'
 import { Navbar } from '@/components/general/navbar'
 
 export default function Layout({
