@@ -41,6 +41,7 @@ const JoinEmailListForm = () => {
       if (data.error) {
         toast({ description: data.error, variant: "destructive" })
       } else {
+        form.reset()
         toast({
           description: "Welcome to the SweetBeasts family, You're all set! 🎉",
         })
@@ -51,7 +52,10 @@ const JoinEmailListForm = () => {
 
   return (
     <>
-      <ConfettiEffect runConfetti={runConfetti} onConfettiComplete={onConfettiComplete} />
+      <ConfettiEffect
+        runConfetti={runConfetti}
+        onConfettiComplete={onConfettiComplete}
+      />
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
