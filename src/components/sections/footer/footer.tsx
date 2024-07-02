@@ -23,8 +23,8 @@ const footerLinks = {
       href: '/product-updates',
     },
     {
-      name: 'Track your order',
-      href: '/track-order',
+      name: 'Order Status',
+      href: '/order-status',
     },
     {
       name: 'Terms of service',
@@ -61,7 +61,7 @@ const footerLinks = {
 
 export default function Footer() {
   return (
-    <main className="font-nunito flex w-full flex-col border-t border-muted p-5 xl:py-12">
+    <main className="flex w-full flex-col border-t border-muted p-5 font-nunito xl:py-12">
       <div className="hidden w-full justify-center md:flex">
         <div className="grid w-full grid-cols-6">
           <div className="relative col-span-4 flex w-full flex-col items-center justify-center xl:col-span-3">
@@ -69,7 +69,7 @@ export default function Footer() {
           </div>
           <div className="col-span-2 flex flex-col xl:col-span-3 xl:flex-row xl:space-x-24">
             <div className="flex flex-col">
-              <div className="font-nunito py-3 text-base font-bold uppercase">
+              <div className="py-3 font-nunito text-base font-bold uppercase">
                 Shop
               </div>
               <div className="flex flex-col space-y-2">
@@ -85,7 +85,7 @@ export default function Footer() {
               </div>
             </div>
             <div className="flex flex-col">
-              <div className="font-nunito py-3 text-base font-bold uppercase">
+              <div className="py-3 font-nunito text-base font-bold uppercase">
                 SweetBeasts
               </div>
               <div className="flex flex-col space-y-2">

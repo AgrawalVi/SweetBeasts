@@ -23,6 +23,13 @@ export default auth((req) => {
     return
   }
 
+  if (nextUrl.pathname === '/order-status') {
+    if (isLoggedIn) {
+      return Response.redirect(new URL('/account/orders', nextUrl))
+    }
+    return
+  }
+
   if (isAuthRoute) {
     if (isLoggedIn) {
       return Response.redirect(new URL(DEFAULT_LOGIN_REDIRECT, nextUrl))

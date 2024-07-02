@@ -113,9 +113,7 @@ export function Navbar({ className }: { className?: string }) {
                 href="/support/contact-us"
               >
                 <div className="flex flex-col space-y-4 text-sm">
-                  <HoveredLink href="/track-order">
-                    Track Your Order
-                  </HoveredLink>
+                  <HoveredLink href="/order-status">Order Status</HoveredLink>
                   <HoveredLink href="/support/contact-us">
                     Contact Us
                   </HoveredLink>

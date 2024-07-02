@@ -199,3 +199,12 @@ model ShippingAddress {
   Order Order[]
   User  User?   @relation(fields: [userId], references: [id], onDelete: SetNull)
 }
+
+model ViewOrderToken {
+  id          String   @id @default(cuid())
+  orderNumber Int
+  token       String   @unique
+  expires     DateTime
+
+  @@unique([orderNumber, token])
+}

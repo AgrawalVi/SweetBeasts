@@ -27,7 +27,7 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     "src/components/reviews",
-    "src/components/general/mailing-list"
+    "src/components/sections/heros/mailing-list"
   ],
   "exclude": ["node_modules"]
 }

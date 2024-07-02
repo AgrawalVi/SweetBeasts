@@ -1,7 +1,7 @@
 'use client'
 
-import ProductCards from '@/components/general/product-cards'
-import ExploreSection from '@/components/general/explore/explore-section'
+import ProductCards from '@/components/sections/product-sections/product-cards'
+import ExploreSection from '@/components/general/pages/home/explore-section'
 
 export default function Home() {
   return (
