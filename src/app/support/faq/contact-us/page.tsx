@@ -1,6 +1,6 @@
-// pages/contact.tsx
 import Head from 'next/head';
 import Image from 'next/image';
+import Link from 'next/link';
 
 export default function Contact() {
   return (
@@ -35,5 +35,4 @@ export default function Contact() {
     </div>
   );
 }
-
 
