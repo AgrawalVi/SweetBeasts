@@ -27,10 +27,6 @@ const footerLinks = {
       href: '/order-status',
     },
     {
-      name: 'Terms of service',
-      href: '/terms-of-service',
-    },
-    {
       name: 'Return Policy',
       href: '/return-policy',
     },
@@ -61,7 +57,7 @@ const footerLinks = {
 
 export default function Footer() {
   return (
-    <main className="flex w-full flex-col border-t border-muted p-5 font-nunito xl:py-12">
+    <main className="flex w-full flex-col border-t border-muted p-5 font-nunito xl:pb-6 xl:pt-12">
       <div className="hidden w-full justify-center md:flex">
         <div className="grid w-full grid-cols-6">
           <div className="relative col-span-4 flex w-full flex-col items-center justify-center xl:col-span-3">
@@ -140,7 +136,17 @@ export default function Footer() {
       </div>
       <div className="flex w-full flex-col items-center justify-center pt-10">
         <SocialButtons />
-        <div>© SweetBeasts™ 2024</div>
+        <div className="space-x-4 pb-2 text-sm">
+          <Link href="/terms-of-service" className="hover:underline">
+            Terms of Service
+          </Link>
+          <Link href="/privacy-policy" className="hover:underline">
+            Privacy Policy
+          </Link>
+        </div>
+        <div className="text-sm">
+          © 2024 SweetBeasts Inc. All Rights Reserved.
+        </div>
       </div>
     </main>
   )

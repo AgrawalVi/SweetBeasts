@@ -14,7 +14,7 @@ import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { addToEmailList } from '@/actions/customer/email-list'
 import { useToast } from '@/components/ui/use-toast'
-import { useState } from 'react'
+import { useState, useTransition } from 'react'
 
 import { Input } from '@/components/ui/input'
 import { HoverBorderGradient } from '@/components/aceternity/hover-border-gradient'
@@ -25,6 +25,7 @@ import { CheckIcon, ChevronRightIcon } from 'lucide-react'
 const JoinEmailListForm = () => {
   const { toast } = useToast()
   const [isSubscribed, setIsSubscribed] = useState(false)
+  const [isPending, startTransition] = useTransition()
 
   const form = useForm<z.infer<typeof JoinEmailListSchema>>({
     resolver: zodResolver(JoinEmailListSchema),
@@ -34,13 +35,15 @@ const JoinEmailListForm = () => {
   })
 
   const onSubmit = (values: z.infer<typeof JoinEmailListSchema>) => {
-    addToEmailList(values.email).then((data) => {
-      if (data.error) {
-        toast({ description: data.error, variant: 'destructive' })
-      } else {
-        form.reset()
-        setIsSubscribed(true)
-      }
+    startTransition(() => {
+      addToEmailList(values.email).then((response) => {
+        if (response.error) {
+          toast({ description: response.error, variant: 'destructive' })
+        } else {
+          form.reset()
+          setIsSubscribed(true)
+        }
+      })
     })
   }
 
@@ -73,6 +76,7 @@ const JoinEmailListForm = () => {
         <AnimatedSubscribeButton
           isSubscribed={isSubscribed}
           setIsSubscribed={setIsSubscribed}
+          isPending={isPending}
           initialText={
             <span className="group inline-flex items-center">
               Sign Up{' '}
