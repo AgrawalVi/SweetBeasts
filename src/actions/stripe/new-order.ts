@@ -8,6 +8,22 @@ import { notEmpty } from '@/lib/utils'
 import { getAddressByAddressAndEmail } from '@/data/shop/customer'
 import { clearGuestIdCart, clearUserCart } from '../customer/cart'
 
+import crypto from 'crypto'
+
+const generateOrderNumber = async (): Promise<string> => {
+  const orderNumber = `SB_${crypto.randomInt(100_000_000_0, 100_000_000_00).toString()}`
+  // check if the order number already exists in the database
+  const existingOrder = await db.order.findFirst({
+    where: {
+      orderNumber,
+    },
+  })
+  if (existingOrder) {
+    return generateOrderNumber()
+  }
+  return orderNumber
+}
+
 export const createOrder = async (
   event: Stripe.CheckoutSessionCompletedEvent,
 ) => {
@@ -114,6 +130,9 @@ export const createOrder = async (
       }
     }
 
+    // generate an order number
+    const orderNumber = await generateOrderNumber()
+
     // create the order in the database
     try {
       if (addressIdToAdd) {
@@ -123,6 +142,7 @@ export const createOrder = async (
             email: stripeCustomer.email as string,
             createdAt: timePlaced,
             updatedAt: timePlaced,
+            orderNumber,
             stripeOrderId: checkoutSession.id,
             stripeCustomerId: stripeCustomer.id,
             lineItems: {
@@ -159,6 +179,7 @@ export const createOrder = async (
             email: stripeCustomer.email as string,
             createdAt: timePlaced,
             updatedAt: timePlaced,
+            orderNumber,
             stripeOrderId: checkoutSession.id,
             stripeCustomerId: stripeCustomer.id,
             lineItems: {
