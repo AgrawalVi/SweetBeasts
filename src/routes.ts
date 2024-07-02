@@ -1,7 +1,7 @@
 /**
  * private routes that you must be logged in to access
  */
-export const privateRoutes = ['/account', '/account/orders']
+export const privateRoutes = ['/my-account', '/account/orders']
 
 /**
  * An array of routes that are used for authentication

@@ -54,13 +54,7 @@ export const OrderStatusForm = ({}) => {
       findOrder(values)
         .then((data) => {
           if (data?.error) {
-            console.log(data.error)
-            form.reset()
             setError(data.error)
-          }
-          if (data?.success) {
-            form.reset()
-            setSuccess(data.success)
           }
         })
         .catch(() => setError('Something went wrong'))

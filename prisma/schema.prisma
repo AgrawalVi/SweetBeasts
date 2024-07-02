@@ -162,8 +162,9 @@ model Order {
   pricePaidInCents Int
   orderStatus      OrderStatus @default(PROCESSING)
 
-  lineItems lineItem[]
-  User      User?      @relation(fields: [userId], references: [id], onDelete: SetNull)
+  lineItems      lineItem[]
+  User           User?            @relation(fields: [userId], references: [id], onDelete: SetNull)
+  ViewOrderToken ViewOrderToken[]
 }
 
 model lineItem {
@@ -203,10 +204,12 @@ model ShippingAddress {
 }
 
 model ViewOrderToken {
-  id          String   @id @default(cuid())
-  orderNumber Int
-  token       String   @unique
-  expires     DateTime
+  id      String   @id @default(cuid())
+  orderId Int
+  token   String   @unique
+  expires DateTime
 
-  @@unique([orderNumber, token])
+  Order Order @relation(fields: [orderId], references: [id], onDelete: Cascade)
+
+  @@unique([orderId, token])
 }
