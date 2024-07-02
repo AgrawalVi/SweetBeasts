@@ -4,7 +4,7 @@ import Link from 'next/link';
 
 export default function Contact() {
   return (
-    <div className="flex h-screen w-screen flex-grow flex-col items-center justify-center space-y-4 bg-gray-100">
+    <div className="flex h-screen w-screen flex-grow flex-col items-center justify-center space-y-4">
       <Head>
         <title>Contact Us - SweetBeasts</title>
         <meta name="description" content="Contact SweetBeasts through Instagram, Discord, and Gmail." />
