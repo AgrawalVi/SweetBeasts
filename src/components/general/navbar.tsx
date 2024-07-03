@@ -62,8 +62,8 @@ export function Navbar({ className }: { className?: string }) {
                 href="/"
               >
                 <div className="flex flex-col space-y-4 text-sm">
-                  <HoveredLink href="/about">About Us</HoveredLink>
-                  <HoveredLink href="/about/team">Our Team</HoveredLink>
+                  <HoveredLink href="/about-us">About Us</HoveredLink>
+                  <HoveredLink href="/about-us/team">Our Team</HoveredLink>
                   <HoveredLink href="/product-updates">
                     Product Updates
                   </HoveredLink>

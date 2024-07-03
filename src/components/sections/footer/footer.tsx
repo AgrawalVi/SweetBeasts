@@ -34,11 +34,11 @@ const footerLinks = {
   sweetbeasts: [
     {
       name: 'About Us',
-      href: '/about',
+      href: '/about-us',
     },
     {
       name: 'Meet The Team',
-      href: '/about/team',
+      href: '/about-us/team',
     },
     {
       name: 'Give Feedback',
