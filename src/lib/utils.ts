@@ -10,3 +10,8 @@ export function notEmpty<TValue>(
 ): value is TValue {
   return value !== null && value !== undefined
 }
+
+export function formatPrice(priceInCents: number) {
+  var options = { style: 'currency', currency: 'USD' }
+  return new Intl.NumberFormat('en-US', options).format(priceInCents / 100)
+}

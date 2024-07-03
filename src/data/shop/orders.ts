@@ -32,6 +32,43 @@ export const getOrderByEmailAndOrderNumber = async (
   }
 }
 
+export const getOrderByFindOrderToken = async (token: string) => {
+  let order
+  let tokenObject
+  // find token object by token
+  try {
+    tokenObject = await db.viewOrderToken.findFirst({
+      where: {
+        token,
+      },
+    })
+  } catch (e) {
+    console.error('Error retrieving token object', e)
+    return null
+  }
+
+  if (!tokenObject) {
+    return null
+  }
+
+  // verify that the token has not expired
+  if (tokenObject.expires < new Date()) {
+    return null
+  }
+  // then get the order by the orderId
+  try {
+    order = await db.order.findUnique({
+      where: {
+        id: tokenObject.orderId,
+      },
+    })
+    return order
+  } catch (e) {
+    console.error('Error retrieving order', e)
+    return null
+  }
+}
+
 export const getViewOrderTokenByOrderId = async (orderId: number) => {
   try {
     const viewOrderToken = db.viewOrderToken.findFirst({

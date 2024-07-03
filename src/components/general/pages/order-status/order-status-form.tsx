@@ -1,7 +1,6 @@
 'use client'
 
 import { useState, useTransition } from 'react'
-import { useSearchParams } from 'next/navigation'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 
@@ -19,26 +18,12 @@ import * as z from 'zod'
 import { FindOrderSchema } from '@/schemas'
 import { Button } from '@/components/ui/button'
 import { FormError } from '@/components/custom/form-error'
-import { FormSuccess } from '@/components/custom/form-success'
-import { login } from '@/actions/auth/login'
-import Link from 'next/link'
 
-import { useShoppingCart } from '@/hooks/use-shopping-cart'
 import { findOrder } from '@/actions/customer/find-order'
 
-export const OrderStatusForm = ({}) => {
-  const searchParams = useSearchParams()
-  const urlError =
-    searchParams.get('error') === 'OAuthAccountNotLinked'
-      ? 'An account already exists with this email'
-      : ''
-
+export const OrderStatusForm = ({ errorText }: { errorText?: string }) => {
   const [isPending, startTransition] = useTransition()
-  const [showTwoFactor, setShowTwoFactor] = useState(false)
-  const [error, setError] = useState<string | undefined>('')
-  const [success, setSuccess] = useState<string | undefined>('')
-
-  const { handleLogin } = useShoppingCart()
+  const [error, setError] = useState<string | undefined>(errorText)
 
   const form = useForm<z.infer<typeof FindOrderSchema>>({
     resolver: zodResolver(FindOrderSchema),
@@ -105,8 +90,7 @@ export const OrderStatusForm = ({}) => {
             />
           </div>
         </div>
-        <FormError message={error || urlError} />
-        <FormSuccess message={success} />
+        <FormError message={error} />
         <Button type="submit" className="w-full" disabled={isPending}>
           Find Order
         </Button>

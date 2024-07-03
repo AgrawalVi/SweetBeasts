@@ -44,7 +44,7 @@ export function Navbar({ className }: { className?: string }) {
   return (
     <main className="sticky top-0 z-50">
       <div className="relative hidden w-screen items-center justify-center border-b border-muted bg-background py-4 md:flex">
-        <div className="grid w-full max-w-screen-lg grid-cols-5 items-center justify-between">
+        <div className="grid w-full max-w-5xl grid-cols-5 items-center justify-between">
           <div className="inline-flex justify-start">logo</div>
           <div></div>
           <div className="relative flex items-center justify-center">
