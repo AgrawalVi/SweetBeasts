@@ -70,6 +70,7 @@
     "resend": "^3.2.0",
     "sonner": "^1.4.41",
     "stripe": "^15.8.0",
+    "tabler-icons-react": "^1.56.0",
     "tailwind-merge": "^2.3.0",
     "tailwindcss-animate": "^1.0.7",
     "three": "^0.164.1",

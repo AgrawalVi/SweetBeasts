@@ -1,6 +1,10 @@
 import Head from 'next/head';
 import Image from 'next/image';
 import Link from 'next/link';
+import { BrandInstagram } from 'tabler-icons-react';
+import { BrandDiscord } from 'tabler-icons-react';
+import { BrandGmail } from 'tabler-icons-react';
+              
 
 export default function Contact() {
   return (
@@ -17,15 +21,15 @@ export default function Contact() {
 
         <div className="flex justify-center space-x-4">
           <a href="https://www.instagram.com/sweetbeastsshop/?igsh=MWs4NXFrNzFrZndweA%3D%3D&utm_source=qr" target="_blank" rel="noopener noreferrer" className="inline-flex items-center px-4 py-2 bg-pink-600 hover:bg-pink-700 text-white text-sm font-medium rounded-lg shadow-md transition duration-300 ease-in-out">
-            <Image src="/instagram-icon.png" alt="Instagram" width={20} height={20} className="mr-2" />
+          <BrandInstagram size={32} strokeWidth={2} color={'#f5f5f5'}/>
             Instagram
           </a>
           <a href="https://discord.gg/Rf4AecyDnB" target="_blank" rel="noopener noreferrer" className="inline-flex items-center px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-medium rounded-lg shadow-md transition duration-300 ease-in-out">
-            <Image src="/discord-icon.png" alt="Discord" width={20} height={20} className="mr-2" />
+          <BrandDiscord size={32} strokeWidth={2} color={'#f5f5f5'}/>
             Discord
           </a>
           <a href="mailto:account@sweetbeasts.shop" className="inline-flex items-center px-4 py-2 bg-red-600 hover:bg-red-700 text-white text-sm font-medium rounded-lg shadow-md transition duration-300 ease-in-out">
-            <Image src="/gmail-icon.png" alt="Gmail" width={20} height={20} className="mr-2" />
+          <BrandGmail size={30} strokeWidth={2} color={'#f5f5f5'}/>
             Gmail
           </a>
         </div>
