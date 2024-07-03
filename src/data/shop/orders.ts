@@ -53,6 +53,15 @@ export const getOrderByFindOrderToken = async (token: string) => {
 
   // verify that the token has not expired
   if (tokenObject.expires < new Date()) {
+    // delete the token
+    try {
+      await db.viewOrderToken.delete({
+        where: { id: tokenObject.id },
+      })
+    } catch (e) {
+      console.error('Error deleting view order token', e)
+      return null
+    }
     return null
   }
   // then get the order by the orderId
