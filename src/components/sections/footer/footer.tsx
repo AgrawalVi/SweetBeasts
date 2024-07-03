@@ -84,7 +84,7 @@ export default function Footer() {
               <div className="py-3 font-nunito text-base font-bold uppercase">
                 SweetBeasts
               </div>
-              <div className="flex flex-col space-y-2">
+              <div className="flex flex-col justify-center space-y-2 text-start">
                 {footerLinks.sweetbeasts.map((link) => (
                   <Link
                     key={link.href}
