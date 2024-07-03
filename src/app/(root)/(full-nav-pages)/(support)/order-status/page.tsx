@@ -16,7 +16,7 @@ export default function TrackOrder({
   if (!orderToken) {
     return (
       <main className="flex w-full flex-col items-center justify-center">
-        <div className="font-nunito text-3xl font-semibold sm:text-5xl">
+        <div className="header-gradient text-4xl font-semibold sm:text-6xl">
           <h1>Track Your Order</h1>
         </div>
         <OrderStatusForm errorText={error} />

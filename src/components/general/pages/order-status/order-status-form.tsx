@@ -50,7 +50,7 @@ export const OrderStatusForm = ({ errorText }: { errorText?: string }) => {
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className="mb-20 mt-24 w-[25rem] space-y-6 sm:mb-[10rem] md:w-[35rem]"
+        className="mb-20 mt-24 w-[25rem] space-y-6 px-4 sm:mb-[10rem] md:w-[35rem]"
       >
         <div className="space-y-4">
           <FormField
