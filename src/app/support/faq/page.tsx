@@ -19,7 +19,7 @@ export default function FAQ() {
       <p className="text-gray-600 text-2xl text-center mb-8">Here are the answers to the most frequently asked questions.</p>
 
       <div className="grid gap-8">
-        <Card className="w-4/5 mx-auto">
+        <Card className="w-full lg:w-4/5 xl:w-3/4 2xl:w-2/3 mx-auto">
           <CardHeader>
             <CardTitle>Most Frequently Asked Questions</CardTitle>
           </CardHeader>
@@ -34,7 +34,7 @@ export default function FAQ() {
             </Accordion>
           </CardContent>
         </Card>
-        <Card className="w-4/5 mx-auto">
+        <Card className="w-full lg:w-4/5 xl:w-3/4 2xl:w-2/3 mx-auto">
           <CardHeader>
             <CardTitle>Payments</CardTitle>
           </CardHeader>
@@ -49,7 +49,7 @@ export default function FAQ() {
             </Accordion>
           </CardContent>
         </Card>
-        <Card className="w-4/5 mx-auto">
+        <Card className="w-full lg:w-4/5 xl:w-3/4 2xl:w-2/3 mx-auto">
           <CardHeader>
             <CardTitle>Orders</CardTitle>
           </CardHeader>
@@ -64,7 +64,7 @@ export default function FAQ() {
             </Accordion>
           </CardContent>
         </Card>
-        <Card className="w-4/5 mx-auto">
+        <Card className="w-full lg:w-4/5 xl:w-3/4 2xl:w-2/3 mx-auto">
           <CardHeader>
             <CardTitle>Shipping</CardTitle>
           </CardHeader>
@@ -79,7 +79,7 @@ export default function FAQ() {
             </Accordion>
           </CardContent>
         </Card>
-        <Card className="w-4/5 mx-auto">
+        <Card className="w-full lg:w-4/5 xl:w-3/4 2xl:w-2/3 mx-auto">
           <CardHeader>
             <CardTitle>Returns</CardTitle>
           </CardHeader>
@@ -98,4 +98,3 @@ export default function FAQ() {
     </div>
   );
 }
-
