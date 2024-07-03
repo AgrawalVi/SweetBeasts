@@ -66,5 +66,5 @@ body {
 }
 
 .header-gradient {
-  @apply bg-gradient-to-br from-cyan-500 to-cyan-900 drop-shadow-md dark:from-rose-300 dark:to-rose-700;
+  @apply bg-gradient-to-br from-cyan-500 to-cyan-900 bg-clip-text font-coiny text-transparent drop-shadow-md dark:from-rose-300 dark:to-rose-700;
 }
