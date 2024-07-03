@@ -12,6 +12,6 @@ export function notEmpty<TValue>(
 }
 
 export function formatPrice(priceInCents: number) {
-  var options = { style: 'currency', currency: 'USD' }
+  var options: Intl.NumberFormatOptions = { style: 'currency', currency: 'USD' }
   return new Intl.NumberFormat('en-US', options).format(priceInCents / 100)
 }
