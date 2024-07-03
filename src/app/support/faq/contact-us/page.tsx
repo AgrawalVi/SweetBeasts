@@ -11,7 +11,7 @@ export default function Contact() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <div className="max-w-lg p-6 bg-white shadow-md rounded-lg">
+      <div className="max-w-lg p-6 bg-white dark:g-black shadow-md rounded-lg">
         <h2 className="text-2xl font-semibold text-center mb-4">Contact Us</h2>
         <p className="text-center mb-6">Have a question or feedback for us? We'd love to hear from you!</p>
 
