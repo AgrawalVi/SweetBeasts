@@ -18,17 +18,17 @@ export default function FAQ() {
       </p>
 
       <div className="grid gap-8">
-        <Card className="mx-auto w-full lg:w-4/5 xl:w-3/4 2xl:w-2/3">
-          <CardHeader>
-            <CardTitle>Most Frequently Asked Questions</CardTitle>
+      <Card className="mx-auto w-full lg:w-4/5 xl:w-3/4 2xl:w-2/3">
+      <CardHeader className="pb-0">
+            <CardTitle className="md:text-3xl">Most Frequently Asked Questions</CardTitle>
           </CardHeader>
           <CardContent>
             <Accordion type="single" collapsible>
               <AccordionItem value="item-1">
-                <AccordionTrigger>
+              <AccordionTrigger className="text-start text-base md:text-lg">
                   What materials are SweetBeasts plushies made from?
                 </AccordionTrigger>
-                <AccordionContent>
+                <AccordionContent className="text-sm md:text-base">
                   [Insert Here, idk what it is made of]
                 </AccordionContent>
               </AccordionItem>
@@ -56,17 +56,17 @@ export default function FAQ() {
           </CardContent>
         </Card>
         <Card className="mx-auto w-full lg:w-4/5 xl:w-3/4 2xl:w-2/3">
-          <CardHeader>
-            <CardTitle>Orders</CardTitle>
+            <CardHeader className="pb-0">
+            <CardTitle className="md:text-3xl">Orders</CardTitle>
           </CardHeader>
           <CardContent>
             <Accordion type="single" collapsible>
               <AccordionItem value="item-6">
-                <AccordionTrigger>
+                <AccordionTrigger className="text-start text-base md:text-lg">
                   Do you have a physical store where I can purchase SweetBeasts
                   plushies?
                 </AccordionTrigger>
-                <AccordionContent>
+                <AccordionContent className="text-sm md:text-base">
                   At this time, SweetBeasts operates exclusively online. You can
                   browse and purchase our plushies through our website, where we
                   offer a secure and convenient shopping experience.
@@ -76,17 +76,17 @@ export default function FAQ() {
           </CardContent>
         </Card>
         <Card className="mx-auto w-full lg:w-4/5 xl:w-3/4 2xl:w-2/3">
-          <CardHeader>
-            <CardTitle>Shipping</CardTitle>
+          <CardHeader className="pb-0">
+            <CardTitle className="md:text-3xl">Shipping</CardTitle>
           </CardHeader>
           <CardContent>
             <Accordion type="single" collapsible>
               <AccordionItem value="item-6">
-                <AccordionTrigger>
+              <AccordionTrigger className="text-start text-base md:text-lg">
                   Do you have a physical store where I can purchase SweetBeasts
                   plushies?
                 </AccordionTrigger>
-                <AccordionContent>
+                <AccordionContent className="text-sm md:text-base">
                   At this time, SweetBeasts operates exclusively online. You can
                   browse and purchase our plushies through our website, where we
                   offer a secure and convenient shopping experience.
@@ -96,17 +96,17 @@ export default function FAQ() {
           </CardContent>
         </Card>
         <Card className="mx-auto w-full lg:w-4/5 xl:w-3/4 2xl:w-2/3">
-          <CardHeader>
-            <CardTitle>Returns</CardTitle>
+          <CardHeader className="pb-0">
+            <CardTitle className="md:text-3xl">Returns</CardTitle>
           </CardHeader>
           <CardContent>
             <Accordion type="single" collapsible>
               <AccordionItem value="item-6">
-                <AccordionTrigger>
+                <AccordionTrigger className="text-start text-base md:text-lg">
                   Do you have a physical store where I can purchase SweetBeasts
                   plushies?
                 </AccordionTrigger>
-                <AccordionContent>
+                <AccordionContent className="text-sm md:text-base">
                   At this time, SweetBeasts operates exclusively online. You can
                   browse and purchase our plushies through our website, where we
                   offer a secure and convenient shopping experience.
