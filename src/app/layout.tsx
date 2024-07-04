@@ -8,6 +8,8 @@ import { ShoppingCartProvider } from '@/hooks/use-shopping-cart'
 
 import { SessionProvider } from 'next-auth/react'
 import { auth } from '@/auth'
+import { Suspense } from 'react'
+import NavigationEvents from '@/components/navigation-events'
 
 const nunito = Nunito({
   subsets: ['latin'],
@@ -58,6 +60,9 @@ export default async function RootLayout({
               </div>
               <link rel="icon" href="/favicon.ico" sizes="any" />
               <Toaster />
+              <Suspense>
+                <NavigationEvents />
+              </Suspense>
             </ThemeProvider>
           </ShoppingCartProvider>
         </SessionProvider>
