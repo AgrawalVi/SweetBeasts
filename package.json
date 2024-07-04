@@ -7,7 +7,8 @@
     "build": "prisma generate && next build",
     "start": "next start",
     "lint": "next lint",
-    "pretty": "prettier --write ."
+    "pretty": "prettier --write .",
+    "email-dev": "email-dev"
   },
   "dependencies": {
     "@auth/prisma-adapter": "^2.1.0",
@@ -40,6 +41,7 @@
     "@radix-ui/react-toggle": "^1.0.3",
     "@radix-ui/react-toggle-group": "^1.0.4",
     "@radix-ui/react-tooltip": "^1.0.7",
+    "@react-email/components": "0.0.19",
     "@react-three/fiber": "^8.16.6",
     "@stripe/react-stripe-js": "^2.7.1",
     "@stripe/stripe-js": "^3.5.0",
@@ -62,12 +64,14 @@
     "react": "^18",
     "react-day-picker": "^8.10.1",
     "react-dom": "^18",
+    "react-email": "2.1.4",
     "react-hook-form": "^7.51.5",
     "react-resizable-panels": "^2.0.17",
     "react-spinners": "^0.13.8",
     "resend": "^3.2.0",
     "sonner": "^1.4.41",
     "stripe": "^15.8.0",
+    "tabler-icons-react": "^1.56.0",
     "tailwind-merge": "^2.3.0",
     "tailwindcss-animate": "^1.0.7",
     "three": "^0.164.1",
