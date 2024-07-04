@@ -24,7 +24,7 @@ export default function TrackOrder({
     )
   } else {
     return (
-      <Suspense fallback={<div>Loading...</div>}>
+      <Suspense fallback={null}>
         <FindOrderInformation token={orderToken} />
       </Suspense>
     )
