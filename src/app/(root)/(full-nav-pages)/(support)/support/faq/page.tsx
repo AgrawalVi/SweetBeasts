@@ -6,113 +6,42 @@ import {
   AccordionTrigger,
 } from '@/components/ui/accordion'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+import FAQSection, { FAQItem } from '@/components/sections/faq/faq-section'
+
+const generalFAQContent: FAQItem[] = [
+  {
+    question: "Lorem ipsum dolor sit amet?",
+    answer:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    link: "https://google.com",
+  },
+  {
+    question: "Ut enim ad minim veniam?",
+    answer:
+      "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+  },
+  {
+    question: "Duis aute irure dolor in reprehenderit?",
+    answer:
+      "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+  },
+  {
+    question: "Excepteur sint occaecat cupidatat non proident?",
+    answer:
+      "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+  },
+];
 
 export default function FAQ() {
   return (
-    <div className="mx-auto w-full px-10 py-8">
+    <>
       <h1 className="mb-4 text-center text-6xl font-bold">
         Frequently Asked Questions
       </h1>
       <p className="mb-8 text-center text-2xl text-gray-600">
         Here are the answers to the most frequently asked questions.
       </p>
-
-      <div className="grid gap-8">
-        <Card className="mx-auto w-full lg:w-4/5 xl:w-3/4 2xl:w-2/3">
-          <CardContent className="pt-4">
-            <Accordion type="single" collapsible>
-              <AccordionItem value="item-1">
-                <AccordionTrigger className="text-start text-base md:text-lg">
-                  What materials are SweetBeasts plushies made from?
-                </AccordionTrigger>
-                <AccordionContent className="text-sm md:text-base">
-                  [Insert Here, idk what it is made of]
-                </AccordionContent>
-              </AccordionItem>
-            </Accordion>
-          </CardContent>
-        </Card>
-        <Card className="mx-auto w-full lg:w-4/5 xl:w-3/4 2xl:w-2/3">
-          <CardHeader className="pb-0">
-            <CardTitle className="md:text-3xl">Payments</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <Accordion type="single" collapsible>
-              <AccordionItem value="item-6">
-                <AccordionTrigger className="text-start text-base md:text-lg">
-                  Do you have a physical store where I can purchase SweetBeasts
-                  plushies?
-                </AccordionTrigger>
-                <AccordionContent className="text-sm md:text-base">
-                  At this time, SweetBeasts operates exclusively online. You can
-                  browse and purchase our plushies through our website, where we
-                  offer a secure and convenient shopping experience.
-                </AccordionContent>
-              </AccordionItem>
-            </Accordion>
-          </CardContent>
-        </Card>
-        <Card className="mx-auto w-full lg:w-4/5 xl:w-3/4 2xl:w-2/3">
-          <CardHeader className="pb-0">
-            <CardTitle className="md:text-3xl">Orders</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <Accordion type="single" collapsible>
-              <AccordionItem value="item-6">
-                <AccordionTrigger className="text-start text-base md:text-lg">
-                  Do you have a physical store where I can purchase SweetBeasts
-                  plushies?
-                </AccordionTrigger>
-                <AccordionContent className="text-sm md:text-base">
-                  At this time, SweetBeasts operates exclusively online. You can
-                  browse and purchase our plushies through our website, where we
-                  offer a secure and convenient shopping experience.
-                </AccordionContent>
-              </AccordionItem>
-            </Accordion>
-          </CardContent>
-        </Card>
-        <Card className="mx-auto w-full lg:w-4/5 xl:w-3/4 2xl:w-2/3">
-          <CardHeader className="pb-0">
-            <CardTitle className="md:text-3xl">Shipping</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <Accordion type="single" collapsible>
-              <AccordionItem value="item-6">
-                <AccordionTrigger className="text-start text-base md:text-lg">
-                  Do you have a physical store where I can purchase SweetBeasts
-                  plushies?
-                </AccordionTrigger>
-                <AccordionContent className="text-sm md:text-base">
-                  At this time, SweetBeasts operates exclusively online. You can
-                  browse and purchase our plushies through our website, where we
-                  offer a secure and convenient shopping experience.
-                </AccordionContent>
-              </AccordionItem>
-            </Accordion>
-          </CardContent>
-        </Card>
-        <Card className="mx-auto w-full lg:w-4/5 xl:w-3/4 2xl:w-2/3">
-          <CardHeader className="pb-0">
-            <CardTitle className="md:text-3xl">Returns</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <Accordion type="single" collapsible>
-              <AccordionItem value="item-6">
-                <AccordionTrigger className="text-start text-base md:text-lg">
-                  Do you have a physical store where I can purchase SweetBeasts
-                  plushies?
-                </AccordionTrigger>
-                <AccordionContent className="text-sm md:text-base">
-                  At this time, SweetBeasts operates exclusively online. You can
-                  browse and purchase our plushies through our website, where we
-                  offer a secure and convenient shopping experience.
-                </AccordionContent>
-              </AccordionItem>
-            </Accordion>
-          </CardContent>
-        </Card>
-      </div>
-    </div>
+      <FAQSection content={generalFAQContent} title="General" subtitle="Frequently Asked Questions" />
+    </>
   )
 }
