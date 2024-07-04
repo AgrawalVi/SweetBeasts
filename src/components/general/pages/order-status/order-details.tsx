@@ -11,7 +11,7 @@ import { Skeleton } from '@/components/ui/skeleton'
 import { Order, ShippingAddress } from '@prisma/client'
 import Link from 'next/link'
 
-export default function AddressSectionOnlyName({ order }: { order: Order }) {
+export default function OrderDetails({ order }: { order: Order }) {
   return (
     <Card className="w-full sm:w-[30rem]">
       <CardHeader>

@@ -6,7 +6,7 @@ import { getLineItemsByOrderId } from '@/data/shop/line-items'
 import { lineItem, Product } from '@prisma/client'
 import OrderSummary from './order-summary'
 import OrderStatusBar from './order-status-bar'
-import AddressSectionOnlyName from './address-section-only-name'
+import AddressSectionOnlyName from './order-details'
 
 export default async function FindOrderInformation({
   token,

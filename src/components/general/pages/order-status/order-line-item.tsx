@@ -2,6 +2,8 @@ import { CardDescription } from '@/components/ui/card'
 import { formatPrice } from '@/lib/utils'
 import { Product, lineItem } from '@prisma/client'
 import Image from 'next/image'
+import pogo from '/public/product-images/pogo/main.jpg'
+import blimpy from '/public/product-images/lemon-lion/main.jpg'
 
 export default function OrderLineItem({
   product,
@@ -12,7 +14,7 @@ export default function OrderLineItem({
     <div className="flex w-full space-x-6 align-middle">
       <div className="relative">
         <Image
-          src={product.product.primaryImagePath!}
+          src={product.product.name.includes('pogo') ? pogo : blimpy}
           alt={`${product.product.name} image`}
           width={100}
           height={100}
