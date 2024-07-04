@@ -11,7 +11,7 @@ export default function SweetCards() {
         <Card
           title="SUPPORT"
           icon={<S_Icon />}
-          description="We are committed to enriching our communities by actively supporting a collection of hunger and food-related charities, and by donating our plushies to children in need. Our plushies are crafted to provide not only joy but also emotional support, offering comfort and companionship to individuals of all ages in diverse circumstances."
+          description="We are dedicated to making a difference in our communities by actively supporting hunger and wildlife related charities and by donating plushies to children in need. Our plushies provide joy and emotional support to those that need it most."
         >
           <CanvasRevealEffect
             animationSpeed={3}
@@ -25,7 +25,7 @@ export default function SweetCards() {
         <Card
           title="WELL-BEING"
           icon={<W_Icon />}
-          description="Our products promote healthier lifestyles by merging fun with education. Each plushie, themed around fruits and animals, serves as a playful reminder of the importance of a balanced diet, directly linking joy with health benefits."
+          description="Our products promote healthier lifestyles by combining fun with education. Each plushie, themed around fruits and animals, serves as a playful reminder of the importance of a balanced diet, connecting joy with healthy choices."
         >
           <CanvasRevealEffect
             animationSpeed={3}
@@ -39,7 +39,7 @@ export default function SweetCards() {
         <Card
           title="EMPATHY"
           icon={<E_Icon />}
-          description="Through our designs and deeds, we aim to cultivate a world more aware and sensitive to the needs of others. Our plushies bring smiles and serve as beacons of lightness and warmth, intended to uplift spirits and foster an environment where kindness prevails."
+          description="Our plushies are designed to cultivate a community that is more mindful of and compassionate towards the ongoing challenges of food insecurity and animal endangerment."
         >
           <CanvasRevealEffect
             animationSpeed={3}
@@ -52,14 +52,12 @@ export default function SweetCards() {
         <Card
           title="ENGAGEMENT"
           icon={<E_Icon />}
-          description="Creativity is the cornerstone of our brand. We foster a dynamic community around our plushies, encouraging ongoing interaction and feedback. This engagement is crucial as it helps us evolve and ensures our creations resonate deeply with those they reach."
+          description="Creativity is at the center of our brand. We encourage ongoing interaction and feedback from the community. This engagement helps us continue to make improvements and truly connect with everyone our plushies reach. We owe it to all of you— without your support, SweetBeasts would not exist!"
         >
           <CanvasRevealEffect
             animationSpeed={3}
             containerClassName="bg-background"
-            colors={[
-              [5, 238, 255],
-            ]}
+            colors={[[5, 238, 255]]}
             dotSize={3}
           />
           {/* Radial gradient for the cute fade */}
@@ -68,7 +66,7 @@ export default function SweetCards() {
         <Card
           title="TRANSFORMATION"
           icon={<T_Icon />}
-          description="Our designs do more than entertain. They inspire change. By encouraging imaginative play and nurturing emotional bonds, our plushies help individuals grow in compassion and mindfulness, contributing to a collective shift towards a more empathetic and connected society."
+          description="Our plushies do more than just entertain. They inspire change. By encouraging global awareness and a healthier lifestyle, each plushie empowers individuals with a sense of responsibility to contribute to society as a whole, leading to a more connected community"
         >
           <CanvasRevealEffect
             animationSpeed={3}

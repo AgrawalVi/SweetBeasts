@@ -12,12 +12,10 @@ export default function CanvasRevealEffectDemo() {
             OUR STORY
           </h1>
           <TextSection
-            text="At the heart of SweetBeasts are passionate college students dedicated to making a positive difference in the world.
-            Our journey began with the desire to promote well-being and a healthier lifestyle, setting us on a path of meaningful 
-            change and lasting impact. We understand that happiness knows no age limit, which is why our cuddly companions are meant 
-            to bring joy to individuals of all walks of life. As students ourselves, we recognize the importance of maintaining physical 
-            and mental wellness amidst the challenges of academic life. That's why we've infused our plushies with a touch of magic, creating 
-            not just toys, but companions that inspire moments of joy, comfort, and connection for anyone who welcomes them into their lives."
+            text="At the heart of SweetBeasts are passionate college students dedicated to making a positive difference in the world. Our 
+          journey began with the simple desire to promote healthier lifestyles. As students ourselves, we understand the importance of maintaining physical and mental 
+          wellness while also balancing the challenges of academic life. That's why we've infused our plushies with a touch of magic— creating not just toys, but companions 
+          that create moments of comfort and connection. Whether you’ve had a rough day or simply need a hug, our plushies are here to provide that sense of warmth and support. "
           />
         </div>
         <div className="flex flex-col place-items-center">
@@ -25,20 +23,10 @@ export default function CanvasRevealEffectDemo() {
             OUR MISSION
           </h1>
           <TextSection
-            text="At SweetBeasts, we craft delightful plushies that blend the charm of
-            fruits with the joy of animals, inspiring healthier lifestyles and a
-            spirit of compassion. By merging fun with education, each creation
-            serves as a playful advocate for a balanced diet, enhancing both
-            physical and emotional well-being. Our plushies are not only
-            designed to entertain but also to cultivate empathy, offering
-            comfort and companionship to individuals of all ages. Committed to
-            meaningful engagement, we foster a dynamic community that shapes our
-            initiatives and deepens the impact of our contributions. We are
-            dedicated to supporting a variety of hunger and food-related
-            charities and providing our plushies as comfort items to children in
-            need including those in hospitals, shelters, and other similar
-            environments. Each purchase is a step towards building a more
-            caring, connected, and healthier world."
+            text="At SweetBeasts, our plushies are created by combining the sweetness of fruits with the playfulness of animals. Each one of our creations encourages a balanced 
+            diet and a healthier lifestyle. We foster a community that strives to make the world a better place. A portion of all our sales are donated to a variety of hunger and 
+            wild-life charities of your choice. We also team up with local children’s nonprofits to donate our plushies to bring comfort and joy to children who need it most. Each 
+            purchase is a step towards building a more caring, connected, and healthier world."
           />
         </div>
         <div>
