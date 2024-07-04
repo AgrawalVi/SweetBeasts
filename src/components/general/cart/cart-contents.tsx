@@ -14,7 +14,6 @@ import { useTransition } from 'react'
 
 const CartContents = () => {
   const { cart } = useShoppingCart()
-  const router = useRouter()
   const guestId = Cookies.get('guestId')
   const user = useCurrentUser()
   const { toast } = useToast()
