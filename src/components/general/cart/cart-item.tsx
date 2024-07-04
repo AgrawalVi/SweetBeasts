@@ -1,80 +1,62 @@
-import { useShoppingCart } from '@/hooks/use-shopping-cart'
-import { Product } from '@prisma/client'
-import { CartItem as CartItemType } from '@/hooks/use-shopping-cart'
-
+import Image from 'next/image'
+import { useQuery } from '@tanstack/react-query'
 import { getProductById } from '@/actions/products/products'
-import { useEffect, useState, useTransition } from 'react'
+
+import { CartItem as CartItemType } from '@/hooks/use-shopping-cart'
 
 import { useToast } from '@/components/ui/use-toast'
 import CartItemSkeleton from '@/components/skeletons/cart-item-skeleton'
-import { Button } from '@/components/ui/button'
+import CartQuantityButton from './cart-quantity-button'
+import RemoveProductButton from './remove-product-button'
+
+import pogo from '/public/product-images/pogo/main.jpg'
+import blimpy from '/public/product-images/lemon-lion/main.jpg'
+import { formatPrice } from '@/lib/utils'
 
 const CartItem = ({ item }: { item: CartItemType }) => {
   const { toast } = useToast()
-  const [isPending, startTransition] = useTransition()
-  const [loading, setLoading] = useState(true)
-  const [error, setError] = useState<string | null>(null)
-  const [product, setProduct] = useState<Product | null>(null)
-  const { addToCart, removeItemFromCart, decrementItemFromCart } =
-    useShoppingCart()
 
-  useEffect(() => {
-    const fetchProduct = async () => {
-      const product = await getProductById(item.productId)
-      if (product.error) {
+  const { data: product, isPending: productLoading } = useQuery({
+    queryKey: ['product', item.productId],
+    queryFn: async () => {
+      const response = await getProductById(item.productId)
+      if (response.error) {
         toast({
-          description: "Couldn't receive some products from the cart",
+          title: 'An error has occurred while fetching cart items',
+          description: response.error,
           variant: 'destructive',
         })
-        setError(product.error)
-      } else if (product.success) {
-        setProduct(product.success)
+        throw new Error(response.error)
       }
-    }
-    fetchProduct().then(() => setLoading(false))
-  }, [item])
+      return response.success
+    },
+  })
 
-  function removeProduct() {
-    startTransition(() => {
-      removeItemFromCart(item.productId)
-    })
-  }
-
-  function decrementProduct() {
-    startTransition(() => {
-      decrementItemFromCart(item.productId)
-    })
-  }
-
-  function incrementProduct() {
-    startTransition(() => {
-      addToCart({ productId: item.productId, quantity: 1 })
-    })
+  if (productLoading) {
+    return <CartItemSkeleton />
   }
 
   return (
     <>
-      {loading ? (
-        <CartItemSkeleton />
-      ) : (
-        <>
-          {product ? (
-            <div>
-              <div>{product?.name}</div>
-              <div>{product?.priceInCents}</div>
-              <div>{item.quantity}</div>
-              <Button onClick={removeProduct} disabled={isPending}>
-                Remove
-              </Button>
-              <Button onClick={decrementProduct} disabled={isPending}>
-                Decrement
-              </Button>
-              <Button onClick={incrementProduct} disabled={isPending}>
-                Increment
-              </Button>
+      {product && (
+        <div className="flex w-full items-center space-x-6">
+          <Image
+            src={product.name.includes('pogo') ? pogo : blimpy}
+            alt={`${product.name} image`}
+            width={100}
+            height={100}
+            className="h-24 w-24 rounded-md"
+          />
+          <div className="flex flex-col">
+            <div>{product.name}</div>
+            <div className="text-xs text-muted-foreground">
+              {product.description}
             </div>
-          ) : null}
-        </>
+          </div>
+          <div>{formatPrice(product.priceInCents)}</div>
+          <CartQuantityButton item={item} />
+          <RemoveProductButton item={item} />
+        </div>
       )}
     </>
   )

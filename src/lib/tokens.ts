@@ -6,6 +6,7 @@ import { db } from '@/lib/db'
 import { getVerificationTokenByEmail } from '@/data/auth/verification-token'
 import { getResetPasswordTokenByEmail } from '@/data/auth/reset-password-token'
 import { getTwoFactorTokenByEmail } from '@/data/auth/two-factor-token'
+import { getViewOrderTokenByOrderId } from '@/data/shop/orders'
 
 export const generateTwoFactorToken = async (email: string) => {
   const token = crypto.randomInt(100_000, 1_000_000).toString()
@@ -77,4 +78,40 @@ export const generateResetPasswordToken = async (email: string) => {
   })
 
   return resetPasswordToken
+}
+
+export const generateViewOrderToken = async (orderId: number) => {
+  const token = uuidv4()
+  const expires = new Date(new Date().getTime() + 24 * 60 * 60 * 1000) // token expires in 24 hours
+
+  const existingToken = await getViewOrderTokenByOrderId(orderId)
+  let viewOrderToken
+
+  if (existingToken) {
+    // delete token for the order if it already exists
+    try {
+      await db.viewOrderToken.delete({
+        where: { id: existingToken.id },
+      })
+    } catch (e) {
+      console.error('Error deleting view order token', e)
+      return null
+    }
+  }
+
+  try {
+    // create new token for the order
+    viewOrderToken = await db.viewOrderToken.create({
+      data: {
+        orderId,
+        token,
+        expires,
+      },
+    })
+  } catch (e) {
+    console.error('Error creating view order token', e)
+    return null
+  }
+
+  return viewOrderToken
 }

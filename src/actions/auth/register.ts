@@ -3,11 +3,13 @@
 import * as z from 'zod'
 import bcrypt from 'bcryptjs'
 import { db } from '@/lib/db'
+import { stripe } from '@/lib/stripe'
 
 import { RegisterSchema } from '@/schemas'
 import { getUserByEmail } from '@/data/auth/user'
 import { generateVerificationToken } from '@/lib/tokens'
 import { sendVerificationEmail } from '@/lib/resend'
+import { getOrdersWithEmail } from '@/data/shop/orders'
 
 export const register = async (values: z.infer<typeof RegisterSchema>) => {
   const validatedFields = RegisterSchema.safeParse(values)
@@ -26,11 +28,26 @@ export const register = async (values: z.infer<typeof RegisterSchema>) => {
     return { error: 'Account already exists, please Login!' }
   }
 
-  await db.user.create({
+  // create a stripe customer
+  const customer = await stripe.customers.create({
+    email,
+  })
+
+  const newUser = await db.user.create({
     data: {
       name,
       email,
       password: hashedPassword,
+      stripeCustomerId: customer.id,
+    },
+  })
+
+  await db.order.updateMany({
+    where: {
+      email,
+    },
+    data: {
+      userId: newUser.id,
     },
   })
 

@@ -53,7 +53,9 @@ export default async function RootLayout({
               enableSystem
               disableTransitionOnChange
             >
-              <div className="flex h-full w-full bg-background">{children}</div>
+              <div className="flex h-screen w-full bg-background">
+                {children}
+              </div>
               <link rel="icon" href="/favicon.ico" sizes="any" />
               <Toaster />
             </ThemeProvider>
