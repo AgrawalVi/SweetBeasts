@@ -18,7 +18,7 @@ import CartButton from './cart/cart-button'
 
 export function Navbar({ className }: { className?: string }) {
   const [active, setActive] = useState<string | null>(null)
-  const [lastActive, setLastActive] = useState<string | null>(null);
+  const [lastActive, setLastActive] = useState<string | null>(null)
 
   return (
     <main className="sticky top-0 z-50">
@@ -116,6 +116,7 @@ export function Navbar({ className }: { className?: string }) {
       </div>
       <div className="block h-20 w-screen border bg-white dark:bg-black md:hidden">
         <div className="flex justify-end">
+          <CartButton />
           <Sheet>
             <SheetTrigger asChild>
               <Button variant="outline" size="icon" className="m-5 ml-5">

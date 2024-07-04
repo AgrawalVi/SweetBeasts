@@ -1,6 +1,7 @@
 import { db } from '@/lib/db'
 import { getUserByEmail } from '../auth/user'
 import { CartItem } from '@prisma/client'
+import { getProductById } from './product'
 
 export const getCartByUserId = async (id: string) => {
   try {
@@ -64,4 +65,17 @@ export const getCartItemByUserIdAndProductId = async (
   } catch {
     console.error('Error retrieving cart item')
   }
+}
+
+export const getTotalCartPrice = async (cart: CartItem[]) => {
+  let totalPrice = 0
+
+  for (const item of cart) {
+    let product = await getProductById(item.productId)
+    if (product) {
+      totalPrice += product.priceInCents * item.quantity
+    }
+  }
+
+  return totalPrice
 }

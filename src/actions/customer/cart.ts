@@ -10,6 +10,8 @@ import {
 } from '@/data/shop/cart'
 import { db } from '@/lib/db'
 import { CartItem } from '@prisma/client'
+import { CartItem as LocalCartItem } from '@/hooks/use-shopping-cart'
+import { getTotalCartPrice as getTotalCartPriceDB } from '@/data/shop/cart'
 
 export const addToUserCart = async (
   userId: string,
@@ -238,5 +240,14 @@ export const decrementProductFromCartByIdAndProductId = async (
     return { success: 'Product decremented from cart' }
   } catch {
     return { error: 'Error decrementing product from cart' }
+  }
+}
+
+export const getTotalCartPrice = async (cart: LocalCartItem[]) => {
+  try {
+    const totalPrice = await getTotalCartPriceDB(cart)
+    return { success: totalPrice }
+  } catch {
+    return { error: 'Error retrieving total cart price' }
   }
 }

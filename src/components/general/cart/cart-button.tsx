@@ -14,7 +14,7 @@ import {
 } from '@/components/ui/dialog'
 
 export default function CartButton() {
-  const { cart, isCartOpen, setIsCartOpen } = useShoppingCart();
+  const { cart, isCartOpen, setIsCartOpen } = useShoppingCart()
   // TODO: Add indicator to cart when there are items in the cart
   return (
     <Dialog open={isCartOpen} onOpenChange={setIsCartOpen}>

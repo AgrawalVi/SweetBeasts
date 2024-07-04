@@ -42,7 +42,7 @@ export const RegisterSchema = z
     }),
     newsletter: z.boolean({
       message: 'Must be either true or false',
-    })
+    }),
   })
   .refine(
     (data) => {

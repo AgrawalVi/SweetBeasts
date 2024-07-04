@@ -11,7 +11,7 @@ export default function NavigationEvents() {
   const searchParams = useSearchParams()
 
   // close the cart when the user navigates to a different page
-  // 
+  //
   useEffect(() => {
     if (searchParams.get('cartOpen') === 'true') {
       setIsCartOpen(true)

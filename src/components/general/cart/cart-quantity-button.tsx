@@ -7,8 +7,15 @@ import { useMutation } from '@tanstack/react-query'
 import { CartItem } from '@/hooks/use-shopping-cart'
 import { useToast } from '@/components/ui/use-toast'
 import { Minus, Plus } from 'lucide-react'
+import { cn } from '@/lib/utils'
 
-export default function CartQuantityButton({ item }: { item: CartItem }) {
+export default function CartQuantityButton({
+  item,
+  className,
+}: {
+  item: CartItem
+  className?: string
+}) {
   const { addToCart, removeItemFromCart, decrementItemFromCart } =
     useShoppingCart()
   const { toast } = useToast()
@@ -74,7 +81,7 @@ export default function CartQuantityButton({ item }: { item: CartItem }) {
     })
 
   return (
-    <div className="flex items-center space-x-2 pt-2">
+    <div className={cn('flex items-center space-x-2 pt-2', className)}>
       <div className="flex h-full items-center justify-between space-x-1 rounded-md border">
         <Button
           variant="ghost"
