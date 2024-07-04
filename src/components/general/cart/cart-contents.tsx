@@ -10,6 +10,7 @@ import { formatPrice } from '@/lib/utils'
 import { useQuery } from '@tanstack/react-query'
 import { getTotalCartPrice } from '@/actions/customer/cart'
 import { Skeleton } from '@/components/ui/skeleton'
+import { useTransition } from 'react'
 
 const CartContents = () => {
   const { cart } = useShoppingCart()
@@ -17,6 +18,7 @@ const CartContents = () => {
   const guestId = Cookies.get('guestId')
   const user = useCurrentUser()
   const { toast } = useToast()
+  const [isCheckoutPending, startTransition] = useTransition()
 
   const {
     data: totalPrice,
@@ -33,16 +35,18 @@ const CartContents = () => {
     },
   })
 
-  const handleCheckout = async () => {
-    // await
-    const response = await createCheckoutSession(cart, guestId, user?.id)
-    if (response?.error) {
-      toast({
-        title: 'An error has occurred',
-        description: response.error,
-        variant: 'destructive',
+  const handleCheckout = () => {
+    startTransition(() => {
+      createCheckoutSession(cart, guestId, user?.id).then((response) => {
+        if (response?.error) {
+          toast({
+            title: 'An error has occurred',
+            description: response.error,
+            variant: 'destructive',
+          })
+        }
       })
-    }
+    })
   }
 
   return (
@@ -73,7 +77,7 @@ const CartContents = () => {
         <Button
           className="flex w-full"
           onClick={handleCheckout}
-          disabled={!cart.length}
+          disabled={!cart.length || isCheckoutPending}
         >
           Proceed To Checkout
         </Button>
