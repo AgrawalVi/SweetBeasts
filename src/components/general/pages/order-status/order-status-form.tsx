@@ -20,6 +20,7 @@ import { Button } from '@/components/ui/button'
 import { FormError } from '@/components/custom/form-error'
 
 import { findOrder } from '@/actions/customer/find-order'
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 
 export const OrderStatusForm = ({ errorText }: { errorText?: string }) => {
   const [isPending, startTransition] = useTransition()
@@ -47,54 +48,58 @@ export const OrderStatusForm = ({ errorText }: { errorText?: string }) => {
   }
 
   return (
-    <Form {...form}>
-      <form
-        onSubmit={form.handleSubmit(onSubmit)}
-        className="mb-20 mt-24 w-[25rem] space-y-6 px-4 sm:mb-[10rem] md:w-[35rem]"
-      >
-        <div className="space-y-4">
-          <FormField
-            control={form.control}
-            name="email"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Email</FormLabel>
-                <FormControl>
-                  <Input
-                    {...field}
-                    placeholder="john.doe@example.com"
-                    disabled={isPending}
-                  ></Input>
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-          <div>
-            <FormField
-              control={form.control}
-              name="orderNumber"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Order Number</FormLabel>
-                  <FormControl>
-                    <Input
-                      {...field}
-                      placeholder="1234"
-                      disabled={isPending}
-                    ></Input>
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-          </div>
-        </div>
-        <FormError message={error} />
-        <Button type="submit" className="w-full" disabled={isPending}>
-          Find Order
-        </Button>
-      </form>
-    </Form>
+    <Card className="my-12">
+      <CardContent className="p-6">
+        <Form {...form}>
+          <form
+            onSubmit={form.handleSubmit(onSubmit)}
+            className="w-[25rem] space-y-6 px-4 md:w-[35rem]"
+          >
+            <div className="space-y-4">
+              <FormField
+                control={form.control}
+                name="email"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Email</FormLabel>
+                    <FormControl>
+                      <Input
+                        {...field}
+                        placeholder="john.doe@example.com"
+                        disabled={isPending}
+                      ></Input>
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <div>
+                <FormField
+                  control={form.control}
+                  name="orderNumber"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Order Number</FormLabel>
+                      <FormControl>
+                        <Input
+                          {...field}
+                          placeholder="1234"
+                          disabled={isPending}
+                        ></Input>
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              </div>
+            </div>
+            <FormError message={error} />
+            <Button type="submit" className="w-full" disabled={isPending}>
+              Find Order
+            </Button>
+          </form>
+        </Form>
+      </CardContent>
+    </Card>
   )
 }

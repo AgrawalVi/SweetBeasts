@@ -1,7 +1,6 @@
 import { formatPrice } from '@/lib/utils'
-import { Product, lineItem } from '@prisma/client'
-import Image from 'next/image'
-import OrderProductCard from './order-line-item'
+import { Order, Product, lineItem } from '@prisma/client'
+import OrderLineItem from './order-line-item'
 import {
   Card,
   CardContent,
@@ -12,37 +11,52 @@ import {
 
 export default function OrderSummary({
   orderItems,
+  order,
 }: {
   orderItems: (lineItem & { product: Product })[]
+  order: Order
 }) {
+  const subtotal = orderItems.reduce(
+    (prev, item) => item.pricePerUnitInCents * item.quantity + prev,
+    0,
+  )
+  const formattedSubtotal = formatPrice(subtotal)
+
   return (
-    <Card className="border-none">
+    <Card className="w-full sm:w-[30rem]">
       <CardHeader>
         <CardTitle>Order Summary</CardTitle>
       </CardHeader>
       <CardContent>
         <div className="flex flex-col space-y-3">
           {orderItems.map((item) => (
-            <OrderProductCard key={item.id} product={item} />
+            <OrderLineItem key={item.id} product={item} />
           ))}
         </div>
-        <div className="flex w-full flex-col pt-5">
+        <div className="flex w-full flex-col space-y-2 pt-5">
           <div className="flex w-full justify-between">
             <div>Subtotal</div>
-            <div>$12.00</div>
+            <div>{formattedSubtotal}</div>
           </div>
           <div className="flex w-full justify-between">
             <div>Shipping</div>
-            <div>$12.00</div>
+            <div>
+              {order.shippingPaidInCents
+                ? formatPrice(order.shippingPaidInCents)
+                : 'Free :)'}
+            </div>
           </div>
-          <div className="flex w-full justify-between">
-            <div>Taxes</div>
-            <div>$12.00</div>
-          </div>
+          {order.taxesPaidInCents && (
+            <div className="flex w-full justify-between">
+              <div>Taxes</div>
+              <div>{formatPrice(order.taxesPaidInCents)}</div>
+            </div>
+          )}
         </div>
       </CardContent>
-      <CardFooter>
+      <CardFooter className="flex justify-between">
         <CardTitle>Total</CardTitle>
+        <CardTitle>{formatPrice(order.totalPaidInCents)}</CardTitle>
       </CardFooter>
     </Card>
   )
