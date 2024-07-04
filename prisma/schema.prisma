@@ -138,6 +138,7 @@ model Product {
   stripeProductId  String   @unique
   stripePriceId    String   @unique
   primaryImagePath String?
+  productHref      String   @default("/products")
   numSold          Int      @default(0)
   createdAt        DateTime @default(now())
   updatedAt        DateTime @updatedAt

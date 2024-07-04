@@ -22,7 +22,6 @@ import { FormError } from '@/components/custom/form-error'
 import { FormSuccess } from '@/components/custom/form-success'
 import { register } from '@/actions/auth/register'
 import { Checkbox } from '../ui/checkbox'
-import { Link } from 'lucide-react'
 
 export const RegisterForm = () => {
   const [isPending, startTransition] = useTransition()

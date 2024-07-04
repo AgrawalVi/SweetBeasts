@@ -27,9 +27,9 @@ const CartContents = () => {
   }
 
   return (
-    <main className="flex h-full w-full flex-col items-center justify-between">
+    <main className="flex h-full w-full flex-col items-center justify-between space-y-4 pt-4">
       {cart.length > 0 ? (
-        <ul>
+        <ul className='space-y-4'>
           {cart.map((item) => (
             <CartItem key={item.productId} item={item} />
           ))}

@@ -74,7 +74,7 @@ export default function CartQuantityButton({ item }: { item: CartItem }) {
     })
 
   return (
-    <div className="flex items-center space-x-2">
+    <div className="flex items-center space-x-2 pt-2">
       <div className="flex h-full items-center justify-between space-x-1 rounded-md border">
         <Button
           variant="ghost"

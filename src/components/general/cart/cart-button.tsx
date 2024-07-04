@@ -1,6 +1,6 @@
 'use client'
 
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Button } from '@/components/ui/button'
 import { ShoppingCart } from 'lucide-react'
 import { useShoppingCart } from '@/hooks/use-shopping-cart'
@@ -14,8 +14,8 @@ import {
 } from '@/components/ui/dialog'
 
 export default function CartButton() {
-  const { cart, isCartOpen, setIsCartOpen } = useShoppingCart()
-
+  const { cart, isCartOpen, setIsCartOpen } = useShoppingCart();
+  // TODO: Add indicator to cart when there are items in the cart
   return (
     <Dialog open={isCartOpen} onOpenChange={setIsCartOpen}>
       <DialogTrigger asChild>

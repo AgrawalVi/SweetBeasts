@@ -17,10 +17,8 @@ import Link from 'next/link'
 import CartButton from './cart/cart-button'
 
 export function Navbar({ className }: { className?: string }) {
-  const user = useCurrentUser()
   const [active, setActive] = useState<string | null>(null)
-  const [lastActive, setLastActive] = useState<string | null>(null)
-  const { handleLogout } = useShoppingCart()
+  const [lastActive, setLastActive] = useState<string | null>(null);
 
   return (
     <main className="sticky top-0 z-50">
