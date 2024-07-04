@@ -19,7 +19,7 @@ export default function Home() {
         "min-h-dvh w-screen relative flex flex-col items-center justify-center antialiased"
       )}
     >
-      <ModeToggle className="absolute z-10 top-5 left-5"/>
+      <ModeToggle className="absolute z-10 top-5 left-5" />
       <div className="max-w-[60rem] mx-auto space-y-4">
         <h1
           className={cn(
@@ -63,34 +63,37 @@ export default function Home() {
           </Link>
         </div>
       </div>
-      <div className="absolute z-10 bottom-10 space-x-5 flex flex-row">
-        <Link
-          href="https://discord.gg/fFQ9evv7aA"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Button size="icon" variant="outline">
-            <IconBrandDiscord />
-          </Button>
-        </Link>
-        <Link
-          href="https://www.instagram.com/sweetbeastsshop"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Button size="icon" variant="outline">
-            <IconBrandInstagram />
-          </Button>
-        </Link>
-        <Link
-          href="https://www.tiktok.com/@sweetbeasts"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Button size="icon" variant="outline">
-            <IconBrandTiktok />
-          </Button>
-        </Link>
+      <div className="absolute z-10 bottom-3 flex flex-col items-center space-y-3">
+        <div className="flex flex-row space-x-5">
+          <Link
+            href="https://discord.gg/fFQ9evv7aA"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <Button size="icon" variant="outline">
+              <IconBrandDiscord />
+            </Button>
+          </Link>
+          <Link
+            href="https://www.instagram.com/sweetbeastsshop"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <Button size="icon" variant="outline">
+              <IconBrandInstagram />
+            </Button>
+          </Link>
+          <Link
+            href="https://www.tiktok.com/@sweetbeasts"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <Button size="icon" variant="outline">
+              <IconBrandTiktok />
+            </Button>
+          </Link>
+        </div>
+        <div className="text-sm"> © 2023 SweetBeasts. All rights reserved.</div>
       </div>
       <BackgroundBeams />
     </main>
