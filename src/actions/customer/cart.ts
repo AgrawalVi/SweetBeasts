@@ -88,6 +88,7 @@ export const addToGuestCart = async (
     guestId,
     productId,
   )
+
   if (existingCartItem) {
     // Need to increment the quantity of the existing cart item by quantity
     try {
@@ -124,6 +125,14 @@ export const addToGuestCart = async (
 export const getCartByGuestId = async (guestId: string) => {
   try {
     const cart = await getCartByGuestIdDB(guestId)
+    if (cart && cart.length > 0) {
+      for (const item of cart) {
+        const product = await getProductById(item.productId)
+        if (product) {
+        }
+      }
+    }
+
     return { success: cart ? cart : [] }
   } catch {
     return { error: 'Error retrieving guest cart' }
@@ -144,6 +153,19 @@ export const clearGuestIdCart = async (guestId: string) => {
     await db.cartItem.deleteMany({
       where: {
         guestId,
+      },
+    })
+    return { success: 'Cart cleared' }
+  } catch {
+    return { error: 'Error clearing cart' }
+  }
+}
+
+export const clearUserCart = async (userId: string) => {
+  try {
+    await db.cartItem.deleteMany({
+      where: {
+        userId,
       },
     })
     return { success: 'Cart cleared' }

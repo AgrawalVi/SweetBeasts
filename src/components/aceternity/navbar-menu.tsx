@@ -28,6 +28,7 @@ export const MenuItem = ({
   setLastActive,
   item,
   children,
+  href,
 }: {
   setActive: (item: string) => void
   active: string | null
@@ -35,25 +36,51 @@ export const MenuItem = ({
   setLastActive: (item: string) => void
   item: string
   children?: React.ReactNode
+  href: string
 }) => {
   return (
-    <div onMouseEnter={() => setActive(item)} className="relative">
-      <motion.p
-        transition={{ duration: 0.3 }}
-        className="cursor-pointer text-black hover:opacity-[0.9] dark:text-white"
-      >
-        {item}
-      </motion.p>
-      {active !== null && (
-        <motion.div
-          initial={{ opacity: 0, scale: 0.85, y: 10 }}
-          animate={{ opacity: 1, scale: 1, y: 0 }}
-          transition={transitionIn}
+    <Link href={href}>
+      <div onMouseEnter={() => setActive(item)} className="relative">
+        <motion.p
+          transition={{ duration: 0.3 }}
+          className="cursor-pointer text-black hover:opacity-[0.9] dark:text-white"
         >
-          {active === item && (
+          {item}
+        </motion.p>
+        {active !== null && (
+          <motion.div
+            initial={{ opacity: 0, scale: 0.85, y: 10 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            transition={transitionIn}
+          >
+            {active === item && (
+              <div className="absolute left-1/2 top-[calc(100%_+_1.2rem)] -translate-x-1/2 transform pt-4">
+                <motion.div
+                  transition={transitionIn}
+                  layoutId="active" // layoutId ensures smooth animation
+                  className="overflow-hidden rounded-2xl border border-black/[0.2] bg-white shadow-xl backdrop-blur-sm dark:border-white/[0.2] dark:bg-black"
+                >
+                  <motion.div
+                    layout // layout ensures smooth animation
+                    className="h-full w-max p-4"
+                  >
+                    {children}
+                  </motion.div>
+                </motion.div>
+              </div>
+            )}
+          </motion.div>
+        )}
+        {active === null && lastActive === item ? (
+          <motion.div
+            initial={{ opacity: 1, scale: 1, y: 0 }}
+            animate={{ opacity: 0, scale: 0.85, y: 20 }}
+            transition={transitionOut}
+            className="pointer-events-none"
+          >
             <div className="absolute left-1/2 top-[calc(100%_+_1.2rem)] -translate-x-1/2 transform pt-4">
               <motion.div
-                transition={transitionIn}
+                transition={transitionOut}
                 layoutId="active" // layoutId ensures smooth animation
                 className="overflow-hidden rounded-2xl border border-black/[0.2] bg-white shadow-xl backdrop-blur-sm dark:border-white/[0.2] dark:bg-black"
               >
@@ -65,33 +92,10 @@ export const MenuItem = ({
                 </motion.div>
               </motion.div>
             </div>
-          )}
-        </motion.div>
-      )}
-      {active === null && lastActive === item ? (
-        <motion.div
-          initial={{ opacity: 1, scale: 1, y: 0 }}
-          animate={{ opacity: 0, scale: 0.85, y: 20 }}
-          transition={transitionOut}
-          className="pointer-events-none"
-        >
-          <div className="absolute left-1/2 top-[calc(100%_+_1.2rem)] -translate-x-1/2 transform pt-4">
-            <motion.div
-              transition={transitionOut}
-              layoutId="active" // layoutId ensures smooth animation
-              className="overflow-hidden rounded-2xl border border-black/[0.2] bg-white shadow-xl backdrop-blur-sm dark:border-white/[0.2] dark:bg-black"
-            >
-              <motion.div
-                layout // layout ensures smooth animation
-                className="h-full w-max p-4"
-              >
-                {children}
-              </motion.div>
-            </motion.div>
-          </div>
-        </motion.div>
-      ) : null}
-    </div>
+          </motion.div>
+        ) : null}
+      </div>
+    </Link>
   )
 }
 

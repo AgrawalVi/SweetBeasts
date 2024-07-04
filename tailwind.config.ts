@@ -25,26 +25,29 @@ const config = {
       },
     },
     extend: {
+      screens: {
+        '3xl': '1920px',
+      },
       colors: {
-        background: 'var(--background)',
-        foreground: 'var(--foreground)',
-        card: 'var(--card)',
-        'card-foreground': 'var(--card-foreground)',
-        popover: 'var(--popover)',
-        'popover-foreground': 'var(--popover-foreground)',
-        primary: 'var(--primary)',
-        'primary-foreground': 'var(--primary-foreground)',
-        secondary: 'var(--secondary)',
-        'secondary-foreground': 'var(--secondary-foreground)',
-        muted: 'var(--muted)',
-        'muted-foreground': 'var(--muted-foreground)',
-        accent: 'var(--accent)',
-        'accent-foreground': 'var(--accent-foreground)',
-        destructive: 'var(--destructive)',
-        'destructive-foreground': 'var(--destructive-foreground)',
-        border: 'var(--border)',
-        input: 'var(--input)',
-        ring: 'var(--ring)',
+        background: `hsl(var(--background))`,
+        foreground: `hsl(var(--foreground))`,
+        card: `hsl(var(--card))`,
+        'card-foreground': `hsl(var(--card-foreground))`,
+        popover: `hsl(var(--popover))`,
+        'popover-foreground': `hsl(var(--popover-foreground))`,
+        primary: `hsl(var(--primary))`,
+        'primary-foreground': `hsl(var(--primary-foreground))`,
+        secondary: `hsl(var(--secondary))`,
+        'secondary-foreground': `hsl(var(--secondary-foreground))`,
+        muted: `hsl(var(--muted))`,
+        'muted-foreground': `hsl(var(--muted-foreground))`,
+        accent: `hsl(var(--accent))`,
+        'accent-foreground': `hsl(var(--accent-foreground))`,
+        destructive: `hsl(var(--destructive))`,
+        'destructive-foreground': `hsl(var(--destructive-foreground))`,
+        border: `hsl(var(--border))`,
+        input: `hsl(var(--input))`,
+        ring: `hsl(var(--ring))`,
         nav: 'rgb(233, 188, 188)',
       },
       borderRadius: {
@@ -55,6 +58,7 @@ const config = {
       fontFamily: {
         josefin: ['var(--font-josefin)'],
         coiny: ['var(--font-coiny)'],
+        nunito: ['var(--font-nunito)'],
       },
       keyframes: {
         'accordion-down': {
@@ -71,12 +75,12 @@ const config = {
           },
         },
         marquee: {
-          from: { transform: "translateX(0)" },
-          to: { transform: "translateX(calc(-100% - var(--gap)))" },
+          from: { transform: 'translateX(0)' },
+          to: { transform: 'translateX(calc(-100% - var(--gap)))' },
         },
-        "marquee-vertical": {
-          from: { transform: "translateY(0)" },
-          to: { transform: "translateY(calc(-100% - var(--gap)))" },
+        'marquee-vertical': {
+          from: { transform: 'translateY(0)' },
+          to: { transform: 'translateY(calc(-100% - var(--gap)))' },
         },
       },
       animation: {
@@ -84,8 +88,8 @@ const config = {
         'accordion-up': 'accordion-up 0.2s ease-out',
         scroll:
           'scroll var(--animation-duration, 40s) var(--animation-direction, forwards) linear infinite',
-        marquee: "marquee var(--duration) linear infinite",
-          "marquee-vertical": "marquee-vertical var(--duration) linear infinite",
+        marquee: 'marquee var(--duration) linear infinite',
+        'marquee-vertical': 'marquee-vertical var(--duration) linear infinite',
       },
       boxShadow: {
         input: `0px 2px 3px -1px rgba(0,0,0,0.1), 0px 1px 0px 0px rgba(25,28,33,0.02), 0px 0px 0px 1px rgba(25,28,33,0.08)`,

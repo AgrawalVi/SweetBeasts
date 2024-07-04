@@ -84,3 +84,12 @@ export const NewPasswordSchema = z
 export const SettingsSchema = z.object({
   name: z.optional(z.string()),
 })
+
+export const FindOrderSchema = z.object({
+  email: z.string().email({
+    message: 'Please enter an email address',
+  }),
+  orderNumber: z.string({
+    message: 'Please enter an order number',
+  }),
+})
