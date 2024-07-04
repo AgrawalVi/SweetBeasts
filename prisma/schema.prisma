@@ -28,6 +28,11 @@ enum OrderStatus {
   RETURNED
 }
 
+enum ShippingMethod {
+  STANDARD
+  EXPEDITED
+}
+
 model User {
   id                    String                 @id @default(cuid())
   name                  String?
@@ -40,7 +45,7 @@ model User {
   isTwoFactorEnabled    Boolean                @default(false)
   twoFactorConfirmation TwoFactorConfirmation?
 
-  stripeCustomerId String? @unique
+  stripeCustomerId String @unique
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -159,8 +164,12 @@ model Order {
   shippingAddressId Int
   ShippingAddress   ShippingAddress @relation(fields: [shippingAddressId], references: [id], onDelete: Restrict)
 
-  pricePaidInCents Int
-  orderStatus      OrderStatus @default(PROCESSING)
+  totalPaidInCents    Int
+  taxesPaidInCents    Int?
+  shippingPaidInCents Int?
+
+  shippingMethod ShippingMethod @default(STANDARD)
+  orderStatus    OrderStatus    @default(PROCESSING)
 
   lineItems      lineItem[]
   User           User?            @relation(fields: [userId], references: [id], onDelete: SetNull)
@@ -168,7 +177,8 @@ model Order {
 }
 
 model lineItem {
-  id                  Int @id @default(autoincrement())
+  id Int @id @default(autoincrement())
+
   pricePerUnitInCents Int
 
   createdAt DateTime @default(now())
