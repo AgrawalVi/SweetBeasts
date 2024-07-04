@@ -14,7 +14,7 @@ import {
 } from '@/components/ui/dialog'
 
 export default function CartButton() {
-  const { Cart, isCartOpen, setIsCartOpen } = useShoppingCart()
+  const { cart, isCartOpen, setIsCartOpen } = useShoppingCart()
 
   return (
     <Dialog open={isCartOpen} onOpenChange={setIsCartOpen}>
