@@ -45,6 +45,8 @@ model User {
   isTwoFactorEnabled    Boolean                @default(false)
   twoFactorConfirmation TwoFactorConfirmation?
 
+  newsletterSubscribed Boolean @default(false)
+
   stripeCustomerId String @unique
 
   createdAt DateTime @default(now())
@@ -163,6 +165,8 @@ model Order {
 
   shippingAddressId Int
   ShippingAddress   ShippingAddress @relation(fields: [shippingAddressId], references: [id], onDelete: Restrict)
+
+  couponId String?
 
   totalPaidInCents    Int
   taxesPaidInCents    Int?

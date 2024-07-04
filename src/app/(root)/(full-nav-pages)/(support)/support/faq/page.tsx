@@ -9,7 +9,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 
 export default function FAQ() {
   return (
-    <div className="mx-auto w-screen px-10 py-8">
+    <div className="mx-auto w-full px-10 py-8">
       <h1 className="mb-4 text-center text-6xl font-bold">
         Frequently Asked Questions
       </h1>
@@ -19,12 +19,7 @@ export default function FAQ() {
 
       <div className="grid gap-8">
         <Card className="mx-auto w-full lg:w-4/5 xl:w-3/4 2xl:w-2/3">
-          <CardHeader className="pb-0">
-            <CardTitle className="md:text-3xl">
-              Most Frequently Asked Questions
-            </CardTitle>
-          </CardHeader>
-          <CardContent>
+          <CardContent className="pt-4">
             <Accordion type="single" collapsible>
               <AccordionItem value="item-1">
                 <AccordionTrigger className="text-start text-base md:text-lg">

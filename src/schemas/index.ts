@@ -40,6 +40,9 @@ export const RegisterSchema = z
     name: z.string().min(1, {
       message: 'Name is required',
     }),
+    newsletter: z.boolean({
+      message: 'Must be either true or false',
+    })
   })
   .refine(
     (data) => {

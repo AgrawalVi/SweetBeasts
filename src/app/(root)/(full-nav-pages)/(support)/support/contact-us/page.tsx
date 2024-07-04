@@ -5,7 +5,11 @@ import { Label } from '@/components/ui/label'
 import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
 import { Button } from '@/components/ui/button'
-import { IconBrandDiscord, IconBrandGmail, IconBrandInstagram } from '@tabler/icons-react'
+import {
+  IconBrandDiscord,
+  IconBrandGmail,
+  IconBrandInstagram,
+} from '@tabler/icons-react'
 
 export default function WobbleCardDemo() {
   const [formData, setFormData] = useState({
@@ -134,7 +138,11 @@ export default function WobbleCardDemo() {
         <WobbleCard containerClassName="col-span-1 lg:col-span-1 min-h-[350px] lg:min-h-[500px] bg-pink-500">
           <div className="flex h-full flex-col items-center justify-start pt-4">
             <h2 className="text-center text-base font-semibold text-white md:text-xl lg:text-3xl">
-              <IconBrandInstagram size={100} strokeWidth={2} color={'#f5f5f5'} />
+              <IconBrandInstagram
+                size={100}
+                strokeWidth={2}
+                color={'#f5f5f5'}
+              />
             </h2>
             <p className="mt-16 max-w-[26rem] text-center text-base text-gray-200">
               Follow us on Instagram for updates and behind-the-scenes content.

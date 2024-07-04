@@ -8,8 +8,7 @@ import { stripe } from '@/lib/stripe'
 import { RegisterSchema } from '@/schemas'
 import { getUserByEmail } from '@/data/auth/user'
 import { generateVerificationToken } from '@/lib/tokens'
-import { sendVerificationEmail } from '@/lib/resend'
-import { getOrdersWithEmail } from '@/data/shop/orders'
+import { addToGeneralEmailList, sendVerificationEmail } from '@/lib/resend'
 
 export const register = async (values: z.infer<typeof RegisterSchema>) => {
   const validatedFields = RegisterSchema.safeParse(values)
@@ -18,7 +17,7 @@ export const register = async (values: z.infer<typeof RegisterSchema>) => {
     return { error: 'Invalid Fields' }
   }
 
-  const { email, password, name } = validatedFields.data
+  const { email, password, name, newsletter } = validatedFields.data
   const hashedPassword = await bcrypt.hash(password, 10)
 
   // make sure email is not taken
@@ -39,8 +38,15 @@ export const register = async (values: z.infer<typeof RegisterSchema>) => {
       email,
       password: hashedPassword,
       stripeCustomerId: customer.id,
+      newsletterSubscribed: newsletter,
     },
   })
+
+  try {
+    addToGeneralEmailList(email)
+  } catch (e) {
+    console.error('Error adding email to general email list', e, 'EMAIL', email)
+  }
 
   await db.order.updateMany({
     where: {
