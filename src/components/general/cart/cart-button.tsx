@@ -1,63 +1,38 @@
 'use client'
 
 import React from 'react'
-import {
-  Sheet,
-  SheetContent,
-  SheetTrigger,
-  SheetClose,
-  SheetTitle,
-  SheetHeader,
-} from '@/components/ui/sheet'
 import { Button } from '@/components/ui/button'
 import { ShoppingCart } from 'lucide-react'
 import { useShoppingCart } from '@/hooks/use-shopping-cart'
 import CartContents from './cart-contents'
-import { createCheckoutSession } from '@/actions/stripe/checkout'
-import { useRouter } from 'next/navigation'
-import { useCurrentUser } from '@/hooks/use-current-user'
-import { useToast } from '@/components/ui/use-toast'
-import Cookies from 'js-cookie'
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTrigger,
+  DialogTitle,
+} from '@/components/ui/dialog'
 
-export default function Cart() {
-  const { cart, isCartOpen, setIsCartOpen } = useShoppingCart()
-  const router = useRouter()
-  const guestId = Cookies.get('guestId')
-  const user = useCurrentUser()
-  const { toast } = useToast()
-
-  const handleCheckout = async () => {
-    // await
-    const response = await createCheckoutSession(cart, guestId, user?.id)
-    if (response?.error) {
-      toast({
-        title: 'An error has occurred',
-        description: response.error,
-        variant: 'destructive',
-      })
-    }
-  }
+export default function CartButton() {
+  const { Cart, isCartOpen, setIsCartOpen } = useShoppingCart()
 
   return (
-    <Sheet open={isCartOpen} onOpenChange={setIsCartOpen}>
-      <SheetTrigger asChild>
-        <Button onClick={() => setIsCartOpen(true)}>
-          <ShoppingCart size={24} />
+    <Dialog open={isCartOpen} onOpenChange={setIsCartOpen}>
+      <DialogTrigger asChild>
+        <Button
+          onClick={() => setIsCartOpen(true)}
+          size="icon"
+          variant="outline"
+        >
+          <ShoppingCart className="h-[1.2rem] w-[1.2rem]" />
         </Button>
-      </SheetTrigger>
-      <SheetContent>
-        <SheetHeader>
-          <SheetTitle>Cart</SheetTitle>
-          <SheetClose />
-        </SheetHeader>
-        <div className="flex flex-col items-center justify-center">
-          <CartContents />
-          <Button onClick={() => setIsCartOpen(false)}>
-            Continue Shopping
-          </Button>
-          <Button onClick={handleCheckout}>Checkout</Button>
-        </div>
-      </SheetContent>
-    </Sheet>
+      </DialogTrigger>
+      <DialogContent>
+        <DialogHeader>
+          <DialogTitle>Your Shopping Cart</DialogTitle>
+        </DialogHeader>
+        <CartContents />
+      </DialogContent>
+    </Dialog>
   )
 }

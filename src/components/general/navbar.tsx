@@ -1,5 +1,6 @@
 'use client'
-import React, { useEffect, useState } from 'react'
+
+import React, { useState } from 'react'
 import {
   HoveredLink,
   Menu,
@@ -9,34 +10,14 @@ import {
 import { ModeToggle } from '@/components/ui/mode-toggle'
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet'
 import { Button } from '@/components/ui/button'
-
 import { MenuIcon, UserIcon } from 'lucide-react'
-
 import { useCurrentUser } from '@/hooks/use-current-user'
-
-import Image from 'next/image'
-import { useSession } from 'next-auth/react'
 import { useShoppingCart } from '@/hooks/use-shopping-cart'
 import Link from 'next/link'
-
-const productItems = [
-  { name: 'Pogo' },
-  { image: '/' },
-  { href: '' },
-  { name: '' },
-  { image: '' },
-  { href: '' },
-  { name: '' },
-  { image: '' },
-  { href: '' },
-  { name: '' },
-  { image: '' },
-  { href: '' },
-]
+import CartButton from './cart/cart-button'
 
 export function Navbar({ className }: { className?: string }) {
   const user = useCurrentUser()
-
   const [active, setActive] = useState<string | null>(null)
   const [lastActive, setLastActive] = useState<string | null>(null)
   const { handleLogout } = useShoppingCart()
@@ -130,11 +111,11 @@ export function Navbar({ className }: { className?: string }) {
                 <UserIcon className="h-[1.2rem] w-[1.2rem]" />
               </Button>
             </Link>
+            <CartButton />
             <ModeToggle className="" />
           </div>
         </div>
       </div>
-
       <div className="block h-20 w-screen border bg-white dark:bg-black md:hidden">
         <div className="flex justify-end">
           <Sheet>

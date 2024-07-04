@@ -1,21 +1,20 @@
-import { useShoppingCart } from '@/hooks/use-shopping-cart'
-import { Product } from '@prisma/client'
-import { CartItem as CartItemType } from '@/hooks/use-shopping-cart'
-
+import Image from 'next/image'
+import { useQuery } from '@tanstack/react-query'
 import { getProductById } from '@/actions/products/products'
-import { useEffect, useState, useTransition } from 'react'
+
+import { CartItem as CartItemType } from '@/hooks/use-shopping-cart'
 
 import { useToast } from '@/components/ui/use-toast'
 import CartItemSkeleton from '@/components/skeletons/cart-item-skeleton'
-import { Button } from '@/components/ui/button'
+import CartQuantityButton from './cart-quantity-button'
+import RemoveProductButton from './remove-product-button'
 
-import { useQuery, useMutation } from '@tanstack/react-query'
+import pogo from '/public/product-images/pogo/main.jpg'
+import blimpy from '/public/product-images/lemon-lion/main.jpg'
+import { formatPrice } from '@/lib/utils'
 
 const CartItem = ({ item }: { item: CartItemType }) => {
   const { toast } = useToast()
-
-  const { addToCart, removeItemFromCart, decrementItemFromCart } =
-    useShoppingCart()
 
   const { data: product, isPending: productLoading } = useQuery({
     queryKey: ['product', item.productId],
@@ -31,68 +30,7 @@ const CartItem = ({ item }: { item: CartItemType }) => {
       }
       return response.success
     },
-    enabled: !!item.productId,
   })
-
-  const { mutate: removeProduct, isPending: removeProductPending } =
-    useMutation({
-      mutationKey: ['remove-product-from-cart', item.productId],
-      mutationFn: async () => {
-        const response = await removeItemFromCart(item.productId)
-        if (response.error) {
-          toast({
-            title:
-              'An error has occurred while removing a product from the cart',
-            description: response.error,
-            variant: 'destructive',
-          })
-          throw new Error(response.error)
-        } else {
-          return response.success
-        }
-      },
-    })
-
-  const { mutate: decrementProduct, isPending: decrementProductPending } =
-    useMutation({
-      mutationKey: ['decrement-product-from-cart', item.productId],
-      mutationFn: async () => {
-        const response = await decrementItemFromCart(item.productId)
-        if (response.error) {
-          toast({
-            title:
-              "An error has occurred while decrementing a product's quantity from the cart",
-            description: response.error,
-            variant: 'destructive',
-          })
-          throw new Error(response.error)
-        } else {
-          return response.success
-        }
-      },
-    })
-
-  const { mutate: incrementProduct, isPending: incrementProductPending } =
-    useMutation({
-      mutationKey: ['increment-product', item.productId],
-      mutationFn: async () => {
-        const response = await addToCart({
-          productId: item.productId,
-          quantity: 1,
-        })
-        if (response.error) {
-          toast({
-            title:
-              "An error has occurred while incrementing a product's quantity in the cart",
-            description: response.error,
-            variant: 'destructive',
-          })
-          throw new Error(response.error)
-        } else {
-          return response.success
-        }
-      },
-    })
 
   if (productLoading) {
     return <CartItemSkeleton />
@@ -100,31 +38,26 @@ const CartItem = ({ item }: { item: CartItemType }) => {
 
   return (
     <>
-      {product ? (
-        <div>
-          <div>{product?.name}</div>
-          <div>{product?.priceInCents}</div>
-          <div>{item.quantity}</div>
-          <Button
-            onClick={() => removeProduct()}
-            disabled={removeProductPending}
-          >
-            Remove
-          </Button>
-          <Button
-            onClick={() => decrementProduct()}
-            disabled={decrementProductPending}
-          >
-            Decrement
-          </Button>
-          <Button
-            onClick={() => incrementProduct()}
-            disabled={incrementProductPending}
-          >
-            Increment
-          </Button>
+      {product && (
+        <div className="flex w-full items-center space-x-6">
+          <Image
+            src={product.name.includes('pogo') ? pogo : blimpy}
+            alt={`${product.name} image`}
+            width={100}
+            height={100}
+            className="h-24 w-24 rounded-md"
+          />
+          <div className="flex flex-col">
+            <div>{product.name}</div>
+            <div className="text-xs text-muted-foreground">
+              {product.description}
+            </div>
+          </div>
+          <div>{formatPrice(product.priceInCents)}</div>
+          <CartQuantityButton item={item} />
+          <RemoveProductButton item={item} />
         </div>
-      ) : null}
+      )}
     </>
   )
 }

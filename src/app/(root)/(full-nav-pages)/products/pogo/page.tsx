@@ -26,10 +26,8 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from '@/components/ui/accordion'
-import Cart from '@/components/general/cart/cart-button'
 import { useCurrentUser } from '@/hooks/use-current-user'
 import { useShoppingCart } from '@/hooks/use-shopping-cart'
-import { Quando } from 'next/font/google'
 
 export default function Pogo() {
   const { addToCart, setIsCartOpen } = useShoppingCart()
@@ -56,7 +54,6 @@ export default function Pogo() {
 
   return (
     <div className="container mx-auto flex flex-col items-center justify-center space-y-24">
-      <Cart /> {/* Include the Cart component */}
       <ScrollFadeIn>
         <Card className="h-auto w-full object-top md:w-4/5 lg:w-3/4 xl:w-10/12">
           <CardHeader className="mb-8">
