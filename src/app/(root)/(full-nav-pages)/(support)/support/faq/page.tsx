@@ -18,14 +18,16 @@ export default function FAQ() {
       </p>
 
       <div className="grid gap-8">
-      <Card className="mx-auto w-full lg:w-4/5 xl:w-3/4 2xl:w-2/3">
-      <CardHeader className="pb-0">
-            <CardTitle className="md:text-3xl">Most Frequently Asked Questions</CardTitle>
+        <Card className="mx-auto w-full lg:w-4/5 xl:w-3/4 2xl:w-2/3">
+          <CardHeader className="pb-0">
+            <CardTitle className="md:text-3xl">
+              Most Frequently Asked Questions
+            </CardTitle>
           </CardHeader>
           <CardContent>
             <Accordion type="single" collapsible>
               <AccordionItem value="item-1">
-              <AccordionTrigger className="text-start text-base md:text-lg">
+                <AccordionTrigger className="text-start text-base md:text-lg">
                   What materials are SweetBeasts plushies made from?
                 </AccordionTrigger>
                 <AccordionContent className="text-sm md:text-base">
@@ -56,7 +58,7 @@ export default function FAQ() {
           </CardContent>
         </Card>
         <Card className="mx-auto w-full lg:w-4/5 xl:w-3/4 2xl:w-2/3">
-            <CardHeader className="pb-0">
+          <CardHeader className="pb-0">
             <CardTitle className="md:text-3xl">Orders</CardTitle>
           </CardHeader>
           <CardContent>
@@ -82,7 +84,7 @@ export default function FAQ() {
           <CardContent>
             <Accordion type="single" collapsible>
               <AccordionItem value="item-6">
-              <AccordionTrigger className="text-start text-base md:text-lg">
+                <AccordionTrigger className="text-start text-base md:text-lg">
                   Do you have a physical store where I can purchase SweetBeasts
                   plushies?
                 </AccordionTrigger>

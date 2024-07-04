@@ -79,7 +79,7 @@ export default function CartQuantityButton({ item }: { item: CartItem }) {
         <Button
           variant="ghost"
           size="sm"
-          className="hover:text-foreground/40 hover:bg-background"
+          className="hover:bg-background hover:text-foreground/40"
           disabled={decrementProductPending}
           onClick={() => decrementProduct()}
         >
