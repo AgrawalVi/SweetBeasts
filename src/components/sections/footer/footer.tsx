@@ -63,7 +63,7 @@ export default function Footer() {
           <div className="relative col-span-4 flex w-full flex-col items-center justify-center xl:col-span-3">
             <JoinEmailListForm />
           </div>
-          <div className="col-span-2 flex flex-col xl:col-span-3 xl:flex-row xl:space-x-24">
+          <div className="col-span-2 flex flex-col justify-center xl:col-span-3 xl:flex-row xl:space-x-24">
             <div className="flex flex-col">
               <div className="py-3 font-nunito text-base font-bold uppercase">
                 Shop
