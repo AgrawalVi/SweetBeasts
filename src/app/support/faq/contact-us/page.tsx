@@ -24,7 +24,6 @@ export default function WobbleCardDemo() {
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // Handle form submission logic here, such as sending the form data to a backend server
     console.log(formData);
   };
 
