@@ -10,7 +10,7 @@ import {
 } from '@/hooks/use-shopping-cart'
 
 import { useToast } from '@/components/ui/use-toast'
-import CartItemSkeleton from '@/components/skeletons/cart-item-skeleton'
+import CartItemSkeleton from '@/components/skeletons/cart/cart-item-skeleton'
 import CartQuantityButton from './cart-quantity-button'
 import RemoveProductButton from './remove-product-button'
 
@@ -54,9 +54,9 @@ const CartItem = ({ item }: { item: CartItemType }) => {
                 alt={`${product.name} image`}
                 width={100}
                 height={100}
-                className="h-24 w-24 rounded-md sm:col-span-2"
+                className="col-span-2 h-24 w-24 rounded-md"
               />
-              <div className="flex flex-col sm:col-span-3">
+              <div className="col-span-3 flex flex-col">
                 <Link
                   href={product.productHref}
                   onClick={() => setIsCartOpen(false)}

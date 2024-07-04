@@ -1,16 +1,19 @@
-import CartItem from './cart-item'
-import { useShoppingCart } from '@/hooks/use-shopping-cart'
-import { useRouter } from 'next/navigation'
-import Cookies from 'js-cookie'
-import { useCurrentUser } from '@/hooks/use-current-user'
-import { useToast } from '@/components/ui/use-toast'
-import { createCheckoutSession } from '@/actions/stripe/checkout'
-import { Button } from '@/components/ui/button'
-import { formatPrice } from '@/lib/utils'
-import { useQuery } from '@tanstack/react-query'
-import { getTotalCartPrice } from '@/actions/customer/cart'
-import { Skeleton } from '@/components/ui/skeleton'
 import { useTransition } from 'react'
+import { useQuery } from '@tanstack/react-query'
+import Cookies from 'js-cookie'
+
+import { createCheckoutSession } from '@/actions/stripe/checkout'
+import { getTotalCartPrice } from '@/actions/customer/cart'
+
+import { useCurrentUser } from '@/hooks/use-current-user'
+import { useShoppingCart } from '@/hooks/use-shopping-cart'
+
+import { useToast } from '@/components/ui/use-toast'
+import { Button } from '@/components/ui/button'
+import { Skeleton } from '@/components/ui/skeleton'
+import CartItem from './cart-item'
+
+import { formatPrice } from '@/lib/utils'
 
 const CartContents = () => {
   const { cart } = useShoppingCart()
