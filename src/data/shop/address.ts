@@ -16,7 +16,6 @@ export const getAddressByAddressAndEmail = async (
   } catch {
     return null
   }
-
   // then see if there's an addresses that matches the one that is passed in
   const matchingAddress = addresses.find((address) => {
     return (
@@ -33,6 +32,20 @@ export const getAddressByAddressAndEmail = async (
   if (matchingAddress) {
     return matchingAddress
   } else {
+    return null
+  }
+}
+
+export const getAddressById = async (id: number) => {
+  try {
+    const address = await db.shippingAddress.findUnique({
+      where: {
+        id,
+      },
+    })
+    return address
+  } catch (e) {
+    console.error('Error retrieving address', e)
     return null
   }
 }
