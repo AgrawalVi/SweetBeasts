@@ -3,6 +3,8 @@ import { Coiny, Nunito, Josefin_Sans } from "next/font/google"
 import "./globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
 import { Toaster } from "@/components/ui/toaster"
+import { Analytics } from "@vercel/analytics/react"
+import { SpeedInsights } from "@vercel/speed-insights/next"
 
 const nunito = Nunito({
   subsets: ["latin"],
@@ -42,7 +44,11 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <main>{children}</main>
+          <main>
+            {children}
+            <Analytics />
+            <SpeedInsights />
+          </main>
           <link rel="icon" href="/favicon.ico" sizes="any" />
           <Toaster />
         </ThemeProvider>
