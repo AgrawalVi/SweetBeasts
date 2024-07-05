@@ -62,7 +62,7 @@ export default function ContactForm() {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col justify-between space-y-6 w-full max-w-lg bg-white dark:bg-black shadow-lg rounded-lg p-8 min-h-[700px] lg:min-h-[800px]">
+    <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col justify-between space-y-6 w-full max-w-lg bg-white dark:bg-black border border-border shadow-lg rounded-lg p-8 min-h-[700px] lg:min-h-[800px]">
       <div className="space-y-6">
         <div className="mb-4">
           <Label htmlFor="name" className="block text-lg font-medium text-gray-700 dark:text-white">Name</Label>
