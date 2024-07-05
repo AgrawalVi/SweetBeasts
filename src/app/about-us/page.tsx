@@ -74,7 +74,7 @@ export default function CanvasRevealEffectDemo() {
             </Button>
           </Link>
         </div>
-        <div className="text-sm"> © 2023 SweetBeasts. All rights reserved.</div>
+        <div className="text-sm"> © 2024 SweetBeasts. All rights reserved.</div>
       </div>
     </main>
   )
