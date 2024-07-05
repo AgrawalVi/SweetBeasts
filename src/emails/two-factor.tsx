@@ -37,12 +37,16 @@ export default function TwoFactorConfirmationEmail({ firstName, confirmationLink
               </Button>
             </Section>
             <Hr className="my-4 border-pink-300" />
-            <Text className="text-black text-sm">
+            <Text className="text-black text-center text-sm">
               If you did not request this action, please contact support immediately.
             </Text>
-            <Text className="text-xs text-gray-400 my-2">
+            <Text className="text-xs text-center text-gray-400 my-2">
               © {new Date().getFullYear()} SweetBeasts. All rights reserved.
             </Text>
+            <Section className="text-center text-xs mt-6">
+              <Link href="https://example.com/privacy-policy" className="text-gray-400 underline mx-4">Privacy Policy</Link>
+              <Link href="https://example.com/terms-of-service" className="text-gray-400 underline mx-4">Terms of Service</Link>
+            </Section>
           </Container>
         </Body>
       </Tailwind>

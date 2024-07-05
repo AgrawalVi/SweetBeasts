@@ -7,7 +7,7 @@ interface EmailConfirmationEmailProps {
 }
 
 export default function EmailConfirmation({
-  firstName = "SweetUser",
+  firstName,
   confirmationLink,
 }: EmailConfirmationEmailProps): JSX.Element {
   return (
@@ -34,18 +34,22 @@ export default function EmailConfirmation({
               </Text>
               <Button
                 href={confirmationLink}
-                className="bg-pink-500 rounded text-white py-2 px-4 mt-4 hover:bg-pink-700"
+                className="bg-pink-400 rounded text-white py-2 px-4 mt-4 hover:bg-pink-700"
               >
                 Confirm Email
               </Button>
             </Section>
             <Hr className="my-4 border-pink-300" />
-            <Text className="text-black text-sm">
+            <Text className="text-black text-center text-sm">
               If you did not create an account, no further action is required.
             </Text>
-            <Text className="text-xs text-gray-400 my-2">
+            <Text className="text-xs text-center text-gray-400 my-2">
               © {new Date().getFullYear()} SweetBeasts. All rights reserved.
             </Text>
+            <Section className="text-center text-xs mt-6">
+              <Link href="https://example.com/privacy-policy" className="text-gray-400 underline mx-4">Privacy Policy</Link>
+              <Link href="https://example.com/terms-of-service" className="text-gray-400 underline mx-4">Terms of Service</Link>
+            </Section>
           </Container>
         </Body>
       </Tailwind>
