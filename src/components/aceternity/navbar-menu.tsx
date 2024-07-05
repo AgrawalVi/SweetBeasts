@@ -51,7 +51,7 @@ export const MenuItem = ({
           transition={transitionIn}
         >
           {active === item && (
-            <div className="absolute left-1/2 top-[calc(100%_+_1.2rem)] -translate-x-1/2 transform pt-4">
+            <div className="absolute left-1/2 top-[calc(100%_+_1.2rem)] -translate-x-1/2 transform md:pt-4">
               <motion.div
                 transition={transitionIn}
                 layoutId="active" // layoutId ensures smooth animation
@@ -75,7 +75,7 @@ export const MenuItem = ({
           transition={transitionOut}
           className="pointer-events-none"
         >
-          <div className="absolute left-1/2 top-[calc(100%_+_1.2rem)] -translate-x-1/2 transform pt-4">
+          <div className="absolute left-1/2 top-[calc(100%_+_1.2rem)] -translate-x-1/2 transform md:pt-4">
             <motion.div
               transition={transitionOut}
               layoutId="active" // layoutId ensures smooth animation

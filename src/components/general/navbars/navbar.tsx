@@ -15,6 +15,7 @@ import Link from 'next/link'
 import CartButton from '../cart/cart-button'
 import { cn } from '@/lib/utils'
 import { FullNavLinks } from './full-nav-links'
+import UserButton from './user-button'
 
 export function Navbar({ className }: { className?: string }) {
   const [expanded, setExpanded] = useState(false)
@@ -26,11 +27,7 @@ export function Navbar({ className }: { className?: string }) {
           <div className="inline-flex justify-start">logo</div>
           <FullNavLinks className="relative col-span-2 flex items-center justify-center" />
           <div className="inline-flex justify-end space-x-3">
-            <Link href="/my-account">
-              <Button size="icon" variant="outline">
-                <UserIcon className="h-[1.2rem] w-[1.2rem]" />
-              </Button>
-            </Link>
+            <UserButton />
             <CartButton />
             <ModeToggle className="" />
           </div>
@@ -38,16 +35,16 @@ export function Navbar({ className }: { className?: string }) {
       </div>
       <div
         className={cn(
-          'block w-screen border-b bg-background transition-all duration-300 ease-in-out md:hidden',
+          'block w-screen space-y-2 border-b bg-background transition-all duration-300 ease-in-out md:hidden',
           expanded
-            ? 'grid h-[110px] grid-rows-3' // not sure why this is needed, but it is for some reason
-            : 'align-start grid h-20 grid-rows-3',
+            ? 'grid h-[114px] grid-rows-2' // not sure why this is needed, but it is for some reason
+            : 'grid h-16 grid-rows-2',
         )}
       >
         <div
           className={cn(
-            'grid h-20 w-full grid-cols-3 items-center px-5',
-            expanded ? 'row-span-2' : 'row-span-2', // not sure why this is needed, but it is for some reason
+            'grid h-16 w-full grid-cols-3 items-center px-5',
+            expanded ? 'row-span-1' : 'row-span-1', // not sure why this is needed, but it is for some reason
           )}
         >
           <div className="inline-flex w-full justify-start">
@@ -60,17 +57,25 @@ export function Navbar({ className }: { className?: string }) {
             </Button>
           </div>
           <div className="inline-flex w-full justify-center">logo</div>
-          <div className="flex w-full justify-end">
+          <div className="flex w-full justify-end space-x-2">
             <CartButton />
           </div>
         </div>
         <div
           className={cn(
-            'flex h-8 items-end justify-center pb-2 transition-all',
+            'grid w-full grid-cols-3 pb-2 transition-all',
             expanded ? 'opacity-100' : 'pointer-events-none opacity-0',
           )}
         >
-          <FullNavLinks />
+          <div className="flex h-full w-full justify-start px-5 align-middle">
+            <ModeToggle />
+          </div>
+          <div className="flex h-full w-full justify-center align-middle">
+            <FullNavLinks className="flex align-middle" />
+          </div>
+          <div className="flex h-full w-full justify-end px-5 align-middle">
+            <UserButton />
+          </div>
         </div>
       </div>
     </main>
