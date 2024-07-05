@@ -4,6 +4,7 @@ import { WobbleCard } from "@/components/aceternity/wobble-card";
 import { IconBrandDiscord, IconBrandGmail, IconBrandInstagram } from '@tabler/icons-react';
 import ContactForm from "@/components/general/contact-us/form";
 import { Mail } from 'lucide-react';
+import Link from "next/link";
 
 export default function WobbleCardDemo() {
   return (
@@ -38,10 +39,10 @@ export default function WobbleCardDemo() {
               <p className="mt-2 max-w-[20rem] text-center text-base text-gray-200">
                 Contact us via email at account@sweetbeasts.shop for inquiries.
               </p>
-              <a href="mailto:account@sweetbeasts.shop" target="_blank" rel="noopener noreferrer" className="mt-4 inline-flex items-center px-4 py-2 bg-red-600 hover:bg-red-700 text-white text-sm font-medium rounded-lg shadow-md transition duration-300 ease-in-out">
+              <Link href="mailto:account@sweetbeasts.shop" target="_blank" rel="noopener noreferrer" className="mt-4 inline-flex items-center px-4 py-2 bg-red-600 hover:bg-red-700 text-white text-sm font-medium rounded-lg shadow-md transition duration-300 ease-in-out">
                 <IconBrandGmail size={20} strokeWidth={2} color={'#f5f5f5'} className="mr-2"/>
                 Send Email
-              </a>
+              </Link>
             </div>
           </WobbleCard>
 
@@ -53,10 +54,10 @@ export default function WobbleCardDemo() {
               <p className="mt-2 max-w-[20rem] text-center text-base text-gray-200">
                 Join our Discord community to chat with other SweetBeasts fans.
               </p>
-              <a href="https://discord.gg/Rf4AecyDnB" target="_blank" rel="noopener noreferrer" className="mt-4 inline-flex items-center px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-medium rounded-lg shadow-md transition duration-300 ease-in-out">
+              <Link href="https://discord.gg/Rf4AecyDnB" target="_blank" rel="noopener noreferrer" className="mt-4 inline-flex items-center px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-medium rounded-lg shadow-md transition duration-300 ease-in-out">
                 <IconBrandDiscord size={20} strokeWidth={2} color={'#f5f5f5'} className="mr-2"/>
                 Join Discord
-              </a>
+              </Link>
             </div>
           </WobbleCard>
 
@@ -68,10 +69,10 @@ export default function WobbleCardDemo() {
               <p className="mt-2 max-w-[20rem] text-center text-base text-gray-200">
                 Follow us on Instagram for updates and behind-the-scenes content.
               </p>
-              <a href="https://www.instagram.com/sweetbeastsshop/?igsh=MWs4NXFrNzFrZndweA%3D%3D&utm_source=qr" target="_blank" rel="noopener noreferrer" className="mt-4 inline-flex items-center px-4 py-2 bg-pink-600 hover:bg-pink-700 text-white text-sm font-medium rounded-lg shadow-md transition duration-300 ease-in-out">
+              <Link href="https://www.instagram.com/sweetbeastsshop/" target="_blank" rel="noopener noreferrer" className="mt-4 inline-flex items-center px-4 py-2 bg-pink-600 hover:bg-pink-700 text-white text-sm font-medium rounded-lg shadow-md transition duration-300 ease-in-out">
                 <IconBrandInstagram size={20} strokeWidth={2} color={'#f5f5f5'} className="mr-2"/>
                 Follow on Instagram
-              </a>
+              </Link>
             </div>
           </WobbleCard>
         </div>

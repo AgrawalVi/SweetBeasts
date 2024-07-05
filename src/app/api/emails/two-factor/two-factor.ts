@@ -10,6 +10,6 @@ export async function POST(request: Request) {
         from: fromEmail,
         to: email,
         subject: 'Two Factor Confirmation Required',
-        react: TwoFactorConfirmation({ firstName: firstName, confirmationLink: 'https://en.wikipedia.org/wiki/Dinosaur' }),
+        react: TwoFactorConfirmation({ firstName: firstName, twoFactorCode: '000000' }),
       });
 }
