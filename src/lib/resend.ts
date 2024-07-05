@@ -9,7 +9,7 @@ export const addToGeneralEmailList = async (email: string) => {
     try {
       await resend.contacts.create({
         email,
-        unsubscribed: false,
+        unsubscribed: false,  
         audienceId: generalAudienceId,
       })
     } catch {

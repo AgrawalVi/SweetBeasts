@@ -14,19 +14,19 @@ export function ResetPasswordEmail({ firstName, resetLink }: ResetPasswordEmailP
       </Head>
       <Preview>Password Reset - SweetBeasts Account</Preview>
       <Tailwind>
-        <Body className="bg-pink-100">
-          <Container className="border border-solid border-pink-300 rounded-lg p-6 mx-auto max-w-lg bg-white">
+        <Body className="bg-white-100">
+          <Container className="bg-pink-100 rounded-lg p-6 mx-auto max-w-lg">
             <Section className="text-center">
               <Img
                 src="https://example.com/static/sweetbeasts-logo.png"
                 alt="SweetBeasts Logo"
                 width="120"
               />
-              <Heading className="text-xl font-bold my-4 text-black">Password Reset</Heading>
-              <Text className="text-black my-2">
+              <Heading className="text-3xl font-bold my-4 text-black">Password Reset</Heading>
+              <Text className="text-black text-xl my-2">
                 Hi {firstName},
               </Text>
-              <Text className="text-black">
+              <Text className="text-black text-lg">
                 You requested a password reset for your SweetBeasts account. Please click the button below to set a new password.
               </Text>
               <Button

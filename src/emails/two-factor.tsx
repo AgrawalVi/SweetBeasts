@@ -6,7 +6,6 @@ interface TwoFactorConfirmationEmailProps {
   confirmationLink: string;
 }
 
-
 export default function TwoFactorConfirmationEmail({ firstName, confirmationLink }: TwoFactorConfirmationEmailProps): JSX.Element {
   return (
     <Html>
@@ -15,19 +14,19 @@ export default function TwoFactorConfirmationEmail({ firstName, confirmationLink
       </Head>
       <Preview>Two-Factor Confirmation - SweetBeasts Account</Preview>
       <Tailwind>
-        <Body className="bg-pink-100">
-          <Container className="border border-solid border-pink-300 rounded-lg p-6 mx-auto max-w-lg bg-white">
+        <Body className="bg-white-100">
+          <Container className="bg-pink-100 rounded-lg p-6 mx-auto max-w-lg">
             <Section className="text-center">
               <Img
                 src="https://example.com/static/sweetbeasts-logo.png"
                 alt="SweetBeasts Logo"
                 width="120"
               />
-              <Heading className="text-xl font-bold my-4 text-black">Two-Factor Confirmation</Heading>
-              <Text className="text-black my-2">
+              <Heading className="text-3xl font-bold my-4 text-black">Two-Factor Confirmation</Heading>
+              <Text className="text-black text-xl my-2">
                 Hi {firstName},
               </Text>
-              <Text className="text-black">
+              <Text className="text-black text-lg">
                 Your account is secured with two-factor authentication. Please confirm your identity by clicking the button below.
               </Text>
               <Button
@@ -50,6 +49,3 @@ export default function TwoFactorConfirmationEmail({ firstName, confirmationLink
     </Html>
   );
 }
-
-
-
