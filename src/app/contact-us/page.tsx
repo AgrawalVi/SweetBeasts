@@ -1,103 +1,33 @@
 "use client";
-import React, { useState, ChangeEvent, FormEvent } from "react";
+import React from "react";
 import { WobbleCard } from "@/components/aceternity/wobble-card";
-import { Label } from "@/components/ui/label";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import { Button } from "@/components/ui/button";
 import { IconBrandDiscord, IconBrandGmail, IconBrandInstagram } from '@tabler/icons-react';
+import ContactForm from "@/components/general/contact-us/form";
 
 export default function WobbleCardDemo() {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    orderNumber: '',
-    message: ''
-  });
-
-  const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [name]: value
-    });
-  };
-
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    // Handle form submission logic here, such as sending the form data to a backend server
-    console.log(formData);
-  };
-
   return (
     <div className="max-w-7xl mx-auto px-4 py-8 min-h-screen flex flex-col">
       <h1 className="text-6xl font-bold text-center mb-12">Contact Us</h1>
 
-      <div className="flex flex-col lg:flex-row w-full h-full">
-        <div className="flex-1 flex flex-col justify-center items-center">
+      <div className="flex flex-col lg:flex-row w-full flex-grow space-y-8 lg:space-y-0 lg:space-x-8">
+        <div className="flex-1 flex flex-col justify-start items-center">
           <h2 className="text-4xl font-bold mb-4">Fill out the form below</h2>
-          <form onSubmit={handleSubmit} className="space-y-6 w-full max-w-lg bg-white shadow-lg rounded-lg p-8 min-h-[500px] lg:min-h-[600px]">
-            <div>
-              <Label htmlFor="name" className="block text-lg font-medium text-gray-700">Name</Label>
-              <Input
-                type="text"
-                id="name"
-                name="name"
-                value={formData.name}
-                onChange={handleChange}
-                className="mt-1 block w-full border border-gray-300 rounded-lg p-2"
-                required
-              />
-            </div>
-            <div>
-              <Label htmlFor="email" className="block text-lg font-medium text-gray-700">Email</Label>
-              <Input
-                type="email"
-                id="email"
-                name="email"
-                value={formData.email}
-                onChange={handleChange}
-                className="mt-1 block w-full border border-gray-300 rounded-lg p-2"
-                required
-              />
-            </div>
-            <div>
-              <Label htmlFor="orderNumber" className="block text-lg font-medium text-gray-700">Order Number</Label>
-              <Input
-                type="text"
-                id="orderNumber"
-                name="orderNumber"
-                value={formData.orderNumber}
-                onChange={handleChange}
-                className="mt-1 block w-full border border-gray-300 rounded-lg p-2"
-              />
-            </div>
-            <div>
-              <Label htmlFor="message" className="block text-lg font-medium text-gray-700">Message</Label>
-              <Textarea
-                id="message"
-                name="message"
-                value={formData.message}
-                onChange={handleChange}
-                className="mt-1 block w-full border border-gray-300 rounded-lg p-2 h-40 lg:h-60"
-                required
-              />
-            </div>
-            <div className="mt-4">
-              <Button type="submit" className="w-full bg-blue-500 text-white text-lg font-medium rounded-lg p-3 hover:bg-blue-600">
-                Send Message
-              </Button>
-            </div>
-          </form>
+          <ContactForm />
         </div>
 
-        <div className="flex flex-col items-center justify-center mx-8">
+        <div className="flex flex-col items-center justify-center mx-8 lg:hidden">
+          <div className="border-b-2 border-gray-300 w-full mb-4"></div>
+          <div className="text-gray-700 font-semibold">OR</div>
+          <div className="border-b-2 border-gray-300 w-full mt-4"></div>
+        </div>
+
+        <div className="flex flex-col items-center justify-center mx-8 hidden lg:flex">
           <div className="border-r-2 border-gray-300 h-full"></div>
-          <div className="mx-4 text-gray-700 font-semibold">OR</div>
+          <div className="mx-4 text-gray-700 dark:text-white font-semibold">OR</div>
           <div className="border-r-2 border-gray-300 h-full"></div>
         </div>
 
-        <div className="flex-1 flex flex-col space-y-2 overflow-hidden">
+        <div className="flex-1 flex flex-col space-y-4 lg:space-y-2">
           <WobbleCard containerClassName="flex-1 bg-red-500">
             <div className="flex flex-col items-center justify-center h-full">
               <h2 className="text-center text-base md:text-xl lg:text-3xl font-semibold text-white">
