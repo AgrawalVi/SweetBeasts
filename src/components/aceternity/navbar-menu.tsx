@@ -112,7 +112,7 @@ export const Menu = ({
         setLastActive(active)
         setActive(null)
       }}
-      className="relative flex items-center justify-center space-x-4 bg-background sm:px-8 sm:py-6"
+      className="relative flex items-center justify-center space-x-4 bg-background sm:px-8 md:py-6"
     >
       {children}
     </nav>
