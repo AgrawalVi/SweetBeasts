@@ -1,12 +1,12 @@
 import React from 'react';
-import { Tailwind, Body, Button, Container, Head, Heading, Hr, Html, Img, Link, Preview, Section, Text } from '@react-email/components';
+import { Tailwind, Body, Container, Head, Heading, Hr, Html, Img, Preview, Section, Text } from '@react-email/components';
 
 interface TwoFactorConfirmationEmailProps {
   firstName: string;
-  confirmationLink: string;
+  sixDigitCode?: string; // Make the prop optional
 }
 
-export default function TwoFactorConfirmationEmail({ firstName, confirmationLink }: TwoFactorConfirmationEmailProps): JSX.Element {
+export default function TwoFactorConfirmationEmail({ firstName, sixDigitCode = "000000" }: TwoFactorConfirmationEmailProps): JSX.Element {
   return (
     <Html>
       <Head>
@@ -27,14 +27,17 @@ export default function TwoFactorConfirmationEmail({ firstName, confirmationLink
                 Hi {firstName},
               </Text>
               <Text className="text-black text-lg">
-                Your account is secured with two-factor authentication. Please confirm your identity by clicking the button below.
+                Your account is secured with two-factor authentication. Please confirm your identity by using the code below.
               </Text>
-              <Button
-                href={confirmationLink}
-                className="bg-pink-500 rounded text-white py-2 px-4 mt-4 hover:bg-pink-700"
-              >
-                Confirm Identity
-              </Button>
+              <Section className="flex justify-center mt-4">
+                <div className="grid grid-cols-6 gap-2">
+                  {sixDigitCode.split('').map((digit, index) => (
+                    <div key={index} className="flex items-center justify-center w-12 h-12 border border-gray-800 bg-rose-200 rounded text-2xl">
+                      {digit}
+                    </div>
+                  ))}
+                </div>
+              </Section>
             </Section>
             <Hr className="my-4 border-pink-300" />
             <Text className="text-black text-center text-sm">
@@ -44,8 +47,8 @@ export default function TwoFactorConfirmationEmail({ firstName, confirmationLink
               © {new Date().getFullYear()} SweetBeasts. All rights reserved.
             </Text>
             <Section className="text-center text-xs mt-6">
-              <Link href="https://example.com/privacy-policy" className="text-gray-400 underline mx-4">Privacy Policy</Link>
-              <Link href="https://example.com/terms-of-service" className="text-gray-400 underline mx-4">Terms of Service</Link>
+              <a href="https://example.com/privacy-policy" className="text-gray-400 underline mx-4">Privacy Policy</a>
+              <a href="https://example.com/terms-of-service" className="text-gray-400 underline mx-4">Terms of Service</a>
             </Section>
           </Container>
         </Body>
