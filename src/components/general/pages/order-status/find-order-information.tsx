@@ -32,7 +32,7 @@ export default async function FindOrderInformation({
           <div>Placed {order.createdAt.toDateString()}</div>
         </div>
       </div>
-      <div className="my-5 flex w-screen justify-center border-b border-t border-border bg-card p-10">
+      <div className="my-5 flex w-screen justify-center border-b border-t border-border bg-card p-10 dark:border-neutral-800">
         <div className="flex w-full max-w-6xl flex-col justify-between sm:flex-row">
           <p className="pb-3 text-xl sm:pb-0 sm:text-2xl">
             View more details about your order
