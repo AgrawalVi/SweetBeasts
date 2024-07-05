@@ -3,10 +3,10 @@ import { Tailwind, Body, Container, Head, Heading, Hr, Html, Img, Preview, Secti
 
 interface TwoFactorConfirmationEmailProps {
   firstName: string;
-  sixDigitCode?: string; // Make the prop optional
+  twoFactorCode: string; // Make the prop optional
 }
 
-export default function TwoFactorConfirmationEmail({ firstName, sixDigitCode = "000000" }: TwoFactorConfirmationEmailProps): JSX.Element {
+export default function TwoFactorConfirmationEmail({ firstName, twoFactorCode = "000000" }: TwoFactorConfirmationEmailProps): JSX.Element {
   return (
     <Html>
       <Head>
@@ -31,7 +31,7 @@ export default function TwoFactorConfirmationEmail({ firstName, sixDigitCode = "
               </Text>
               <Section className="flex justify-center mt-4">
                 <div className="grid grid-cols-6 gap-2">
-                  {sixDigitCode.split('').map((digit, index) => (
+                  {twoFactorCode.split('').map((digit, index) => (
                     <div key={index} className="flex items-center justify-center w-12 h-12 border border-gray-800 bg-rose-200 rounded text-2xl">
                       {digit}
                     </div>
