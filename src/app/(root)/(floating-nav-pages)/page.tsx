@@ -8,7 +8,7 @@ export default function Home() {
     <main className="flex flex-col items-start justify-start gap-4 bg-background p-4">
       <ExploreSection />
       <button onClick={async () => {
-        await fetch('/api/emails/two-factor', {method:"POST",
+        await fetch('/api/emails/email-confirmation', {method:"POST",
           body: JSON.stringify({
             email: 'pranavgv@gmail.com',
             firstName: 'Pranav',

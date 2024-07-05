@@ -9,7 +9,7 @@ export async function POST(request: Request) {
     await resend.emails.send({
         from: fromEmail,
         to: email,
-        subject: 'Email Confirmation Required',
+        subject: 'Reset Password',
         react: ResetPasswordEmail({ firstName: firstName, resetLink: 'https://en.wikipedia.org/wiki/Dinosaur' }),
       });
 }
