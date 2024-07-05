@@ -2,6 +2,7 @@ import { db } from '@/lib/db'
 import { getUserByEmail } from '../auth/user'
 import { CartItem } from '@prisma/client'
 import { getProductById } from './product'
+import { CartItem as CartItemType } from '@/hooks/use-shopping-cart'
 
 export const getCartByUserId = async (id: string) => {
   try {
@@ -67,7 +68,7 @@ export const getCartItemByUserIdAndProductId = async (
   }
 }
 
-export const getTotalCartPrice = async (cart: CartItem[]) => {
+export const getTotalCartPrice = async (cart: CartItemType[]) => {
   let totalPrice = 0
 
   for (const item of cart) {
