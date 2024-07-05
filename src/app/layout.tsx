@@ -31,7 +31,7 @@ export const metadata: Metadata = {
   title: 'SweetBeasts',
   description: 'Created by SweetBeasts, Inc',
   icons: {
-    icon: '/favicon.ico',
+    icon: '/icon.svg',
   },
 }
 

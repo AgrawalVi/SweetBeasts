@@ -1,5 +1,5 @@
 import Footer from '@/components/sections/footer/footer'
-import { Navbar } from '@/components/general/navbar'
+import { Navbar } from '@/components/general/navbars/navbar'
 
 export default function Layout({
   children,

@@ -1,4 +1,4 @@
-import { FloatingNav } from '../aceternity/floating-navbar'
+import { FloatingNav } from '@/components/aceternity/floating-navbar'
 
 const navItems = [
   { name: 'Home', link: '/' },

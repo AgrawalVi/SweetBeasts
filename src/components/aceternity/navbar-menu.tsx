@@ -28,7 +28,6 @@ export const MenuItem = ({
   setLastActive,
   item,
   children,
-  href,
 }: {
   setActive: (item: string) => void
   active: string | null
@@ -36,53 +35,27 @@ export const MenuItem = ({
   setLastActive: (item: string) => void
   item: string
   children?: React.ReactNode
-  href: string
 }) => {
   return (
-    <Link href={href}>
-      <div onMouseEnter={() => setActive(item)} className="relative">
-        <motion.p
-          transition={{ duration: 0.3 }}
-          className="cursor-pointer text-black hover:opacity-[0.9] dark:text-white"
+    <div onMouseEnter={() => setActive(item)} className="relative">
+      <motion.p
+        transition={{ duration: 0.3 }}
+        className="cursor-pointer text-black hover:opacity-[0.9] dark:text-white"
+      >
+        {item}
+      </motion.p>
+      {active !== null && (
+        <motion.div
+          initial={{ opacity: 0, scale: 0.85, y: 10 }}
+          animate={{ opacity: 1, scale: 1, y: 0 }}
+          transition={transitionIn}
         >
-          {item}
-        </motion.p>
-        {active !== null && (
-          <motion.div
-            initial={{ opacity: 0, scale: 0.85, y: 10 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
-            transition={transitionIn}
-          >
-            {active === item && (
-              <div className="absolute left-1/2 top-[calc(100%_+_1.2rem)] -translate-x-1/2 transform pt-4">
-                <motion.div
-                  transition={transitionIn}
-                  layoutId="active" // layoutId ensures smooth animation
-                  className="overflow-hidden rounded-2xl border border-black/[0.2] bg-white shadow-xl backdrop-blur-sm dark:border-white/[0.2] dark:bg-black"
-                >
-                  <motion.div
-                    layout // layout ensures smooth animation
-                    className="h-full w-max p-4"
-                  >
-                    {children}
-                  </motion.div>
-                </motion.div>
-              </div>
-            )}
-          </motion.div>
-        )}
-        {active === null && lastActive === item ? (
-          <motion.div
-            initial={{ opacity: 1, scale: 1, y: 0 }}
-            animate={{ opacity: 0, scale: 0.85, y: 20 }}
-            transition={transitionOut}
-            className="pointer-events-none"
-          >
+          {active === item && (
             <div className="absolute left-1/2 top-[calc(100%_+_1.2rem)] -translate-x-1/2 transform pt-4">
               <motion.div
-                transition={transitionOut}
+                transition={transitionIn}
                 layoutId="active" // layoutId ensures smooth animation
-                className="overflow-hidden rounded-2xl border border-black/[0.2] bg-white shadow-xl backdrop-blur-sm dark:border-white/[0.2] dark:bg-black"
+                className="overflow-hidden rounded-2xl border border-border bg-background shadow-xl backdrop-blur-sm"
               >
                 <motion.div
                   layout // layout ensures smooth animation
@@ -92,10 +65,33 @@ export const MenuItem = ({
                 </motion.div>
               </motion.div>
             </div>
-          </motion.div>
-        ) : null}
-      </div>
-    </Link>
+          )}
+        </motion.div>
+      )}
+      {active === null && lastActive === item ? (
+        <motion.div
+          initial={{ opacity: 1, scale: 1, y: 0 }}
+          animate={{ opacity: 0, scale: 0.85, y: 20 }}
+          transition={transitionOut}
+          className="pointer-events-none"
+        >
+          <div className="absolute left-1/2 top-[calc(100%_+_1.2rem)] -translate-x-1/2 transform pt-4">
+            <motion.div
+              transition={transitionOut}
+              layoutId="active" // layoutId ensures smooth animation
+              className="overflow-hidden rounded-2xl border border-border bg-background shadow-xl backdrop-blur-sm"
+            >
+              <motion.div
+                layout // layout ensures smooth animation
+                className="h-full w-max p-4"
+              >
+                {children}
+              </motion.div>
+            </motion.div>
+          </div>
+        </motion.div>
+      ) : null}
+    </div>
   )
 }
 
@@ -116,7 +112,7 @@ export const Menu = ({
         setLastActive(active)
         setActive(null)
       }}
-      className="relative flex items-center justify-center space-x-4 bg-background px-8 py-6"
+      className="relative flex items-center justify-center space-x-4 bg-background sm:px-8 sm:py-6"
     >
       {children}
     </nav>
@@ -141,7 +137,7 @@ export const ProductItem = ({
         width={140}
         height={70}
         alt={title}
-        className="flex-shrink-0 rounded-md shadow-2xl"
+        className="h-20 w-20 flex-shrink-0 rounded-md shadow-2xl md:h-32 md:w-32"
       />
       <div>
         <h4 className="mb-1 text-xl font-bold text-black dark:text-white">
