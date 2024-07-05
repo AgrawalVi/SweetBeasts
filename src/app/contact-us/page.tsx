@@ -3,6 +3,7 @@ import React from "react";
 import { WobbleCard } from "@/components/aceternity/wobble-card";
 import { IconBrandDiscord, IconBrandGmail, IconBrandInstagram } from '@tabler/icons-react';
 import ContactForm from "@/components/general/contact-us/form";
+import { Mail } from 'lucide-react';
 
 export default function WobbleCardDemo() {
   return (
@@ -31,7 +32,8 @@ export default function WobbleCardDemo() {
           <WobbleCard containerClassName="flex-1 bg-red-500">
             <div className="flex flex-col items-center justify-center h-full">
               <h2 className="text-center text-base md:text-xl lg:text-3xl font-semibold text-white">
-                <IconBrandGmail size={60} strokeWidth={2} color={'#f5f5f5'} />
+                <Mail size={60} strokeWidth={2} color={'#f5f5f5'} />
+                
               </h2>
               <p className="mt-2 max-w-[20rem] text-center text-base text-gray-200">
                 Contact us via email at account@sweetbeasts.shop for inquiries.
