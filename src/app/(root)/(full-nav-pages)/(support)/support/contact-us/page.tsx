@@ -18,14 +18,14 @@ export default function WobbleCardDemo() {
         </div>
 
         <div className="flex flex-col items-center justify-center mx-8 relative">
-          <div className="flex flex-col items-center h-full absolute inset-0 lg:flex hidden">
+          <div className="hidden lg:flex flex-col items-center h-full absolute inset-0">
             <div className="border-r-2 border-gray-300 h-full"></div>
           </div>
           <div className="relative z-10 bg-white dark:bg-black px-2">OR</div>
-          <div className="flex lg:hidden items-center justify-center h-full absolute inset-0">
-            <div className="border-l-2 border-gray-300 h-full"></div>
+          <div className="flex lg:hidden items-center justify-center w-full absolute inset-0">
+            <div className="border-b-2 border-gray-300 w-full"></div>
             <div className="relative z-10 bg-white dark:bg-black px-2">OR</div>
-            <div className="border-l-2 border-gray-300 h-full"></div>
+            <div className="border-b-2 border-gray-300 w-full"></div>
           </div>
         </div>
 
