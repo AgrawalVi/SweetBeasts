@@ -49,11 +49,11 @@ export const OrderStatusForm = ({ errorText }: { errorText?: string }) => {
 
   return (
     <Card className="my-12">
-      <CardContent className="p-6">
+      <CardContent className="px-2 py-6 sm:p-6">
         <Form {...form}>
           <form
             onSubmit={form.handleSubmit(onSubmit)}
-            className="w-[25rem] space-y-6 px-4 md:w-[35rem]"
+            className="big-phone:w-[23rem] w-[17rem] space-y-6 px-4 md:w-[35rem]"
           >
             <div className="space-y-4">
               <FormField

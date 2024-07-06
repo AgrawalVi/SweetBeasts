@@ -1,6 +1,23 @@
+'use client'
 import React, { useState } from 'react'
 import { cn } from '@/lib/utils'
 import Link from 'next/link'
+import { UserIcon } from 'lucide-react'
+import Image from 'next/image'
+import emblem from '@/assets/logos/icon.svg'
+
+import {
+  NavigationMenu,
+  NavigationMenuContent,
+  NavigationMenuIndicator,
+  NavigationMenuItem,
+  NavigationMenuLink,
+  NavigationMenuList,
+  NavigationMenuTrigger,
+  NavigationMenuViewport,
+  navigationMenuTriggerStyle,
+} from '@/components/ui/navigation-menu'
+import { FullNavLinks } from '../general/navbars/full-nav-links'
 
 export const FloatingNav = ({
   navItems,
@@ -15,27 +32,21 @@ export const FloatingNav = ({
   return (
     <div
       className={cn(
-        'fixed inset-x-0 top-10 z-[1000] mx-auto flex max-w-fit items-center justify-center space-x-4 shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08)] backdrop-blur-lg backdrop-saturate-150 md:min-w-[70vw] lg:min-w-fit',
+        'big-phone:w-[20rem] big-phone:gap-2 fixed inset-x-0 top-5 z-[1000] mx-auto grid h-16 w-[17rem] grid-cols-5 items-center justify-center rounded-xl border-border bg-muted/70 align-middle shadow-[0_1px_10px_rgb(0,0,0,0.2)] backdrop-blur-lg backdrop-saturate-200',
         className,
       )}
-      style={{
-        backgroundColor: 'rgba(17, 25, 40, 0.75)',
-        borderRadius: '12px',
-        border: '1px solid rgba(255, 255, 255, 0.125)',
-      }}
+      style={{}}
     >
-      {navItems.map((navItem: any, idx: number) => (
-        <Link
-          key={`link=${idx}`}
-          href={navItem.link}
-          className={cn(
-            'relative flex items-center space-x-1 text-neutral-600 hover:text-neutral-500 dark:text-neutral-50 dark:hover:text-neutral-300',
-          )}
-        >
-          <div>{navItem.name}</div>
-        </Link>
-      ))}
-      <Link href="/my-account"></Link>
+      <Link href="/" className="inline-flex justify-start p-3">
+        <Image src={emblem} alt="logo" className="relative h-8 w-8" />
+      </Link>
+      <FullNavLinks
+        className="relative col-span-3 w-full justify-center align-middle"
+        innerClassName="bg-transparent absolute -top-3 md:static md:py-5 sm:px-0"
+      />
+      <Link href="/my-account" className="flex w-full justify-end p-3">
+        <UserIcon className="big-phone:h-6 big-phone:w-6 h-5 w-5" />
+      </Link>
     </div>
   )
 }

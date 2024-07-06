@@ -3,6 +3,7 @@ import React from 'react'
 import { motion } from 'framer-motion'
 import Link from 'next/link'
 import Image from 'next/image'
+import { cn } from '@/lib/utils'
 
 const transitionIn = {
   type: 'spring',
@@ -28,6 +29,7 @@ export const MenuItem = ({
   setLastActive,
   item,
   children,
+  className,
 }: {
   setActive: (item: string) => void
   active: string | null
@@ -35,12 +37,16 @@ export const MenuItem = ({
   setLastActive: (item: string) => void
   item: string
   children?: React.ReactNode
+  className?: string
 }) => {
   return (
-    <div onMouseEnter={() => setActive(item)} className="relative">
+    <div
+      onMouseEnter={() => setActive(item)}
+      className={cn('relative', className)}
+    >
       <motion.p
         transition={{ duration: 0.3 }}
-        className="cursor-pointer text-black hover:opacity-[0.9] dark:text-white"
+        className="cursor-pointer text-foreground hover:text-foreground/60"
       >
         {item}
       </motion.p>
@@ -51,7 +57,7 @@ export const MenuItem = ({
           transition={transitionIn}
         >
           {active === item && (
-            <div className="absolute left-1/2 top-[calc(100%_+_1.2rem)] -translate-x-1/2 transform md:pt-4">
+            <div className="absolute left-1/2 top-[calc(100%_+_0.8rem)] -translate-x-1/2 transform md:top-[calc(100%_+_1.2rem)] md:pt-4">
               <motion.div
                 transition={transitionIn}
                 layoutId="active" // layoutId ensures smooth animation
@@ -75,7 +81,7 @@ export const MenuItem = ({
           transition={transitionOut}
           className="pointer-events-none"
         >
-          <div className="absolute left-1/2 top-[calc(100%_+_1.2rem)] -translate-x-1/2 transform md:pt-4">
+          <div className="absolute left-1/2 top-[calc(100%_+_0.8rem)] -translate-x-1/2 transform md:top-[calc(100%_+_1.2rem)] md:pt-4">
             <motion.div
               transition={transitionOut}
               layoutId="active" // layoutId ensures smooth animation
@@ -100,11 +106,13 @@ export const Menu = ({
   setActive,
   setLastActive,
   children,
+  className,
 }: {
   active: string | null
   setActive: (item: string | null) => void
   setLastActive: (item: string | null) => void
   children: React.ReactNode
+  className?: string
 }) => {
   return (
     <nav
@@ -112,7 +120,10 @@ export const Menu = ({
         setLastActive(active)
         setActive(null)
       }}
-      className="relative flex items-center justify-center space-x-4 bg-background sm:px-8 md:py-6"
+      className={cn(
+        'big-phone:text-base big-phone:gap-4 relative grid w-full grid-cols-3 items-center gap-2 bg-background pb-3 text-sm sm:px-8 md:py-6',
+        className,
+      )}
     >
       {children}
     </nav>
@@ -137,7 +148,7 @@ export const ProductItem = ({
         width={140}
         height={70}
         alt={title}
-        className="h-20 w-20 flex-shrink-0 rounded-md shadow-2xl md:h-32 md:w-32"
+        className="big-phone:h-20 big-phone:w-20 h-16 w-16 flex-shrink-0 rounded-md shadow-2xl md:h-32 md:w-32"
       />
       <div>
         <h4 className="mb-1 text-xl font-bold text-black dark:text-white">

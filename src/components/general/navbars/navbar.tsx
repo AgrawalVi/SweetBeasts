@@ -63,15 +63,15 @@ export function Navbar({ className }: { className?: string }) {
         </div>
         <div
           className={cn(
-            'grid w-full grid-cols-3 pb-2 transition-all',
+            'grid w-full grid-cols-5 transition-all',
             expanded ? 'opacity-100' : 'pointer-events-none opacity-0',
           )}
         >
           <div className="flex h-full w-full justify-start px-5 align-middle">
             <ModeToggle />
           </div>
-          <div className="flex h-full w-full justify-center align-middle">
-            <FullNavLinks className="flex align-middle" />
+          <div className="col-span-3 flex h-full w-full justify-center align-middle">
+            <FullNavLinks className="flex gap-6 align-middle" />
           </div>
           <div className="flex h-full w-full justify-end px-5 align-middle">
             <UserButton />

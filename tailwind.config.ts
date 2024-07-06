@@ -26,6 +26,7 @@ const config = {
     },
     extend: {
       screens: {
+        'big-phone': '400px',
         '3xl': '1920px',
       },
       colors: {
