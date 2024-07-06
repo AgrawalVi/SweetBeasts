@@ -34,19 +34,19 @@ export const createOrder = async (
 
   // check that the session is completed
   if (checkoutSession.status !== 'complete') {
-    return
+    return { error: 'Session is not complete' }
   }
 
   // verify that the payment has been processed before moving forward
   if (checkoutSession.payment_status !== 'paid') {
-    return
+    return { error: 'Payment is not paid' }
   }
 
   // get order information from event
   const timePlaced = new Date(event.created * 1000)
 
   // get user and create an order in the database
-  const stripeCustomerId = checkoutSession.customer as string | null | undefined
+  const stripeCustomerId = checkoutSession.customer as string | null
 
   let stripeCustomer
   let user
@@ -234,11 +234,14 @@ export const createOrder = async (
         },
       })
       if (product.inventory < 0) {
-        throw new Error('Inventory is less than 0')
+        console.error('Inventory is less than 0')
+        return { error: 'Inventory is less than 0' }
       }
     } catch (e) {
       console.error('an error occurred while decreasing inventory', e)
       return { error: 'Unable to decrease inventory' }
     }
   }
+
+  return { success: 'order successfully created' }
 }
