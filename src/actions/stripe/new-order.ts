@@ -46,7 +46,7 @@ export const createOrder = async (
   const timePlaced = new Date(event.created * 1000)
 
   // get user and create an order in the database
-  const stripeCustomerId = checkoutSession.customer as string | undefined
+  const stripeCustomerId = checkoutSession.customer
 
   let stripeCustomer
   let user
