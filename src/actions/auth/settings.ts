@@ -4,7 +4,7 @@ import * as z from 'zod'
 
 import { SettingsSchema } from '@/schemas'
 import { db } from '@/lib/db'
-import { getUserById } from '@/data/auth/user'
+import { getUserById } from '@/data/shop/user'
 import { currentUser } from '@/lib/auth'
 
 export const settings = async (values: z.infer<typeof SettingsSchema>) => {

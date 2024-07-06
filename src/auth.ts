@@ -5,7 +5,7 @@ import { db } from '@/lib/db'
 import { UserRole } from '@prisma/client'
 import authConfig from '@/auth.config'
 
-import { getUserById } from '@/data/auth/user'
+import { getUserById, verifyUser } from '@/data/shop/user'
 import { getTwoFactorConfirmationByUserId } from '@/data/auth/two-factor-confirmation'
 
 import { cookies } from 'next/headers'

@@ -39,3 +39,4 @@ export const getUserByStripeCustomerId = async (stripeCustomerId: string) => {
     return null
   }
 }
+

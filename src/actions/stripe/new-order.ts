@@ -1,7 +1,7 @@
 import { db } from '@/lib/db'
 import { stripe } from '@/lib/stripe'
 import Stripe from 'stripe'
-import { getUserByEmail, getUserByStripeCustomerId } from '@/data/auth/user'
+import { getUserByEmail, getUserByStripeCustomerId } from '@/data/shop/user'
 import { ShippingAddress, User } from '@prisma/client'
 import { getProductByStripePriceId } from '@/data/shop/product'
 import { notEmpty } from '@/lib/utils'

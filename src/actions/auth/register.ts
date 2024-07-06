@@ -6,7 +6,7 @@ import { db } from '@/lib/db'
 import { stripe } from '@/lib/stripe'
 
 import { RegisterSchema } from '@/schemas'
-import { getUserByEmail } from '@/data/auth/user'
+import { getUserByEmail } from '@/data/shop/user'
 import { generateVerificationToken } from '@/lib/tokens'
 import { addToGeneralEmailList, sendVerificationEmail } from '@/lib/resend'
 

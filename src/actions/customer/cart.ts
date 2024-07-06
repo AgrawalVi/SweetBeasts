@@ -1,6 +1,6 @@
 'use server'
 
-import { getUserById } from '@/data/auth/user'
+import { getUserById } from '@/data/shop/user'
 import { getProductById } from '@/data/shop/product'
 import {
   getCartItemByUserIdAndProductId,

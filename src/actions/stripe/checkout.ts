@@ -2,7 +2,7 @@
 
 import { CartItem } from '@/hooks/use-shopping-cart'
 import { stripe } from '@/lib/stripe'
-import { getUserById } from '@/data/auth/user'
+import { getUserById } from '@/data/shop/user'
 import { redirect } from 'next/navigation'
 import { getProductById, getProductByStripePriceId } from '@/data/shop/product'
 import Stripe from 'stripe'

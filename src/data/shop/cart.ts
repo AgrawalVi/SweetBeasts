@@ -1,5 +1,5 @@
 import { db } from '@/lib/db'
-import { getUserByEmail } from '../auth/user'
+import { getUserByEmail } from './user'
 import { CartItem } from '@prisma/client'
 import { getProductById } from './product'
 import { CartItem as CartItemType } from '@/hooks/use-shopping-cart'
