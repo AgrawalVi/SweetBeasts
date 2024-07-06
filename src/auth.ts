@@ -6,7 +6,10 @@ import { UserRole } from '@prisma/client'
 import authConfig from '@/auth.config'
 
 import { getUserById, verifyUser } from '@/data/shop/user'
-import { getTwoFactorConfirmationByUserId } from '@/data/auth/two-factor-confirmation'
+import {
+  deleteTwoFactorConfirmation,
+  getTwoFactorConfirmationByUserId,
+} from '@/data/auth/two-factor-confirmation'
 
 import { cookies } from 'next/headers'
 import { cartLoginHandler } from './utils/cart-utils'
@@ -39,10 +42,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
 
   events: {
     async linkAccount({ user }) {
-      await db.user.update({
-        where: { id: user.id },
-        data: { emailVerified: new Date() },
-      })
+      await verifyUser(user.id)
     },
   },
 
@@ -79,9 +79,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         }
 
         // Delete two factor conformation for next sign in
-        await db.twoFactorConfirmation.delete({
-          where: { id: twoFactorConfirmation.id },
-        })
+        await deleteTwoFactorConfirmation(twoFactorConfirmation.id)
       }
       // Need to transfer cart information before completing the login if there's a guestId
       const guestId = cookies().get('guestId')?.value

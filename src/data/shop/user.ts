@@ -40,3 +40,17 @@ export const getUserByStripeCustomerId = async (stripeCustomerId: string) => {
   }
 }
 
+export const verifyUser = async (id: string | undefined) => {
+  try {
+    await db.user.update({
+      where: {
+        id,
+      },
+      data: {
+        emailVerified: new Date(),
+      },
+    })
+  } catch (e) {
+    console.error('Error in @/data/shop/user.ts verifyUser', e)
+  }
+}
