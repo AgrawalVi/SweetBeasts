@@ -55,7 +55,7 @@ export default async function RootLayout({
               enableSystem
               disableTransitionOnChange
             >
-              <div className="flex h-screen w-full bg-background">
+              <div className="flex min-h-screen w-full bg-background">
                 {children}
               </div>
               <link rel="icon" href="/favicon.ico" sizes="any" />
