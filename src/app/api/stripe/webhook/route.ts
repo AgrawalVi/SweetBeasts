@@ -29,9 +29,9 @@ export const POST = async (req: Request, res: Response) => {
   if (event.type === 'checkout.session.completed') {
     const response = await createOrder(event)
     if (response.error) {
-      return NextResponse.json({ status: 400 }, { statusText: response.error })
+      return NextResponse.json({ error: response.error }, { status: 400 })
     }
-    return NextResponse.json({ status: 200 }, { statusText: response.success })
+    return NextResponse.json({ status: 200 })
   }
 
   return NextResponse.json({ status: 200 })

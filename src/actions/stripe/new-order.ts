@@ -1,7 +1,7 @@
 import { db } from '@/lib/db'
 import { stripe } from '@/lib/stripe'
 import Stripe from 'stripe'
-import { getUserByEmail } from '@/data/auth/user'
+import { getUserByEmail, getUserByStripeCustomerId } from '@/data/auth/user'
 import { ShippingAddress, User } from '@prisma/client'
 import { getProductByStripePriceId } from '@/data/shop/product'
 import { notEmpty } from '@/lib/utils'
@@ -53,6 +53,8 @@ export const createOrder = async (
 
   if (stripeCustomerId) {
     stripeCustomer = await stripe.customers.retrieve(stripeCustomerId)
+    user = await getUserByStripeCustomerId(stripeCustomerId)
+    console.log('user', user)
   } else {
     // check if a user exists with the email
     const email = checkoutSession.customer_details?.email as string
@@ -73,8 +75,6 @@ export const createOrder = async (
         'An exception has occurred. Please contact support for assistance. CODE: STR_CD_001',
     }
   }
-
-  console.log('stripeCustomer', stripeCustomer)
 
   let lineItems
   try {
@@ -134,7 +134,6 @@ export const createOrder = async (
   }
 
   const guestId = checkoutSession.metadata?.guestId as string
-  console.log('guestId from new-order', guestId)
 
   if (guestId) {
     const response = await clearGuestIdCart(guestId)
