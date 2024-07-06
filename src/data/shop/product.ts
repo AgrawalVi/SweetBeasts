@@ -30,22 +30,3 @@ export async function getProductByStripePriceId(
     return null
   }
 }
-
-export const setProductNumAvailable = async (
-  productId: number,
-  numAvailable: number,
-) => {
-  try {
-    const product = await db.product.update({
-      where: {
-        id: productId,
-      },
-      data: {
-        numAvailable: numAvailable,
-      },
-    })
-    return product
-  } catch {
-    console.error('Error updating product')
-  }
-}

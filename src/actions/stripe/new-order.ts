@@ -24,6 +24,42 @@ const generateOrderNumber = async (): Promise<string> => {
   return orderNumber
 }
 
+const expireAllOpenCheckoutSessions = async (productId: number) => {
+  const checkoutSessionIds = await db.openCheckoutSessions.findMany({
+    where: {
+      products: {
+        some: {
+          id: productId,
+        },
+      },
+    },
+  })
+
+  if (checkoutSessionIds.length < 0) {
+    return
+  }
+
+  for (const checkoutSessionId of checkoutSessionIds) {
+    try {
+      await stripe.checkout.sessions.expire(
+        checkoutSessionId.stripeCheckoutSessionId,
+      )
+    } catch (e) {
+      console.error('Error expiring checkout session', e)
+    }
+
+    try {
+      await db.openCheckoutSessions.delete({
+        where: {
+          id: checkoutSessionId.id,
+        },
+      })
+    } catch (e) {
+      console.error('Error deleting open checkout session', e)
+    }
+  }
+}
+
 export const createOrder = async (
   event: Stripe.CheckoutSessionCompletedEvent,
 ) => {
@@ -112,6 +148,7 @@ export const createOrder = async (
   const address: ShippingAddress = {
     id: 0,
     userId: user?.id || null,
+    guestUserId: null,
     email: stripeCustomer.email as string,
     recipientName: checkoutSession.shipping_details?.name || null,
     addressLine1: checkoutSession.shipping_details?.address?.line1 || null,
@@ -232,10 +269,17 @@ export const createOrder = async (
           },
         },
       })
-      if (product.inventory < 0) {
-        console.error('Inventory is less than 0')
-        return { error: 'Inventory is less than 0' }
+      if (product.inventory <= 0) {
+        await expireAllOpenCheckoutSessions(product.id)
+        if (product.inventory < 0) {
+          console.error('Inventory is less than 0')
+        }
       }
+      await db.openCheckoutSessions.delete({
+        where: {
+          stripeCheckoutSessionId: checkoutSession.id,
+        },
+      })
     } catch (e) {
       console.error('an error occurred while decreasing inventory', e)
       return { error: 'Unable to decrease inventory' }

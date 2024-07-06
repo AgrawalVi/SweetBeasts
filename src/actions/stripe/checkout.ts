@@ -4,11 +4,7 @@ import { CartItem } from '@/hooks/use-shopping-cart'
 import { stripe } from '@/lib/stripe'
 import { getUserById } from '@/data/auth/user'
 import { redirect } from 'next/navigation'
-import {
-  getProductById,
-  setProductNumAvailable,
-  getProductByStripePriceId,
-} from '@/data/shop/product'
+import { getProductById, getProductByStripePriceId } from '@/data/shop/product'
 import Stripe from 'stripe'
 import { db } from '@/lib/db'
 import { notEmpty } from '@/lib/utils'
@@ -16,6 +12,7 @@ import { notEmpty } from '@/lib/utils'
 export type lineItem = {
   price: string
   quantity: number
+  id: number
 }
 
 export const createCheckoutSession = async (
@@ -32,6 +29,7 @@ export const createCheckoutSession = async (
           return {
             price: product.stripePriceId,
             quantity: item.quantity,
+            id: item.productId,
           }
         }
       }),
@@ -44,20 +42,14 @@ export const createCheckoutSession = async (
   }
 
   let filteredItems: lineItem[] = []
-  // check and chance inventory of all products in the cart. Make sure there is enough inventory to sell
+  // make sure there is enough inventory to send products to stripe
   try {
     const processedItems = await Promise.all(
       lineItems.map(async (item) => {
         const product = await getProductByStripePriceId(item.price)
         if (product) {
-          if (product.numAvailable < item.quantity) {
-            item.quantity = product.numAvailable
-            await setProductNumAvailable(product.id, 0)
-          } else {
-            await setProductNumAvailable(
-              product.id,
-              product.numAvailable - item.quantity,
-            )
+          if (product.inventory < item.quantity) {
+            item.quantity = product.inventory
           }
           return item
         }
@@ -75,8 +67,7 @@ export const createCheckoutSession = async (
 
   if (filteredItems.length === 0) {
     return {
-      error:
-        'No products are currently available for sale (please wait a few minutes)',
+      error: 'All products in your cart are out of stock.',
     }
   }
 
@@ -85,7 +76,10 @@ export const createCheckoutSession = async (
 
   // object to contain base checkout session config
   const checkoutSessionConfig: Stripe.Checkout.SessionCreateParams = {
-    line_items: filteredItems,
+    line_items: filteredItems.map((item) => ({
+      price: item.price,
+      quantity: item.quantity,
+    })),
     mode: 'payment',
     ui_mode: 'hosted',
     success_url: `${process.env.NEXT_PUBLIC_BASE_URL}/success?session_id={CHECKOUT_SESSION_ID}`,
@@ -108,7 +102,7 @@ export const createCheckoutSession = async (
   const existingUser = userId ? await getUserById(userId) : null
   // If there's no userId, then we create a checkout session with a guest customer
   if (!existingUser) {
-    return createCheckoutSessionHelper(checkoutSessionConfig)
+    return createCheckoutSessionHelper(filteredItems, checkoutSessionConfig)
   }
 
   // if the user exists and they don't have a stripeCustomerId, we create a customer and open a new checkout session
@@ -138,10 +132,11 @@ export const createCheckoutSession = async (
   }
 
   // if the user exists and they have a stripeCustomerId, we can use it to create a checkout session
-  return createCheckoutSessionHelper(checkoutSessionConfig)
+  return createCheckoutSessionHelper(filteredItems, checkoutSessionConfig)
 }
 
 const createCheckoutSessionHelper = async (
+  filteredItems: lineItem[],
   checkoutSessionConfig: Stripe.Checkout.SessionCreateParams,
 ) => {
   let session
@@ -151,6 +146,17 @@ const createCheckoutSessionHelper = async (
     console.error('An error occurred while creating a checkout session', e)
     return { error: 'An error occurred while creating a checkout session' }
   }
+
+  await db.openCheckoutSessions.create({
+    data: {
+      stripeCheckoutSessionId: session.id,
+      products: {
+        connect: filteredItems.map((item) => ({
+          id: item.id,
+        })),
+      },
+    },
+  })
 
   if (session.url) {
     redirect(session.url)
