@@ -17,16 +17,16 @@ export default function WobbleCardDemo() {
           <ContactForm />
         </div>
 
-        <div className="flex flex-col items-center justify-center mx-8 lg:hidden">
-          <div className="border-b-2 border-gray-300 w-full mb-4"></div>
-          <div className="text-gray-700 font-semibold">OR</div>
-          <div className="border-b-2 border-gray-300 w-full mt-4"></div>
-        </div>
-
-        <div className="flex flex-col items-center justify-center mx-8 hidden lg:flex">
-          <div className="border-r-2 border-gray-300 h-full"></div>
-          <div className="mx-4 text-gray-700 dark:text-white font-semibold">OR</div>
-          <div className="border-r-2 border-gray-300 h-full"></div>
+        <div className="flex flex-col items-center justify-center mx-8 relative">
+          <div className="flex flex-col items-center h-full absolute inset-0 lg:flex hidden">
+            <div className="border-r-2 border-gray-300 h-full"></div>
+          </div>
+          <div className="relative z-10 bg-white dark:bg-black px-2">OR</div>
+          <div className="flex lg:hidden items-center justify-center h-full absolute inset-0">
+            <div className="border-l-2 border-gray-300 h-full"></div>
+            <div className="relative z-10 bg-white dark:bg-black px-2">OR</div>
+            <div className="border-l-2 border-gray-300 h-full"></div>
+          </div>
         </div>
 
         <div className="flex-1 flex flex-col space-y-4 lg:space-y-2">
@@ -34,13 +34,12 @@ export default function WobbleCardDemo() {
             <div className="flex flex-col items-center justify-center h-full">
               <h2 className="text-center text-base md:text-xl lg:text-3xl font-semibold text-white">
                 <Mail size={60} strokeWidth={2} color={'#f5f5f5'} />
-                
               </h2>
               <p className="mt-2 max-w-[20rem] text-center text-base text-gray-200">
                 Contact us via email at account@sweetbeasts.shop for inquiries.
               </p>
               <Link href="mailto:account@sweetbeasts.shop" target="_blank" rel="noopener noreferrer" className="mt-4 inline-flex items-center px-4 py-2 bg-red-600 hover:bg-red-700 text-white text-sm font-medium rounded-lg shadow-md transition duration-300 ease-in-out">
-                <IconBrandGmail size={20} strokeWidth={2} color={'#f5f5f5'} className="mr-2"/>
+                <Mail size={20} strokeWidth={2} color={'#f5f5f5'} className="mr-2"/>
                 Send Email
               </Link>
             </div>
