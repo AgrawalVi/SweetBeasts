@@ -38,7 +38,7 @@ const FAQ = ({ content, title, subtitle }: FAQSectionProps) => {
             <Accordion key={index} type="single" collapsible>
               <AccordionItem
                 value={item.question}
-                className="rounded-md border bg-muted/20 px-4 transition-all hover:bg-muted/50"
+                className="rounded-md border bg-muted/20 px-4 transition-all duration-500 ease-in-out hover:bg-muted/50 dark:hover:bg-muted/80"
               >
                 <AccordionTrigger className="text-left hover:no-underline">
                   {item.question}
