@@ -21,6 +21,13 @@ export const LoginSchema = z.object({
   code: z.optional(z.string()),
 })
 
+export const ContactSchema = z.object({
+  name: z.string().min(2).max(50).nonempty(),
+  email: z.string().email(),
+  orderNumber: z.string().optional(),
+  message: z.string().min(10).max(500).nonempty(),
+});
+
 export const RegisterSchema = z
   .object({
     email: z
