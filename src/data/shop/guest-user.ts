@@ -1,0 +1,33 @@
+import { db } from '@/lib/db'
+
+export const createGuestUser = async (
+  email: string,
+  stripeCustomerId: string,
+) => {
+  try {
+    const guestUser = await db.guestUser.create({
+      data: {
+        email,
+        stripeCustomerId,
+      },
+    })
+    return guestUser
+  } catch (e) {
+    console.error('Error creating guest user', e)
+    return null
+  }
+}
+
+export const getGuestUserByEmail = async (email: string) => {
+  try {
+    const guestUser = await db.guestUser.findUnique({
+      where: {
+        email,
+      },
+    })
+    return guestUser
+  } catch (e) {
+    console.error('Error getting guest user by email', e)
+    return null
+  }
+}

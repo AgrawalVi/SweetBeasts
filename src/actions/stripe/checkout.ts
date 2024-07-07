@@ -9,12 +9,13 @@ import Stripe from 'stripe'
 import { notEmpty } from '@/lib/utils'
 import { stripeLineItemWithProductId } from '@/types'
 import { createOpenCheckoutSession } from '@/data/shop/open-checkout-session'
+import { currentUser } from '@/lib/auth'
 
 export const createCheckoutSession = async (
   cart: CartItem[],
   guestId: string | null | undefined,
-  userId: string | null | undefined,
 ) => {
+  const user = await currentUser()
   // create lineItems for each product in the cart
   const lineItems: stripeLineItemWithProductId[] = (
     await Promise.all(
@@ -67,7 +68,7 @@ export const createCheckoutSession = async (
   }
 
   console.log('guestId', guestId)
-  const metadata = userId ? null : { guestId: guestId ? guestId : null }
+  const metadata = user ? null : { guestId: guestId ? guestId : null }
 
   // object to contain base checkout session config
   const checkoutSessionConfig: Stripe.Checkout.SessionCreateParams = {
@@ -94,7 +95,7 @@ export const createCheckoutSession = async (
   }
 
   // if there's a userId that's passed, we must validate that a user exists with that Id
-  const existingUser = userId ? await getUserById(userId) : null
+  const existingUser = user ? await getUserById(user.id) : null
   // If there's no userId, then we create a checkout session with a guest customer
   if (!existingUser) {
     return createCheckoutSessionHelper(filteredItems, checkoutSessionConfig)

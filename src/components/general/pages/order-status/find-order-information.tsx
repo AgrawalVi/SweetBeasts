@@ -1,5 +1,4 @@
 import { Button } from '@/components/ui/button'
-import { getOrderByFindOrderToken } from '@/data/shop/orders'
 import Link from 'next/link'
 import { redirect } from 'next/navigation'
 import { getLineItemsByOrderId } from '@/data/shop/line-items'
@@ -8,6 +7,7 @@ import OrderSummary from './order-summary'
 import OrderStatusBar from './order-status-bar'
 import AddressSectionOnlyName from './order-details'
 import { LineItemWithProduct } from '@/types'
+import { verifyViewOrderToken } from '@/actions/shop/order'
 
 export default async function FindOrderInformation({
   token,
@@ -16,7 +16,11 @@ export default async function FindOrderInformation({
 }) {
   console.log('token', token)
 
-  const order = await getOrderByFindOrderToken(token)
+  const response = await verifyViewOrderToken(token)
+  if (response.error) {
+    redirect('/order-status?error=your%20session%20has%20expired')
+  }
+  const order = response.success
 
   if (!order) {
     redirect('/order-status?error=your%20session%20has%20expired')

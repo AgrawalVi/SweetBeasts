@@ -10,7 +10,7 @@ export const getAddressByAddressAndEmail = async (
   try {
     addresses = await db.shippingAddress.findMany({
       where: {
-        userId: address.userId,
+        email,
       },
     })
   } catch {

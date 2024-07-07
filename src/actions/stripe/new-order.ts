@@ -1,6 +1,6 @@
 import { stripe } from '@/lib/stripe'
 import Stripe from 'stripe'
-import { getUserByEmail, getUserByStripeCustomerId } from '@/data/shop/user'
+import { getUserByEmail } from '@/data/shop/user'
 import { ShippingAddress } from '@prisma/client'
 import { db } from '@/lib/db'
 import {
@@ -18,6 +18,7 @@ import {
   deleteOpenCheckoutSessionByStripeCheckoutSessionId,
   getAllOpenCheckoutSessionsWithProductByProductId,
 } from '@/data/shop/open-checkout-session'
+import { createGuestUser, getGuestUserByEmail } from '@/data/shop/guest-user'
 
 const generateOrderNumber = async (): Promise<string> => {
   const orderNumber = `SB${crypto.randomInt(100_000, 100_000_0).toString()}`
@@ -45,11 +46,6 @@ const expireAllOpenCheckoutSessionsByProductId = async (productId: number) => {
     } catch (e) {
       console.error('Error expiring checkout session', e)
     }
-
-    const response = await deleteOpenCheckoutSessionById(checkoutSession.id)
-    if (!response) {
-      console.error('Error deleting open checkout session')
-    }
   }
 }
 
@@ -76,22 +72,35 @@ export const createOrder = async (
   const stripeCustomerId = checkoutSession.customer as string | null
 
   let stripeCustomer
-  let user
 
-  if (stripeCustomerId) {
-    stripeCustomer = await stripe.customers.retrieve(stripeCustomerId)
-    user = await getUserByStripeCustomerId(stripeCustomerId)
-    console.log('user', user)
+  const email = checkoutSession.customer_details?.email as string
+
+  let user
+  let guestUser
+
+  // check if either a user or a guest-user exists with the email
+  user = await getUserByEmail(email)
+  if (user) {
+    stripeCustomer = await stripe.customers.retrieve(user.stripeCustomerId)
   } else {
-    // check if a user exists with the email
-    const email = checkoutSession.customer_details?.email as string
-    user = await getUserByEmail(email)
-    if (user) {
-      stripeCustomer = await stripe.customers.retrieve(user.stripeCustomerId)
+    guestUser = await getGuestUserByEmail(email)
+    if (guestUser) {
+      stripeCustomer = await stripe.customers.retrieve(
+        guestUser.stripeCustomerId,
+      )
     } else {
-      stripeCustomer = await stripe.customers.create({
-        email,
-      })
+      // create a guest-user with the email and create a stripe customer id
+      try {
+        stripeCustomer = await stripe.customers.create({ email })
+      } catch (e) {
+        console.error('Error creating stripe customer', e)
+        return { error: 'Error creating stripe customer' }
+      }
+      guestUser = await createGuestUser(email, stripeCustomer.id)
+      if (!guestUser) {
+        console.error('Error creating guest user')
+        return { error: 'Error creating guest user' }
+      }
     }
   }
 
@@ -139,7 +148,7 @@ export const createOrder = async (
   const address: ShippingAddress = {
     id: 0,
     userId: user?.id || null,
-    guestUserId: null,
+    guestUserId: guestUser?.id || null,
     email: stripeCustomer.email as string,
     recipientName: checkoutSession.shipping_details?.name || null,
     addressLine1: checkoutSession.shipping_details?.address?.line1 || null,
@@ -150,15 +159,6 @@ export const createOrder = async (
     countryCode: checkoutSession.shipping_details?.address?.country || null,
     createdAt: timePlaced,
     updatedAt: timePlaced,
-  }
-
-  const existingAddress = await getAddressByAddressAndEmail(
-    address,
-    stripeCustomer.email as string,
-  )
-  let addressIdToAdd
-  if (existingAddress) {
-    addressIdToAdd = existingAddress.id
   }
 
   const guestId = checkoutSession.metadata?.guestId as string
@@ -178,12 +178,24 @@ export const createOrder = async (
   // generate an order number
   const orderNumber = await generateOrderNumber()
 
+  console.log('address', address)
+
+  const existingAddress = await getAddressByAddressAndEmail(
+    address,
+    stripeCustomer.email as string,
+  )
+
+  console.log('existingAddress', existingAddress)
+
+  let addressIdToAdd = existingAddress?.id
+
   // create the order in the database
   try {
     if (addressIdToAdd) {
       await db.order.create({
         data: {
           userId: user?.id,
+          guestUserId: guestUser?.id,
           email: stripeCustomer.email as string,
           createdAt: timePlaced,
           updatedAt: timePlaced,
@@ -205,6 +217,7 @@ export const createOrder = async (
       const shippingAddress = await db.shippingAddress.create({
         data: {
           userId: user?.id,
+          guestUserId: guestUser?.id,
           email: stripeCustomer.email as string,
           recipientName: checkoutSession.shipping_details?.name,
           addressLine1: checkoutSession.shipping_details?.address?.line1,
@@ -221,6 +234,7 @@ export const createOrder = async (
       await db.order.create({
         data: {
           userId: user?.id,
+          guestUserId: guestUser?.id,
           email: stripeCustomer.email as string,
           createdAt: timePlaced,
           updatedAt: timePlaced,
@@ -259,12 +273,11 @@ export const createOrder = async (
       if (product.inventory < 0) {
         console.error('Inventory is less than 0')
       }
-
-      await deleteOpenCheckoutSessionByStripeCheckoutSessionId(
-        checkoutSession.id,
-      )
     }
   }
+
+  // delete the current checkout session from the database
+  await deleteOpenCheckoutSessionByStripeCheckoutSessionId(checkoutSession.id)
 
   return { success: 'order successfully created' }
 }

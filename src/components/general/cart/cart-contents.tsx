@@ -5,7 +5,6 @@ import Cookies from 'js-cookie'
 import { createCheckoutSession } from '@/actions/stripe/checkout'
 import { getTotalCartPrice } from '@/actions/customer/cart'
 
-import { useCurrentUser } from '@/hooks/use-current-user'
 import { useShoppingCart } from '@/hooks/use-shopping-cart'
 
 import { useToast } from '@/components/ui/use-toast'
@@ -18,7 +17,6 @@ import { formatPrice } from '@/lib/utils'
 const CartContents = () => {
   const { cart } = useShoppingCart()
   const guestId = Cookies.get('guestId')
-  const user = useCurrentUser()
   const { toast } = useToast()
   const [isCheckoutPending, startTransition] = useTransition()
 
@@ -39,7 +37,7 @@ const CartContents = () => {
 
   const handleCheckout = () => {
     startTransition(() => {
-      createCheckoutSession(cart, guestId, user?.id).then((response) => {
+      createCheckoutSession(cart, guestId).then((response) => {
         if (response?.error) {
           toast({
             title: 'An error has occurred',
