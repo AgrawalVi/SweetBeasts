@@ -59,3 +59,24 @@ export const getOrderByEmailAndOrderNumber = async (
     return null
   }
 }
+
+export const transferOrderToUserFromGuestUser = async (
+  id: number,
+  userId: string,
+) => {
+  try {
+    const order = await db.order.update({
+      where: {
+        id,
+      },
+      data: {
+        userId,
+        guestUserId: null,
+      },
+    })
+    return order
+  } catch (e) {
+    console.error('Error transferring order to user from guest user', e)
+    return null
+  }
+}
