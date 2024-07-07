@@ -4,7 +4,7 @@ import { v4 as uuidv4 } from 'uuid'
 import { getVerificationTokenByEmail } from '@/data/auth/verification-token'
 import { getResetPasswordTokenByEmail } from '@/data/auth/reset-password-token'
 import { getTwoFactorTokenByEmail } from '@/data/auth/two-factor-token'
-import { getViewOrderTokenByOrderId } from '@/data/shop/orders'
+import { getViewOrderTokenByOrderId } from '@/data/shop/view-order-token'
 import { db } from '@/lib/db'
 
 export const generateTwoFactorToken = async (email: string) => {
