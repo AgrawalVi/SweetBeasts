@@ -9,7 +9,7 @@ export const getOrdersWithEmail = async (email: string) => {
     })
     return orders
   } catch (e) {
-    console.error('Error retrieving orders', e)
+    console.error('Error getting orders by email', e)
     return null
   }
 }
@@ -27,7 +27,7 @@ export const getOrderByEmailAndOrderNumber = async (
     })
     return order
   } catch (e) {
-    console.error('Error retrieving order', e)
+    console.error('Error getting order by email and order number', e)
     return null
   }
 }
@@ -43,7 +43,7 @@ export const getOrderByFindOrderToken = async (token: string) => {
       },
     })
   } catch (e) {
-    console.error('Error retrieving token object', e)
+    console.error('Error getting view order token by token', e)
     return null
   }
 
@@ -73,7 +73,7 @@ export const getOrderByFindOrderToken = async (token: string) => {
     })
     return order
   } catch (e) {
-    console.error('Error retrieving order', e)
+    console.error('Error getting order by view order token', e)
     return null
   }
 }
@@ -87,7 +87,7 @@ export const getViewOrderTokenByOrderId = async (orderId: number) => {
     })
     return viewOrderToken
   } catch (e) {
-    console.error('Error retrieving view order token', e)
+    console.error('Error getting view order token by order id', e)
     return null
   }
 }

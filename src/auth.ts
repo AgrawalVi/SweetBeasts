@@ -7,7 +7,7 @@ import authConfig from '@/auth.config'
 
 import { getUserById, verifyUser } from '@/data/shop/user'
 import {
-  deleteTwoFactorConfirmation,
+  deleteTwoFactorConfirmationById,
   getTwoFactorConfirmationByUserId,
 } from '@/data/auth/two-factor-confirmation'
 
@@ -79,7 +79,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         }
 
         // Delete two factor conformation for next sign in
-        await deleteTwoFactorConfirmation(twoFactorConfirmation.id)
+        await deleteTwoFactorConfirmationById(twoFactorConfirmation.id)
       }
       // Need to transfer cart information before completing the login if there's a guestId
       const guestId = cookies().get('guestId')?.value

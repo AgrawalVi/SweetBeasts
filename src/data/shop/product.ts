@@ -8,8 +8,8 @@ export const getProductById = async (id: number) => {
       },
     })
     return product
-  } catch {
-    console.error('Error retrieving product')
+  } catch (e) {
+    console.error('Error getting product by id', e)
   }
 }
 
@@ -26,7 +26,8 @@ export async function getProductByStripePriceId(
       },
     })
     return product
-  } catch {
+  } catch (e) {
+    console.error('Error getting product by stripe price id', e)
     return null
   }
 }

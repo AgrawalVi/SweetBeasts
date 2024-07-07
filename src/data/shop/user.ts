@@ -8,7 +8,8 @@ export const getUserByEmail = async (email: string | undefined) => {
       },
     })
     return user
-  } catch {
+  } catch (e) {
+    console.error('Error getting user by email', e)
     return null
   }
 }
@@ -21,7 +22,8 @@ export const getUserById = async (id: string | undefined) => {
       },
     })
     return user
-  } catch {
+  } catch (e) {
+    console.error('Error getting user by id', e)
     return null
   }
 }
@@ -35,7 +37,7 @@ export const getUserByStripeCustomerId = async (stripeCustomerId: string) => {
     })
     return user
   } catch (e) {
-    console.error('Error retrieving user by stripe customer id', e)
+    console.error('Error getting user by stripe customer id', e)
     return null
   }
 }
@@ -51,6 +53,6 @@ export const verifyUser = async (id: string | undefined) => {
       },
     })
   } catch (e) {
-    console.error('Error in @/data/shop/user.ts verifyUser', e)
+    console.error('Error verifying user', e)
   }
 }

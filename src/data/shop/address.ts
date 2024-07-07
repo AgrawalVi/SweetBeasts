@@ -45,7 +45,7 @@ export const getAddressById = async (id: number) => {
     })
     return address
   } catch (e) {
-    console.error('Error retrieving address', e)
+    console.error('Error getting address by id', e)
     return null
   }
 }

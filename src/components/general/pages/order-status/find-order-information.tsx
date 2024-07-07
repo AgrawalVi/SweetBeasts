@@ -3,10 +3,11 @@ import { getOrderByFindOrderToken } from '@/data/shop/orders'
 import Link from 'next/link'
 import { redirect } from 'next/navigation'
 import { getLineItemsByOrderId } from '@/data/shop/line-items'
-import { lineItem, Product } from '@prisma/client'
+import { LineItem, Product } from '@prisma/client'
 import OrderSummary from './order-summary'
 import OrderStatusBar from './order-status-bar'
 import AddressSectionOnlyName from './order-details'
+import { LineItemWithProduct } from '@/types'
 
 export default async function FindOrderInformation({
   token,
@@ -20,8 +21,9 @@ export default async function FindOrderInformation({
   if (!order) {
     redirect('/order-status?error=your%20session%20has%20expired')
   }
-  const lineItems: (lineItem & { product: Product })[] | null =
-    await getLineItemsByOrderId(order.id)
+  const lineItems: LineItemWithProduct[] | null = await getLineItemsByOrderId(
+    order.id,
+  )
 
   return (
     <main className="flex w-full flex-col items-center justify-center">

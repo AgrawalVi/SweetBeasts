@@ -8,24 +8,31 @@ export const getTwoFactorConfirmationByUserId = async (userId: string) => {
 
     return twoFactorConfirmation
   } catch (e) {
-    console.error(
-      'Error in @/data/auth/two-factor-confirmation.ts getTwoFactorConfirmationByUserId',
-      e,
-    )
+    console.error('Error getting two factor confirmation by user id', e)
     return null
   }
 }
 
-export const deleteTwoFactorConfirmation = async (id: string) => {
+export const deleteTwoFactorConfirmationById = async (id: string) => {
   try {
     await db.twoFactorConfirmation.delete({
       where: { id },
     })
   } catch (e) {
-    console.error(
-      'Error in @/data/auth/two-factor-confirmation.ts deleteTwoFactorConfirmation',
-      e,
-    )
+    console.error('Error deleting two factor confirmation', e)
+    return null
+  }
+}
+
+export const createTwoFactorConfirmation = async (userId: string) => {
+  try {
+    await db.twoFactorConfirmation.create({
+      data: {
+        userId,
+      },
+    })
+  } catch (e) {
+    console.error('Error creating two factor confirmation', e)
     return null
   }
 }
