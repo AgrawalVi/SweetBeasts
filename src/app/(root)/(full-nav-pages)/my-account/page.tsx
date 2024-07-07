@@ -3,6 +3,7 @@
 import { Card, CardHeader, CardContent } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { useTransition } from 'react'
+import { signOut } from 'next-auth/react'
 
 export default function MyAccount() {
   return (
@@ -11,7 +12,9 @@ export default function MyAccount() {
         <CardHeader>
           <p className="text-center text-2xl font-semibold">Settings</p>
         </CardHeader>
-        <CardContent></CardContent>
+        <CardContent>
+          <Button onClick={() => signOut()}>Sign Out</Button>
+        </CardContent>
       </Card>
     </>
   )
