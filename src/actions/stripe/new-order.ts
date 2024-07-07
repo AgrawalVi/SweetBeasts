@@ -1,61 +1,54 @@
-import { db } from '@/lib/db'
 import { stripe } from '@/lib/stripe'
 import Stripe from 'stripe'
 import { getUserByEmail, getUserByStripeCustomerId } from '@/data/shop/user'
-import { ShippingAddress, User } from '@prisma/client'
-import { getProductByStripePriceId } from '@/data/shop/product'
+import { ShippingAddress } from '@prisma/client'
+import { db } from '@/lib/db'
+import {
+  getProductByStripePriceId,
+  updateProductInventoryAndNumSold,
+} from '@/data/shop/product'
 import { notEmpty } from '@/lib/utils'
 import { getAddressByAddressAndEmail } from '@/data/shop/address'
 import { clearGuestIdCart, clearUserCart } from '../customer/cart'
 
 import crypto from 'crypto'
+import { getOrderByOrderNumber } from '@/data/shop/orders'
+import {
+  deleteOpenCheckoutSessionById,
+  deleteOpenCheckoutSessionByStripeCheckoutSessionId,
+  getAllOpenCheckoutSessionsWithProductByProductId,
+} from '@/data/shop/open-checkout-session'
 
 const generateOrderNumber = async (): Promise<string> => {
   const orderNumber = `SB${crypto.randomInt(100_000, 100_000_0).toString()}`
   // check if the order number already exists in the database
-  const existingOrder = await db.order.findFirst({
-    where: {
-      orderNumber,
-    },
-  })
+  const existingOrder = await getOrderByOrderNumber(orderNumber)
   if (existingOrder) {
     return generateOrderNumber()
   }
   return orderNumber
 }
 
-const expireAllOpenCheckoutSessions = async (productId: number) => {
-  const checkoutSessionIds = await db.openCheckoutSessions.findMany({
-    where: {
-      products: {
-        some: {
-          id: productId,
-        },
-      },
-    },
-  })
+const expireAllOpenCheckoutSessionsByProductId = async (productId: number) => {
+  const checkoutSessions =
+    await getAllOpenCheckoutSessionsWithProductByProductId(productId)
 
-  if (checkoutSessionIds.length < 0) {
+  if (checkoutSessions.length < 0) {
     return
   }
 
-  for (const checkoutSessionId of checkoutSessionIds) {
+  for (const checkoutSession of checkoutSessions) {
     try {
       await stripe.checkout.sessions.expire(
-        checkoutSessionId.stripeCheckoutSessionId,
+        checkoutSession.stripeCheckoutSessionId,
       )
     } catch (e) {
       console.error('Error expiring checkout session', e)
     }
 
-    try {
-      await db.openCheckoutSessions.delete({
-        where: {
-          id: checkoutSessionId.id,
-        },
-      })
-    } catch (e) {
-      console.error('Error deleting open checkout session', e)
+    const response = await deleteOpenCheckoutSessionById(checkoutSession.id)
+    if (!response) {
+      console.error('Error deleting open checkout session')
     }
   }
 }
@@ -63,8 +56,6 @@ const expireAllOpenCheckoutSessions = async (productId: number) => {
 export const createOrder = async (
   event: Stripe.CheckoutSessionCompletedEvent,
 ) => {
-  console.log('Webhook event hit')
-
   const checkoutSession = event.data.object as Stripe.Checkout.Session
   console.log('checkoutSession', checkoutSession)
 
@@ -255,34 +246,23 @@ export const createOrder = async (
 
   // decrease inventory and increase numSold for each product that's been purchased in the lineItems array
   for (const item of filteredLineItemsToAdd) {
-    try {
-      const product = await db.product.update({
-        where: {
-          id: item.productId,
-        },
-        data: {
-          inventory: {
-            decrement: item.quantity,
-          },
-          numSold: {
-            increment: item.quantity,
-          },
-        },
-      })
-      if (product.inventory <= 0) {
-        await expireAllOpenCheckoutSessions(product.id)
-        if (product.inventory < 0) {
-          console.error('Inventory is less than 0')
-        }
+    const product = await updateProductInventoryAndNumSold(
+      item.productId,
+      item.quantity,
+    )
+    if (!product) {
+      return { error: 'Error updating product inventory and num sold' }
+    }
+
+    if (product.inventory <= 0) {
+      await expireAllOpenCheckoutSessionsByProductId(product.id)
+      if (product.inventory < 0) {
+        console.error('Inventory is less than 0')
       }
-      await db.openCheckoutSessions.delete({
-        where: {
-          stripeCheckoutSessionId: checkoutSession.id,
-        },
-      })
-    } catch (e) {
-      console.error('an error occurred while decreasing inventory', e)
-      return { error: 'Unable to decrease inventory' }
+
+      await deleteOpenCheckoutSessionByStripeCheckoutSessionId(
+        checkoutSession.id,
+      )
     }
   }
 

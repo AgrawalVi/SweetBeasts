@@ -14,12 +14,26 @@ export const getOrdersWithEmail = async (email: string) => {
   }
 }
 
+export const getOrderByOrderNumber = async (orderNumber: string) => {
+  try {
+    const order = await db.order.findUnique({
+      where: {
+        orderNumber,
+      },
+    })
+    return order
+  } catch (e) {
+    console.error('Error getting order by order number', e)
+    return null
+  }
+}
+
 export const getOrderByEmailAndOrderNumber = async (
   email: string,
   orderNumber: string,
 ) => {
   try {
-    const order = await db.order.findFirst({
+    const order = await db.order.findUnique({
       where: {
         email,
         orderNumber,

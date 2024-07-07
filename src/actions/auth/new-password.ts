@@ -46,7 +46,10 @@ export const newPassword = async (
 
   const hashedPassword = await bcrypt.hash(password, 10)
 
-  await changePassword(existingUser.id, hashedPassword)
+  const response = await changePassword(existingUser.id, hashedPassword)
+  if (!response) {
+    return { error: 'Error changing password' }
+  }
 
   await deleteResetPasswordTokenById(existingToken.id)
 

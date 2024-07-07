@@ -5,7 +5,6 @@ export const getPasswordResetTokenByToken = async (token: string) => {
     const resetPasswordToken = await db.resetPasswordToken.findUnique({
       where: { token },
     })
-
     return resetPasswordToken
   } catch (e) {
     console.error('Error getting password reset token by token', e)
@@ -18,7 +17,6 @@ export const getResetPasswordTokenByEmail = async (email: string) => {
     const resetPasswordToken = await db.resetPasswordToken.findFirst({
       where: { email },
     })
-
     return resetPasswordToken
   } catch (e) {
     console.error('Error getting reset password token by email', e)
@@ -28,9 +26,10 @@ export const getResetPasswordTokenByEmail = async (email: string) => {
 
 export const deleteResetPasswordTokenById = async (id: string) => {
   try {
-    await db.resetPasswordToken.delete({
+    const token = await db.resetPasswordToken.delete({
       where: { id },
     })
+    return token
   } catch (e) {
     console.error('Error deleting reset password token', e)
     return null

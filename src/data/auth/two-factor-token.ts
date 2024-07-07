@@ -28,9 +28,10 @@ export const getTwoFactorTokenByEmail = async (email: string) => {
 
 export const deleteTwoFactorTokenById = async (id: string) => {
   try {
-    await db.twoFactorToken.delete({
+    const token = await db.twoFactorToken.delete({
       where: { id },
     })
+    return token
   } catch (e) {
     console.error('Error deleting two factor token', e)
     return null

@@ -31,3 +31,28 @@ export async function getProductByStripePriceId(
     return null
   }
 }
+
+export const updateProductInventoryAndNumSold = async (
+  id: number,
+  quantity: number,
+) => {
+  try {
+    const product = await db.product.update({
+      where: {
+        id,
+      },
+      data: {
+        inventory: {
+          decrement: quantity,
+        },
+        numSold: {
+          increment: quantity,
+        },
+      },
+    })
+    return product
+  } catch (e) {
+    console.error('Error updating product inventory and num sold', e)
+    return null
+  }
+}

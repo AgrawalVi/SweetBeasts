@@ -25,7 +25,13 @@ export const newVerification = async (token: string) => {
     return { error: 'Email does not exist' }
   }
 
-  await verifyUserWithEmail(existingUser.id, existingToken.email)
+  const response = await verifyUserWithEmail(
+    existingUser.id,
+    existingToken.email,
+  )
+  if (!response) {
+    return { error: 'Error verifying user' }
+  }
 
   await deleteVerificationTokenById(existingToken.id)
 

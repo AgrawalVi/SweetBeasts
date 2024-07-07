@@ -1,5 +1,5 @@
 import { formatPrice } from '@/lib/utils'
-import { Order, Product, lineItem } from '@prisma/client'
+import { Order } from '@prisma/client'
 import OrderLineItem from './order-line-item'
 import {
   Card,
@@ -8,12 +8,13 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card'
+import { LineItemWithProduct } from '@/types'
 
 export default function OrderSummary({
   orderItems,
   order,
 }: {
-  orderItems: (lineItem & { product: Product })[]
+  orderItems: LineItemWithProduct[]
   order: Order
 }) {
   const subtotal = orderItems.reduce(

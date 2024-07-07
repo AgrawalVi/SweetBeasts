@@ -2,18 +2,13 @@
 
 import { CartItem } from '@/hooks/use-shopping-cart'
 import { stripe } from '@/lib/stripe'
-import { getUserById } from '@/data/shop/user'
+import { addStripeCustomerIdToUser, getUserById } from '@/data/shop/user'
 import { redirect } from 'next/navigation'
 import { getProductById, getProductByStripePriceId } from '@/data/shop/product'
 import Stripe from 'stripe'
-import { db } from '@/lib/db'
 import { notEmpty } from '@/lib/utils'
-
-export type lineItem = {
-  price: string
-  quantity: number
-  id: number
-}
+import { stripeLineItemWithProductId } from '@/types'
+import { createOpenCheckoutSession } from '@/data/shop/open-checkout-session'
 
 export const createCheckoutSession = async (
   cart: CartItem[],
@@ -21,7 +16,7 @@ export const createCheckoutSession = async (
   userId: string | null | undefined,
 ) => {
   // create lineItems for each product in the cart
-  const lineItems: lineItem[] = (
+  const lineItems: stripeLineItemWithProductId[] = (
     await Promise.all(
       cart.map(async (item) => {
         const product = await getProductById(item.productId)
@@ -34,14 +29,14 @@ export const createCheckoutSession = async (
         }
       }),
     )
-  ).filter((item): item is lineItem => item !== undefined)
+  ).filter((item): item is stripeLineItemWithProductId => item !== undefined)
 
   // check if there are any valid products in the cart
   if (lineItems.length === 0) {
     return { error: 'No valid products are in the cart' }
   }
 
-  let filteredItems: lineItem[] = []
+  let filteredItems
   // make sure there is enough inventory to send products to stripe
   try {
     const processedItems = await Promise.all(
@@ -117,14 +112,12 @@ export const createCheckoutSession = async (
       console.error('error creating customer in stripe', e)
       return { error: 'Error creating customer in Stripe' }
     }
-    try {
-      await db.user.update({
-        where: { id: existingUser.id },
-        data: { stripeCustomerId: customer.id },
-      })
-    } catch (e) {
-      console.error('Error updating user in database', e)
-      return { error: 'Error updating user in database' }
+    const response = await addStripeCustomerIdToUser(
+      existingUser.id,
+      customer.id,
+    )
+    if (!response) {
+      return { error: 'Error adding stripe customer id to user' }
     }
     checkoutSessionConfig.customer = customer.id
   } else {
@@ -136,7 +129,7 @@ export const createCheckoutSession = async (
 }
 
 const createCheckoutSessionHelper = async (
-  filteredItems: lineItem[],
+  filteredItems: stripeLineItemWithProductId[],
   checkoutSessionConfig: Stripe.Checkout.SessionCreateParams,
 ) => {
   let session
@@ -147,16 +140,10 @@ const createCheckoutSessionHelper = async (
     return { error: 'An error occurred while creating a checkout session' }
   }
 
-  await db.openCheckoutSessions.create({
-    data: {
-      stripeCheckoutSessionId: session.id,
-      products: {
-        connect: filteredItems.map((item) => ({
-          id: item.id,
-        })),
-      },
-    },
-  })
+  const response = await createOpenCheckoutSession(session.id, filteredItems)
+  if (!response) {
+    return { error: 'Error creating open checkout session in database' }
+  }
 
   if (session.url) {
     redirect(session.url)

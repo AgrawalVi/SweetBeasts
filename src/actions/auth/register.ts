@@ -39,6 +39,10 @@ export const register = async (values: z.infer<typeof RegisterSchema>) => {
     newsletter,
   )
 
+  if (!newUser) {
+    return { error: 'Error creating user' }
+  }
+
   try {
     addToGeneralEmailList(email)
   } catch (e) {

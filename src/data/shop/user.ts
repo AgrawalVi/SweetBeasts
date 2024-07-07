@@ -66,9 +66,29 @@ export const getUserByStripeCustomerId = async (stripeCustomerId: string) => {
   }
 }
 
+export const addStripeCustomerIdToUser = async (
+  userId: string,
+  stripeCustomerId: string,
+) => {
+  try {
+    const user = await db.user.update({
+      where: {
+        id: userId,
+      },
+      data: {
+        stripeCustomerId,
+      },
+    })
+    return user
+  } catch (e) {
+    console.error('Error adding stripe customer id to user', e)
+    return null
+  }
+}
+
 export const verifyUser = async (id: string | undefined) => {
   try {
-    await db.user.update({
+    const user = await db.user.update({
       where: {
         id,
       },
@@ -76,14 +96,16 @@ export const verifyUser = async (id: string | undefined) => {
         emailVerified: new Date(),
       },
     })
+    return user
   } catch (e) {
     console.error('Error verifying user', e)
+    return null
   }
 }
 
 export const verifyUserWithEmail = async (id: string, email: string) => {
   try {
-    await db.user.update({
+    const user = await db.user.update({
       where: {
         id,
       },
@@ -92,14 +114,16 @@ export const verifyUserWithEmail = async (id: string, email: string) => {
         email,
       },
     })
+    return user
   } catch (e) {
     console.error('Error verifying user', e)
+    return null
   }
 }
 
 export const changePassword = async (id: string, password: string) => {
   try {
-    await db.user.update({
+    const user = await db.user.update({
       where: {
         id,
       },
@@ -107,7 +131,9 @@ export const changePassword = async (id: string, password: string) => {
         password,
       },
     })
+    return user
   } catch (e) {
     console.error('Error changing password', e)
+    return null
   }
 }
