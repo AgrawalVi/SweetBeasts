@@ -33,16 +33,22 @@ export const register = async (values: z.infer<typeof RegisterSchema>) => {
     return { error: 'Account already exists, please Login!' }
   }
 
-  // create a stripe customer
-  const customer = await stripe.customers.create({
-    email,
-  })
+  const guestUser: GuestUserWithData | null =
+    await getGuestUserWithDataByEmail(email)
+
+  let customer
+  if (!guestUser) {
+    // create a stripe customer
+    customer = await stripe.customers.create({
+      email,
+    })
+  }
 
   const newUser = await createUser(
     name,
     email,
     hashedPassword,
-    customer.id,
+    guestUser ? guestUser.stripeCustomerId : (customer?.id as string),
     newsletter,
   )
 
@@ -50,14 +56,18 @@ export const register = async (values: z.infer<typeof RegisterSchema>) => {
     return { error: 'Error creating user' }
   }
 
-  try {
-    addToGeneralEmailList(email)
-  } catch (e) {
-    console.error('Error adding email to general email list', e, 'EMAIL', email)
+  if (newsletter) {
+    try {
+      addToGeneralEmailList(email)
+    } catch (e) {
+      console.error(
+        'Error adding email to general email list',
+        e,
+        'EMAIL',
+        email,
+      )
+    }
   }
-
-  const guestUser: GuestUserWithData | null =
-    await getGuestUserWithDataByEmail(email)
 
   if (guestUser) {
     guestUser.orders.forEach(async (order) => {
