@@ -2,11 +2,10 @@
 
 import * as z from 'zod'
 import bcrypt from 'bcryptjs'
-import { db } from '@/lib/db'
 import { stripe } from '@/lib/stripe'
 
 import { RegisterSchema } from '@/schemas'
-import { getUserByEmail } from '@/data/shop/user'
+import { createUser, getUserByEmail } from '@/data/shop/user'
 import { generateVerificationToken } from '@/lib/tokens'
 import { addToGeneralEmailList, sendVerificationEmail } from '@/lib/resend'
 
@@ -32,15 +31,13 @@ export const register = async (values: z.infer<typeof RegisterSchema>) => {
     email,
   })
 
-  const newUser = await db.user.create({
-    data: {
-      name,
-      email,
-      password: hashedPassword,
-      stripeCustomerId: customer.id,
-      newsletterSubscribed: newsletter,
-    },
-  })
+  const newUser = await createUser(
+    name,
+    email,
+    hashedPassword,
+    customer.id,
+    newsletter,
+  )
 
   try {
     addToGeneralEmailList(email)
@@ -48,17 +45,9 @@ export const register = async (values: z.infer<typeof RegisterSchema>) => {
     console.error('Error adding email to general email list', e, 'EMAIL', email)
   }
 
-  await db.order.updateMany({
-    where: {
-      email,
-    },
-    data: {
-      userId: newUser.id,
-    },
-  })
+  //TODO: COMBINE GUEST ORDERS WITH NEW USER ORDERS
 
   const verificationToken = await generateVerificationToken(email)
-  // console.log("verificationToken", verificationToken)
 
   await sendVerificationEmail(verificationToken.email, verificationToken.token)
 

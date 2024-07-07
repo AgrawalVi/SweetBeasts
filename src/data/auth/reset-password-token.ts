@@ -25,3 +25,14 @@ export const getResetPasswordTokenByEmail = async (email: string) => {
     return null
   }
 }
+
+export const deleteResetPasswordTokenById = async (id: string) => {
+  try {
+    await db.resetPasswordToken.delete({
+      where: { id },
+    })
+  } catch (e) {
+    console.error('Error deleting reset password token', e)
+    return null
+  }
+}

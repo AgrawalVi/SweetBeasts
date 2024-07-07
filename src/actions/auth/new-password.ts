@@ -4,9 +4,11 @@ import * as z from 'zod'
 
 import bcrypt from 'bcryptjs'
 import { NewPasswordSchema } from '@/schemas'
-import { getPasswordResetTokenByToken } from '@/data/auth/reset-password-token'
-import { getUserByEmail } from '@/data/shop/user'
-import { db } from '@/lib/db'
+import {
+  deleteResetPasswordTokenById,
+  getPasswordResetTokenByToken,
+} from '@/data/auth/reset-password-token'
+import { changePassword, getUserByEmail } from '@/data/shop/user'
 
 export const newPassword = async (
   values: z.infer<typeof NewPasswordSchema>,
@@ -44,14 +46,9 @@ export const newPassword = async (
 
   const hashedPassword = await bcrypt.hash(password, 10)
 
-  await db.user.update({
-    where: { id: existingUser.id },
-    data: { password: hashedPassword },
-  })
+  await changePassword(existingUser.id, hashedPassword)
 
-  await db.resetPasswordToken.delete({
-    where: { id: existingToken.id },
-  })
+  await deleteResetPasswordTokenById(existingToken.id)
 
   return { success: 'Password updated' }
 }

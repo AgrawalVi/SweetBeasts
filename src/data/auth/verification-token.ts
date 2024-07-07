@@ -23,3 +23,14 @@ export async function getVerificationTokenByToken(token: string) {
     return null
   }
 }
+
+export async function deleteVerificationTokenById(id: string) {
+  try {
+    await db.verificationToken.delete({
+      where: { id },
+    })
+  } catch (e) {
+    console.error('Error deleting verification token', e)
+    return null
+  }
+}
