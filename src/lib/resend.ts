@@ -7,7 +7,7 @@ import EmailConfirmation from '@/emails/email-confirmation'
 const resend = new Resend(process.env.RESEND_API_KEY)
 const generalAudienceId = process.env.RESEND_GENERAL_AUDIENCE_ID!
 const fromEmail = process.env.NEXT_PUBLIC_RESEND_EMAIL_NEW_ACCOUNT!
-const NEXT_BASE_URL = process.env.NEXT_BASE_URL!
+const base_url = process.env.NEXT_PUBLIC_BASE_URL!
 
 export const addToGeneralEmailList = async (email: string) => {
   if (generalAudienceId) {
@@ -28,7 +28,7 @@ export const addToGeneralEmailList = async (email: string) => {
 // TODO: Test this functionality, and also change first name to be dynamic. Need to change register form and database to do this.
 
 export const sendVerificationEmail = async (email: string, token: string) => {
-  const confirmLink = `${NEXT_BASE_URL}/auth/verify-email?token=${token}`
+  const confirmLink = `${base_url}/auth/verify-email?token=${token}`
   console.log('confirmLink', confirmLink)
   await resend.emails.send({
     from: fromEmail,
@@ -42,7 +42,7 @@ export const sendVerificationEmail = async (email: string, token: string) => {
 }
 
 export const sendResetPasswordEmail = async (email: string, token: string) => {
-  const resetLink = `${NEXT_BASE_URL}/auth/new-password?token=${token}`
+  const resetLink = `${base_url}/auth/new-password?token=${token}`
 
   await resend.emails.send({
     from: fromEmail,
