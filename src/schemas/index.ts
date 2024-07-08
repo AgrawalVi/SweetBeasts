@@ -6,6 +6,12 @@ export const JoinEmailListSchema = z.object({
   }),
 })
 
+export const FeedbackSchema = z.object({
+  name: z.string().min(2).max(50).nonempty(),
+  email: z.string().email(),
+  feedback: z.string().min(10).max(500).nonempty(),
+});
+
 export const LoginSchema = z.object({
   email: z
     .string()
