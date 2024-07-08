@@ -32,7 +32,7 @@ import Link from 'next/link'
 
 import { useShoppingCart } from '@/hooks/use-shopping-cart'
 
-export const LoginForm = ({}) => {
+export const LoginForm = ({ redirectTo }: { redirectTo?: string }) => {
   const searchParams = useSearchParams()
   const urlError =
     searchParams.get('error') === 'OAuthAccountNotLinked'
@@ -43,8 +43,6 @@ export const LoginForm = ({}) => {
   const [showTwoFactor, setShowTwoFactor] = useState(false)
   const [error, setError] = useState<string | undefined>('')
   const [success, setSuccess] = useState<string | undefined>('')
-
-  const { handleLogin } = useShoppingCart()
 
   const form = useForm<z.infer<typeof LoginSchema>>({
     resolver: zodResolver(LoginSchema),
@@ -58,7 +56,7 @@ export const LoginForm = ({}) => {
   const onSubmit = (values: z.infer<typeof LoginSchema>) => {
     setError('')
     startTransition(() => {
-      login(values)
+      login(values, redirectTo)
         .then((data) => {
           if (data?.error) {
             console.log(data.error)
@@ -85,7 +83,11 @@ export const LoginForm = ({}) => {
       backButtonLabel={
         showTwoFactor ? 'Create an account' : "Don't have an account?"
       }
-      backButtonHref="/auth/register"
+      backButtonHref={
+        redirectTo
+          ? `/auth/register?redirectTo=${redirectTo}`
+          : '/auth/register'
+      }
       showSocial={!showTwoFactor}
       googleButtonText="Continue with Google"
     >
@@ -166,7 +168,13 @@ export const LoginForm = ({}) => {
                     className="text-xsl px-0 font-normal"
                     asChild
                   >
-                    <Link href="/auth/reset-password">
+                    <Link
+                      href={
+                        redirectTo
+                          ? `/auth/reset-password?redirectTo=${redirectTo}`
+                          : '/auth/reset-password'
+                      }
+                    >
                       Forgot your password?
                     </Link>
                   </Button>

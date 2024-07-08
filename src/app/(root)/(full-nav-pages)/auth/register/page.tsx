@@ -1,7 +1,11 @@
 import { RegisterForm } from '@/components/auth/register-form'
 
-const RegisterPage = () => {
-  return <RegisterForm />
+const RegisterPage = ({
+  searchParams,
+}: {
+  searchParams: { redirectTo?: string }
+}) => {
+  return <RegisterForm redirectTo={searchParams.redirectTo} />
 }
 
 export default RegisterPage
