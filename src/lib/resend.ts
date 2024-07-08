@@ -1,8 +1,13 @@
 import { Resend } from 'resend'
 
+import TwoFactorConfirmationEmail from '@/emails/two-factor'
+import { ResetPasswordEmail } from '@/emails/reset-password'
+import EmailConfirmation from '@/emails/email-confirmation'
+
 const resend = new Resend(process.env.RESEND_API_KEY)
 const generalAudienceId = process.env.RESEND_GENERAL_AUDIENCE_ID!
 const fromEmail = process.env.NEXT_PUBLIC_RESEND_EMAIL_NEW_ACCOUNT!
+const base_url = process.env.NEXT_PUBLIC_BASE_URL!
 
 export const addToGeneralEmailList = async (email: string) => {
   if (generalAudienceId) {
@@ -20,25 +25,30 @@ export const addToGeneralEmailList = async (email: string) => {
   }
 }
 
+// TODO: Test this functionality, and also change first name to be dynamic. Need to change register form and database to do this.
+
 export const sendVerificationEmail = async (email: string, token: string) => {
-  const confirmLink = `http://localhost:3000/auth/verify-email?token=${token}`
+  const confirmLink = `${base_url}/auth/verify-email?token=${token}`
   console.log('confirmLink', confirmLink)
   await resend.emails.send({
     from: fromEmail,
     to: email,
     subject: 'Verify your email',
-    html: `<p>Click <a href="${confirmLink}">here</a> to verify your email</p>`,
+    react: EmailConfirmation({
+      firstName: 'john',
+      confirmationLink: confirmLink,
+    }),
   })
 }
 
 export const sendResetPasswordEmail = async (email: string, token: string) => {
-  const resetLink = `http://localhost:3000/auth/new-password?token=${token}`
+  const resetLink = `${base_url}/auth/new-password?token=${token}`
 
   await resend.emails.send({
     from: fromEmail,
     to: email,
     subject: 'Reset your password',
-    html: `<p>Click <a href="${resetLink}">here</a> to reset your password</p>`,
+    react: ResetPasswordEmail({ firstName: 'john', resetLink }),
   })
 }
 
@@ -47,15 +57,9 @@ export const sendTwoFactorEmail = async (email: string, token: string) => {
     from: fromEmail,
     to: email,
     subject: 'Two Factor Authentication Code',
-    html: `<p>Your two factor authentication code is: ${token}</p>`,
-  })
-}
-
-export const confirmShoppingCart = async (email: string, firstName: string) => {
-  await resend.emails.send({
-    from: fromEmail,
-    to: email,
-    subject: 'Shopping Cart Confirmation',
-    html: `<p>Click <a href="">here</a> to reset your password</p>`,
+    react: TwoFactorConfirmationEmail({
+      firstName: 'john',
+      twoFactorCode: token,
+    }),
   })
 }

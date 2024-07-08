@@ -1,13 +1,13 @@
-'use client'
-import React, { useState } from 'react'
-import {
-  motion,
-  AnimatePresence,
-  useScroll,
-  useMotionValueEvent,
-} from 'framer-motion'
+import React from 'react'
 import { cn } from '@/lib/utils'
 import Link from 'next/link'
+import { UserIcon } from 'lucide-react'
+import Image from 'next/image'
+import emblem from '@/assets/logos/icon.svg'
+
+import { FullNavLinks } from '../general/navbars/full-nav-links'
+import { ModeToggle } from '../ui/mode-toggle'
+import { FloatingModeToggle } from '../general/navbars/floating-mode-toggle'
 
 export const FloatingNav = ({
   navItems,
@@ -16,56 +16,31 @@ export const FloatingNav = ({
   navItems: {
     name: string
     link: string
-    icon?: JSX.Element
   }[]
   className?: string
 }) => {
-  const { scrollYProgress } = useScroll()
-
-  const [visible, setVisible] = useState(false)
-
-  // useMotionValueEvent(scrollYProgress, "change", (current) => {
-  //   // Check if current is not undefined and is a number
-  //   if (typeof current === "number") {
-  //     let direction = current! - scrollYProgress.getPrevious()!;
-
-  //     if (scrollYProgress.get() < 0.05) {
-  //       setVisible(false);
-  //     } else {
-  //       if (direction < 0) {
-  //         setVisible(true);
-  //       } else {
-  //         setVisible(false);
-  //       }
-  //     }
-  //   }
-  // });
-
   return (
-    <AnimatePresence mode="wait">
-      <motion.div
-        initial={{
-          opacity: 1,
-        }}
-        className={cn(
-          'sticky inset-x-0 top-5 z-[5000] mx-auto flex max-w-fit items-center justify-center space-x-4 rounded-full border border-transparent bg-white/90 py-2 pl-8 pr-2 shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08)] dark:border-white/[0.2] dark:bg-black/90',
-          className,
-        )}
-      >
-        {navItems.map((navItem: any, idx: number) => (
-          <Link
-            key={`link=${idx}`}
-            href={navItem.link}
-            className={cn(
-              'relative flex items-center space-x-1 text-neutral-600 hover:text-neutral-500 dark:text-neutral-50 dark:hover:text-neutral-300',
-            )}
-          >
-            <span className="block sm:hidden">{navItem.icon}</span>
-            <span className="hidden text-sm sm:block">{navItem.name}</span>
-          </Link>
-        ))}
-        <Link href="/my-account"></Link>
-      </motion.div>
-    </AnimatePresence>
+    <div
+      className={cn(
+        'fixed inset-x-0 top-5 z-[1000] mx-auto grid h-16 w-[17rem] grid-cols-5 items-center justify-center rounded-xl border-border bg-muted/70 align-middle shadow-[0_1px_10px_rgb(0,0,0,0.2)] backdrop-blur-lg backdrop-saturate-200 big-phone:w-[20rem] big-phone:gap-2',
+        className,
+      )}
+      style={{}}
+    >
+      <Link href="/" className="inline-flex justify-start p-3">
+        <Image
+          src={emblem}
+          alt="logo"
+          className="relative h-8 w-8 transition-all duration-300 ease-in-out hover:scale-125"
+        />
+      </Link>
+      <FullNavLinks
+        className="relative col-span-3 w-full justify-center align-middle"
+        innerClassName="bg-transparent absolute -top-3 md:static md:py-5 sm:px-0"
+      />
+      <div className="flex items-center justify-center">
+        <FloatingModeToggle className="h-[1.2rem] w-[1.2rem]" />
+      </div>
+    </div>
   )
 }

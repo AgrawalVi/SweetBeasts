@@ -5,12 +5,18 @@ import { db } from '@/lib/db'
 import { UserRole } from '@prisma/client'
 import authConfig from '@/auth.config'
 
-import { getUserById } from '@/data/auth/user'
-import { getTwoFactorConfirmationByUserId } from '@/data/auth/two-factor-confirmation'
+import { getUserById, verifyUser } from '@/data/shop/user'
+import {
+  deleteTwoFactorConfirmationById,
+  getTwoFactorConfirmationByUserId,
+} from '@/data/auth/two-factor-confirmation'
 
 import { cookies } from 'next/headers'
 import { cartLoginHandler } from './utils/cart-utils'
 import { getCartByGuestId } from './data/shop/cart'
+import { getGuestUserWithDataByEmail } from './data/shop/guest-user'
+import { transferOrderToUserFromGuestUser } from './data/shop/orders'
+import { transferShippingAddressToUserFromGuestUser } from './data/shop/address'
 
 declare module 'next-auth' {
   /**
@@ -39,10 +45,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
 
   events: {
     async linkAccount({ user }) {
-      await db.user.update({
-        where: { id: user.id },
-        data: { emailVerified: new Date() },
-      })
+      await verifyUser(user.id)
     },
   },
 
@@ -51,15 +54,32 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       // allow 0Auth without email verification
       if (account?.provider !== 'credentials') {
         // Need to transfer cart information before completing the login if there's a guestId
-        const guestId = cookies().get('guestId')?.value
+        return false
+        // const guestId = cookies().get('guestId')?.value
 
-        if (guestId && user.id) {
-          const guestCart = await getCartByGuestId(guestId)
-          if (guestCart) {
-            await cartLoginHandler(guestCart, guestId, user.id)
-          }
-        }
-        return true
+        // if (guestId && user.id) {
+        //   const guestCart = await getCartByGuestId(guestId)
+        //   if (guestCart) {
+        //     await cartLoginHandler(guestCart, guestId, user.id)
+        //   }
+        // }
+
+        // // Transfer guest user orders and shipping addresses to the user
+        // const guestUser = await getGuestUserWithDataByEmail(
+        //   user.email as string,
+        // )
+        // if (guestUser) {
+        //   guestUser.orders.forEach(async (order) => {
+        //     await transferOrderToUserFromGuestUser(order.id, user.id as string)
+        //   })
+        //   guestUser.shippingAddresses.forEach(async (shippingAddress) => {
+        //     await transferShippingAddressToUserFromGuestUser(
+        //       shippingAddress.id,
+        //       user.id as string,
+        //     )
+        //   })
+        // }
+        // return true
       }
 
       const existingUser = await getUserById(user.id)
@@ -79,9 +99,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         }
 
         // Delete two factor conformation for next sign in
-        await db.twoFactorConfirmation.delete({
-          where: { id: twoFactorConfirmation.id },
-        })
+        await deleteTwoFactorConfirmationById(twoFactorConfirmation.id)
       }
       // Need to transfer cart information before completing the login if there's a guestId
       const guestId = cookies().get('guestId')?.value

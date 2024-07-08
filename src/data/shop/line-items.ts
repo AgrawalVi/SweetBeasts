@@ -1,13 +1,17 @@
 import { db } from '@/lib/db'
 import { notEmpty } from '@/lib/utils'
+import { LineItemWithProduct } from '@/types'
+import { LineItem, Product } from '@prisma/client'
 
 export const getLineItemsByOrderId = async (orderId: number) => {
   let lineItems
-  let toReturn
   try {
     lineItems = await db.lineItem.findMany({
       where: {
         orderId,
+      },
+      include: {
+        Product: true,
       },
     })
   } catch (e) {
@@ -19,28 +23,8 @@ export const getLineItemsByOrderId = async (orderId: number) => {
     return null
   }
 
-  try {
-    toReturn = await Promise.all(
-      lineItems.map(async (item) => {
-        const product = await db.product.findUnique({
-          where: {
-            id: item.productId,
-          },
-        })
-        if (!product) {
-          return null
-        } else {
-          return {
-            ...item,
-            product: product,
-          }
-        }
-      }),
-    ).then((results) => results.filter(notEmpty))
-  } catch (e) {
-    console.error('Error retrieving line items', e)
-    return null
-  }
-
-  return toReturn
+  return lineItems.filter(
+    (item): item is LineItemWithProduct =>
+      item !== null && item.Product !== null,
+  )
 }

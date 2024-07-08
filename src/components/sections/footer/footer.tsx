@@ -144,7 +144,7 @@ export default function Footer() {
             Privacy Policy
           </Link>
         </div>
-        <div className="text-sm">
+        <div className="text-center text-xs sm:text-sm">
           © 2024 SweetBeasts Inc. All Rights Reserved.
         </div>
       </div>

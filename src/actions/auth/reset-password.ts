@@ -3,7 +3,7 @@
 import * as z from 'zod'
 
 import { ResetPasswordSchema } from '@/schemas'
-import { getUserByEmail } from '@/data/auth/user'
+import { getUserByEmail } from '@/data/shop/user'
 import { sendResetPasswordEmail } from '@/lib/resend'
 import { generateResetPasswordToken } from '@/lib/tokens'
 
@@ -14,7 +14,7 @@ export const resetPassword = async (
 
   if (!validatedFields.success) {
     return {
-      error: 'Not a valid email!',
+      error: 'Please enter a valid email address!',
     }
   }
 
@@ -28,6 +28,10 @@ export const resetPassword = async (
   }
 
   const resetPasswordToken = await generateResetPasswordToken(email)
+  if (!resetPasswordToken) {
+    return { error: 'Error generating token, please try again' }
+  }
+
   await sendResetPasswordEmail(
     resetPasswordToken.email,
     resetPasswordToken.token,

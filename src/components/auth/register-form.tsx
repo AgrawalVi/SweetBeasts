@@ -8,6 +8,7 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import {
   Form,
   FormControl,
+  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -20,8 +21,9 @@ import { Button } from '@/components/ui/button'
 import { FormError } from '@/components/custom/form-error'
 import { FormSuccess } from '@/components/custom/form-success'
 import { register } from '@/actions/auth/register'
+import { Checkbox } from '../ui/checkbox'
 
-export const RegisterForm = () => {
+export const RegisterForm = ({ redirectTo }: { redirectTo?: string }) => {
   const [isPending, startTransition] = useTransition()
   const [error, setError] = useState<string | undefined>('')
   const [success, setSuccess] = useState<string | undefined>('')
@@ -33,6 +35,7 @@ export const RegisterForm = () => {
       password: '',
       confirmPassword: '',
       name: '',
+      newsletter: true,
     },
   })
 
@@ -51,7 +54,9 @@ export const RegisterForm = () => {
     <CardWrapper
       headerLabel="Create an account"
       backButtonLabel="Already have an account?"
-      backButtonHref="/auth/login"
+      backButtonHref={
+        redirectTo ? `/auth/login?redirectTo=${redirectTo}` : '/auth/login'
+      }
       showSocial
       googleButtonText="Continue with Google"
     >
@@ -125,6 +130,23 @@ export const RegisterForm = () => {
                     ></Input>
                   </FormControl>
                   <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="newsletter"
+              render={({ field }) => (
+                <FormItem className="flex flex-row items-start space-x-3 space-y-0 rounded-md border p-4">
+                  <FormControl>
+                    <Checkbox
+                      checked={field.value}
+                      onCheckedChange={field.onChange}
+                    />
+                  </FormControl>
+                  <div className="space-y-1 leading-none">
+                    <FormLabel>Sign up for our newsletter</FormLabel>
+                  </div>
                 </FormItem>
               )}
             />

@@ -1,16 +1,22 @@
 'use server'
 
 import * as z from 'zod'
-import { db } from '@/lib/db'
 import { LoginSchema } from '@/schemas'
 import { signIn } from '@/auth'
 import { DEFAULT_LOGIN_REDIRECT } from '@/routes'
 import { AuthError } from 'next-auth'
 import { generateVerificationToken, generateTwoFactorToken } from '@/lib/tokens'
-import { getUserByEmail } from '@/data/auth/user'
-import { getTwoFactorTokenByEmail } from '@/data/auth/two-factor-token'
+import { getUserByEmail } from '@/data/shop/user'
+import {
+  deleteTwoFactorTokenById,
+  getTwoFactorTokenByEmail,
+} from '@/data/auth/two-factor-token'
 import { sendVerificationEmail, sendTwoFactorEmail } from '@/lib/resend'
-import { getTwoFactorConfirmationByUserId } from '@/data/auth/two-factor-confirmation'
+import {
+  createTwoFactorConfirmation,
+  deleteTwoFactorConfirmationById,
+  getTwoFactorConfirmationByUserId,
+} from '@/data/auth/two-factor-confirmation'
 
 export const login = async (
   values: z.infer<typeof LoginSchema>,
@@ -60,24 +66,17 @@ export const login = async (
         return { error: 'Code has expired' }
       }
 
-      await db.twoFactorToken.delete({
-        where: { id: twoFactorToken.id },
-      })
+      await deleteTwoFactorTokenById(twoFactorToken.id)
 
       const existingConfirmation = await getTwoFactorConfirmationByUserId(
         existingUser.id,
       )
+
       if (existingConfirmation) {
-        await db.twoFactorConfirmation.delete({
-          where: { id: existingConfirmation.id },
-        })
+        await deleteTwoFactorConfirmationById(existingConfirmation.id)
       }
 
-      await db.twoFactorConfirmation.create({
-        data: {
-          userId: existingUser.id,
-        },
-      })
+      await createTwoFactorConfirmation(existingUser.id)
     } else {
       const twoFactorToken = await generateTwoFactorToken(existingUser.email)
       await sendTwoFactorEmail(twoFactorToken.email, twoFactorToken.token)

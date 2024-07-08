@@ -1,15 +1,24 @@
 'use server'
 
-import { getUserById } from '@/data/auth/user'
+import { getUserById } from '@/data/shop/user'
 import { getProductById } from '@/data/shop/product'
 import {
   getCartItemByUserIdAndProductId,
   getCartItemByGuestIdAndProductId,
   getCartByGuestId as getCartByGuestIdDB,
   getCartByUserId as getCartByUserIdDB,
+  addToCartUsingCartId,
+  createUserCartItem,
+  createGuestCartItem,
+  deleteCartItemsByGuestId,
+  deleteCartItemsByUserId,
+  deleteCartItemByGuestIdAndProductId,
+  deleteCartItemByUserIdAndProductId,
+  deleteCartItemById,
 } from '@/data/shop/cart'
-import { db } from '@/lib/db'
 import { CartItem } from '@prisma/client'
+import { CartItem as LocalCartItem } from '@/hooks/use-shopping-cart'
+import { getTotalCartPrice as getTotalCartPriceDB } from '@/data/shop/cart'
 
 export const addToUserCart = async (
   userId: string,
@@ -30,40 +39,28 @@ export const addToUserCart = async (
   if (quantity < 1) {
     return { error: 'Quantity must be a positive number' }
   }
+
   // Check if the user already has the product in their cart, and if they do, update the quantity by quantity
   let existingCartItem = await getCartItemByUserIdAndProductId(
     existingUser.id,
     productId,
   )
   if (existingCartItem) {
-    // Need to increment quantity of existing cart item by 1
-    try {
-      await db.cartItem.update({
-        where: {
-          id: existingCartItem.id,
-        },
-        data: {
-          quantity: existingCartItem.quantity + quantity,
-        },
-      })
-      return { success: 'Cart item updated' }
-    } catch {
+    // Need to increment quantity of existing cart item by quantity
+    const response = await addToCartUsingCartId(existingCartItem, quantity)
+    if (!response) {
       return { error: 'Error updating cart item' }
+    } else {
+      return { success: 'Cart item updated' }
     }
   }
 
   // Add the product to the user's cart
-  try {
-    await db.cartItem.create({
-      data: {
-        productId: productId,
-        userId: existingUser.id,
-        quantity: quantity,
-      },
-    })
-    return { success: 'Product added to cart' }
-  } catch {
+  const response = await createUserCartItem(productId, userId, quantity)
+  if (!response) {
     return { error: 'Error adding product to cart' }
+  } else {
+    return { success: 'Product added to cart' }
   }
 }
 
@@ -91,48 +88,26 @@ export const addToGuestCart = async (
 
   if (existingCartItem) {
     // Need to increment the quantity of the existing cart item by quantity
-    try {
-      await db.cartItem.update({
-        where: {
-          id: existingCartItem.id,
-        },
-        data: {
-          quantity: existingCartItem.quantity + quantity,
-        },
-      })
-      return { success: 'Cart item updated!' }
-    } catch (e) {
-      console.log(e)
+    const response = await addToCartUsingCartId(existingCartItem, quantity)
+    if (!response) {
       return { error: 'Error updating cart item' }
+    } else {
+      return { success: 'Cart item updated!' }
     }
   }
 
   // Add the product to the guest's cart
-  try {
-    await db.cartItem.create({
-      data: {
-        productId: productId,
-        guestId: guestId,
-        quantity: quantity,
-      },
-    })
-    return { success: 'Product added to cart' }
-  } catch {
+  const response = await createGuestCartItem(productId, guestId, quantity)
+  if (!response) {
     return { error: 'Error adding product to cart' }
+  } else {
+    return { success: 'Product added to cart' }
   }
 }
 
 export const getCartByGuestId = async (guestId: string) => {
   try {
     const cart = await getCartByGuestIdDB(guestId)
-    if (cart && cart.length > 0) {
-      for (const item of cart) {
-        const product = await getProductById(item.productId)
-        if (product) {
-        }
-      }
-    }
-
     return { success: cart ? cart : [] }
   } catch {
     return { error: 'Error retrieving guest cart' }
@@ -149,28 +124,20 @@ export const getCartByUserId = async (id: string) => {
 }
 
 export const clearGuestIdCart = async (guestId: string) => {
-  try {
-    await db.cartItem.deleteMany({
-      where: {
-        guestId,
-      },
-    })
-    return { success: 'Cart cleared' }
-  } catch {
+  const cartItems = await deleteCartItemsByGuestId(guestId)
+  if (!cartItems) {
     return { error: 'Error clearing cart' }
+  } else {
+    return { success: 'Cart cleared' }
   }
 }
 
 export const clearUserCart = async (userId: string) => {
-  try {
-    await db.cartItem.deleteMany({
-      where: {
-        userId,
-      },
-    })
-    return { success: 'Cart cleared' }
-  } catch {
+  const cartItems = await deleteCartItemsByUserId(userId)
+  if (!cartItems) {
     return { error: 'Error clearing cart' }
+  } else {
+    return { success: 'Cart cleared' }
   }
 }
 
@@ -178,65 +145,58 @@ export const removeProductFromCartByIdAndProductId = async (
   id: string,
   productId: number,
 ) => {
-  try {
-    if (id.slice(0, 6) === 'guest_') {
-      await db.cartItem.deleteMany({
-        where: {
-          guestId: id,
-          productId,
-        },
-      })
-    } else {
-      await db.cartItem.deleteMany({
-        where: {
-          userId: id,
-          productId,
-        },
-      })
+  if (id.slice(0, 6) === 'guest_') {
+    const cartItems = await deleteCartItemByGuestIdAndProductId(id, productId)
+    if (!cartItems) {
+      return { error: 'Error removing product from cart' }
     }
-    return { success: 'Product removed from cart' }
-  } catch {
-    return { error: 'Error removing product from cart' }
+  } else {
+    const cartItems = await deleteCartItemByUserIdAndProductId(id, productId)
+    if (!cartItems) {
+      return { error: 'Error removing product from cart' }
+    }
   }
+  return { success: 'Product removed from cart' }
 }
 
 export const decrementProductFromCartByIdAndProductId = async (
-  id: string,
+  userId: string,
   productId: number,
 ) => {
   // first try and get existing cart
+  let existingCartItem
+
+  if (userId.slice(0, 6) === 'guest_') {
+    existingCartItem = await getCartItemByGuestIdAndProductId(userId, productId)
+  } else {
+    existingCartItem = await getCartItemByUserIdAndProductId(userId, productId)
+  }
+  if (!existingCartItem) {
+    return { success: 'Product removed from cart' }
+  }
+
+  // if cart item exists with quantity > 2, decrement quantity by 1
+  if (existingCartItem.quantity > 1) {
+    const response = await addToCartUsingCartId(existingCartItem, -1)
+    if (!response) {
+      return { error: 'Error updating cart item' }
+    }
+    // otherwise, delete the cart item
+  } else {
+    const response = await deleteCartItemById(existingCartItem.id)
+    if (!response) {
+      return { error: 'Error deleting cart item' }
+    }
+  }
+
+  return { success: 'Product decremented from cart' }
+}
+
+export const getTotalCartPrice = async (cart: LocalCartItem[]) => {
   try {
-    let existingCartItem: CartItem | null | undefined = null
-
-    if (id.slice(0, 6) === 'guest_') {
-      existingCartItem = await getCartItemByGuestIdAndProductId(id, productId)
-    } else {
-      existingCartItem = await getCartItemByUserIdAndProductId(id, productId)
-    }
-    if (!existingCartItem) {
-      return { success: 'Product removed from cart' }
-    }
-
-    // if cart item exists with quantity > 2, decrement quantity by 1
-    if (existingCartItem.quantity > 1) {
-      await db.cartItem.update({
-        where: {
-          id: existingCartItem.id,
-        },
-        data: {
-          quantity: existingCartItem.quantity - 1,
-        },
-      })
-    } else {
-      await db.cartItem.delete({
-        where: {
-          id: existingCartItem.id,
-        },
-      })
-    }
-
-    return { success: 'Product decremented from cart' }
+    const totalPrice = await getTotalCartPriceDB(cart)
+    return { success: totalPrice }
   } catch {
-    return { error: 'Error decrementing product from cart' }
+    return { error: 'Error retrieving total cart price' }
   }
 }

@@ -27,6 +27,13 @@ export const LoginSchema = z.object({
   code: z.optional(z.string()),
 })
 
+export const ContactSchema = z.object({
+  name: z.string().min(2).max(50),
+  email: z.string().email(),
+  orderNumber: z.string().optional(),
+  message: z.string().min(10).max(500),
+})
+
 export const RegisterSchema = z
   .object({
     email: z
@@ -45,6 +52,9 @@ export const RegisterSchema = z
     }),
     name: z.string().min(1, {
       message: 'Name is required',
+    }),
+    newsletter: z.boolean({
+      message: 'Must be either true or false',
     }),
   })
   .refine(

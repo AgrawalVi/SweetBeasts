@@ -8,6 +8,8 @@ import { ShoppingCartProvider } from '@/hooks/use-shopping-cart'
 
 import { SessionProvider } from 'next-auth/react'
 import { auth } from '@/auth'
+import { Suspense } from 'react'
+import NavigationEvents from '@/components/navigation-events'
 
 const nunito = Nunito({
   subsets: ['latin'],
@@ -29,7 +31,7 @@ export const metadata: Metadata = {
   title: 'SweetBeasts',
   description: 'Created by SweetBeasts, Inc',
   icons: {
-    icon: '/favicon.ico',
+    icon: '/icon.svg',
   },
 }
 
@@ -53,11 +55,14 @@ export default async function RootLayout({
               enableSystem
               disableTransitionOnChange
             >
-              <div className="flex h-screen w-full bg-background">
+              <div className="flex min-h-screen w-full bg-background">
                 {children}
               </div>
               <link rel="icon" href="/favicon.ico" sizes="any" />
               <Toaster />
+              <Suspense>
+                <NavigationEvents />
+              </Suspense>
             </ThemeProvider>
           </ShoppingCartProvider>
         </SessionProvider>

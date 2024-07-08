@@ -1,5 +1,5 @@
-import FindOrderInformation from '@/components/general/pages/order-status/find-order-information'
-import { OrderStatusForm } from '@/components/general/pages/order-status/order-status-form'
+import FindOrderInformation from '@/components/general/pages/view-order/find-order-information'
+import { OrderStatusForm } from '@/components/general/pages/view-order/order-status-form'
 import OrderStatusSkeleton from '@/components/skeletons/view-order/order-status-skeleton'
 import { useSearchParams } from 'next/navigation'
 import { Suspense } from 'react'

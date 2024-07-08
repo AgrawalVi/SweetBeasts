@@ -1,6 +1,21 @@
 import { db } from '@/lib/db'
+import { OrderWithData } from '@/types'
 
-export const getOrdersWithEmail = async (email: string) => {
+export const getOrderById = async (id: number) => {
+  try {
+    const order = await db.order.findUnique({
+      where: {
+        id,
+      },
+    })
+    return order
+  } catch (e) {
+    console.error('Error getting order by id', e)
+    return null
+  }
+}
+
+export const getAllOrdersByEmail = async (email: string) => {
   try {
     const orders = await db.order.findMany({
       where: {
@@ -9,7 +24,21 @@ export const getOrdersWithEmail = async (email: string) => {
     })
     return orders
   } catch (e) {
-    console.error('Error retrieving orders', e)
+    console.error('Error getting orders by email', e)
+    return null
+  }
+}
+
+export const getOrderByOrderNumber = async (orderNumber: string) => {
+  try {
+    const order = await db.order.findUnique({
+      where: {
+        orderNumber,
+      },
+    })
+    return order
+  } catch (e) {
+    console.error('Error getting order by order number', e)
     return null
   }
 }
@@ -19,7 +48,7 @@ export const getOrderByEmailAndOrderNumber = async (
   orderNumber: string,
 ) => {
   try {
-    const order = await db.order.findFirst({
+    const order = await db.order.findUnique({
       where: {
         email,
         orderNumber,
@@ -27,67 +56,52 @@ export const getOrderByEmailAndOrderNumber = async (
     })
     return order
   } catch (e) {
-    console.error('Error retrieving order', e)
+    console.error('Error getting order by email and order number', e)
     return null
   }
 }
 
-export const getOrderByFindOrderToken = async (token: string) => {
-  let order
-  let tokenObject
-  // find token object by token
+export const transferOrderToUserFromGuestUser = async (
+  id: number,
+  userId: string,
+) => {
   try {
-    tokenObject = await db.viewOrderToken.findFirst({
+    const order = await db.order.update({
       where: {
-        token,
+        id,
       },
-    })
-  } catch (e) {
-    console.error('Error retrieving token object', e)
-    return null
-  }
-
-  if (!tokenObject) {
-    return null
-  }
-
-  // verify that the token has not expired
-  if (tokenObject.expires < new Date()) {
-    // delete the token
-    try {
-      await db.viewOrderToken.delete({
-        where: { id: tokenObject.id },
-      })
-    } catch (e) {
-      console.error('Error deleting view order token', e)
-      return null
-    }
-    return null
-  }
-  // then get the order by the orderId
-  try {
-    order = await db.order.findUnique({
-      where: {
-        id: tokenObject.orderId,
+      data: {
+        userId,
+        guestUserId: null,
       },
     })
     return order
   } catch (e) {
-    console.error('Error retrieving order', e)
+    console.error('Error transferring order to user from guest user', e)
     return null
   }
 }
 
-export const getViewOrderTokenByOrderId = async (orderId: number) => {
+export const getOrderWithDataByStripeSessionid = async (
+  stripeOrderId: string,
+) => {
   try {
-    const viewOrderToken = db.viewOrderToken.findFirst({
+    const order = await db.order.findUnique({
       where: {
-        orderId,
+        stripeOrderId,
+      },
+      include: {
+        lineItems: {
+          include: { Product: true },
+        },
+        ShippingAddress: true,
       },
     })
-    return viewOrderToken
+    console.log('order from db function', order)
+    console.log('product from db function', order?.lineItems[0]?.Product)
+    return order
   } catch (e) {
-    console.error('Error retrieving view order token', e)
+    console.error('Error getting order by stripe session id', e)
     return null
   }
 }

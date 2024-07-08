@@ -1,4 +1,4 @@
-import FloatingNavbar from '@/components/general/floating-navbar'
+import FloatingNavbar from '@/components/general/navbars/floating-navbar'
 
 import React from 'react'
 

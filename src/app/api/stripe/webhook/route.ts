@@ -1,4 +1,5 @@
 import { createOrder } from '@/actions/stripe/new-order'
+import { expireCheckoutSession } from '@/actions/stripe/checkout-session'
 import { stripe } from '@/lib/stripe'
 import { NextResponse } from 'next/server'
 
@@ -6,7 +7,6 @@ const webhookSecret = process.env.STRIPE_WEBHOOK_SECRET!
 
 export const POST = async (req: Request, res: Response) => {
   const rawBody = await req.text()
-  const body = JSON.parse(rawBody)
 
   let event
 
@@ -27,7 +27,16 @@ export const POST = async (req: Request, res: Response) => {
   }
 
   if (event.type === 'checkout.session.completed') {
-    createOrder(event)
+    const response = await createOrder(event)
+    if (response.error) {
+      return NextResponse.json({ error: response.error }, { status: 400 })
+    }
+    return NextResponse.json({ status: 200 })
+  } else if (event.type === 'checkout.session.expired') {
+    const response = await expireCheckoutSession(event)
+    if (response.error) {
+      return NextResponse.json({ error: response.error }, { status: 400 })
+    }
   }
 
   return NextResponse.json({ status: 200 })

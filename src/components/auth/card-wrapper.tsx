@@ -24,16 +24,16 @@ export const CardWrapper = ({
   googleButtonText,
 }: CardWrapperProps) => {
   return (
-    <Card className="w-[400px] shadow-pink-light transition-all duration-1000 hover:scale-[1.03] hover:shadow-pink-strong dark:shadow-teal-light dark:hover:shadow-teal-strong">
+    <Card className="w-[400px] shadow-pink-light transition-all duration-1000 hover:scale-[1.01] hover:shadow-pink-strong dark:shadow-teal-light dark:hover:shadow-teal-strong">
       <CardHeader>
         <Header label={headerLabel} />
       </CardHeader>
       <CardContent className="pb-3">{children}</CardContent>
-      {showSocial && (
+      {/* {showSocial && (
         <CardFooter className="pb-3">
           <Social googleButtonText={googleButtonText} />
         </CardFooter>
-      )}
+      )} */}
       <CardFooter>
         <BackButton label={backButtonLabel} href={backButtonHref}></BackButton>
       </CardFooter>

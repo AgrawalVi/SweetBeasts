@@ -10,22 +10,22 @@ export const getAddressByAddressAndEmail = async (
   try {
     addresses = await db.shippingAddress.findMany({
       where: {
-        userId: address.userId,
+        email,
       },
     })
   } catch {
     return null
   }
   // then see if there's an addresses that matches the one that is passed in
-  const matchingAddress = addresses.find((address) => {
+  const matchingAddress = addresses.find((existingAddress) => {
     return (
-      address.recipientName === address.recipientName &&
-      address.addressLine1 === address.addressLine1 &&
-      address.addressLine2 === address.addressLine2 &&
-      address.city === address.city &&
-      address.state === address.state &&
-      address.zipCode === address.zipCode &&
-      address.countryCode === address.countryCode
+      existingAddress.recipientName === address.recipientName &&
+      existingAddress.addressLine1 === address.addressLine1 &&
+      existingAddress.addressLine2 === address.addressLine2 &&
+      existingAddress.city === address.city &&
+      existingAddress.state === address.state &&
+      existingAddress.zipCode === address.zipCode &&
+      existingAddress.countryCode === address.countryCode
     )
   })
 
@@ -45,7 +45,31 @@ export const getAddressById = async (id: number) => {
     })
     return address
   } catch (e) {
-    console.error('Error retrieving address', e)
+    console.error('Error getting address by id', e)
+    return null
+  }
+}
+
+export const transferShippingAddressToUserFromGuestUser = async (
+  id: number,
+  userId: string,
+) => {
+  try {
+    const shippingAddress = await db.shippingAddress.update({
+      where: {
+        id,
+      },
+      data: {
+        userId,
+        guestUserId: null,
+      },
+    })
+    return shippingAddress
+  } catch (e) {
+    console.error(
+      'Error transferring shipping address to user from guest user',
+      e,
+    )
     return null
   }
 }

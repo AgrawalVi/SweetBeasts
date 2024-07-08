@@ -1,68 +1,106 @@
-import { db } from '@/lib/db'
 import { stripe } from '@/lib/stripe'
 import Stripe from 'stripe'
-import { getUserByEmail } from '@/data/auth/user'
-import { ShippingAddress, User } from '@prisma/client'
-import { getProductByStripePriceId } from '@/data/shop/product'
+import { getUserByEmail } from '@/data/shop/user'
+import { ShippingAddress } from '@prisma/client'
+import { db } from '@/lib/db'
+import {
+  getProductByStripePriceId,
+  updateProductInventoryAndNumSold,
+} from '@/data/shop/product'
 import { notEmpty } from '@/lib/utils'
 import { getAddressByAddressAndEmail } from '@/data/shop/address'
 import { clearGuestIdCart, clearUserCart } from '../customer/cart'
 
 import crypto from 'crypto'
+import { getOrderByOrderNumber } from '@/data/shop/orders'
+import {
+  deleteOpenCheckoutSessionById,
+  deleteOpenCheckoutSessionByStripeCheckoutSessionId,
+  getAllOpenCheckoutSessionsWithProductByProductId,
+} from '@/data/shop/open-checkout-session'
+import { createGuestUser, getGuestUserByEmail } from '@/data/shop/guest-user'
 
 const generateOrderNumber = async (): Promise<string> => {
   const orderNumber = `SB${crypto.randomInt(100_000, 100_000_0).toString()}`
   // check if the order number already exists in the database
-  const existingOrder = await db.order.findFirst({
-    where: {
-      orderNumber,
-    },
-  })
+  const existingOrder = await getOrderByOrderNumber(orderNumber)
   if (existingOrder) {
     return generateOrderNumber()
   }
   return orderNumber
 }
 
+const expireAllOpenCheckoutSessionsByProductId = async (productId: number) => {
+  const checkoutSessions =
+    await getAllOpenCheckoutSessionsWithProductByProductId(productId)
+
+  if (checkoutSessions.length < 0) {
+    return
+  }
+
+  for (const checkoutSession of checkoutSessions) {
+    try {
+      await stripe.checkout.sessions.expire(
+        checkoutSession.stripeCheckoutSessionId,
+      )
+    } catch (e) {
+      console.error('Error expiring checkout session', e)
+    }
+  }
+}
+
 export const createOrder = async (
   event: Stripe.CheckoutSessionCompletedEvent,
 ) => {
-  console.log('Webhook event hit')
-
   const checkoutSession = event.data.object as Stripe.Checkout.Session
   console.log('checkoutSession', checkoutSession)
 
   // check that the session is completed
   if (checkoutSession.status !== 'complete') {
-    return
+    return { error: 'Session is not complete' }
   }
 
   // verify that the payment has been processed before moving forward
   if (checkoutSession.payment_status !== 'paid') {
-    return
+    return { error: 'Payment is not paid' }
   }
 
   // get order information from event
   const timePlaced = new Date(event.created * 1000)
 
   // get user and create an order in the database
-  const stripeCustomerId = checkoutSession.customer as string | undefined
+  const stripeCustomerId = checkoutSession.customer as string | null
 
   let stripeCustomer
-  let user
 
-  if (stripeCustomerId) {
-    stripeCustomer = await stripe.customers.retrieve(stripeCustomerId)
+  const email = checkoutSession.customer_details?.email as string
+
+  let user
+  let guestUser
+
+  // check if either a user or a guest-user exists with the email
+  user = await getUserByEmail(email)
+  if (user) {
+    stripeCustomer = await stripe.customers.retrieve(user.stripeCustomerId)
   } else {
-    // check if a user exists with the email
-    const email = checkoutSession.customer_details?.email as string
-    user = await getUserByEmail(email)
-    if (user) {
-      stripeCustomer = await stripe.customers.retrieve(user.stripeCustomerId)
+    guestUser = await getGuestUserByEmail(email)
+    if (guestUser) {
+      stripeCustomer = await stripe.customers.retrieve(
+        guestUser.stripeCustomerId,
+      )
     } else {
-      stripeCustomer = await stripe.customers.create({
-        email,
-      })
+      // create a guest-user with the email and create a stripe customer id
+      try {
+        stripeCustomer = await stripe.customers.create({ email })
+      } catch (e) {
+        console.error('Error creating stripe customer', e)
+        return { error: 'Error creating stripe customer' }
+      }
+      guestUser = await createGuestUser(email, stripeCustomer.id)
+      if (!guestUser) {
+        console.error('Error creating guest user')
+        return { error: 'Error creating guest user' }
+      }
     }
   }
 
@@ -73,8 +111,6 @@ export const createOrder = async (
         'An exception has occurred. Please contact support for assistance. CODE: STR_CD_001',
     }
   }
-
-  console.log('stripeCustomer', stripeCustomer)
 
   let lineItems
   try {
@@ -112,6 +148,7 @@ export const createOrder = async (
   const address: ShippingAddress = {
     id: 0,
     userId: user?.id || null,
+    guestUserId: guestUser?.id || null,
     email: stripeCustomer.email as string,
     recipientName: checkoutSession.shipping_details?.name || null,
     addressLine1: checkoutSession.shipping_details?.address?.line1 || null,
@@ -124,17 +161,7 @@ export const createOrder = async (
     updatedAt: timePlaced,
   }
 
-  const existingAddress = await getAddressByAddressAndEmail(
-    address,
-    stripeCustomer.email as string,
-  )
-  let addressIdToAdd
-  if (existingAddress) {
-    addressIdToAdd = existingAddress.id
-  }
-
   const guestId = checkoutSession.metadata?.guestId as string
-  console.log('guestId from new-order', guestId)
 
   if (guestId) {
     const response = await clearGuestIdCart(guestId)
@@ -151,12 +178,24 @@ export const createOrder = async (
   // generate an order number
   const orderNumber = await generateOrderNumber()
 
+  console.log('address', address)
+
+  const existingAddress = await getAddressByAddressAndEmail(
+    address,
+    stripeCustomer.email as string,
+  )
+
+  console.log('existingAddress', existingAddress)
+
+  let addressIdToAdd = existingAddress?.id
+
   // create the order in the database
   try {
     if (addressIdToAdd) {
       await db.order.create({
         data: {
           userId: user?.id,
+          guestUserId: guestUser?.id,
           email: stripeCustomer.email as string,
           createdAt: timePlaced,
           updatedAt: timePlaced,
@@ -178,6 +217,7 @@ export const createOrder = async (
       const shippingAddress = await db.shippingAddress.create({
         data: {
           userId: user?.id,
+          guestUserId: guestUser?.id,
           email: stripeCustomer.email as string,
           recipientName: checkoutSession.shipping_details?.name,
           addressLine1: checkoutSession.shipping_details?.address?.line1,
@@ -194,6 +234,7 @@ export const createOrder = async (
       await db.order.create({
         data: {
           userId: user?.id,
+          guestUserId: guestUser?.id,
           email: stripeCustomer.email as string,
           createdAt: timePlaced,
           updatedAt: timePlaced,
@@ -219,26 +260,24 @@ export const createOrder = async (
 
   // decrease inventory and increase numSold for each product that's been purchased in the lineItems array
   for (const item of filteredLineItemsToAdd) {
-    try {
-      const product = await db.product.update({
-        where: {
-          id: item.productId,
-        },
-        data: {
-          inventory: {
-            decrement: item.quantity,
-          },
-          numSold: {
-            increment: item.quantity,
-          },
-        },
-      })
+    const product = await updateProductInventoryAndNumSold(
+      item.productId,
+      item.quantity,
+    )
+    if (!product) {
+      return { error: 'Error updating product inventory and num sold' }
+    }
+
+    if (product.inventory <= 0) {
+      await expireAllOpenCheckoutSessionsByProductId(product.id)
       if (product.inventory < 0) {
-        throw new Error('Inventory is less than 0')
+        console.error('Inventory is less than 0')
       }
-    } catch (e) {
-      console.error('an error occurred while decreasing inventory', e)
-      return { error: 'Unable to decrease inventory' }
     }
   }
+
+  // delete the current checkout session from the database
+  await deleteOpenCheckoutSessionByStripeCheckoutSessionId(checkoutSession.id)
+
+  return { success: 'order successfully created' }
 }

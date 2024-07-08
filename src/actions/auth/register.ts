@@ -2,14 +2,19 @@
 
 import * as z from 'zod'
 import bcrypt from 'bcryptjs'
-import { db } from '@/lib/db'
 import { stripe } from '@/lib/stripe'
 
 import { RegisterSchema } from '@/schemas'
-import { getUserByEmail } from '@/data/auth/user'
+import { createUser, getUserByEmail } from '@/data/shop/user'
 import { generateVerificationToken } from '@/lib/tokens'
-import { sendVerificationEmail } from '@/lib/resend'
-import { getOrdersWithEmail } from '@/data/shop/orders'
+import { addToGeneralEmailList, sendVerificationEmail } from '@/lib/resend'
+import {
+  deleteGuestUserById,
+  getGuestUserWithDataByEmail,
+} from '@/data/shop/guest-user'
+import { GuestUserWithData } from '@/types'
+import { transferOrderToUserFromGuestUser } from '@/data/shop/orders'
+import { transferShippingAddressToUserFromGuestUser } from '@/data/shop/address'
 
 export const register = async (values: z.infer<typeof RegisterSchema>) => {
   const validatedFields = RegisterSchema.safeParse(values)
@@ -18,7 +23,7 @@ export const register = async (values: z.infer<typeof RegisterSchema>) => {
     return { error: 'Invalid Fields' }
   }
 
-  const { email, password, name } = validatedFields.data
+  const { email, password, name, newsletter } = validatedFields.data
   const hashedPassword = await bcrypt.hash(password, 10)
 
   // make sure email is not taken
@@ -28,31 +33,74 @@ export const register = async (values: z.infer<typeof RegisterSchema>) => {
     return { error: 'Account already exists, please Login!' }
   }
 
-  // create a stripe customer
-  const customer = await stripe.customers.create({
+  const guestUser: GuestUserWithData | null =
+    await getGuestUserWithDataByEmail(email)
+
+  let customer
+  if (!guestUser) {
+    // create a stripe customer
+    customer = await stripe.customers.create({
+      email,
+    })
+  }
+
+  const newUser = await createUser(
+    name,
     email,
-  })
+    hashedPassword,
+    guestUser ? guestUser.stripeCustomerId : (customer?.id as string),
+    newsletter,
+  )
 
-  const newUser = await db.user.create({
-    data: {
-      name,
-      email,
-      password: hashedPassword,
-      stripeCustomerId: customer.id,
-    },
-  })
+  if (!newUser) {
+    return { error: 'Error creating user' }
+  }
 
-  await db.order.updateMany({
-    where: {
-      email,
-    },
-    data: {
-      userId: newUser.id,
-    },
-  })
+  if (newsletter) {
+    try {
+      addToGeneralEmailList(email)
+    } catch (e) {
+      console.error(
+        'Error adding email to general email list',
+        e,
+        'EMAIL',
+        email,
+      )
+    }
+  }
+
+  if (guestUser) {
+    guestUser.orders.forEach(async (order) => {
+      const updatedOrder = await transferOrderToUserFromGuestUser(
+        order.id,
+        newUser.id,
+      )
+      if (!updatedOrder) {
+        console.error('Error transferring order to user from guest user')
+      }
+    })
+    guestUser.shippingAddresses.forEach(async (shippingAddress) => {
+      const updatedShippingAddress =
+        await transferShippingAddressToUserFromGuestUser(
+          shippingAddress.id,
+          newUser.id,
+        )
+      if (!updatedShippingAddress) {
+        console.error(
+          'Error transferring shipping address to user from guest user',
+          shippingAddress.id,
+          newUser.id,
+        )
+      }
+    })
+
+    const deletedUser = await deleteGuestUserById(guestUser.id)
+    if (!deletedUser) {
+      console.error('Error deleting guest user', guestUser.id)
+    }
+  }
 
   const verificationToken = await generateVerificationToken(email)
-  // console.log("verificationToken", verificationToken)
 
   await sendVerificationEmail(verificationToken.email, verificationToken.token)
 
