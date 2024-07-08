@@ -53,7 +53,7 @@ export const OrderStatusForm = ({ errorText }: { errorText?: string }) => {
         <Form {...form}>
           <form
             onSubmit={form.handleSubmit(onSubmit)}
-            className="big-phone:w-[23rem] w-[17rem] space-y-6 px-4 md:w-[35rem]"
+            className="w-[17rem] space-y-6 px-4 big-phone:w-[23rem] md:w-[35rem]"
           >
             <div className="space-y-4">
               <FormField
