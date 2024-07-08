@@ -194,8 +194,8 @@ model LineItem {
   productId Int
   quantity  Int
 
-  Order   Order?   @relation(fields: [orderId], references: [id], onDelete: Cascade)
-  Product Product? @relation(fields: [productId], references: [id], onDelete: Restrict)
+  Order   Order   @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  Product Product @relation(fields: [productId], references: [id], onDelete: Restrict)
 
   orderId Int
 }

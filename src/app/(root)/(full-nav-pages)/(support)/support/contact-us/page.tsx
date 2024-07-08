@@ -28,7 +28,7 @@ export default function WobbleCardDemo() {
           <div className="relative z-10 bg-white px-2 dark:bg-black">OR</div>
           <div className="absolute inset-0 flex w-full items-center justify-center lg:hidden">
             <div className="w-full border-b-2 border-gray-300"></div>
-            <div className="relative z-10 bg-white px-2 dark:bg-black">OR</div>
+            <div className="relative z-10 px-2">OR</div>
             <div className="w-full border-b-2 border-gray-300"></div>
           </div>
         </div>

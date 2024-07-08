@@ -1,4 +1,5 @@
 import { db } from '@/lib/db'
+import { OrderWithData } from '@/types'
 
 export const getOrderById = async (id: number) => {
   try {
@@ -77,6 +78,30 @@ export const transferOrderToUserFromGuestUser = async (
     return order
   } catch (e) {
     console.error('Error transferring order to user from guest user', e)
+    return null
+  }
+}
+
+export const getOrderWithDataByStripeSessionid = async (
+  stripeOrderId: string,
+) => {
+  try {
+    const order = await db.order.findUnique({
+      where: {
+        stripeOrderId,
+      },
+      include: {
+        lineItems: {
+          include: { Product: true },
+        },
+        ShippingAddress: true,
+      },
+    })
+    console.log('order from db function', order)
+    console.log('product from db function', order?.lineItems[0]?.Product)
+    return order
+  } catch (e) {
+    console.error('Error getting order by stripe session id', e)
     return null
   }
 }

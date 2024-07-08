@@ -5,7 +5,7 @@ import { getLineItemsByOrderId } from '@/data/shop/line-items'
 import { LineItem, Product } from '@prisma/client'
 import OrderSummary from './order-summary'
 import OrderStatusBar from './order-status-bar'
-import AddressSectionOnlyName from './order-details'
+import CensoredOrderDetails from './censored-order-details'
 import { LineItemWithProduct } from '@/types'
 import { verifyViewOrderToken } from '@/actions/shop/order'
 
@@ -61,7 +61,7 @@ export default async function FindOrderInformation({
         </div>
         <div className="flex w-full flex-col space-y-4 xl:items-start xl:justify-center">
           <OrderStatusBar order={order} />
-          <AddressSectionOnlyName order={order} />
+          <CensoredOrderDetails orderNumber={order.orderNumber} />
         </div>
       </div>
     </main>

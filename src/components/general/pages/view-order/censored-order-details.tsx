@@ -11,14 +11,18 @@ import { Skeleton } from '@/components/ui/skeleton'
 import { Order, ShippingAddress } from '@prisma/client'
 import Link from 'next/link'
 
-export default function OrderDetails({ order }: { order: Order }) {
+export default function CensoredOrderDetails({
+  orderNumber,
+}: {
+  orderNumber: string
+}) {
   return (
     <Card className="w-full sm:w-[30rem]">
       <CardHeader>
         <CardTitle>Order Details</CardTitle>
         <CardDescription>
           <Link
-            href={`/auth/login?redirectTo=/account/orders/${order.orderNumber}`}
+            href={`/auth/login?redirectTo=/account/orders/${orderNumber}`}
             className="font-bold underline"
           >
             Login or Register
