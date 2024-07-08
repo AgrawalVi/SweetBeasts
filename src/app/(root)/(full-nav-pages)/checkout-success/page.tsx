@@ -3,6 +3,7 @@ import OrderStatusBar from '@/components/general/pages/view-order/order-status-b
 import OrderSummary from '@/components/general/pages/view-order/order-summary'
 import { getOrderWithDataByStripeSessionid } from '@/data/shop/orders'
 import { OrderWithData } from '@/types'
+import { formatDate } from '@/utils/date-functions'
 import Link from 'next/link'
 
 export default async function CheckoutSuccess({
@@ -52,7 +53,7 @@ export default async function CheckoutSuccess({
         </div>
         <div className="flex flex-col text-center text-sm text-muted-foreground sm:text-end sm:text-base">
           <div>Order {order.orderNumber}</div>
-          <div>Placed {order.createdAt.toDateString()}</div>
+          <div>Placed {formatDate(order.createdAt)}</div>
         </div>
       </div>
       <div className="h-full max-w-6xl flex-col items-start justify-start space-y-4 xl:grid xl:grid-cols-2 xl:gap-4 xl:space-y-0">

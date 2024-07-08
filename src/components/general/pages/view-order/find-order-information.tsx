@@ -8,6 +8,7 @@ import OrderStatusBar from './order-status-bar'
 import CensoredOrderDetails from './censored-order-details'
 import { LineItemWithProduct } from '@/types'
 import { verifyViewOrderToken } from '@/actions/shop/order'
+import { formatDate } from '@/utils/date-functions'
 
 export default async function FindOrderInformation({
   token,
@@ -35,7 +36,7 @@ export default async function FindOrderInformation({
         <div className="header-gradient text-5xl">Your Order</div>
         <div className="flex flex-col text-center text-sm text-muted-foreground sm:text-end sm:text-base">
           <div>Order {order.orderNumber}</div>
-          <div>Placed {order.createdAt.toDateString()}</div>
+          <div>Placed {formatDate(order.createdAt)}</div>
         </div>
       </div>
       <div className="my-5 flex w-screen justify-center border-b border-t border-border bg-card p-10 dark:border-neutral-800">

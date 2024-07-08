@@ -4,6 +4,7 @@ import Image from 'next/image'
 import pogo from '/public/product-images/pogo/main.jpg'
 import blimpy from '/public/product-images/lemon-lion/main.jpg'
 import { LineItemWithProduct } from '@/types'
+import Link from 'next/link'
 
 export default function OrderLineItem({
   product,
@@ -25,8 +26,9 @@ export default function OrderLineItem({
         </div>
       </div>
       <div className="flex grow flex-col items-start justify-center text-sm md:text-base">
-        <div className="md:text-lg">{product.Product.name}</div>
-
+        <Link href={product.Product.productHref}>
+          <div className="md:text-lg">{product.Product.name}</div>
+        </Link>
         <CardDescription>{product.Product.description}</CardDescription>
       </div>
       <div className="inline-flex flex-col items-end justify-center text-sm">

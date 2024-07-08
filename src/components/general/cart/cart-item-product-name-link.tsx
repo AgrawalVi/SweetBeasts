@@ -1,19 +1,18 @@
 'use client'
 
-import { useShoppingCart } from '@/hooks/use-shopping-cart'
 import { Product } from '@prisma/client'
-import { Link } from 'lucide-react'
+import Link from 'next/link'
 
 export default function CartItemProductNameLink({
   product,
+  className,
 }: {
   product: Product
+  className?: string
 }) {
-  const { setIsCartOpen } = useShoppingCart()
-
   return (
     <Link href={product.productHref}>
-      <div>{product.name}</div>
+      <div className={className}>{product.name}</div>
     </Link>
   )
 }
