@@ -22,11 +22,11 @@ export const LoginSchema = z.object({
 })
 
 export const ContactSchema = z.object({
-  name: z.string().min(2).max(50).nonempty(),
+  name: z.string().min(2).max(50),
   email: z.string().email(),
   orderNumber: z.string().optional(),
-  message: z.string().min(10).max(500).nonempty(),
-});
+  message: z.string().min(10).max(500),
+})
 
 export const RegisterSchema = z
   .object({
