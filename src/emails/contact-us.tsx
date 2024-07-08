@@ -3,10 +3,12 @@ import { Tailwind, Body, Container, Head, Heading, Hr, Html, Img, Link, Preview,
 
 interface ContactUsEmailProps {
   firstName: string;
+  userMessage: string;
 }
 
 export default function ContactUsEmail({
   firstName = "SweetUser",
+  userMessage ="you are cool",
 }: ContactUsEmailProps): JSX.Element {
   return (
     <Html>
@@ -30,6 +32,12 @@ export default function ContactUsEmail({
               <Text className="text-black text-lg">
                 Thank you for reaching out to SweetBeasts! We have received your message and will get back to you as soon as possible.
               </Text>
+              <Section className="bg-white p-4 rounded my-4">
+                <Heading className="text-2xl font-bold text-black">Your Message</Heading>
+                <Text className="text-black text-base mt-2">
+                  {userMessage}
+                </Text>
+              </Section>
             </Section>
             <Hr className="my-4 border-pink-300" />
             <Text className="text-black text-sm">
