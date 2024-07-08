@@ -35,7 +35,8 @@ enum ShippingMethod {
 
 model User {
   id                    String                 @id @default(cuid())
-  name                  String?
+  firstName             String
+  lastName              String
   email                 String                 @unique
   emailVerified         DateTime?
   image                 String?
