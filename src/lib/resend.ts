@@ -3,6 +3,7 @@ import { Resend } from 'resend'
 import TwoFactorConfirmationEmail from '@/emails/two-factor'
 import { ResetPasswordEmail } from '@/emails/reset-password'
 import EmailConfirmation from '@/emails/email-confirmation'
+import ContactUsEmail from '@/emails/contact-us'
 
 const resend = new Resend(process.env.RESEND_API_KEY)
 const generalAudienceId = process.env.RESEND_GENERAL_AUDIENCE_ID!
@@ -84,4 +85,19 @@ export const sendTwoFactorEmail = async (email: string, token: string) => {
       twoFactorCode: token,
     }),
   })
+}
+
+export const sendContactUs = async (
+  email: string,
+  userName: string,
+  message: string,
+) => {
+  console.log('Sending confirmation email to:', email)
+  await resend.emails.send({
+    from: fromEmail,
+    to: email,
+    subject: 'Contact Us - SweetBeasts',
+    react: ContactUsEmail({ userName, userMessage: message }),
+  })
+  console.log('Confirmation email sent to:', email)
 }

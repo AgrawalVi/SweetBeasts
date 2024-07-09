@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useState } from 'react'
+import React, { useState, useTransition } from 'react'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import * as z from 'zod'
@@ -18,10 +18,11 @@ import {
 import { FormError } from '@/components/custom/form-error'
 import { FormSuccess } from '@/components/custom/form-success'
 import { ContactSchema } from '@/schemas'
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+import { Card, CardContent } from '@/components/ui/card'
+import { sendContactUs } from '@/actions/customer/contact-us'
 
 export default function ContactForm() {
-  const [isPending, setIsPending] = useState(false)
+  const [isPending, startTransition] = useTransition()
   const [error, setError] = useState<string | undefined>(undefined)
   const [success, setSuccess] = useState<string | undefined>(undefined)
 
@@ -35,23 +36,16 @@ export default function ContactForm() {
     },
   })
 
-  const onSubmit = async (data: z.infer<typeof ContactSchema>) => {
-    setIsPending(true)
-    setError(undefined)
-    setSuccess(undefined)
+  const onSubmit = (data: z.infer<typeof ContactSchema>) => {
+    setError('')
+    setSuccess('')
 
-    try {
-      console.log('Form submitted with data:', data)
-      setSuccess('Message sent successfully!')
-    } catch (err) {
-      if (err instanceof Error) {
-        setError(err.message)
-      } else {
-        setError('Failed to send message.')
-      }
-    } finally {
-      setIsPending(false)
-    }
+    startTransition(() => {
+      sendContactUs(data).then((response) => {
+        setError(response.error)
+        setSuccess(response.success)
+      })
+    })
   }
 
   return (
@@ -142,7 +136,7 @@ export default function ContactForm() {
                   className="mt-4 w-full"
                   disabled={isPending}
                 >
-                  Send Message
+                  {isPending ? 'Sending...' : 'Send Message'}
                 </Button>
               </div>
             </form>

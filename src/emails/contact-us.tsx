@@ -2,13 +2,13 @@ import React from 'react';
 import { Tailwind, Body, Container, Head, Heading, Hr, Html, Img, Link, Preview, Section, Text } from '@react-email/components';
 
 interface ContactUsEmailProps {
-  firstName: string;
+  userName: string;
   userMessage: string;
 }
 
 export default function ContactUsEmail({
-  firstName = "SweetUser",
-  userMessage ="you are cool",
+  userName = "SweetUser",
+  userMessage ="Message from SweetUser",
 }: ContactUsEmailProps): JSX.Element {
   return (
     <Html>
@@ -27,7 +27,7 @@ export default function ContactUsEmail({
               />
               <Heading className="text-3xl font-bold my-4 text-black">Thank You for Contacting Us!</Heading>
               <Text className="text-black text-xl my-2">
-                Hi {firstName},
+                Hi {userName},
               </Text>
               <Text className="text-black text-lg">
                 Thank you for reaching out to SweetBeasts! We have received your message and will get back to you as soon as possible.

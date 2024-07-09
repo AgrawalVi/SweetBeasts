@@ -1,3 +1,5 @@
+'use server'
+
 import { stripe } from '@/lib/stripe'
 import Stripe from 'stripe'
 import { getUserByEmail } from '@/data/shop/user'

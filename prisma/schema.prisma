@@ -33,16 +33,23 @@ enum ShippingMethod {
   EXPEDITED
 }
 
-enum ContactUsStatus {
-  OPEN
-  CLAIMED
-}
-
 enum Courier {
   UPS
   USPS
   FEDEX
   DHL
+}
+
+enum ContactUsStatus {
+  OPEN
+  CLAIMED
+  RESOLVED
+}
+
+enum FeedbackStatus {
+  OPEN
+  CLAIMED
+  RESOLVED
 }
 
 model User {
@@ -65,11 +72,13 @@ model User {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  cartItems        CartItem[]
-  ShippingAddress  ShippingAddress[]
-  Order            Order[]
-  userSubmissions  ContactUsSubmission[] @relation("SubmittedByUser")
-  claimSubmissions ContactUsSubmission[] @relation("ClaimedByUser")
+  cartItems                CartItem[]
+  ShippingAddress          ShippingAddress[]
+  Order                    Order[]
+  contactUsUserSubmissions ContactUsSubmission[]    @relation("SubmittedBy")
+  contactUsUserClaims      ContactUsSubmission[]    @relation("ClaimedBy")
+  feedbackUserSubmissions  FeedBackFormSubmission[] @relation("SubmittedBy")
+  feedbackUserClaims       FeedBackFormSubmission[] @relation("ClaimedBy")
 }
 
 model Account {
@@ -196,10 +205,11 @@ model Order {
   trackingUrl    String?
   courier        Courier?
 
-  lineItems      LineItem[]
-  User           User?            @relation(fields: [userId], references: [id], onDelete: SetNull)
-  guestUser      GuestUser?       @relation(fields: [guestUserId], references: [id], onDelete: SetNull)
-  ViewOrderToken ViewOrderToken[]
+  lineItems           LineItem[]
+  User                User?                 @relation(fields: [userId], references: [id], onDelete: SetNull)
+  guestUser           GuestUser?            @relation(fields: [guestUserId], references: [id], onDelete: SetNull)
+  ViewOrderToken      ViewOrderToken[]
+  ContactUsSubmission ContactUsSubmission[]
 }
 
 model LineItem {
@@ -270,9 +280,10 @@ model GuestUser {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  shippingAddresses   ShippingAddress[]
-  orders              Order[]
-  ContactUsSubmission ContactUsSubmission[]
+  shippingAddresses      ShippingAddress[]
+  orders                 Order[]
+  ContactUsSubmission    ContactUsSubmission[]
+  FeedBackFormSubmission FeedBackFormSubmission[]
 }
 
 model ContactUsSubmission {
@@ -292,8 +303,35 @@ model ContactUsSubmission {
   claimedAt       DateTime?
   claimedByUserId String?
 
-  claimedByUser User?      @relation("ClaimedByUser", fields: [claimedByUserId], references: [id], onDelete: SetNull)
-  user          User?      @relation("SubmittedByUser", fields: [userId], references: [id], onDelete: SetNull)
+  claimedByUser User?      @relation("ClaimedBy", fields: [claimedByUserId], references: [id], onDelete: SetNull)
+  user          User?      @relation("SubmittedBy", fields: [userId], references: [id], onDelete: SetNull)
+  guestUser     GuestUser? @relation(fields: [guestUserId], references: [id], onDelete: SetNull)
+
+  orderId Int?
+  order   Order? @relation(fields: [orderId], references: [id])
+
+  message String[]
+}
+
+model FeedBackFormSubmission {
+  id String @id @default(cuid())
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  feedBackStatus FeedbackStatus
+
+  userId      String?
+  guestUserId String?
+
+  email String
+  name  String
+
+  claimedAt       DateTime?
+  claimedByUserId String?
+
+  claimedByUser User?      @relation("ClaimedBy", fields: [claimedByUserId], references: [id], onDelete: SetNull)
+  user          User?      @relation("SubmittedBy", fields: [userId], references: [id], onDelete: SetNull)
   guestUser     GuestUser? @relation(fields: [guestUserId], references: [id], onDelete: SetNull)
 
   message String[]
