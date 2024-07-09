@@ -17,7 +17,10 @@ export default function OrderDetailsSkeleton() {
       <CardHeader>
         <CardTitle>Order Details</CardTitle>
         <CardDescription>
-          <Link href={`/auth/login`} className="font-bold underline">
+          <Link
+            href={`/auth/login`}
+            className="font-bold underline underline-offset-2"
+          >
             Login or Register
           </Link>{' '}
           to view all your order details

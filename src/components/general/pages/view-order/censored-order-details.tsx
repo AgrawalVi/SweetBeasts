@@ -23,7 +23,7 @@ export default function CensoredOrderDetails({
         <CardDescription>
           <Link
             href={`/auth/login?redirectTo=/account/orders/${orderNumber}`}
-            className="font-bold underline"
+            className="font-bold underline underline-offset-2"
           >
             Login or Register
           </Link>{' '}

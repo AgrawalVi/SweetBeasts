@@ -28,29 +28,10 @@ export default function OrderStatusBar({ order }: { order: Order }) {
             <div>Your order is on the way!</div>
             <Progress className="h-6" value={66} />
             <CardDescription>
-              {order.trackingUrl ? (
-                <>
-                  Tracking Number:{' '}
-                  <Link
-                    className="underline underline-offset-2"
-                    href={order.trackingUrl}
-                  >
-                    {order.trackingNumber}
-                  </Link>
-                </>
-              ) : (
-                <>
-                  Tracking information is not current available, check back
-                  later or{' '}
-                  <Link
-                    className="underline underline-offset-2"
-                    href="/support/contact-us"
-                  >
-                    contact us
-                  </Link>{' '}
-                  for assistance
-                </>
-              )}
+              <Link href="/auth/login" className="underline underline-offset-2">
+                Login or Register
+              </Link>{' '}
+              to view tracking details
             </CardDescription>
           </div>
         )}

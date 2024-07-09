@@ -137,10 +137,16 @@ export default function Footer() {
       <div className="flex w-full flex-col items-center justify-center pt-10">
         <SocialButtons />
         <div className="space-x-4 pb-2 text-sm">
-          <Link href="/terms-of-service" className="hover:underline">
+          <Link
+            href="/terms-of-service"
+            className="underline-offset-2 hover:underline"
+          >
             Terms of Service
           </Link>
-          <Link href="/privacy-policy" className="hover:underline">
+          <Link
+            href="/privacy-policy"
+            className="underline-offset-2 hover:underline"
+          >
             Privacy Policy
           </Link>
         </div>

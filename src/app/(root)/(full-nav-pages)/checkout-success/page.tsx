@@ -34,7 +34,7 @@ export default async function CheckoutSuccess({
         This link has expired. Navigate to{' '}
         <Link
           href="/order-status"
-          className="font-semibold text-primary-foreground hover:underline dark:text-primary"
+          className="font-semibold text-primary-foreground hover:underline hover:underline-offset-2 dark:text-primary"
         >
           order status
         </Link>{' '}
@@ -71,7 +71,10 @@ export default async function CheckoutSuccess({
       </div>
       <div>
         Have an issue?{' '}
-        <Link href="/support/contact-us" className="underline">
+        <Link
+          href="/support/contact-us"
+          className="underline underline-offset-2"
+        >
           Contact us
         </Link>
       </div>

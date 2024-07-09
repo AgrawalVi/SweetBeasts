@@ -56,13 +56,13 @@ export default function ThankYouEmail({
             <Section className="mt-6 text-center">
               <Link
                 href="https://example.com/privacy-policy"
-                className="mx-4 text-xs text-gray-400 underline"
+                className="mx-4 text-xs text-gray-400 underline underline-offset-2"
               >
                 Privacy Policy
               </Link>
               <Link
                 href="https://example.com/terms-of-service"
-                className="mx-4 text-xs text-gray-400 underline"
+                className="mx-4 text-xs text-gray-400 underline underline-offset-2"
               >
                 Terms of Service
               </Link>
