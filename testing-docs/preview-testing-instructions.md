@@ -1,6 +1,6 @@
 # Preview Testing Instructions
 
-## [Preview Shop Link](https://www.sweetbeasts-git-testing-vishrut-agrawals-projects.vercel.app/)
+## [Preview Shop Link](https://www.sweetbeasts-demo.vishrut.tech)
 
 ## Preview Admin Link (Coming Soon)
 
