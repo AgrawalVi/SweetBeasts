@@ -7,6 +7,7 @@ import * as z from 'zod'
 import { createGuestUser } from '../shop/guest-user'
 import { GuestUser, User } from '@prisma/client'
 import { createContactUsRequestForUser } from '@/data/customer/contact-us'
+import { createContactUsRequestForGuestUser } from '@/data/customer/contact-us'
 import { getOrderByOrderNumber } from '@/data/shop/orders'
 import { sendContactUs as sendContactUsEmail } from '@/lib/resend'
 
@@ -55,6 +56,12 @@ export const sendContactUs = async (data: z.infer<typeof ContactSchema>) => {
     }
   } else {
     //TODO: implement this
+    const contactUsRequest = await createContactUsRequestForGuestUser(
+      guestUser!,
+      name,
+      message,
+      order,
+    )
   }
 
   // finally, send email to person who created the request

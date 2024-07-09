@@ -31,4 +31,19 @@ export const createContactUsRequestForGuestUser = async (
   order: Order | null | undefined,
 ) => {
   //TODO: Implement this
+  try {
+    const contactUsRequest = await db.contactUsSubmission.create({
+      data: {
+        guestUserId: user.id,
+        email: user.email,
+        name,
+        orderId: order?.id,
+        message: [message],
+      },
+    })
+    return contactUsRequest
+  } catch (e) {
+    console.error('Unable to create contact us request', e)
+    return null
+  }
 }
