@@ -254,7 +254,6 @@ model GuestUser {
   id String @id @default(uuid())
 
   stripeCustomerId String @unique
-  name             String
   email            String @unique
 
   createdAt DateTime @default(now())
