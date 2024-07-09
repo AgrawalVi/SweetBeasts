@@ -38,6 +38,13 @@ enum ContactUsStatus {
   CLAIMED
 }
 
+enum Courier {
+  UPS
+  USPS
+  FEDEX
+  DHL
+}
+
 model User {
   id                    String                 @id @default(cuid())
   firstName             String
@@ -184,6 +191,10 @@ model Order {
 
   shippingMethod ShippingMethod @default(STANDARD)
   orderStatus    OrderStatus    @default(PROCESSING)
+
+  trackingNumber String?
+  trackingUrl    String?
+  courier        Courier?
 
   lineItems      LineItem[]
   User           User?            @relation(fields: [userId], references: [id], onDelete: SetNull)
