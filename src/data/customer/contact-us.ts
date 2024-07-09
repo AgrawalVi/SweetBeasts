@@ -28,7 +28,7 @@ export const createContactUsRequestForGuestUser = async (
   user: GuestUser,
   name: string,
   message: string,
-  orderNumber: string,
+  order: Order | null | undefined,
 ) => {
   //TODO: Implement this
 }
