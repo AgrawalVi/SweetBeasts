@@ -4,13 +4,11 @@ import TwoFactorConfirmationEmail from '@/emails/two-factor'
 import { ResetPasswordEmail } from '@/emails/reset-password'
 import EmailConfirmation from '@/emails/email-confirmation'
 import ContactUsEmail from '@/emails/contact-us'
-import { PrismaClient } from '@prisma/client'
 
 const resend = new Resend(process.env.RESEND_API_KEY)
 const generalAudienceId = process.env.RESEND_GENERAL_AUDIENCE_ID!
 const fromEmail = process.env.NEXT_PUBLIC_RESEND_EMAIL_NEW_ACCOUNT!
 const base_url = process.env.NEXT_PUBLIC_BASE_URL!
-const prisma = new PrismaClient();
 
 export const addToGeneralEmailList = async (email: string) => {
   if (generalAudienceId) {
@@ -89,48 +87,17 @@ export const sendTwoFactorEmail = async (email: string, token: string) => {
   })
 }
 
-
-export const sendContactUs = async (email: string, userName: string, message: string) => {
-  try {
-    console.log('Checking if user exists:', email);
-    let user = await prisma.user.findUnique({ where: { email } });
-    console.log('User found:', user);
-
-    let guestUser = null;
-    if (!user) {
-      console.log('Creating guest user:', email);
-      guestUser = await prisma.guestUser.create({
-        data: {
-          email,
-          stripeCustomerId: '', 
-        },
-      });
-      console.log('Guest user created:', guestUser);
-    }
-
-    console.log('Creating contact submission for:', email);
-    const contactSubmission = await prisma.contactUsSubmission.create({
-      data: {
-        email,
-        name: userName,
-        userId: user?.id || null,
-        guestUserId: guestUser?.id || null,
-        message: [message],
-      },
-    });
-    console.log('Contact submission created:', contactSubmission);
-
-    console.log('Sending confirmation email to:', email);
-    await resend.emails.send({
-      from: fromEmail,
-      to: email,
-      subject: 'Contact Us - SweetBeasts',
-      react: ContactUsEmail({ userName, userMessage: message }),
-    });
-    console.log('Confirmation email sent to:', email);
-
-  } catch (error) {
-    console.error('Failed to submit contact request:', error);
-    throw new Error('Failed to submit contact request');
-  }
-};
+export const sendContactUs = async (
+  email: string,
+  userName: string,
+  message: string,
+) => {
+  console.log('Sending confirmation email to:', email)
+  await resend.emails.send({
+    from: fromEmail,
+    to: email,
+    subject: 'Contact Us - SweetBeasts',
+    react: ContactUsEmail({ userName, userMessage: message }),
+  })
+  console.log('Confirmation email sent to:', email)
+}

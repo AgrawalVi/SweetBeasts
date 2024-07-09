@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useState } from 'react'
+import React, { useState, useTransition } from 'react'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import * as z from 'zod'
@@ -19,9 +19,10 @@ import { FormError } from '@/components/custom/form-error'
 import { FormSuccess } from '@/components/custom/form-success'
 import { ContactSchema } from '@/schemas'
 import { Card, CardContent } from '@/components/ui/card'
+import { sendContactUs } from '@/actions/customer/contact-us'
 
 export default function ContactForm() {
-  const [isPending, setIsPending] = useState(false)
+  const [isPending, startTransition] = useTransition()
   const [error, setError] = useState<string | undefined>(undefined)
   const [success, setSuccess] = useState<string | undefined>(undefined)
 
@@ -35,36 +36,16 @@ export default function ContactForm() {
     },
   })
 
-  const onSubmit = async (data: z.infer<typeof ContactSchema>) => {
-    setIsPending(true)
-    setError(undefined)
-    setSuccess(undefined)
+  const onSubmit = (data: z.infer<typeof ContactSchema>) => {
+    setError('')
+    setSuccess('')
 
-    try {
-      const response = await fetch('/api/contact', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(data),
+    startTransition(() => {
+      sendContactUs(data).then((response) => {
+        setError(response.error)
+        setSuccess(response.success)
       })
-
-      if (response.ok) {
-        setSuccess('Message sent successfully!')
-        form.reset()
-      } else {
-        const result = await response.json()
-        setError(result.message || 'Failed to send message.')
-      }
-    } catch (err) {
-      if (err instanceof Error) {
-        setError(err.message)
-      } else {
-        setError('Failed to send message.')
-      }
-    } finally {
-      setIsPending(false)
-    }
+    })
   }
 
   return (

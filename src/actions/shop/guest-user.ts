@@ -1,3 +1,5 @@
+'use server'
+
 import { stripe } from '@/lib/stripe'
 import { createGuestUser as createGuestUserDB } from '@/data/shop/guest-user'
 

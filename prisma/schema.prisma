@@ -185,10 +185,11 @@ model Order {
   shippingMethod ShippingMethod @default(STANDARD)
   orderStatus    OrderStatus    @default(PROCESSING)
 
-  lineItems      LineItem[]
-  User           User?            @relation(fields: [userId], references: [id], onDelete: SetNull)
-  guestUser      GuestUser?       @relation(fields: [guestUserId], references: [id], onDelete: SetNull)
-  ViewOrderToken ViewOrderToken[]
+  lineItems           LineItem[]
+  User                User?                 @relation(fields: [userId], references: [id], onDelete: SetNull)
+  guestUser           GuestUser?            @relation(fields: [guestUserId], references: [id], onDelete: SetNull)
+  ViewOrderToken      ViewOrderToken[]
+  ContactUsSubmission ContactUsSubmission[]
 }
 
 model LineItem {
@@ -284,6 +285,9 @@ model ContactUsSubmission {
   claimedByUser User?      @relation("ClaimedByUser", fields: [claimedByUserId], references: [id], onDelete: SetNull)
   user          User?      @relation("SubmittedByUser", fields: [userId], references: [id], onDelete: SetNull)
   guestUser     GuestUser? @relation(fields: [guestUserId], references: [id], onDelete: SetNull)
+
+  orderId Int?
+  order   Order? @relation(fields: [orderId], references: [id])
 
   message String[]
 }
