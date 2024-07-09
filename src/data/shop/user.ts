@@ -1,7 +1,8 @@
 import { db } from '@/lib/db'
 
 export const createUser = async (
-  name: string,
+  firstName: string,
+  lastName: string,
   email: string,
   password: string,
   stripeCustomerId: string,
@@ -10,7 +11,8 @@ export const createUser = async (
   try {
     const newUser = await db.user.create({
       data: {
-        name,
+        firstName,
+        lastName,
         email,
         password,
         stripeCustomerId,

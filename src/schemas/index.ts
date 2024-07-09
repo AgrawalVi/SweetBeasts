@@ -1,3 +1,4 @@
+import { m } from 'framer-motion'
 import * as z from 'zod'
 
 export const JoinEmailListSchema = z.object({
@@ -21,13 +22,6 @@ export const LoginSchema = z.object({
   code: z.optional(z.string()),
 })
 
-export const ContactSchema = z.object({
-  name: z.string().min(2).max(50),
-  email: z.string().email(),
-  orderNumber: z.string().optional(),
-  message: z.string().min(10).max(500),
-})
-
 export const RegisterSchema = z
   .object({
     email: z
@@ -44,8 +38,11 @@ export const RegisterSchema = z
     confirmPassword: z.string().min(8, {
       message: 'Minimum 8 characters required',
     }),
-    name: z.string().min(1, {
-      message: 'Name is required',
+    firstName: z.string().min(1, {
+      message: 'firstName is required',
+    }),
+    lastName: z.string().min(1, {
+      message: 'lastName is required',
     }),
     newsletter: z.boolean({
       message: 'Must be either true or false',
@@ -91,10 +88,6 @@ export const NewPasswordSchema = z
     },
   )
 
-export const SettingsSchema = z.object({
-  name: z.optional(z.string()),
-})
-
 export const FindOrderSchema = z.object({
   email: z.string().email({
     message: 'Please enter an email address',
@@ -102,4 +95,14 @@ export const FindOrderSchema = z.object({
   orderNumber: z.string({
     message: 'Please enter an order number',
   }),
+})
+
+export const ContactSchema = z.object({
+  name: z.string().min(1, { message: 'Name is required' }),
+  email: z.string().email({ message: 'Please enter a valid email address' }),
+  orderNumber: z.string().optional(),
+  message: z
+    .string()
+    .min(10, { message: 'Message must be at least 10 characters long' })
+    .max(750, { message: 'Message cannot exceed 750 characters' }),
 })

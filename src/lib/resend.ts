@@ -25,6 +25,28 @@ export const addToGeneralEmailList = async (email: string) => {
   }
 }
 
+export const addToGeneralEmailListWithName = async (
+  email: string,
+  firstName: string,
+  lastName: string,
+) => {
+  if (generalAudienceId) {
+    try {
+      await resend.contacts.create({
+        firstName,
+        lastName,
+        email,
+        unsubscribed: false,
+        audienceId: generalAudienceId,
+      })
+    } catch {
+      throw new Error('Error adding to email list')
+    }
+  } else {
+    throw new Error('Error adding to email list')
+  }
+}
+
 // TODO: Test this functionality, and also change first name to be dynamic. Need to change register form and database to do this.
 
 export const sendVerificationEmail = async (email: string, token: string) => {

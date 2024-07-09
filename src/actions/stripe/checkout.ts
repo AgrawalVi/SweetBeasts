@@ -107,7 +107,7 @@ export const createCheckoutSession = async (
     try {
       customer = await stripe.customers.create({
         email: existingUser.email,
-        name: existingUser.name || undefined,
+        name: `${existingUser.firstName} ${existingUser.lastName}`,
       })
     } catch (e) {
       console.error('error creating customer in stripe', e)
