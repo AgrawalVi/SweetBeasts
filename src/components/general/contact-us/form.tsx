@@ -18,7 +18,7 @@ import {
 import { FormError } from '@/components/custom/form-error'
 import { FormSuccess } from '@/components/custom/form-success'
 import { ContactSchema } from '@/schemas'
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+import { Card, CardContent } from '@/components/ui/card'
 
 export default function ContactForm() {
   const [isPending, setIsPending] = useState(false)
@@ -41,8 +41,21 @@ export default function ContactForm() {
     setSuccess(undefined)
 
     try {
-      console.log('Form submitted with data:', data)
-      setSuccess('Message sent successfully!')
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      })
+
+      if (response.ok) {
+        setSuccess('Message sent successfully!')
+        form.reset()
+      } else {
+        const result = await response.json()
+        setError(result.message || 'Failed to send message.')
+      }
     } catch (err) {
       if (err instanceof Error) {
         setError(err.message)
@@ -142,7 +155,7 @@ export default function ContactForm() {
                   className="mt-4 w-full"
                   disabled={isPending}
                 >
-                  Send Message
+                  {isPending ? 'Sending...' : 'Send Message'}
                 </Button>
               </div>
             </form>
