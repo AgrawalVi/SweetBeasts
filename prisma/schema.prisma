@@ -276,6 +276,7 @@ model ContactUsSubmission {
   guestUserId String?
 
   email String
+  name  String
 
   claimedAt       DateTime?
   claimedByUserId String?
