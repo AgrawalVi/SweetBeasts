@@ -6,16 +6,5 @@ import { useTransition } from 'react'
 import { signOut } from 'next-auth/react'
 
 export default function MyAccount() {
-  return (
-    <>
-      <Card className="w=[600px]">
-        <CardHeader>
-          <p className="text-center text-2xl font-semibold">Settings</p>
-        </CardHeader>
-        <CardContent>
-          <Button onClick={() => signOut()}>Sign Out</Button>
-        </CardContent>
-      </Card>
-    </>
-  )
+  return <></>
 }
