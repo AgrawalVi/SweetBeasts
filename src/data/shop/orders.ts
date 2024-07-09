@@ -109,6 +109,32 @@ export const getOrderWithDataByEmailAndOrderNumber = async (
   }
 }
 
+export const getFourMostRecentOrdersWithDataByUserId = async (
+  userId: string,
+) => {
+  try {
+    const orders = await db.order.findMany({
+      where: {
+        userId,
+      },
+      include: {
+        lineItems: {
+          include: { Product: true },
+        },
+        ShippingAddress: true,
+      },
+      orderBy: {
+        createdAt: 'desc',
+      },
+      take: 4,
+    })
+    return orders
+  } catch (e) {
+    console.error('Error getting orders by user id', e)
+    return null
+  }
+}
+
 export const transferOrderToUserFromGuestUser = async (
   id: number,
   userId: string,
