@@ -1,7 +1,7 @@
 import { stripe } from '@/lib/stripe'
 import { createGuestUser as createGuestUserDB } from '@/data/shop/guest-user'
 
-const createGuestUser = async (email: string) => {
+export const createGuestUser = async (email: string) => {
   // first create a stripe customer id
   let customer
   try {
