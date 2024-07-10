@@ -5,7 +5,7 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card'
-import AccountSettingsContent from './account-settings/account-settings-content'
+import { ChangePasswordForm } from './account-settings/change-password-form'
 
 export default function AccountSettingsCard() {
   return (
@@ -15,7 +15,7 @@ export default function AccountSettingsCard() {
         <CardDescription>Manage your account settings here</CardDescription>
       </CardHeader>
       <CardContent>
-        <AccountSettingsContent />
+        <ChangePasswordForm />
       </CardContent>
     </Card>
   )

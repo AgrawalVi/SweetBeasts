@@ -5,9 +5,14 @@ import * as z from 'zod'
 import bcrypt from 'bcryptjs'
 
 import { db } from '@/lib/db'
-import { getUserById } from '@/data/shop/user'
+import {
+  changePasswordById,
+  changeUserNameById,
+  getUserById,
+} from '@/data/shop/user'
 import { currentUser } from '@/lib/auth'
 import { ChangeNameSchema, ChangePasswordSchema } from '@/schemas'
+import { stripe } from '@/lib/stripe'
 
 export const updateSettings = async (
   values: z.infer<typeof ChangeNameSchema>,
@@ -31,18 +36,21 @@ export const updateSettings = async (
     return { error: 'Unauthorized' }
   }
 
-  // TODO: move this to database folder
-  await db.user.update({
-    where: {
-      id: user.id,
-    },
-    data: {
-      firstName,
-      lastName,
-    },
-  })
+  const newUser = await changeUserNameById(dbUser.id, firstName, lastName)
+  if (!newUser) {
+    return { error: 'Something went wrong!' }
+  }
 
   // TODO: update stripe customer information
+
+  try {
+    await stripe.customers.update(dbUser.stripeCustomerId, {
+      name: `${firstName} ${lastName}`,
+    })
+  } catch (e) {
+    console.error('Error updating stripe customer', e)
+    return { error: 'Something went wrong!' }
+  }
 
   return { success: 'Settings updated' }
 }
@@ -78,15 +86,11 @@ export const updatePassword = async (
 
   const hashedPassword = await bcrypt.hash(newPassword, 10)
 
-  // TODO: move this to database folder
-  await db.user.update({
-    where: {
-      id: user.id,
-    },
-    data: {
-      password: hashedPassword,
-    },
-  })
+  const newUser = changePasswordById(dbUser.id, hashedPassword)
+
+  if (!newUser) {
+    return { error: 'Something went wrong!' }
+  }
 
   return { success: 'Password updated' }
 }

@@ -5,7 +5,7 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card'
-import AccountProfileContent from './account-profile-content'
+import { ChangeNameForm } from './profile-settings/change-name-form'
 
 export default function MyProfileCard() {
   return (
@@ -15,7 +15,7 @@ export default function MyProfileCard() {
         <CardDescription>Manage your profile here</CardDescription>
       </CardHeader>
       <CardContent>
-        <AccountProfileContent />
+        <ChangeNameForm />
       </CardContent>
     </Card>
   )
