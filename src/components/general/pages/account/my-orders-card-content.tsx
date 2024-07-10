@@ -39,10 +39,7 @@ export default async function OrderContent() {
       ))}
       {showMore && (
         <div className="flex w-full justify-center">
-          <Link
-            href="/my-account/orders"
-            className="underline underline-offset-2"
-          >
+          <Link href="/account/orders" className="underline underline-offset-2">
             View More
           </Link>
         </div>

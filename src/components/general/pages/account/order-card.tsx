@@ -25,7 +25,7 @@ export default function OrderCard({ order }: { order: OrderWithData }) {
           Total: {formatPrice(order.totalPaidInCents)}
         </div>
         <Link
-          href={`/my-account/orders/${order.orderNumber}`}
+          href={`/account/orders/${order.orderNumber}`}
           className="group flex w-fit text-sm font-semibold underline underline-offset-2"
         >
           View Details

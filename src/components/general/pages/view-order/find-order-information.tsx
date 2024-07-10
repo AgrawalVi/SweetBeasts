@@ -34,7 +34,7 @@ export default async function FindOrderInformation({
   return (
     <main className="relative flex w-full flex-col items-center justify-center">
       <Link
-        href="/my-account/orders"
+        href="/account/orders"
         className="absolute -left-5 -top-10 md:-left-10"
       >
         <Button variant="link" className="group text-muted-foreground">

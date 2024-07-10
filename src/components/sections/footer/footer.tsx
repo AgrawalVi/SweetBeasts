@@ -16,7 +16,7 @@ const footerLinks = {
     },
     {
       name: 'Account',
-      href: '/my-account',
+      href: '/account',
     },
     {
       name: 'Product Updates',

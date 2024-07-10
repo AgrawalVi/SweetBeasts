@@ -27,7 +27,7 @@ export default auth((req) => {
 
   if (nextUrl.pathname === '/order-status') {
     if (isLoggedIn) {
-      return Response.redirect(new URL('/my-account/orders', nextUrl))
+      return Response.redirect(new URL('/account/orders', nextUrl))
     }
     return
   }

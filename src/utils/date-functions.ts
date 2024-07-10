@@ -15,7 +15,6 @@ const months = [
 
 // Format the date as "Month, Day, Year"
 export const formatDate = (date: Date) => {
-  console.log('formatDate', date)
   const newDate = new Date(date)
   const month = months[newDate.getMonth()]
   const day = newDate.getDate()

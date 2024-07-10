@@ -1,6 +1,6 @@
-import MyAccountCard from '@/components/general/pages/my-account/my-account-card'
-import MyOrdersCard from '@/components/general/pages/my-account/my-orders-card'
-import MyProfileCard from '@/components/general/pages/my-account/my-profile-card'
+import AccountSettingsCard from '@/components/general/pages/account/account-settings-card'
+import AccountOrdersCard from '@/components/general/pages/account/account-orders-card'
+import AccountProfileCard from '@/components/general/pages/account/account-profile-card'
 
 export default function MyAccount() {
   return (
@@ -10,9 +10,9 @@ export default function MyAccount() {
           Your Account
         </div>
         <div className="my-10 flex w-full flex-col items-center space-y-4 sm:w-fit">
-          <MyProfileCard />
-          <MyOrdersCard />
-          <MyAccountCard />
+          <AccountProfileCard />
+          <AccountOrdersCard />
+          <AccountSettingsCard />
         </div>
       </div>
     </main>
