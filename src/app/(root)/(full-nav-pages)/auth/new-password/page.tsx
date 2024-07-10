@@ -1,14 +1,7 @@
-'use client'
-
 import { NewPasswordForm } from '@/components/auth/new-password-form'
-import { Suspense } from 'react'
 
 const NewPasswordPage = () => {
-  return (
-    <Suspense>
-      <NewPasswordForm />
-    </Suspense>
-  )
+  return <NewPasswordForm />
 }
 
 export default NewPasswordPage

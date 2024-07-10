@@ -1,8 +1,9 @@
+'use server'
+
 import { Button } from '@/components/ui/button'
 import Link from 'next/link'
 import { redirect } from 'next/navigation'
 import { getLineItemsByOrderId } from '@/data/shop/line-items'
-import { LineItem, Product } from '@prisma/client'
 import OrderSummary from './order-summary'
 import OrderStatusBar from './censored-order-status-bar'
 import CensoredOrderDetails from './censored-order-details'
@@ -42,7 +43,7 @@ export default async function FindOrderInformation({
           Go Back
         </Button>
       </Link>
-      <div className="mx-5 flex w-full max-w-6xl flex-col items-center justify-between xl:flex-row">
+      <div className="mx-5 flex w-full max-w-5xl flex-col items-center justify-between xl:flex-row">
         <div className="header-gradient text-5xl">Your Order</div>
         <div className="flex flex-col text-center text-sm text-muted-foreground sm:text-end sm:text-base">
           <div>Order {order.orderNumber}</div>
@@ -62,7 +63,7 @@ export default async function FindOrderInformation({
           </Link>
         </div>
       </div>
-      <div className="h-full max-w-6xl flex-col items-start justify-start space-y-4 xl:grid xl:grid-cols-2 xl:gap-4 xl:space-y-0">
+      <div className="h-full max-w-5xl flex-col items-start justify-start space-y-4 xl:grid xl:grid-cols-2 xl:gap-4 xl:space-y-0">
         <div className="flex w-full">
           {lineItems && lineItems.length > 0 ? (
             <OrderSummary orderItems={lineItems} order={order} />

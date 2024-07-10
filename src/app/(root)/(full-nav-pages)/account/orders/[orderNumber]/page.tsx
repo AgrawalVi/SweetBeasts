@@ -1,3 +1,5 @@
+'use server'
+
 import { getOrderWithDataByEmailAndOrderNumber } from '@/data/shop/orders'
 import { currentUser } from '@/lib/auth'
 import { OrderWithData } from '@/types'
@@ -35,7 +37,7 @@ export default async function OrderPage({
 
   return (
     <main className="relative flex w-full flex-col items-center justify-center space-y-8">
-      <div className="mx-5 flex w-full max-w-6xl flex-col items-center justify-between xl:flex-row">
+      <div className="mx-5 flex w-full max-w-5xl flex-col items-center justify-between xl:flex-row">
         <div className="header-gradient text-center text-5xl sm:text-left">
           Your Order
         </div>
@@ -53,7 +55,7 @@ export default async function OrderPage({
           <div>Placed {formatDate(order.createdAt)}</div>
         </div>
       </div>
-      <div className="h-full max-w-6xl flex-col items-start justify-start space-y-4 xl:grid xl:grid-cols-2 xl:gap-4 xl:space-y-0">
+      <div className="h-full max-w-5xl flex-col items-start justify-start space-y-4 xl:grid xl:grid-cols-2 xl:gap-4 xl:space-y-0">
         <div className="flex w-full">
           {lineItems && lineItems.length > 0 ? (
             <OrderSummary orderItems={lineItems} order={order} />

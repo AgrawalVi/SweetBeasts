@@ -131,7 +131,30 @@ export const getFourMostRecentOrdersWithDataByUserId = async (
     return orders
   } catch (e) {
     console.error('Error getting orders by user id', e)
-    return null
+    return []
+  }
+}
+
+export const getAllOrdersWithDataByUserId = async (userId: string) => {
+  try {
+    const orders = await db.order.findMany({
+      where: {
+        userId,
+      },
+      include: {
+        lineItems: {
+          include: { Product: true },
+        },
+        ShippingAddress: true,
+      },
+      orderBy: {
+        createdAt: 'desc',
+      },
+    })
+    return orders
+  } catch (e) {
+    console.error('Error getting orders by user id', e)
+    return []
   }
 }
 

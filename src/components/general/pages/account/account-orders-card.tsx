@@ -6,8 +6,10 @@ import {
   CardTitle,
 } from '@/components/ui/card'
 import OrderContent from './my-orders-card-content'
+import { Suspense } from 'react'
+import OrderContentSkeleton from '@/components/skeletons/account/order-content-skeleton'
 
-export default async function MyOrdersCard() {
+export default function MyOrdersCard() {
   return (
     <Card className="w-full sm:w-[30rem]">
       <CardHeader>
@@ -15,7 +17,9 @@ export default async function MyOrdersCard() {
         <CardDescription>View your latest orders here</CardDescription>
       </CardHeader>
       <CardContent>
-        <OrderContent />
+        <Suspense fallback={<OrderContentSkeleton />}>
+          <OrderContent />
+        </Suspense>
       </CardContent>
     </Card>
   )
