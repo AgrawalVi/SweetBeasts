@@ -19,7 +19,7 @@ import { FindOrderSchema } from '@/schemas'
 import { Button } from '@/components/ui/button'
 import { FormError } from '@/components/custom/form-error'
 
-import { findOrder } from '@/actions/customer/find-order'
+import { findOrder } from '@/actions/order/find-order'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 
 export const OrderStatusForm = ({ errorText }: { errorText?: string }) => {
