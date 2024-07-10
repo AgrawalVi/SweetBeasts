@@ -7,6 +7,7 @@ import * as z from 'zod'
 import { createGuestUser } from '../shop/guest-user'
 import { GuestUser, User } from '@prisma/client'
 import { createContactUsRequestForUser } from '@/data/customer/contact-us'
+import { createContactUsRequestForGuestUser } from '@/data/customer/contact-us'
 import { getOrderByOrderNumber } from '@/data/shop/orders'
 import { sendContactUs as sendContactUsEmail } from '@/lib/resend'
 
@@ -54,15 +55,23 @@ export const sendContactUs = async (data: z.infer<typeof ContactSchema>) => {
       console.error('unable to create contact us request in database')
     }
   } else {
-    //TODO: implement this
+    const contactUsRequest = await createContactUsRequestForGuestUser(
+      guestUser!,
+      name,
+      message,
+      order,
+    )
+    if (!contactUsRequest) {
+      console.error('unable to create contact us request in database')
+    }
   }
 
   // finally, send email to person who created the request
   try {
     await sendContactUsEmail(email, name, message)
   } catch {
-    return { error: "Error sending email"}
+    return { error: 'Error sending email' }
   }
 
-  return { success: "Successfully submitted"}
+  return { success: 'Successfully submitted' }
 }
