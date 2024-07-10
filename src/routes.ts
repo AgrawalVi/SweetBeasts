@@ -1,7 +1,7 @@
 /**
  * private routes that you must be logged in to access
  */
-export const privateRoutes = ['/my-account', '/account/orders']
+export const privateRoutes = ['/account']
 
 /**
  * An array of routes that are used for authentication
@@ -22,4 +22,4 @@ export const authRoutes = [
 export const apiAuthPrefix = '/api/auth'
 
 // The default route to redirect to after login
-export const DEFAULT_LOGIN_REDIRECT = '/products/pogo'
+export const DEFAULT_LOGIN_REDIRECT = '/account'

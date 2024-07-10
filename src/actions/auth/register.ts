@@ -7,7 +7,10 @@ import { stripe } from '@/lib/stripe'
 import { RegisterSchema } from '@/schemas'
 import { createUser, getUserByEmail } from '@/data/shop/user'
 import { generateVerificationToken } from '@/lib/tokens'
-import { addToGeneralEmailList, sendVerificationEmail } from '@/lib/resend'
+import {
+  addToGeneralEmailListWithName,
+  sendVerificationEmail,
+} from '@/lib/resend'
 import {
   deleteGuestUserById,
   getGuestUserWithDataByEmail,
@@ -23,7 +26,8 @@ export const register = async (values: z.infer<typeof RegisterSchema>) => {
     return { error: 'Invalid Fields' }
   }
 
-  const { email, password, name, newsletter } = validatedFields.data
+  const { email, password, firstName, lastName, newsletter } =
+    validatedFields.data
   const hashedPassword = await bcrypt.hash(password, 10)
 
   // make sure email is not taken
@@ -41,11 +45,17 @@ export const register = async (values: z.infer<typeof RegisterSchema>) => {
     // create a stripe customer
     customer = await stripe.customers.create({
       email,
+      name: `${firstName} ${lastName}`,
+    })
+  } else {
+    customer = await stripe.customers.update(guestUser.stripeCustomerId, {
+      name: `${firstName} ${lastName}`,
     })
   }
 
   const newUser = await createUser(
-    name,
+    firstName,
+    lastName,
     email,
     hashedPassword,
     guestUser ? guestUser.stripeCustomerId : (customer?.id as string),
@@ -58,7 +68,7 @@ export const register = async (values: z.infer<typeof RegisterSchema>) => {
 
   if (newsletter) {
     try {
-      addToGeneralEmailList(email)
+      addToGeneralEmailListWithName(email, firstName, lastName)
     } catch (e) {
       console.error(
         'Error adding email to general email list',

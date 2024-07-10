@@ -121,7 +121,7 @@ export const Menu = ({
         setActive(null)
       }}
       className={cn(
-        'big-phone:text-base big-phone:gap-4 relative grid w-full grid-cols-3 items-center gap-2 bg-background pb-3 text-sm sm:px-8 md:py-6',
+        'relative grid w-full grid-cols-3 items-center gap-2 bg-background pb-3 text-sm big-phone:gap-4 big-phone:text-base sm:px-8 md:py-6',
         className,
       )}
     >
@@ -148,7 +148,7 @@ export const ProductItem = ({
         width={140}
         height={70}
         alt={title}
-        className="big-phone:h-20 big-phone:w-20 h-16 w-16 flex-shrink-0 rounded-md shadow-2xl md:h-32 md:w-32"
+        className="h-16 w-16 flex-shrink-0 rounded-md shadow-2xl big-phone:h-20 big-phone:w-20 md:h-32 md:w-32"
       />
       <div>
         <h4 className="mb-1 text-xl font-bold text-black dark:text-white">

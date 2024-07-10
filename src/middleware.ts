@@ -16,7 +16,9 @@ export default auth((req) => {
   const isLoggedIn = !!req.auth
 
   const isApiAuthRoute = nextUrl.pathname.startsWith(apiAuthPrefix)
-  const isPrivateRoute = privateRoutes.includes(nextUrl.pathname)
+  const isPrivateRoute = privateRoutes.some((route) =>
+    nextUrl.pathname.startsWith(route),
+  )
   const isAuthRoute = authRoutes.includes(nextUrl.pathname)
 
   if (isApiAuthRoute) {

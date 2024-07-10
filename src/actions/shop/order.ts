@@ -1,3 +1,5 @@
+'use server'
+
 import { getOrderById } from '@/data/shop/orders'
 import {
   deleteViewOrderTokenById,

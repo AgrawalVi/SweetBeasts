@@ -18,3 +18,9 @@ export type stripeLineItemWithProductId = {
   quantity: number
   id: number
 }
+
+export type OrderWithData = Order & {
+  lineItems: LineItemWithProduct[] | null
+} & {
+  ShippingAddress: ShippingAddress
+}

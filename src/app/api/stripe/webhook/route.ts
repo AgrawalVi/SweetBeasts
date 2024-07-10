@@ -1,4 +1,4 @@
-import { createOrder } from '@/actions/stripe/new-order'
+import { createOrder } from '@/actions/order/new-order'
 import { expireCheckoutSession } from '@/actions/stripe/checkout-session'
 import { stripe } from '@/lib/stripe'
 import { NextResponse } from 'next/server'

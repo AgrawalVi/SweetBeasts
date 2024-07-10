@@ -12,11 +12,8 @@ import {
 } from '@/data/auth/two-factor-confirmation'
 
 import { cookies } from 'next/headers'
-import { cartLoginHandler } from './utils/cart-utils'
+import { cartLoginHandler } from './lib/cart-utils'
 import { getCartByGuestId } from './data/shop/cart'
-import { getGuestUserWithDataByEmail } from './data/shop/guest-user'
-import { transferOrderToUserFromGuestUser } from './data/shop/orders'
-import { transferShippingAddressToUserFromGuestUser } from './data/shop/address'
 
 declare module 'next-auth' {
   /**
@@ -24,6 +21,8 @@ declare module 'next-auth' {
    */
   interface Session {
     user: {
+      firstName: string
+      lastName: string
       role: UserRole
       isTwoFactorEnabled: boolean
     } & DefaultSession['user']
@@ -32,6 +31,8 @@ declare module 'next-auth' {
 
 declare module 'next-auth/jwt' {
   interface JWT {
+    firstName?: string
+    lastName?: string
     role?: UserRole
     isTwoFactorEnabled: boolean
   }
@@ -51,35 +52,9 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
 
   callbacks: {
     async signIn({ user, account }) {
-      // allow 0Auth without email verification
+      // don't allow any 0Auth logins
       if (account?.provider !== 'credentials') {
-        // Need to transfer cart information before completing the login if there's a guestId
         return false
-        // const guestId = cookies().get('guestId')?.value
-
-        // if (guestId && user.id) {
-        //   const guestCart = await getCartByGuestId(guestId)
-        //   if (guestCart) {
-        //     await cartLoginHandler(guestCart, guestId, user.id)
-        //   }
-        // }
-
-        // // Transfer guest user orders and shipping addresses to the user
-        // const guestUser = await getGuestUserWithDataByEmail(
-        //   user.email as string,
-        // )
-        // if (guestUser) {
-        //   guestUser.orders.forEach(async (order) => {
-        //     await transferOrderToUserFromGuestUser(order.id, user.id as string)
-        //   })
-        //   guestUser.shippingAddresses.forEach(async (shippingAddress) => {
-        //     await transferShippingAddressToUserFromGuestUser(
-        //       shippingAddress.id,
-        //       user.id as string,
-        //     )
-        //   })
-        // }
-        // return true
       }
 
       const existingUser = await getUserById(user.id)
@@ -124,7 +99,8 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       }
 
       if (session.user) {
-        session.user.name = token.name
+        session.user.firstName = token.firstName as string
+        session.user.lastName = token.lastName as string
         session.user.email = token.email as string
         session.user.isTwoFactorEnabled = token.isTwoFactorEnabled
       }
@@ -138,7 +114,8 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
 
       if (!existingUser) return token
 
-      token.name = existingUser.name
+      token.firstName = existingUser.firstName
+      token.lastName = existingUser.lastName
       token.email = existingUser.email
       token.role = existingUser.role
       token.isTwoFactorEnabled = existingUser.isTwoFactorEnabled

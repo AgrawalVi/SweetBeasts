@@ -33,13 +33,33 @@ enum ShippingMethod {
   EXPEDITED
 }
 
+enum Courier {
+  UPS
+  USPS
+  FEDEX
+  DHL
+}
+
+enum ContactUsStatus {
+  OPEN
+  CLAIMED
+  RESOLVED
+}
+
+enum FeedbackStatus {
+  OPEN
+  CLAIMED
+  RESOLVED
+}
+
 model User {
   id                    String                 @id @default(cuid())
-  name                  String?
+  firstName             String
+  lastName              String
   email                 String                 @unique
   emailVerified         DateTime?
   image                 String?
-  password              String?
+  password              String
   role                  UserRole               @default(CUSTOMER)
   accounts              Account[]
   isTwoFactorEnabled    Boolean                @default(false)
@@ -52,9 +72,13 @@ model User {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  cartItems       CartItem[]
-  ShippingAddress ShippingAddress[]
-  Order           Order[]
+  cartItems                CartItem[]
+  ShippingAddress          ShippingAddress[]
+  Order                    Order[]
+  contactUsUserSubmissions ContactUsSubmission[]    @relation("SubmittedBy")
+  contactUsUserClaims      ContactUsSubmission[]    @relation("ClaimedBy")
+  feedbackUserSubmissions  FeedBackFormSubmission[] @relation("SubmittedBy")
+  feedbackUserClaims       FeedBackFormSubmission[] @relation("ClaimedBy")
 }
 
 model Account {
@@ -177,10 +201,15 @@ model Order {
   shippingMethod ShippingMethod @default(STANDARD)
   orderStatus    OrderStatus    @default(PROCESSING)
 
-  lineItems      LineItem[]
-  User           User?            @relation(fields: [userId], references: [id], onDelete: SetNull)
-  guestUser      GuestUser?       @relation(fields: [guestUserId], references: [id], onDelete: SetNull)
-  ViewOrderToken ViewOrderToken[]
+  trackingNumber String?
+  trackingUrl    String?
+  courier        Courier?
+
+  lineItems           LineItem[]
+  User                User?                 @relation(fields: [userId], references: [id], onDelete: SetNull)
+  guestUser           GuestUser?            @relation(fields: [guestUserId], references: [id], onDelete: SetNull)
+  ViewOrderToken      ViewOrderToken[]
+  ContactUsSubmission ContactUsSubmission[]
 }
 
 model LineItem {
@@ -194,8 +223,8 @@ model LineItem {
   productId Int
   quantity  Int
 
-  Order   Order?   @relation(fields: [orderId], references: [id], onDelete: Cascade)
-  Product Product? @relation(fields: [productId], references: [id], onDelete: Restrict)
+  Order   Order   @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  Product Product @relation(fields: [productId], references: [id], onDelete: Restrict)
 
   orderId Int
 }
@@ -251,6 +280,59 @@ model GuestUser {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  shippingAddresses ShippingAddress[]
-  orders            Order[]
+  shippingAddresses      ShippingAddress[]
+  orders                 Order[]
+  ContactUsSubmission    ContactUsSubmission[]
+  FeedBackFormSubmission FeedBackFormSubmission[]
+}
+
+model ContactUsSubmission {
+  id String @id @default(cuid())
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  contactUsStatus ContactUsStatus @default(OPEN)
+
+  userId      String?
+  guestUserId String?
+
+  email String
+  name  String
+
+  claimedAt       DateTime?
+  claimedByUserId String?
+
+  claimedByUser User?      @relation("ClaimedBy", fields: [claimedByUserId], references: [id], onDelete: SetNull)
+  user          User?      @relation("SubmittedBy", fields: [userId], references: [id], onDelete: SetNull)
+  guestUser     GuestUser? @relation(fields: [guestUserId], references: [id], onDelete: SetNull)
+
+  orderId Int?
+  order   Order? @relation(fields: [orderId], references: [id])
+
+  message String[]
+}
+
+model FeedBackFormSubmission {
+  id String @id @default(cuid())
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  feedBackStatus FeedbackStatus
+
+  userId      String?
+  guestUserId String?
+
+  email String
+  name  String
+
+  claimedAt       DateTime?
+  claimedByUserId String?
+
+  claimedByUser User?      @relation("ClaimedBy", fields: [claimedByUserId], references: [id], onDelete: SetNull)
+  user          User?      @relation("SubmittedBy", fields: [userId], references: [id], onDelete: SetNull)
+  guestUser     GuestUser? @relation(fields: [guestUserId], references: [id], onDelete: SetNull)
+
+  message String[]
 }
