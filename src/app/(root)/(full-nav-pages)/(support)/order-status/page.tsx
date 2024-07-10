@@ -1,6 +1,6 @@
 import FindOrderInformation from '@/components/general/pages/view-order/find-order-information'
 import { OrderStatusForm } from '@/components/general/pages/view-order/order-status-form'
-import OrderStatusSkeleton from '@/components/skeletons/view-order/order-status-skeleton'
+import OrderStatusSkeleton from '@/components/skeletons/orders/order-status-skeleton'
 import { Suspense } from 'react'
 
 export default function TrackOrder({
