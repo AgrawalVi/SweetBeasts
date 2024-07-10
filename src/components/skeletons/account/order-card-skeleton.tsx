@@ -2,11 +2,7 @@ import { Card } from '@/components/ui/card'
 import { Skeleton } from '@/components/ui/skeleton'
 import { cn } from '@/lib/utils'
 
-export const OrderContentCardSkeleton = ({
-  className,
-}: {
-  className?: string
-}) => {
+export const OrderCardSkeleton = ({ className }: { className?: string }) => {
   return (
     <Card
       className={cn(
