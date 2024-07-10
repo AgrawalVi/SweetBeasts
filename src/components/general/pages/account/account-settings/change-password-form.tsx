@@ -47,6 +47,7 @@ export const ChangePasswordForm = () => {
         .then((data) => {
           if (data.error) {
             setError(data.error)
+            form.reset()
           }
           if (data.success) {
             update()
@@ -54,6 +55,7 @@ export const ChangePasswordForm = () => {
               title: 'Settings updated!',
               description: 'Your password has been updated',
             })
+            form.reset()
           }
         })
         .catch(() => {
@@ -62,6 +64,7 @@ export const ChangePasswordForm = () => {
             description: 'Something went wrong',
             variant: 'destructive',
           })
+          form.reset()
         })
     })
   }
