@@ -11,11 +11,10 @@ import Link from 'next/link'
 
 export default function WobbleCardDemo() {
   return (
-    <div className="mx-auto flex min-h-screen max-w-7xl flex-col px-4 py-8">
+    <div className="mx-auto flex max-w-7xl flex-col px-4 py-8">
       <h1 className="header-gradient mb-12 text-center text-6xl font-bold sm:text-7xl">
         Contact Us
       </h1>
-
       <div className="flex w-full flex-grow flex-col space-y-8 xl:flex-row xl:space-x-8 xl:space-y-0">
         <div className="flex flex-1 flex-col items-center justify-start">
           <h2 className="mb-4 text-center text-4xl font-bold">
@@ -40,7 +39,7 @@ export default function WobbleCardDemo() {
           </div>
         </div>
 
-        <div className="flex flex-1 flex-col space-y-4 lg:space-y-2">
+        <div className="flex flex-1 flex-col space-y-4">
           <WobbleCard containerClassName="flex-1 bg-red-500 sm:w-[30rem]">
             <div className="flex h-full flex-col items-center justify-center">
               <h2 className="text-center text-base font-semibold text-white md:text-xl lg:text-3xl">
