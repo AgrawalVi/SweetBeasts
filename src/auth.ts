@@ -105,8 +105,6 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         session.user.isTwoFactorEnabled = token.isTwoFactorEnabled
       }
 
-      console.log('session', session)
-
       return session
     },
     async jwt({ token }) {

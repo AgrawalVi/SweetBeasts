@@ -123,7 +123,7 @@ export const verifyUserWithEmail = async (id: string, email: string) => {
   }
 }
 
-export const changePassword = async (id: string, password: string) => {
+export const changePasswordById = async (id: string, password: string) => {
   try {
     const user = await db.user.update({
       where: {
@@ -136,6 +136,28 @@ export const changePassword = async (id: string, password: string) => {
     return user
   } catch (e) {
     console.error('Error changing password', e)
+    return null
+  }
+}
+
+export const changeUserNameById = async (
+  id: string,
+  firstName: string,
+  lastName: string,
+) => {
+  try {
+    const user = await db.user.update({
+      where: {
+        id,
+      },
+      data: {
+        firstName,
+        lastName,
+      },
+    })
+    return user
+  } catch (e) {
+    console.error('Error changing user name', e)
     return null
   }
 }

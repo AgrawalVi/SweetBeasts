@@ -11,7 +11,7 @@ export const FeedbackSchema = z.object({
   name: z.string().min(2).max(50).nonempty(),
   email: z.string().email(),
   feedback: z.string().min(10).max(500).nonempty(),
-});
+})
 
 export const LoginSchema = z.object({
   email: z
@@ -45,10 +45,10 @@ export const RegisterSchema = z
       message: 'Minimum 8 characters required',
     }),
     firstName: z.string().min(1, {
-      message: 'firstName is required',
+      message: 'First name is required',
     }),
     lastName: z.string().min(1, {
-      message: 'lastName is required',
+      message: 'Last name is required',
     }),
     newsletter: z.boolean({
       message: 'Must be either true or false',
@@ -112,3 +112,34 @@ export const ContactSchema = z.object({
     .min(10, { message: 'Message must be at least 10 characters long' })
     .max(750, { message: 'Message cannot exceed 750 characters' }),
 })
+
+export const ChangeNameSchema = z.object({
+  firstName: z.string().min(1, {
+    message: 'First name is required',
+  }),
+  lastName: z.string().min(1, {
+    message: 'Last name is required',
+  }),
+})
+
+export const ChangePasswordSchema = z
+  .object({
+    currentPassword: z.string().min(1, {
+      message: 'Current password is required',
+    }),
+    newPassword: z.string().min(8, {
+      message: 'Minimum 8 characters required',
+    }),
+    confirmNewPassword: z.string().min(8, {
+      message: 'Minimum 8 characters required',
+    }),
+  })
+  .refine(
+    (data) => {
+      return data.newPassword === data.confirmNewPassword
+    },
+    {
+      message: 'Passwords do not match!',
+      path: ['confirmNewPassword'],
+    },
+  )

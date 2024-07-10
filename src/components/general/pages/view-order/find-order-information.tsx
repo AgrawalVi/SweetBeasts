@@ -1,14 +1,16 @@
+'use server'
+
 import { Button } from '@/components/ui/button'
 import Link from 'next/link'
 import { redirect } from 'next/navigation'
 import { getLineItemsByOrderId } from '@/data/shop/line-items'
-import { LineItem, Product } from '@prisma/client'
 import OrderSummary from './order-summary'
-import OrderStatusBar from './order-status-bar'
+import OrderStatusBar from './censored-order-status-bar'
 import CensoredOrderDetails from './censored-order-details'
 import { LineItemWithProduct } from '@/types'
 import { verifyViewOrderToken } from '@/actions/shop/order'
 import { formatDate } from '@/utils/date-functions'
+import { ChevronLeft } from 'lucide-react'
 
 export default async function FindOrderInformation({
   token,
@@ -31,8 +33,17 @@ export default async function FindOrderInformation({
   )
 
   return (
-    <main className="flex w-full flex-col items-center justify-center">
-      <div className="mx-5 flex w-full max-w-6xl flex-col items-center justify-between sm:flex-row">
+    <main className="relative flex w-full flex-col items-center justify-center">
+      <Link
+        href="/account/orders"
+        className="absolute -left-5 -top-10 md:-left-10"
+      >
+        <Button variant="link" className="group text-muted-foreground">
+          <ChevronLeft className="h-5 w-5 transition-all group-hover:-translate-x-0.5 group-hover:scale-110" />{' '}
+          Go Back
+        </Button>
+      </Link>
+      <div className="mx-5 flex w-full max-w-5xl flex-col items-center justify-between xl:flex-row">
         <div className="header-gradient text-5xl">Your Order</div>
         <div className="flex flex-col text-center text-sm text-muted-foreground sm:text-end sm:text-base">
           <div>Order {order.orderNumber}</div>
@@ -52,7 +63,7 @@ export default async function FindOrderInformation({
           </Link>
         </div>
       </div>
-      <div className="h-full max-w-6xl flex-col items-start justify-start space-y-4 xl:grid xl:grid-cols-2 xl:gap-4 xl:space-y-0">
+      <div className="h-full max-w-5xl flex-col items-start justify-start space-y-4 xl:grid xl:grid-cols-2 xl:gap-4 xl:space-y-0">
         <div className="flex w-full">
           {lineItems && lineItems.length > 0 ? (
             <OrderSummary orderItems={lineItems} order={order} />
@@ -64,6 +75,15 @@ export default async function FindOrderInformation({
           <OrderStatusBar order={order} />
           <CensoredOrderDetails orderNumber={order.orderNumber} />
         </div>
+      </div>
+      <div className="pt-5">
+        Have an issue?{' '}
+        <Link
+          href="/support/contact-us"
+          className="underline underline-offset-2"
+        >
+          Contact us
+        </Link>
       </div>
     </main>
   )

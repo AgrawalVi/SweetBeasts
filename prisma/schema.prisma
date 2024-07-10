@@ -33,6 +33,13 @@ enum ShippingMethod {
   EXPEDITED
 }
 
+enum Courier {
+  UPS
+  USPS
+  FEDEX
+  DHL
+}
+
 enum ContactUsStatus {
   OPEN
   CLAIMED
@@ -52,7 +59,7 @@ model User {
   email                 String                 @unique
   emailVerified         DateTime?
   image                 String?
-  password              String?
+  password              String
   role                  UserRole               @default(CUSTOMER)
   accounts              Account[]
   isTwoFactorEnabled    Boolean                @default(false)
@@ -193,6 +200,10 @@ model Order {
 
   shippingMethod ShippingMethod @default(STANDARD)
   orderStatus    OrderStatus    @default(PROCESSING)
+
+  trackingNumber String?
+  trackingUrl    String?
+  courier        Courier?
 
   lineItems           LineItem[]
   User                User?                 @relation(fields: [userId], references: [id], onDelete: SetNull)

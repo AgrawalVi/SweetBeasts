@@ -43,45 +43,6 @@ export const getOrderByOrderNumber = async (orderNumber: string) => {
   }
 }
 
-export const getOrderByEmailAndOrderNumber = async (
-  email: string,
-  orderNumber: string,
-) => {
-  try {
-    const order = await db.order.findUnique({
-      where: {
-        email,
-        orderNumber,
-      },
-    })
-    return order
-  } catch (e) {
-    console.error('Error getting order by email and order number', e)
-    return null
-  }
-}
-
-export const transferOrderToUserFromGuestUser = async (
-  id: number,
-  userId: string,
-) => {
-  try {
-    const order = await db.order.update({
-      where: {
-        id,
-      },
-      data: {
-        userId,
-        guestUserId: null,
-      },
-    })
-    return order
-  } catch (e) {
-    console.error('Error transferring order to user from guest user', e)
-    return null
-  }
-}
-
 export const getOrderWithDataByStripeSessionid = async (
   stripeOrderId: string,
 ) => {
@@ -102,6 +63,118 @@ export const getOrderWithDataByStripeSessionid = async (
     return order
   } catch (e) {
     console.error('Error getting order by stripe session id', e)
+    return null
+  }
+}
+
+export const getOrderByEmailAndOrderNumber = async (
+  email: string,
+  orderNumber: string,
+) => {
+  try {
+    const order = await db.order.findUnique({
+      where: {
+        email,
+        orderNumber,
+      },
+    })
+    return order
+  } catch (e) {
+    console.error('Error getting order by email and order number', e)
+    return null
+  }
+}
+
+export const getOrderWithDataByEmailAndOrderNumber = async (
+  email: string,
+  orderNumber: string,
+) => {
+  try {
+    const order = await db.order.findUnique({
+      where: {
+        email,
+        orderNumber,
+      },
+      include: {
+        lineItems: {
+          include: { Product: true },
+        },
+        ShippingAddress: true,
+      },
+    })
+    return order
+  } catch (e) {
+    console.error('Error getting order by email and order number', e)
+    return null
+  }
+}
+
+export const getFourMostRecentOrdersWithDataByUserId = async (
+  userId: string,
+) => {
+  try {
+    const orders = await db.order.findMany({
+      where: {
+        userId,
+      },
+      include: {
+        lineItems: {
+          include: { Product: true },
+        },
+        ShippingAddress: true,
+      },
+      orderBy: {
+        createdAt: 'desc',
+      },
+      take: 4,
+    })
+    return orders
+  } catch (e) {
+    console.error('Error getting orders by user id', e)
+    return []
+  }
+}
+
+export const getAllOrdersWithDataByUserId = async (userId: string) => {
+  try {
+    const orders = await db.order.findMany({
+      where: {
+        userId,
+      },
+      include: {
+        lineItems: {
+          include: { Product: true },
+        },
+        ShippingAddress: true,
+      },
+      orderBy: {
+        createdAt: 'desc',
+      },
+    })
+    return orders
+  } catch (e) {
+    console.error('Error getting orders by user id', e)
+    return []
+  }
+}
+
+export const transferOrderToUserFromGuestUser = async (
+  id: number,
+  userId: string,
+) => {
+  try {
+    const order = await db.order.update({
+      where: {
+        id,
+      },
+      data: {
+        userId,
+        guestUserId: null,
+      },
+    })
+    return order
+  } catch (e) {
+    console.error('Error transferring order to user from guest user', e)
     return null
   }
 }
