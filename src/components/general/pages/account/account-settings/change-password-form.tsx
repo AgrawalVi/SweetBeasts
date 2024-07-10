@@ -10,6 +10,7 @@ import { Input } from '@/components/ui/input'
 import {
   Form,
   FormControl,
+  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -76,6 +77,13 @@ export const ChangePasswordForm = () => {
         onSubmit={form.handleSubmit(onSubmit)}
       >
         <div className="flex w-full flex-col space-y-4">
+          <div className="flex w-full flex-col space-y-2">
+            <FormLabel>Email</FormLabel>
+            <Input value={user?.email as string} disabled />
+            <FormDescription>
+              Your email address cannot be changed
+            </FormDescription>
+          </div>
           <FormField
             control={form.control}
             name="currentPassword"
