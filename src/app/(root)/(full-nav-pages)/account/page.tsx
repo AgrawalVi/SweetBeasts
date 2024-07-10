@@ -9,12 +9,19 @@ export default function MyAccount() {
         <div className="header-gradient text-center text-5xl sm:text-6xl">
           Your Account
         </div>
-        <div className="my-10 h-full max-w-5xl flex-col items-start justify-start space-y-4 xl:grid xl:grid-cols-2 xl:gap-4 xl:space-y-0">
-          <AccountOrdersCard />
+        <div className="mt-10 hidden h-full grid-cols-2 gap-4 lg:grid">
           <div className="flex flex-col space-y-4">
             <AccountProfileCard />
+            <AccountOrdersCard />
+          </div>
+          <div>
             <AccountSettingsCard />
           </div>
+        </div>
+        <div className="mt-10 flex flex-col space-y-4 lg:hidden">
+          <AccountProfileCard />
+          <AccountOrdersCard />
+          <AccountSettingsCard />
         </div>
       </div>
     </main>
