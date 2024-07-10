@@ -5,6 +5,7 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card'
+import AccountSettingsContent from './account-settings/account-settings-content'
 
 export default function AccountSettingsCard() {
   return (
@@ -14,7 +15,7 @@ export default function AccountSettingsCard() {
         <CardDescription>Manage your account settings here</CardDescription>
       </CardHeader>
       <CardContent>
-        <div>Account Settings Content</div>
+        <AccountSettingsContent />
       </CardContent>
     </Card>
   )

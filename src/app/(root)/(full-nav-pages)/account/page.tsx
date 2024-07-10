@@ -10,7 +10,7 @@ export default function MyAccount() {
           Your Account
         </div>
         <div className="my-10 flex w-full flex-col items-center space-y-4 sm:w-fit">
-          <AccountProfileCard />
+          {/* <AccountProfileCard /> */}
           <AccountOrdersCard />
           <AccountSettingsCard />
         </div>

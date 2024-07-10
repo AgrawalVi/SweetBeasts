@@ -112,3 +112,12 @@ export const ContactSchema = z.object({
     .min(10, { message: 'Message must be at least 10 characters long' })
     .max(750, { message: 'Message cannot exceed 750 characters' }),
 })
+
+export const ChangeNameSchema = z.object({
+  firstName: z.string().min(1, {
+    message: 'First name is required',
+  }),
+  lastName: z.string().min(1, {
+    message: 'Last name is required',
+  }),
+})
