@@ -10,7 +10,7 @@ import {
   DialogTitle,
   DialogClose,
   DialogOverlay,
-} from '../ui/dialog'
+} from '@/components/ui/dialog'
 import { signOut } from 'next-auth/react'
 import { logout } from '@/actions/auth/logout'
 

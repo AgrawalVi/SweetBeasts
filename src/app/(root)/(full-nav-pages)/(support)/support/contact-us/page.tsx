@@ -1,11 +1,7 @@
 import React from 'react'
 import { WobbleCard } from '@/components/aceternity/wobble-card'
-import {
-  IconBrandDiscord,
-  IconBrandGmail,
-  IconBrandInstagram,
-} from '@tabler/icons-react'
-import ContactForm from '@/components/general/contact-us/form'
+import { IconBrandDiscord, IconBrandInstagram } from '@tabler/icons-react'
+import ContactForm from '@/components/general/pages/contact-us/contact-us-form'
 import { Mail } from 'lucide-react'
 import Link from 'next/link'
 
