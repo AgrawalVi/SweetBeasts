@@ -30,7 +30,6 @@ export const createContactUsRequestForGuestUser = async (
   message: string,
   order: Order | null | undefined,
 ) => {
-  //TODO: Implement this
   try {
     const contactUsRequest = await db.contactUsSubmission.create({
       data: {
