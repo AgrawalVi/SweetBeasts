@@ -12,7 +12,7 @@ import {
 } from '@/data/auth/two-factor-confirmation'
 
 import { cookies } from 'next/headers'
-import { cartLoginHandler } from './utils/cart-utils'
+import { cartLoginHandler } from './lib/cart-utils'
 import { getCartByGuestId } from './data/shop/cart'
 
 declare module 'next-auth' {

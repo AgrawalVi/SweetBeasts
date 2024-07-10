@@ -3,7 +3,7 @@ import OrderStatusBar from '@/components/general/pages/view-order/order-status-b
 import OrderSummary from '@/components/general/pages/view-order/order-summary'
 import { getOrderWithDataByStripeSessionid } from '@/data/shop/orders'
 import { OrderWithData } from '@/types'
-import { formatDate } from '@/utils/date-functions'
+import { formatDate } from '@/lib/date-functions'
 import Link from 'next/link'
 
 export default async function CheckoutSuccess({

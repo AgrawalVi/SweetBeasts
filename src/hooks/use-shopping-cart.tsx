@@ -23,7 +23,7 @@ import {
 } from '@/actions/customer/cart'
 import { getProductById } from '@/actions/products/products'
 
-import { cartLoginHandler } from '@/utils/cart-utils'
+import { cartLoginHandler } from '@/lib/cart-utils'
 import { signOut } from 'next-auth/react'
 
 export interface CartItem {

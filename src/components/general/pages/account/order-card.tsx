@@ -1,7 +1,7 @@
 import { Card } from '@/components/ui/card'
 import { formatPrice } from '@/lib/utils'
 import { OrderWithData } from '@/types'
-import { formatDate } from '@/utils/date-functions'
+import { formatDate } from '@/lib/date-functions'
 import { ChevronRight, CircleArrowOutUpRight } from 'lucide-react'
 import Link from 'next/link'
 import OrderStatusBadge from './order-status-badge'

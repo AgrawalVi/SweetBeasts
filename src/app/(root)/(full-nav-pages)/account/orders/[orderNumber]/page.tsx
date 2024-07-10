@@ -8,7 +8,7 @@ import OrderStatusBar from '@/components/general/pages/view-order/order-status-b
 import OrderDetails from '@/components/general/pages/checkout-success/order-details'
 import Link from 'next/link'
 import OrderSummary from '@/components/general/pages/view-order/order-summary'
-import { formatDate } from '@/utils/date-functions'
+import { formatDate } from '@/lib/date-functions'
 import { Button } from '@/components/ui/button'
 import { ChevronLeft } from 'lucide-react'
 

@@ -9,7 +9,7 @@ import OrderStatusBar from './censored-order-status-bar'
 import CensoredOrderDetails from './censored-order-details'
 import { LineItemWithProduct } from '@/types'
 import { verifyViewOrderToken } from '@/actions/shop/order'
-import { formatDate } from '@/utils/date-functions'
+import { formatDate } from '@/lib/date-functions'
 import { ChevronLeft } from 'lucide-react'
 
 export default async function FindOrderInformation({
