@@ -28,6 +28,7 @@ export const ChangePasswordForm = () => {
   const { toast } = useToast()
 
   const [error, setError] = useState<string | undefined>(undefined)
+
   const [isPending, startTransition] = useTransition()
 
   const form = useForm<z.infer<typeof ChangePasswordSchema>>({
@@ -41,20 +42,17 @@ export const ChangePasswordForm = () => {
 
   const onSubmit = (values: z.infer<typeof ChangePasswordSchema>) => {
     startTransition(() => {
+      setError(undefined)
       updatePassword(values)
         .then((data) => {
           if (data.error) {
-            toast({
-              title: 'An error has occurred!',
-              description: data.error,
-              variant: 'destructive',
-            })
+            setError(data.error)
           }
           if (data.success) {
             update()
             toast({
               title: 'Settings updated!',
-              description: 'Your settings have been updated',
+              description: 'Your password has been updated',
             })
           }
         })
