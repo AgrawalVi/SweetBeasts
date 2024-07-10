@@ -8,7 +8,7 @@ import {
   deleteResetPasswordTokenById,
   getPasswordResetTokenByToken,
 } from '@/data/auth/reset-password-token'
-import { changePassword, getUserByEmail } from '@/data/shop/user'
+import { changePasswordById, getUserByEmail } from '@/data/shop/user'
 
 export const newPassword = async (
   values: z.infer<typeof NewPasswordSchema>,
@@ -46,7 +46,7 @@ export const newPassword = async (
 
   const hashedPassword = await bcrypt.hash(password, 10)
 
-  const response = await changePassword(existingUser.id, hashedPassword)
+  const response = await changePasswordById(existingUser.id, hashedPassword)
   if (!response) {
     return { error: 'Error changing password' }
   }

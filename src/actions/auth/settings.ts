@@ -4,7 +4,6 @@ import * as z from 'zod'
 
 import bcrypt from 'bcryptjs'
 
-import { db } from '@/lib/db'
 import {
   changePasswordById,
   changeUserNameById,
@@ -14,9 +13,7 @@ import { currentUser } from '@/lib/auth'
 import { ChangeNameSchema, ChangePasswordSchema } from '@/schemas'
 import { stripe } from '@/lib/stripe'
 
-export const updateSettings = async (
-  values: z.infer<typeof ChangeNameSchema>,
-) => {
+export const updateName = async (values: z.infer<typeof ChangeNameSchema>) => {
   const validatedFields = ChangeNameSchema.safeParse(values)
   if (!validatedFields.success) {
     return { error: 'Invalid Fields' }
@@ -40,8 +37,6 @@ export const updateSettings = async (
   if (!newUser) {
     return { error: 'Something went wrong!' }
   }
-
-  // TODO: update stripe customer information
 
   try {
     await stripe.customers.update(dbUser.stripeCustomerId, {

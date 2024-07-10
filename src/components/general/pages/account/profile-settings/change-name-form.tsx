@@ -16,7 +16,7 @@ import {
   FormMessage,
 } from '@/components/ui/form'
 
-import { updateSettings } from '@/actions/auth/settings'
+import { updateName } from '@/actions/auth/settings'
 import { ChangeNameSchema } from '@/schemas'
 import { useCurrentUser } from '@/hooks/use-current-user'
 import { useToast } from '@/components/ui/use-toast'
@@ -38,7 +38,7 @@ export const ChangeNameForm = () => {
 
   const onSubmit = (values: z.infer<typeof ChangeNameSchema>) => {
     startTransition(() => {
-      updateSettings(values)
+      updateName(values)
         .then((data) => {
           if (data.error) {
             toast({
