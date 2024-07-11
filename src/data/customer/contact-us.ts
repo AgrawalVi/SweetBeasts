@@ -1,11 +1,12 @@
 import { db } from '@/lib/db'
-import { GuestUser, Order, User } from '@prisma/client'
+import { ContactUsType, GuestUser, Order, User } from '@prisma/client'
 
 export const createContactUsRequestForUser = async (
   user: User,
   name: string,
   message: string,
-  order?: Order | null | undefined,
+  contactUsType: ContactUsType,
+  order?: Order | null,
 ) => {
   try {
     const contactUsRequest = await db.contactUsSubmission.create({
@@ -15,6 +16,7 @@ export const createContactUsRequestForUser = async (
         name,
         orderId: order?.id,
         message: [message],
+        contactUsType,
       },
     })
     return contactUsRequest
@@ -28,7 +30,8 @@ export const createContactUsRequestForGuestUser = async (
   user: GuestUser,
   name: string,
   message: string,
-  order: Order | null | undefined,
+  contactUsType: ContactUsType,
+  order?: Order | null,
 ) => {
   try {
     const contactUsRequest = await db.contactUsSubmission.create({
@@ -38,6 +41,7 @@ export const createContactUsRequestForGuestUser = async (
         name,
         orderId: order?.id,
         message: [message],
+        contactUsType,
       },
     })
     return contactUsRequest

@@ -5,7 +5,7 @@ import { getUserByEmail } from '@/data/shop/user'
 import { ContactSchema } from '@/schemas'
 import * as z from 'zod'
 import { createGuestUser } from '../shop/guest-user'
-import { GuestUser, User } from '@prisma/client'
+import { ContactUsType, GuestUser, User } from '@prisma/client'
 import { createContactUsRequestForUser } from '@/data/customer/contact-us'
 import { createContactUsRequestForGuestUser } from '@/data/customer/contact-us'
 import { getOrderByOrderNumber } from '@/data/shop/orders'
@@ -50,6 +50,7 @@ export const sendContactUs = async (data: z.infer<typeof ContactSchema>) => {
       user,
       name,
       message,
+      ContactUsType.SUPPORT,
       order,
     )
     if (!contactUsRequest) {
@@ -60,6 +61,7 @@ export const sendContactUs = async (data: z.infer<typeof ContactSchema>) => {
       guestUser!,
       name,
       message,
+      ContactUsType.SUPPORT,
       order,
     )
     if (!contactUsRequest) {
@@ -76,7 +78,7 @@ export const sendContactUs = async (data: z.infer<typeof ContactSchema>) => {
   try {
     await sendContactUsAdmin(email, name, message, orderNumber)
   } catch {
-    return { error: 'Error sending email to the team' }
+    console.log('Error sending email to the team')
   }
 
   return { success: 'Successfully submitted' }

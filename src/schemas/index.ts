@@ -7,12 +7,6 @@ export const JoinEmailListSchema = z.object({
   }),
 })
 
-export const FeedbackSchema = z.object({
-  name: z.string().min(2).max(50).nonempty(),
-  email: z.string().email(),
-  feedback: z.string().min(10).max(500).nonempty(),
-})
-
 export const LoginSchema = z.object({
   email: z
     .string()
@@ -111,6 +105,12 @@ export const ContactSchema = z.object({
     .string()
     .min(10, { message: 'Message must be at least 10 characters long' })
     .max(750, { message: 'Message cannot exceed 750 characters' }),
+})
+
+export const FeedbackSchema = z.object({
+  name: z.string().min(2).max(50).nonempty(),
+  email: z.string().email(),
+  feedback: z.string().min(10).max(500).nonempty(),
 })
 
 export const ChangeNameSchema = z.object({

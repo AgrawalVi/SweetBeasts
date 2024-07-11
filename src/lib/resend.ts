@@ -115,8 +115,14 @@ export const sendContactUsAdmin = async (
   await resend.emails.send({
     from: fromEmail,
     to: CONTACT_US_EMAILS,
-    subject: "Support Request from User",
-    react: TeamNotificationEmail({ userName, userMessage: message, userEmail: email, messageDate: new Date().toLocaleDateString(), orderNumber}),
+    subject: 'Support Request from User',
+    react: TeamNotificationEmail({
+      userName,
+      userMessage: message,
+      userEmail: email,
+      messageDate: new Date().toLocaleDateString(),
+      orderNumber,
+    }),
   })
   console.log('Confirmation email sent to:', CONTACT_US_EMAILS)
 }
@@ -130,20 +136,28 @@ export const sendFeedBack = async (
   await resend.emails.send({
     from: fromEmail,
     to: email,
-    bcc: CONTACT_US_EMAILS,
     subject: 'Feedback Received',
     react: ContactUsEmail({ userName: name, userMessage: feedback }),
   })
   console.log('Feedback email sent to:', email)
 }
 
-export const sendFeedBackAdmin = async ( email: string, name: string, feedback: string) => {
+export const sendFeedBackAdmin = async (
+  email: string,
+  name: string,
+  feedback: string,
+) => {
   console.log('Sending feedback email to:', email)
   await resend.emails.send({
     from: fromEmail,
     to: CONTACT_US_EMAILS,
     subject: 'Feedback Received',
-    react: TeamNotificationEmail({ userName: name, userEmail: email, userMessage: feedback, messageDate: new Date().toLocaleDateString() }),
+    react: TeamNotificationEmail({
+      userName: name,
+      userEmail: email,
+      userMessage: feedback,
+      messageDate: new Date().toLocaleDateString(),
+    }),
   })
   console.log('Feedback email sent to:', CONTACT_US_EMAILS)
 }
