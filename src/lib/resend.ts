@@ -120,3 +120,30 @@ export const sendContactUsAdmin = async (
   })
   console.log('Confirmation email sent to:', CONTACT_US_EMAILS)
 }
+
+export const sendFeedBack = async (
+  email: string,
+  name: string,
+  feedback: string,
+) => {
+  console.log('Sending feedback email to:', email)
+  await resend.emails.send({
+    from: fromEmail,
+    to: email,
+    bcc: CONTACT_US_EMAILS,
+    subject: 'Feedback Received',
+    react: ContactUsEmail({ userName: name, userMessage: feedback }),
+  })
+  console.log('Feedback email sent to:', email)
+}
+
+export const sendFeedBackAdmin = async ( email: string, name: string, feedback: string) => {
+  console.log('Sending feedback email to:', email)
+  await resend.emails.send({
+    from: fromEmail,
+    to: CONTACT_US_EMAILS,
+    subject: 'Feedback Received',
+    react: TeamNotificationEmail({ userName: name, userMessage: feedback, messageDate: new Date().toLocaleDateString() }),
+  })
+  console.log('Feedback email sent to:', CONTACT_US_EMAILS)
+}
