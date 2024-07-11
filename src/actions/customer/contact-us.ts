@@ -10,6 +10,7 @@ import { createContactUsRequestForUser } from '@/data/customer/contact-us'
 import { createContactUsRequestForGuestUser } from '@/data/customer/contact-us'
 import { getOrderByOrderNumber } from '@/data/shop/orders'
 import { sendContactUs as sendContactUsEmail } from '@/lib/resend'
+import { sendContactUsAdmin } from '@/lib/resend'
 
 export const sendContactUs = async (data: z.infer<typeof ContactSchema>) => {
   const validatedFields = ContactSchema.safeParse(data)
@@ -71,6 +72,11 @@ export const sendContactUs = async (data: z.infer<typeof ContactSchema>) => {
     await sendContactUsEmail(email, name, message)
   } catch {
     return { error: 'Error sending email' }
+  }
+  try {
+    await sendContactUsAdmin(email, name, message, orderNumber)
+  } catch {
+    return { error: 'Error sending email to the team' }
   }
 
   return { success: 'Successfully submitted' }
