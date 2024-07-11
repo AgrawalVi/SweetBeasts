@@ -1,5 +1,5 @@
 'use client';
-import React, { useState } from "react";
+import React, { useState, useTransition } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
@@ -17,6 +17,7 @@ import {
 import { FormError } from "@/components/custom/form-error";
 import { FormSuccess } from "@/components/custom/form-success";
 import { FeedbackSchema } from "@/schemas";
+import { sendFeedBack } from "@/actions/customer/feedback";
 
 
 interface FeedbackFormInputs {
@@ -26,7 +27,7 @@ interface FeedbackFormInputs {
 }
 
 export default function FeedbackForm() {
-  const [isPending, setIsPending] = useState(false);
+  const [isPending, startTransition] = useTransition()
   const [error, setError] = useState<string | undefined>(undefined);
   const [success, setSuccess] = useState<string | undefined>(undefined);
 
@@ -39,24 +40,17 @@ export default function FeedbackForm() {
     },
   });
 
-  const onSubmit = async (data: FeedbackFormInputs) => {
-    setIsPending(true);
-    setError(undefined);
-    setSuccess(undefined);
+  const onSubmit = (data: z.infer<typeof FeedbackSchema>) => {
+    setError('')
+    setSuccess('')
 
-    try {
-      console.log("Form submitted with data:", data);
-      setSuccess("Feedback sent successfully!");
-    } catch (err) {
-      if (err instanceof Error) {
-        setError(err.message);
-      } else {
-        setError("Failed to send feedback.");
-      }
-    } finally {
-      setIsPending(false);
-    }
-  };
+    startTransition(() => {
+      sendFeedBack(data).then((response) => {
+        setError(response.error)
+        setSuccess(response.success)
+      })
+    })
+  }
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-100 dark:bg-black">

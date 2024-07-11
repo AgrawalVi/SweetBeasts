@@ -2,24 +2,23 @@
 
 import { getGuestUserByEmail } from '@/data/shop/guest-user'
 import { getUserByEmail } from '@/data/shop/user'
-import { ContactSchema } from '@/schemas'
+import { FeedbackSchema } from '@/schemas'
 import * as z from 'zod'
 import { createGuestUser } from '../shop/guest-user'
 import { ContactUsType, GuestUser, User } from '@prisma/client'
 import { createContactUsRequestForUser } from '@/data/customer/contact-us'
 import { createContactUsRequestForGuestUser } from '@/data/customer/contact-us'
-import { getOrderByOrderNumber } from '@/data/shop/orders'
-import { sendContactUs as sendContactUsEmail } from '@/lib/resend'
-import { sendContactUsAdmin } from '@/lib/resend'
+import { sendFeedBackAdmin } from '@/lib/resend'
+import { sendFeedBack as sendFeedBackEmail } from '@/lib/resend'
 
-export const sendContactUs = async (data: z.infer<typeof ContactSchema>) => {
-  const validatedFields = ContactSchema.safeParse(data)
+export const sendFeedBack = async (data: z.infer<typeof FeedbackSchema>) => {
+  const validatedFields = FeedbackSchema.safeParse(data)
 
   if (!validatedFields.success) {
     return { error: 'Invalid Fields' }
   }
 
-  const { email, name, orderNumber, message } = validatedFields.data
+  const { email, name, feedback } = validatedFields.data
 
   let user: User | null = null
   let guestUser: GuestUser | null = null
@@ -41,16 +40,12 @@ export const sendContactUs = async (data: z.infer<typeof ContactSchema>) => {
 
   let order
 
-  if (orderNumber) {
-    order = await getOrderByOrderNumber(orderNumber)
-  }
-
   if (user) {
     const contactUsRequest = await createContactUsRequestForUser(
       user,
       name,
-      message,
-      ContactUsType.SUPPORT,
+      feedback,
+      ContactUsType.FEEDBACK,
       order,
     )
     if (!contactUsRequest) {
@@ -60,8 +55,8 @@ export const sendContactUs = async (data: z.infer<typeof ContactSchema>) => {
     const contactUsRequest = await createContactUsRequestForGuestUser(
       guestUser!,
       name,
-      message,
-      ContactUsType.SUPPORT,
+      feedback,
+      ContactUsType.FEEDBACK,
       order,
     )
     if (!contactUsRequest) {
@@ -69,17 +64,16 @@ export const sendContactUs = async (data: z.infer<typeof ContactSchema>) => {
     }
   }
 
-  // finally, send email to person who created the request
   try {
-    await sendContactUsEmail(email, name, message)
+    await sendFeedBackEmail(email, name, feedback)
   } catch {
     return { error: 'Error sending email' }
   }
   try {
-    await sendContactUsAdmin(email, name, message, orderNumber)
+    await sendFeedBackAdmin(email, name, feedback)
   } catch {
-    console.log('Error sending email to the team')
+    console.error('Error sending email to the team')
   }
 
-  return { success: 'Successfully submitted' }
+  return { success: 'Feedback sent successfully' }
 }

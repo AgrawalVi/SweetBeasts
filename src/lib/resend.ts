@@ -5,6 +5,7 @@ import { ResetPasswordEmail } from '@/emails/reset-password'
 import EmailConfirmation from '@/emails/email-confirmation'
 import ContactUsEmail from '@/emails/contact-us'
 import { CONTACT_US_EMAILS } from '@/constants'
+import TeamNotificationEmail from '@/emails/contact-us-team'
 
 const resend = new Resend(process.env.RESEND_API_KEY)
 const generalAudienceId = process.env.RESEND_GENERAL_AUDIENCE_ID!
@@ -102,4 +103,61 @@ export const sendContactUs = async (
     react: ContactUsEmail({ userName, userMessage: message }),
   })
   console.log('Confirmation email sent to:', email)
+}
+
+export const sendContactUsAdmin = async (
+  email: string,
+  userName: string,
+  message: string,
+  orderNumber?: string,
+) => {
+  console.log('Sending confirmation email to:', email)
+  await resend.emails.send({
+    from: fromEmail,
+    to: CONTACT_US_EMAILS,
+    subject: 'Support Request from User',
+    react: TeamNotificationEmail({
+      userName,
+      userMessage: message,
+      userEmail: email,
+      messageDate: new Date().toLocaleDateString(),
+      orderNumber,
+    }),
+  })
+  console.log('Confirmation email sent to:', CONTACT_US_EMAILS)
+}
+
+export const sendFeedBack = async (
+  email: string,
+  name: string,
+  feedback: string,
+) => {
+  console.log('Sending feedback email to:', email)
+  await resend.emails.send({
+    from: fromEmail,
+    to: email,
+    subject: 'Feedback Received',
+    react: ContactUsEmail({ userName: name, userMessage: feedback }),
+  })
+  console.log('Feedback email sent to:', email)
+}
+
+export const sendFeedBackAdmin = async (
+  email: string,
+  name: string,
+  feedback: string,
+) => {
+  console.log('Sending feedback email to:', email)
+  await resend.emails.send({
+    from: fromEmail,
+    to: CONTACT_US_EMAILS,
+    subject: 'Feedback Received',
+    react: TeamNotificationEmail({
+      userName: name,
+      userEmail: email,
+      userMessage: feedback,
+      messageDate: new Date().toLocaleDateString(),
+    }),
+  })
+  console.log('Feedback email sent to:', CONTACT_US_EMAILS)
 }

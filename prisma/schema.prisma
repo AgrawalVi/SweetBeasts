@@ -46,10 +46,9 @@ enum ContactUsStatus {
   RESOLVED
 }
 
-enum FeedbackStatus {
-  OPEN
-  CLAIMED
-  RESOLVED
+enum ContactUsType {
+  FEEDBACK
+  SUPPORT
 }
 
 model User {
@@ -75,10 +74,8 @@ model User {
   cartItems                CartItem[]
   ShippingAddress          ShippingAddress[]
   Order                    Order[]
-  contactUsUserSubmissions ContactUsSubmission[]    @relation("SubmittedBy")
-  contactUsUserClaims      ContactUsSubmission[]    @relation("ClaimedBy")
-  feedbackUserSubmissions  FeedBackFormSubmission[] @relation("SubmittedBy")
-  feedbackUserClaims       FeedBackFormSubmission[] @relation("ClaimedBy")
+  contactUsUserSubmissions ContactUsSubmission[] @relation("SubmittedBy")
+  contactUsUserClaims      ContactUsSubmission[] @relation("ClaimedBy")
 }
 
 model Account {
@@ -280,10 +277,9 @@ model GuestUser {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  shippingAddresses      ShippingAddress[]
-  orders                 Order[]
-  ContactUsSubmission    ContactUsSubmission[]
-  FeedBackFormSubmission FeedBackFormSubmission[]
+  shippingAddresses   ShippingAddress[]
+  orders              Order[]
+  ContactUsSubmission ContactUsSubmission[]
 }
 
 model ContactUsSubmission {
@@ -310,29 +306,7 @@ model ContactUsSubmission {
   orderId Int?
   order   Order? @relation(fields: [orderId], references: [id])
 
-  message String[]
-}
-
-model FeedBackFormSubmission {
-  id String @id @default(cuid())
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
-  feedBackStatus FeedbackStatus
-
-  userId      String?
-  guestUserId String?
-
-  email String
-  name  String
-
-  claimedAt       DateTime?
-  claimedByUserId String?
-
-  claimedByUser User?      @relation("ClaimedBy", fields: [claimedByUserId], references: [id], onDelete: SetNull)
-  user          User?      @relation("SubmittedBy", fields: [userId], references: [id], onDelete: SetNull)
-  guestUser     GuestUser? @relation(fields: [guestUserId], references: [id], onDelete: SetNull)
+  contactUsType ContactUsType
 
   message String[]
 }
