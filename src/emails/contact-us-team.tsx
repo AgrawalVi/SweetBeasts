@@ -3,6 +3,7 @@ import { Tailwind, Body, Container, Head, Heading, Hr, Html, Img, Link, Preview,
 
 interface TeamNotificationEmailProps {
   userName: string;
+  userEmail: string;
   userMessage: string;
   messageDate: string;
   orderNumber?: string; 
@@ -10,6 +11,7 @@ interface TeamNotificationEmailProps {
 
 export default function TeamNotificationEmail({
   userName = "SweetUser",
+  userEmail = "user@example.com",
   userMessage = "This is a default message.",
   messageDate = new Date().toLocaleDateString(),
   orderNumber, 
@@ -35,6 +37,9 @@ export default function TeamNotificationEmail({
               </Text>
               <Text className="text-black text-lg">
                 You have received a new message from {userName} on {messageDate}.
+              </Text>
+              <Text className="text-black text-lg">
+                Email: {userEmail}
               </Text>
               <Section className="bg-white p-4 rounded my-4">
                 <Heading className="text-2xl font-bold text-black">Message</Heading>

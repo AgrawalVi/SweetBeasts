@@ -1,21 +1,27 @@
 import React from 'react';
 import { Tailwind, Body, Container, Head, Heading, Hr, Html, Img, Link, Preview, Section, Text } from '@react-email/components';
 
-interface UserFeedbackEmailProps {
-  name: string;
+interface TeamNotificationEmailProps {
+  teamName: string;
+  userName: string;
+  userEmail: string;
   userFeedback: string;
+  feedbackDate: string;
 }
 
-export default function UserFeedbackEmail({
-  name = "SweetUser",
-  userFeedback = "Thank you for your feedback!",
-}: UserFeedbackEmailProps): JSX.Element {
+export default function TeamNotificationEmail({
+  teamName = "SweetBeasts Team",
+  userName = "SweetUser",
+  userEmail = "user@example.com",
+  userFeedback = "This is a default feedback message.",
+  feedbackDate = new Date().toLocaleDateString(),
+}: TeamNotificationEmailProps): JSX.Element {
   return (
     <Html>
       <Head>
-        <title>Thank You for Your Feedback</title>
+        <title>Team Notification</title>
       </Head>
-      <Preview>Thank you for your feedback - SweetBeasts</Preview>
+      <Preview>New Feedback from {userName}</Preview>
       <Tailwind>
         <Body className="bg-white-100">
           <Container className="bg-pink-100 rounded-lg p-6 mx-auto max-w-lg">
@@ -25,15 +31,15 @@ export default function UserFeedbackEmail({
                 alt="SweetBeasts Logo"
                 width="120"
               />
-              <Heading className="text-3xl font-bold my-4 text-black">Thank You for Your Feedback!</Heading>
+              <Heading className="text-3xl font-bold my-4 text-black">New Feedback for {teamName}</Heading>
               <Text className="text-black text-xl my-2">
-                Hi {name},
+                Hi Team,
               </Text>
               <Text className="text-black text-lg">
-                We appreciate your feedback. Here is what you shared with us:
+                You have received new feedback from {userName} ({userEmail}) on {feedbackDate}.
               </Text>
               <Section className="bg-white p-4 rounded my-4">
-                <Heading className="text-2xl font-bold text-black">Your Feedback</Heading>
+                <Heading className="text-2xl font-bold text-black">Feedback</Heading>
                 <Text className="text-black text-base mt-2">
                   {userFeedback}
                 </Text>
@@ -41,7 +47,7 @@ export default function UserFeedbackEmail({
             </Section>
             <Hr className="my-4 border-pink-300" />
             <Text className="text-black text-sm">
-              If you have any more feedback or questions, feel free to reply to this email.
+              Please review the feedback and take necessary actions.
             </Text>
             <Text className="text-xs text-gray-400 my-2">
               © {new Date().getFullYear()} SweetBeasts. All rights reserved.

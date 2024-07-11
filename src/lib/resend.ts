@@ -116,7 +116,7 @@ export const sendContactUsAdmin = async (
     from: fromEmail,
     to: CONTACT_US_EMAILS,
     subject: "Support Request from User",
-    react: TeamNotificationEmail({ userName, userMessage: message, messageDate: new Date().toLocaleDateString(), orderNumber}),
+    react: TeamNotificationEmail({ userName, userMessage: message, userEmail: email, messageDate: new Date().toLocaleDateString(), orderNumber}),
   })
   console.log('Confirmation email sent to:', CONTACT_US_EMAILS)
 }
@@ -143,7 +143,7 @@ export const sendFeedBackAdmin = async ( email: string, name: string, feedback: 
     from: fromEmail,
     to: CONTACT_US_EMAILS,
     subject: 'Feedback Received',
-    react: TeamNotificationEmail({ userName: name, userMessage: feedback, messageDate: new Date().toLocaleDateString() }),
+    react: TeamNotificationEmail({ userName: name, userEmail: email, userMessage: feedback, messageDate: new Date().toLocaleDateString() }),
   })
   console.log('Feedback email sent to:', CONTACT_US_EMAILS)
 }
