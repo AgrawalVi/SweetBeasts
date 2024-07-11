@@ -32,7 +32,7 @@ export default function ContactForm() {
       name: '',
       email: '',
       orderNumber: '',
-      message: '',s
+      message: '',
     },
   })
 
