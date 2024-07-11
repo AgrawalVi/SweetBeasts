@@ -14,7 +14,7 @@ import { getAddressByAddressAndEmail } from '@/data/shop/address'
 import { clearGuestIdCart, clearUserCart } from '../customer/cart'
 
 import crypto from 'crypto'
-import { getOrderByOrderNumber } from '@/data/shop/orders'
+import { getOrderByOrderNumber, getOrderWithDataByStripeSessionid } from '@/data/shop/orders'
 import {
   deleteOpenCheckoutSessionById,
   deleteOpenCheckoutSessionByStripeCheckoutSessionId,
@@ -54,8 +54,18 @@ const expireAllOpenCheckoutSessionsByProductId = async (productId: number) => {
 export const createOrder = async (
   event: Stripe.CheckoutSessionCompletedEvent,
 ) => {
-  const checkoutSession = event.data.object as Stripe.Checkout.Session
-  console.log('checkoutSession', checkoutSession)
+  
+  // verify the validity of the stripeCheckoutSessionId and use that one to create the order
+  const checkoutSession = await stripe.checkout.sessions.retrieve(event.data.object.id) 
+  if (!checkoutSession) {
+    return { error: 'Invalid checkout session' }
+  }
+  
+  // verify that the stripeCheckoutSessionId is valid and that the order is not already created
+  const existingOrder = await getOrderWithDataByStripeSessionid(checkoutSession.id)
+  if (existingOrder) {
+    return { error: 'Order already exists' }
+  }
 
   // check that the session is completed
   if (checkoutSession.status !== 'complete') {
