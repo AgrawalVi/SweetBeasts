@@ -50,11 +50,11 @@ export default async function CheckoutSuccess({
     <>
       <MultiStepLoaderDemo />
       <main className="flex w-full flex-col items-center justify-center space-y-8">
-        <div className="mx-5 flex w-full max-w-6xl flex-col items-center justify-between sm:flex-row">
-          <div className="header-gradient text-center text-5xl sm:text-left">
+        <div className="mx-5 flex w-full max-w-6xl flex-col items-center justify-between lg:flex-row">
+          <div className="header-gradient text-center text-5xl lg:text-left">
             Thank You For Your Order!
           </div>
-          <div className="flex flex-col text-center text-sm text-muted-foreground sm:text-end sm:text-base">
+          <div className="flex flex-col text-center text-sm text-muted-foreground sm:text-base lg:text-end">
             <div>Order {order.orderNumber}</div>
             <div>Placed {formatDate(order.createdAt)}</div>
           </div>
