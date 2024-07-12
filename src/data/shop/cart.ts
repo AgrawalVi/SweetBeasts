@@ -1,3 +1,5 @@
+import 'server-only'
+
 import { db } from '@/lib/db'
 import { getUserByEmail } from './user'
 import { CartItem } from '@prisma/client'

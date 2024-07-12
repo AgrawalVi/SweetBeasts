@@ -1,5 +1,6 @@
+import 'server-only'
+
 import { db } from '@/lib/db'
-import { OrderWithData } from '@/types'
 
 export const getOrderById = async (id: number) => {
   try {

@@ -1,7 +1,7 @@
+import 'server-only'
+
 import { db } from '@/lib/db'
-import { notEmpty } from '@/lib/utils'
 import { LineItemWithProduct } from '@/types'
-import { LineItem, Product } from '@prisma/client'
 
 export const getLineItemsByOrderId = async (orderId: number) => {
   let lineItems

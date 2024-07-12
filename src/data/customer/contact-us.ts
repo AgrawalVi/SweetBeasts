@@ -1,3 +1,5 @@
+import 'server-only'
+
 import { db } from '@/lib/db'
 import { ContactUsType, GuestUser, Order, User } from '@prisma/client'
 
