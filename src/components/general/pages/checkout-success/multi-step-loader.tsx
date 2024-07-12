@@ -46,7 +46,7 @@ export function MultiStepLoaderDemo() {
 
       {loading && (
         <button
-          className="fixed right-4 top-4 z-[120] text-black dark:text-white"
+          className="fixed right-4 top-4 z-[120] text-black transition-all hover:opacity-50 dark:text-white"
           onClick={() => setLoading(false)}
         >
           <IconSquareRoundedX className="h-10 w-10" />
