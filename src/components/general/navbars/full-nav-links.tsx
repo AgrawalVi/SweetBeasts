@@ -48,30 +48,13 @@ export const FullNavLinks = ({
           item="Products"
           className="justify-self-center"
         >
-          <div className="grid gap-10 p-4 text-sm sm:grid-cols-2">
+          {/* <div className="grid gap-10 p-4 text-sm sm:grid-cols-2"> FOR MORE THAN 1 PRODUCT */}
+          <div className="p-4 text-sm">
             <ProductItem
               title="Pogo"
               href="/products/pogo"
               src="/product-images/pogo/main.jpg"
               description="The Peachy Penguin."
-            />
-            <ProductItem
-              title="Pineapple Parrot"
-              href="/products/pineapple-parrot"
-              src="/product-images/pavia/main.jpg"
-              description="The Pineapple Parrot"
-            />
-            <ProductItem
-              title="Tangerine Turtle"
-              href="/products/tangerine-turtle"
-              src="/product-images/turpy/main.jpg"
-              description="The Tangerine Turtle."
-            />
-            <ProductItem
-              title="Lemon Lion"
-              href="/products/lemon-lion"
-              src="/product-images/lemon-lion/main.jpg"
-              description="The Lemon Lion."
             />
           </div>
         </MenuItem>
