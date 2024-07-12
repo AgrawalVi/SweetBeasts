@@ -52,6 +52,7 @@ enum ContactUsType {
 }
 
 enum OrderReturnStatus {
+  INITIATED
   APPROVED
   REJECTED
 }
@@ -81,6 +82,7 @@ model User {
   Order                    Order[]
   contactUsUserSubmissions ContactUsSubmission[] @relation("SubmittedBy")
   contactUsUserClaims      ContactUsSubmission[] @relation("ClaimedBy")
+  LineItem                 LineItem[]
 }
 
 model Account {
@@ -211,10 +213,6 @@ model Order {
   orderCancelledDate DateTime?
   orderDeliveredDate DateTime?
 
-  orderReturnedDate   DateTime?
-  orderReturnedReason String?
-  orderReturnedStatus OrderReturnStatus?
-
   orderExceptionDate    DateTime?
   orderExceptionMessage String?
 
@@ -236,6 +234,15 @@ model LineItem {
   productId Int
   quantity  Int
 
+  returnQuantity         Int?
+  returnReason           String?
+  returnStatus           OrderReturnStatus?
+  returnInitiatedDate    DateTime?
+  returnApprovedDate     DateTime?
+  returnRejectedDate     DateTime?
+  returnApprovedByUserId String?
+
+  User    User?   @relation(fields: [returnApprovedByUserId], references: [id], onDelete: SetNull)
   Order   Order   @relation(fields: [orderId], references: [id], onDelete: Cascade)
   Product Product @relation(fields: [productId], references: [id], onDelete: Restrict)
 
