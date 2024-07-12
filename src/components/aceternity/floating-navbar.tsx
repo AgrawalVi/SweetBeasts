@@ -25,7 +25,6 @@ export const FloatingNav = ({
         'fixed inset-x-0 top-5 z-[1000] mx-auto grid h-16 w-[17rem] grid-cols-5 items-center justify-center rounded-xl border-border bg-muted/70 align-middle shadow-[0_1px_10px_rgb(0,0,0,0.2)] backdrop-blur-lg backdrop-saturate-200 big-phone:w-[20rem] big-phone:gap-2',
         className,
       )}
-      style={{}}
     >
       <Link href="/" className="inline-flex justify-start p-3">
         <Image

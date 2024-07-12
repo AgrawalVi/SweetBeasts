@@ -61,7 +61,7 @@ export const MenuItem = ({
               <motion.div
                 transition={transitionIn}
                 layoutId="active" // layoutId ensures smooth animation
-                className="overflow-hidden rounded-2xl border border-border bg-background shadow-xl backdrop-blur-sm"
+                className="overflow-hidden rounded-2xl border border-border bg-muted/70 shadow-[0_1px_10px_rgb(0,0,0,0.2)] backdrop-blur-lg backdrop-saturate-200"
               >
                 <motion.div
                   layout // layout ensures smooth animation
@@ -85,7 +85,7 @@ export const MenuItem = ({
             <motion.div
               transition={transitionOut}
               layoutId="active" // layoutId ensures smooth animation
-              className="overflow-hidden rounded-2xl border border-border bg-background shadow-xl backdrop-blur-sm"
+              className="overflow-hidden rounded-2xl border border-border bg-muted/70 shadow-[0_1px_10px_rgb(0,0,0,0.2)] backdrop-blur-lg backdrop-saturate-200"
             >
               <motion.div
                 layout // layout ensures smooth animation
@@ -166,7 +166,7 @@ export const HoveredLink = ({ children, ...rest }: any) => {
   return (
     <Link
       {...rest}
-      className="text-neutral-700 hover:text-black dark:text-neutral-200"
+      className="text-neutral-700 transition-all hover:text-black dark:text-neutral-200 dark:hover:text-neutral-500"
     >
       {children}
     </Link>
