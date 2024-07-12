@@ -61,7 +61,7 @@ export const MenuItem = ({
               <motion.div
                 transition={transitionIn}
                 layoutId="active" // layoutId ensures smooth animation
-                className="overflow-hidden rounded-2xl border border-border bg-muted/70 shadow-[0_1px_10px_rgb(0,0,0,0.2)] backdrop-blur-lg backdrop-saturate-200"
+                className="overflow-hidden rounded-2xl border border-border bg-muted shadow-[0_1px_10px_rgb(0,0,0,0.2)]"
               >
                 <motion.div
                   layout // layout ensures smooth animation
@@ -85,7 +85,7 @@ export const MenuItem = ({
             <motion.div
               transition={transitionOut}
               layoutId="active" // layoutId ensures smooth animation
-              className="overflow-hidden rounded-2xl border border-border bg-muted/70 shadow-[0_1px_10px_rgb(0,0,0,0.2)] backdrop-blur-lg backdrop-saturate-200"
+              className="overflow-hidden rounded-2xl border border-border bg-muted shadow-[0_1px_10px_rgb(0,0,0,0.2)]"
             >
               <motion.div
                 layout // layout ensures smooth animation
