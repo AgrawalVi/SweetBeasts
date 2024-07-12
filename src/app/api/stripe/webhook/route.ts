@@ -1,5 +1,5 @@
 import { createOrder } from '@/actions/order/new-order'
-import { expireCheckoutSession } from '@/actions/stripe/checkout-session'
+import { deleteOpenCheckoutSession } from '@/actions/stripe/checkout-session'
 import { stripe } from '@/lib/stripe'
 import { NextResponse } from 'next/server'
 
@@ -33,7 +33,7 @@ export const POST = async (req: Request, res: Response) => {
     }
     return NextResponse.json({ status: 200 })
   } else if (event.type === 'checkout.session.expired') {
-    const response = await expireCheckoutSession(event)
+    const response = await deleteOpenCheckoutSession(event)
     if (response.error) {
       return NextResponse.json({ error: response.error }, { status: 400 })
     }

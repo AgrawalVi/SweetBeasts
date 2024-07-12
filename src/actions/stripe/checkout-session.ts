@@ -3,7 +3,7 @@
 import { deleteOpenCheckoutSessionByStripeCheckoutSessionId } from '@/data/shop/open-checkout-session'
 import Stripe from 'stripe'
 
-export const expireCheckoutSession = async (
+export const deleteOpenCheckoutSession = async (
   event: Stripe.CheckoutSessionExpiredEvent,
 ) => {
   const checkoutSession = event.data.object as Stripe.Checkout.Session
