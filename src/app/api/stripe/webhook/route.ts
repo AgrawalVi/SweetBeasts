@@ -27,13 +27,13 @@ export const POST = async (req: Request, res: Response) => {
   }
 
   if (event.type === 'checkout.session.completed') {
-    const response = await createOrder(event)
+    const response = await createOrder(event, webhookSecret)
     if (response.error) {
       return NextResponse.json({ error: response.error }, { status: 400 })
     }
     return NextResponse.json({ status: 200 })
   } else if (event.type === 'checkout.session.expired') {
-    const response = await expireCheckoutSession(event)
+    const response = await expireCheckoutSession(event, webhookSecret)
     if (response.error) {
       return NextResponse.json({ error: response.error }, { status: 400 })
     }
