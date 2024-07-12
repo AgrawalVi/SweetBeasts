@@ -68,3 +68,11 @@ body {
 .header-gradient {
   @apply bg-gradient-to-br from-cyan-500 to-cyan-900 bg-clip-text font-coiny text-transparent drop-shadow-md dark:from-rose-300 dark:to-rose-700;
 }
+
+.h2-gradient {
+  @apply bg-gradient-to-br from-indigo-500 to-indigo-900 bg-clip-text font-coiny text-transparent drop-shadow-md dark:from-purple-300 dark:to-purple-700;
+}
+
+.p-gradient {
+  @apply bg-gradient-to-br from-cyan-400 to-purple-900 bg-clip-text font-coiny text-transparent drop-shadow-md dark:from-rose-400 dark:to-purple-400;
+}

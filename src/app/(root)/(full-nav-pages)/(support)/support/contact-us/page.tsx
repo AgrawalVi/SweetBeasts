@@ -13,7 +13,10 @@ export default function WobbleCardDemo() {
       </h1>
       <div className="flex w-full flex-grow flex-col space-y-8 xl:flex-row xl:space-x-8 xl:space-y-0">
         <div className="flex flex-1 flex-col items-center justify-start">
-          <h2 className="mb-4 text-center text-4xl font-bold">
+        <h2 className="mb-4 text-center text-4xl text-gradient font-bold">
+            Want to get in Touch?
+          </h2>
+          <h2 className="mb-4 text-center text-4xl text-gradient font-bold">
             Fill out the form below
           </h2>
           <ContactForm />

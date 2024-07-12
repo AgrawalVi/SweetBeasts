@@ -19,7 +19,6 @@ import { FormSuccess } from "@/components/custom/form-success";
 import { FeedbackSchema } from "@/schemas";
 import { sendFeedBack } from "@/actions/customer/feedback";
 
-
 interface FeedbackFormInputs {
   name: string;
   email: string;
@@ -27,7 +26,7 @@ interface FeedbackFormInputs {
 }
 
 export default function FeedbackForm() {
-  const [isPending, startTransition] = useTransition()
+  const [isPending, startTransition] = useTransition();
   const [error, setError] = useState<string | undefined>(undefined);
   const [success, setSuccess] = useState<string | undefined>(undefined);
 
@@ -41,25 +40,25 @@ export default function FeedbackForm() {
   });
 
   const onSubmit = (data: z.infer<typeof FeedbackSchema>) => {
-    setError('')
-    setSuccess('')
+    setError('');
+    setSuccess('');
 
     startTransition(() => {
       sendFeedBack(data).then((response) => {
-        setError(response.error)
-        setSuccess(response.success)
-      })
-    })
-  }
+        setError(response.error);
+        setSuccess(response.success);
+      });
+    });
+  };
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gray-100 dark:bg-black">
+    <div className="flex items-center justify-center min-h-screen bg-gray-10">
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
-          className="flex flex-col justify-between space-y-6 w-full max-w-lg bg-white dark:bg-black border border-muted-foreground shadow-lg rounded-lg p-8 min-h-[700px] lg:min-h-[800px]"
+          className="flex flex-col justify-between space-y-4 w-full max-w-lg bg-white dark:bg-black border border-muted-foreground shadow-lg rounded-lg p-8 min-h-[700px] lg:min-h-[800px]"
         >
-          <div className="space-y-6">
+          <div className="space-y-4">
             <FormField
               control={form.control}
               name="name"
@@ -115,10 +114,10 @@ export default function FeedbackForm() {
               )}
             />
           </div>
-          <div className="mt-4">
+          <div className="mb-2 space-y-2">
             <FormError message={error} />
             <FormSuccess message={success} />
-            <Button type="submit" className="w-full mt-4" disabled={isPending}>
+            <Button type="submit" className="w-full" disabled={isPending}>
               Send Feedback
             </Button>
           </div>
