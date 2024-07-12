@@ -25,8 +25,6 @@ import {
 } from '@/data/shop/open-checkout-session'
 import { createGuestUser, getGuestUserByEmail } from '@/data/shop/guest-user'
 
-const webhookSecret = process.env.STRIPE_WEBHOOK_SECRET!
-
 const generateOrderNumber = async (): Promise<string> => {
   const orderNumber = `SB${crypto.randomInt(100_000, 100_000_0).toString()}`
   // check if the order number already exists in the database
@@ -58,13 +56,7 @@ const expireAllOpenCheckoutSessionsByProductId = async (productId: number) => {
 
 export const createOrder = async (
   event: Stripe.CheckoutSessionCompletedEvent,
-  secret: string,
 ) => {
-  // verify that the secret matches
-  if (secret !== webhookSecret) {
-    return { error: 'UNAUTHORIZED' }
-  }
-
   // verify the validity of the stripeCheckoutSessionId and use that one to create the order
   const checkoutSession = await stripe.checkout.sessions.retrieve(
     event.data.object.id,

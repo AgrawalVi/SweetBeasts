@@ -22,18 +22,18 @@ export const POST = async (req: Request, res: Response) => {
     console.error('Webhook signature verification failed:', err)
     return NextResponse.json(
       { error: 'Webhook signature verification failed' },
-      { status: 400 },
+      { status: 401 },
     )
   }
 
   if (event.type === 'checkout.session.completed') {
-    const response = await createOrder(event, webhookSecret)
+    const response = await createOrder(event)
     if (response.error) {
       return NextResponse.json({ error: response.error }, { status: 400 })
     }
     return NextResponse.json({ status: 200 })
   } else if (event.type === 'checkout.session.expired') {
-    const response = await expireCheckoutSession(event, webhookSecret)
+    const response = await expireCheckoutSession(event)
     if (response.error) {
       return NextResponse.json({ error: response.error }, { status: 400 })
     }
