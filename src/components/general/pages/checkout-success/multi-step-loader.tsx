@@ -41,7 +41,6 @@ export function MultiStepLoaderDemo() {
         loading={loading}
         setLoading={setLoading}
         duration={1000}
-        loop={false}
       />
 
       {loading && (
