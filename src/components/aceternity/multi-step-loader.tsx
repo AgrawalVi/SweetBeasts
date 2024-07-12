@@ -120,7 +120,7 @@ export const MultiStepLoader = ({
     return () => clearTimeout(timeout)
   }, [currentState, loading, loadingStates.length, duration])
   return (
-    <AnimatePresence mode="wait">
+    <AnimatePresence initial={false}>
       {loading && (
         <motion.div
           initial={{
