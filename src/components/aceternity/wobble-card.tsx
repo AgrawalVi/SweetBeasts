@@ -66,7 +66,7 @@ export const WobbleCard = ({
   )
 }
 
-const Noise = () => {
+export const Noise = () => {
   return (
     <div
       className="pointer-events-none absolute inset-0 h-full w-full scale-[1.2] transform opacity-10 [mask-image:radial-gradient(#fff,transparent,75%)]"

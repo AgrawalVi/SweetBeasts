@@ -1,25 +1,11 @@
-'use client'
-
-import ProductCards from '@/components/sections/product-sections/product-cards'
-import ExploreSection from '@/components/general/pages/home/explore-section'
+import HomePageProductHero from '@/components/general/pages/home/heros/home-page-product-hero'
+import HomePageWhySweetBeastsHero from '@/components/general/pages/home/heros/home-page-why-sweetbeasts'
 
 export default function Home() {
   return (
-    <main className="flex flex-col items-start justify-start gap-4 bg-background p-4">
-      <ExploreSection />
-      <button
-        onClick={async () => {
-          await fetch('/api/emails/email-confirmation', {
-            method: 'POST',
-            body: JSON.stringify({
-              email: 'pranavgv@gmail.com',
-              firstName: 'Pranav',
-            }),
-          })
-        }}
-      >
-        Send Email
-      </button>
+    <main className="flex flex-col items-start justify-start bg-background">
+      <HomePageProductHero />
+      <HomePageWhySweetBeastsHero />
     </main>
   )
 }

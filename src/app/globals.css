@@ -68,3 +68,11 @@ body {
 .header-gradient {
   @apply bg-gradient-to-br from-cyan-500 to-cyan-900 bg-clip-text font-coiny text-transparent drop-shadow-md dark:from-rose-300 dark:to-rose-700;
 }
+
+.button-gradient {
+  @apply bg-gradient-to-br from-cyan-500 to-cyan-900 drop-shadow-md dark:from-rose-300 dark:to-rose-700;
+}
+
+.reverse-button-gradient {
+  @apply bg-gradient-to-br from-rose-400 to-rose-700 drop-shadow-md dark:from-cyan-500 dark:to-cyan-900;
+}
