@@ -51,6 +51,11 @@ enum ContactUsType {
   SUPPORT
 }
 
+enum OrderReturnStatus {
+  APPROVED
+  REJECTED
+}
+
 model User {
   id                    String                 @id @default(cuid())
   firstName             String
@@ -198,9 +203,20 @@ model Order {
   shippingMethod ShippingMethod @default(STANDARD)
   orderStatus    OrderStatus    @default(PROCESSING)
 
-  trackingNumber String?
-  trackingUrl    String?
-  courier        Courier?
+  trackingNumber   String?
+  trackingUrl      String?
+  courier          Courier?
+  orderShippedDate DateTime?
+
+  orderCancelledDate DateTime?
+  orderDeliveredDate DateTime?
+
+  orderReturnedDate   DateTime?
+  orderReturnedReason String?
+  orderReturnedStatus OrderReturnStatus?
+
+  orderExceptionDate    DateTime?
+  orderExceptionMessage String?
 
   lineItems           LineItem[]
   User                User?                 @relation(fields: [userId], references: [id], onDelete: SetNull)
