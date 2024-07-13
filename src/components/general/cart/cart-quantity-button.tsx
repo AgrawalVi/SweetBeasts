@@ -16,28 +16,8 @@ export default function CartQuantityButton({
   item: CartItem
   className?: string
 }) {
-  const { addToCart, removeItemFromCart, decrementItemFromCart } =
-    useShoppingCart()
+  const { addToCart, decrementItemFromCart } = useShoppingCart()
   const { toast } = useToast()
-
-  const { mutate: removeProduct, isPending: removeProductPending } =
-    useMutation({
-      mutationKey: ['remove-product-from-cart', item.productId],
-      mutationFn: async () => {
-        const response = await removeItemFromCart(item.productId)
-        if (response.error) {
-          toast({
-            title:
-              'An error has occurred while removing a product from the cart',
-            description: response.error,
-            variant: 'destructive',
-          })
-          throw new Error(response.error)
-        } else {
-          return response.success
-        }
-      },
-    })
 
   const { mutate: decrementProduct, isPending: decrementProductPending } =
     useMutation({
