@@ -9,7 +9,7 @@ import {
 } from '@/components/ui/card'
 import Image from 'next/image'
 
-import AddToCartWithQuantitySection from '@/components/general/pages/product/add-to-cart-quantity/add-to-cart-quantity-secton'
+import AddToCartAndBuyNowWithQuantitySection from '@/components/general/pages/product/add-to-cart-quantity/add-to-cart-and-buy-now-quantity-secton'
 import { getProductByName } from '@/data/shop/product'
 
 export default async function Pogo({
@@ -39,12 +39,28 @@ export default async function Pogo({
   }
 
   return (
-    <main>
-      <AddToCartWithQuantitySection
-        productId={product.id}
-        priceInCents={product.priceInCents}
-        initialQuantity={quantity}
-      />
+    <main className="flex w-full flex-col items-center">
+      <div className="relative flex w-full max-w-5xl flex-col items-center">
+        <div>
+          <div className="header-gradient text-center text-5xl sm:text-6xl lg:text-9xl">
+            POGO
+          </div>
+          <div className="bg-gradient-to-b from-cyan-700 from-50% to-cyan-400 bg-clip-text text-center font-semibold text-transparent dark:from-rose-600 dark:to-rose-400 lg:text-[2.65rem]">
+            The Peachy Penguin
+          </div>
+        </div>
+        <Image
+          src={product.primaryImagePath as string}
+          alt={product.name}
+          height={100}
+          width={100}
+        />
+        <AddToCartAndBuyNowWithQuantitySection
+          productId={product.id}
+          priceInCents={product.priceInCents}
+          initialQuantity={quantity}
+        />
+      </div>
     </main>
   )
 }

@@ -7,13 +7,11 @@ import { formatPrice } from '@/lib/utils'
 
 interface AddToCartButtonProps {
   productId: number
-  priceInCents: number
   quantity: number
 }
 
 export default function AddToCartButton({
   productId,
-  priceInCents,
   quantity,
 }: AddToCartButtonProps) {
   const { addToCart, setIsCartOpen } = useShoppingCart()
@@ -36,8 +34,8 @@ export default function AddToCartButton({
   }
 
   return (
-    <Button onClick={handleAddToCart}>
-      Add to Cart {formatPrice(priceInCents * quantity)}
+    <Button className="w-40" onClick={handleAddToCart}>
+      Add to Cart
     </Button>
   )
 }
