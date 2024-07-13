@@ -43,22 +43,26 @@ export default async function Pogo({
             The Peach Penguin
           </div>
         </div>
-        <div className="flex grid-cols-2 flex-col justify-center space-y-4 md:grid md:gap-4 md:space-y-0">
-          <ImageDialog
-            src={product.primaryImagePath as string}
-            alt={product.name}
-            className="w-full rounded-md"
-          />
-          <div className="flex flex-col items-center justify-center">
-            <div className="flex w-full max-w-[20rem] flex-col space-y-4">
-              <PriceSection />
+        <div className="flex grid-cols-2 flex-col space-y-4 md:grid md:gap-4 md:space-y-0">
+          <div>
+            <ImageDialog
+              src={product.primaryImagePath as string}
+              alt={product.name}
+              className="w-full rounded-md"
+            />
+          </div>
+          <div className="flex flex-col items-center justify-start">
+            <div className="grid w-full max-w-[20rem] flex-col space-y-4">
               <div>
-                <LimitedSupplyBuyNow />
-                <AddToCartAndBuyNowWithQuantitySection
-                  productId={product.id}
-                  priceInCents={product.priceInCents}
-                  initialQuantity={quantity}
-                />
+                <PriceSection />
+                <div>
+                  <LimitedSupplyBuyNow />
+                  <AddToCartAndBuyNowWithQuantitySection
+                    productId={product.id}
+                    priceInCents={product.priceInCents}
+                    initialQuantity={quantity}
+                  />
+                </div>
               </div>
               <ProductAccordion />
             </div>

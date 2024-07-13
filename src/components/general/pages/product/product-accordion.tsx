@@ -17,7 +17,9 @@ export default function ProductAccordion() {
           Description
         </AccordionTrigger>
         <AccordionContent className="text-base md:w-3/4">
-          Hello
+          lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem
+          ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum
+          lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem
         </AccordionContent>
       </AccordionItem>
       <AccordionItem value="specs" className="relative">
@@ -26,7 +28,9 @@ export default function ProductAccordion() {
           Specifications
         </AccordionTrigger>
         <AccordionContent className="text-base md:w-3/4">
-          Hello
+          lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem
+          ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum
+          lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem
         </AccordionContent>
       </AccordionItem>
       <AccordionItem value="care" className="relative">
@@ -35,7 +39,9 @@ export default function ProductAccordion() {
           Care Instructions
         </AccordionTrigger>
         <AccordionContent className="text-base md:w-3/4">
-          Hello
+          lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem
+          ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum
+          lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem
         </AccordionContent>
       </AccordionItem>
       <AccordionItem value="disclaimer" className="relative">
@@ -44,7 +50,9 @@ export default function ProductAccordion() {
           Disclaimer
         </AccordionTrigger>
         <AccordionContent className="text-base md:w-3/4">
-          Hello
+          lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem
+          ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum
+          lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem
         </AccordionContent>
       </AccordionItem>
     </Accordion>
