@@ -7,7 +7,7 @@ const PrivacyPolicy = () => {
       <h1 className="header-gradient mb-12 text-center text-6xl font-bold">
         Privacy Policy
       </h1>
-      <div className="rounded-lg bg-white p-8 text-center shadow-lg dark:bg-black">
+      <div className="rounded-lg bg-white p-8 text-left shadow-lg dark:bg-black">
         <p className="mb-4 text-lg">Effective Date: xx July 2024</p>
         <p className="mb-4 text-lg">
           At SweetBeasts, your privacy is very important to us. We aim to offer
@@ -24,26 +24,26 @@ const PrivacyPolicy = () => {
           We collect and process personal information you voluntarily provide
           when you:
         </p>
-        <div className="mb-4">
-          <p>Register for an account</p>
-          <p>Place an order or make a purchase</p>
-          <p>Subscribe to our newsletter</p>
-          <p>Contact us through email or forms</p>
-          <p>Leave a rating or review</p>
-        </div>
+        <ul className="mb-4 list-disc list-inside">
+          <li>Register for an account</li>
+          <li>Place an order or make a purchase</li>
+          <li>Subscribe to our newsletter</li>
+          <li>Contact us through email or forms</li>
+          <li>Leave a rating or review</li>
+        </ul>
         <p className="mb-4">
           This personal information may include, but is not limited to:
         </p>
-        <div className="mb-4">
-          <p>Full Name</p>
-          <p>Email Address</p>
-          <p>Phone Number</p>
-          <p>Mailing/Shipping Address</p>
-          <p>
+        <ul className="mb-4 list-disc list-inside">
+          <li>Full Name</li>
+          <li>Email Address</li>
+          <li>Phone Number</li>
+          <li>Mailing/Shipping Address</li>
+          <li>
             Financial, Payment, and Transaction Data, including bank account and
             payment card
-          </p>
-        </div>
+          </li>
+        </ul>
 
         <h2 className="p-gradient mb-4 text-2xl font-semibold">
           2.0 Information We Collect from Third Parties
@@ -102,27 +102,27 @@ const PrivacyPolicy = () => {
           administrative purposes, marketing decisions, and to comply with the
           laws. We may use this information in the following ways:
         </p>
-        <div className="mb-4">
-          <p>Managing information used to create your account</p>
-          <p>
+        <ul className="mb-4 list-disc list-inside">
+          <li>Managing information used to create your account</li>
+          <li>
             Send you updates, marketing communications, and promotional
             materials
-          </p>
-          <p>Notifying you about any changes to our policies</p>
-          <p>
+          </li>
+          <li>Notifying you about any changes to our policies</li>
+          <li>
             Processing your orders and transactions, including order
             confirmation, billing, and enrollment in loyalty or promotional
             programs
-          </p>
-          <p>Addressing your questions, comments, and requests</p>
-          <p>Measuring interest in and enhancing our services</p>
-          <p>Identifying and fixing errors within our services</p>
-          <p>Developing new ideas, products, content, and processes</p>
-          <p>
+          </li>
+          <li>Addressing your questions, comments, and requests</li>
+          <li>Measuring interest in and enhancing our services</li>
+          <li>Identifying and fixing errors within our services</li>
+          <li>Developing new ideas, products, content, and processes</li>
+          <li>
             Carrying out activities required to comply with legal obligations
-          </p>
-          <p>Enforcing our agreements and policies</p>
-        </div>
+          </li>
+          <li>Enforcing our agreements and policies</li>
+        </ul>
 
         <h2 className="p-gradient mb-4 text-2xl font-semibold">
           4.0 Data Retention
@@ -148,25 +148,25 @@ const PrivacyPolicy = () => {
         <p className="mb-4">
           You have the following rights regarding your personal information:
         </p>
-        <div className="mb-4">
-          <p>
+        <ul className="mb-4 list-disc list-inside">
+          <li>
             Access: You can request access to the personal information we hold
             about you.
-          </p>
-          <p>
+          </li>
+          <li>
             Correction: You can request that we correct any inaccuracies in your
             personal information.
-          </p>
-          <p>
+          </li>
+          <li>
             Deletion: You can request that we delete your personal information,
             subject to certain exceptions.
-          </p>
-          <p>
+          </li>
+          <li>
             Opt-Out: You can opt-out of receiving marketing communications from
             us at any time by following the unsubscribe instructions in our
             emails.
-          </p>
-        </div>
+          </li>
+        </ul>
 
         <h2 className="p-gradient mb-4 text-2xl font-semibold">
           7.0 Data Security
