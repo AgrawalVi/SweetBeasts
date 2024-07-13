@@ -161,16 +161,22 @@ model Product {
   active   Boolean @default(true)
   archived Boolean @default(false)
 
+  productHref         String
+  primaryProductImage String
+
+  description String
+
   primaryVariantId Int              @unique
   Variants         ProductVariant[] @relation("variants")
   PrimaryVariant   ProductVariant   @relation("primaryVariant", fields: [primaryVariantId], references: [id])
 }
 
 model ProductVariant {
-  id          Int    @id @default(autoincrement())
-  variantName String
+  id Int @id @default(autoincrement())
 
-  description String
+  variantProductName String @unique
+  variantKey         String
+  variantDescription String
 
   inventory Int
   numSold   Int @default(0)
@@ -195,7 +201,7 @@ model ProductVariant {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  @@unique([parentProductId, variantName])
+  @@unique([parentProductId, variantKey])
 }
 
 model Price {
