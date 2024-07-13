@@ -48,9 +48,6 @@ export default function AddToCartAndBuyNowWithQuantitySection({
         priceInCents={priceInCents}
         quantity={quantity}
       />
-      <p className="text-center text-xs big-phone:text-sm">
-        Shipping and taxes will be calculated at checkout.
-      </p>
     </main>
   )
 }

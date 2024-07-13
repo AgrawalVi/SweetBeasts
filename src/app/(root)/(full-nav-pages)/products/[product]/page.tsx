@@ -2,6 +2,7 @@ import { redirect } from 'next/navigation'
 import AddToCartAndBuyNowWithQuantitySection from '@/components/general/pages/product/add-to-cart-quantity/add-to-cart-and-buy-now-quantity-secton'
 import { getProductByName } from '@/data/shop/product'
 import ImageDialog from '@/components/custom/image-dialog'
+import ProductAccordion from '@/components/general/pages/product/product-accordion'
 import LimitedSupplyBuyNow from '@/components/general/pages/product/limited-supply-buy-now'
 
 export default async function Pogo({
@@ -37,7 +38,7 @@ export default async function Pogo({
           <div className="header-gradient text-center text-7xl sm:text-6xl md:text-9xl">
             POGO
           </div>
-          <div className="bg-gradient-to-b from-cyan-700 from-50% to-cyan-400 bg-clip-text pb-2 text-center text-2xl font-semibold text-transparent dark:from-rose-600 dark:to-rose-400 md:text-[2.65rem]">
+          <div className="bg-gradient-to-b from-cyan-700 via-30% to-cyan-400 bg-clip-text py-2 text-center font-coiny text-2xl font-semibold text-transparent dark:from-rose-600 dark:to-rose-400 md:text-[2.65rem]">
             The Peach Penguin
           </div>
         </div>
@@ -48,13 +49,16 @@ export default async function Pogo({
             className="w-full rounded-md"
           />
           <div className="flex flex-col items-center justify-center">
-            <div className="w-full max-w-[20rem]">
-              <LimitedSupplyBuyNow />
-              <AddToCartAndBuyNowWithQuantitySection
-                productId={product.id}
-                priceInCents={product.priceInCents}
-                initialQuantity={quantity}
-              />
+            <div className="flex w-full max-w-[20rem] flex-col space-y-4">
+              <div>
+                <LimitedSupplyBuyNow />
+                <AddToCartAndBuyNowWithQuantitySection
+                  productId={product.id}
+                  priceInCents={product.priceInCents}
+                  initialQuantity={quantity}
+                />
+              </div>
+              <ProductAccordion />
             </div>
           </div>
         </div>

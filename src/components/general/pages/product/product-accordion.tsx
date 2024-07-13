@@ -1,3 +1,56 @@
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from '@/components/ui/accordion'
+import { IconIroning3 } from '@tabler/icons-react'
+
+import {
+  ClipboardPenLine,
+  MessageCircleWarning,
+  ScrollText,
+} from 'lucide-react'
+
 export default function ProductAccordion() {
-  return <div>product accordion</div>
+  return (
+    <Accordion type="single" collapsible className="w-full">
+      <AccordionItem value="description" className="relative">
+        <AccordionTrigger className="py-3 hover:no-underline">
+          <ScrollText className="" />
+          Details
+        </AccordionTrigger>
+        <AccordionContent className="text-base md:w-3/4">
+          Hello
+        </AccordionContent>
+      </AccordionItem>
+      <AccordionItem value="specs" className="relative">
+        <AccordionTrigger className="py-3 hover:no-underline">
+          <ClipboardPenLine className="" />
+          Specifications
+        </AccordionTrigger>
+        <AccordionContent className="text-base md:w-3/4">
+          Hello
+        </AccordionContent>
+      </AccordionItem>
+      <AccordionItem value="care" className="relative">
+        <AccordionTrigger className="py-3 hover:no-underline">
+          <IconIroning3 />
+          Care Instructions
+        </AccordionTrigger>
+        <AccordionContent className="text-base md:w-3/4">
+          Hello
+        </AccordionContent>
+      </AccordionItem>
+      <AccordionItem value="disclaimer" className="relative">
+        <AccordionTrigger className="py-3 hover:no-underline">
+          <MessageCircleWarning className="scale-x-[-1]" />
+          Disclaimer
+        </AccordionTrigger>
+        <AccordionContent className="text-base md:w-3/4">
+          Hello
+        </AccordionContent>
+      </AccordionItem>
+    </Accordion>
+  )
 }
