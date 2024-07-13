@@ -39,7 +39,7 @@ export default function IntroducingProduct({
             translateZ="30"
             className="header-gradient mb-4 mt-2 max-w-2xl text-center text-2xl text-transparent transition-all big-phone:text-3xl sm:text-4xl md:text-6xl"
           >
-            The Peachy Penguin
+            The Peach Penguin
           </CardItem>
         </CardBody>
       </CardContainer>

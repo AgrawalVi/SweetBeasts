@@ -54,7 +54,7 @@ export const FullNavLinks = ({
               title="Pogo"
               href="/products/pogo"
               src="/product-images/pogo/main.jpg"
-              description="The Peachy Penguin."
+              description="The Peach Penguin."
             />
           </div>
         </MenuItem>

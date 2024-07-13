@@ -36,7 +36,7 @@ export default async function Pogo({
           POGO
         </div>
         <div className="bg-gradient-to-b from-cyan-700 from-50% to-cyan-400 bg-clip-text text-center font-semibold text-transparent dark:from-rose-600 dark:to-rose-400 lg:text-[2.65rem]">
-          The Peachy Penguin
+          The Peach Penguin
         </div>
         <ImageDialog
           src={product.primaryImagePath as string}
