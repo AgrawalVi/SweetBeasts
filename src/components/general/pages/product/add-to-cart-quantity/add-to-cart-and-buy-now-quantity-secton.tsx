@@ -31,9 +31,9 @@ export default function AddToCartAndBuyNowWithQuantitySection({
 
   useEffect(() => {
     if (quantity > 1) {
-      router.replace(`${pathname}?quantity=${quantity}`)
+      router.replace(`${pathname}?quantity=${quantity}`, { scroll: false })
     } else {
-      router.replace(`${pathname}`)
+      router.replace(`${pathname}`, { scroll: false })
     }
   }, [quantity])
 
