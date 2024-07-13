@@ -52,19 +52,11 @@ export default function FeedbackForm() {
   }
 
   return (
-<<<<<<< HEAD
-    <div className="flex items-center justify-center min-h-screen bg-gray-10 pb-24">
+    <div className="bg-gray-10 flex min-h-screen items-center justify-center pb-24">
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
-          className="flex flex-col justify-between space-y-2 w-full max-w-3xl bg-white dark:bg-black border border-muted-foreground shadow-lg rounded-lg pt-2 px-4 pb-4 min-h-[500px] lg:min-h-[700px]"
-=======
-    <div className="bg-gray-10 flex min-h-screen items-center justify-center">
-      <Form {...form}>
-        <form
-          onSubmit={form.handleSubmit(onSubmit)}
-          className="flex min-h-[700px] w-full max-w-lg flex-col justify-between space-y-4 rounded-lg border border-muted-foreground bg-white p-8 shadow-lg dark:bg-black lg:min-h-[800px]"
->>>>>>> 99ac95d0dc9307a707ea752e2dd0162b0672732f
+          className="flex min-h-[700px] w-full max-w-4xl flex-col justify-between space-y-2 rounded-lg border border-muted-foreground bg-white p-4 shadow-lg dark:bg-black lg:min-h-[700px]"
         >
           <div className="space-y-2">
             <FormField
@@ -72,7 +64,7 @@ export default function FeedbackForm() {
               name="name"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Name</FormLabel>
+                  <FormLabel className="text-lg">Name</FormLabel>
                   <FormControl>
                     <Input
                       {...field}
@@ -90,7 +82,7 @@ export default function FeedbackForm() {
               name="email"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Email</FormLabel>
+                  <FormLabel className="text-lg">Email</FormLabel>
                   <FormControl>
                     <Input
                       {...field}
@@ -108,7 +100,7 @@ export default function FeedbackForm() {
               name="feedback"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Feedback</FormLabel>
+                  <FormLabel className="text-lg">Feedback</FormLabel>
                   <FormControl>
                     <Textarea
                       {...field}
@@ -122,7 +114,7 @@ export default function FeedbackForm() {
               )}
             />
           </div>
-          <div className="space-y-2 mb-8">
+          <div className="space-y-2 mt-4">
             <FormError message={error} />
             <FormSuccess message={success} />
             <Button type="submit" className="w-full" disabled={isPending}>
