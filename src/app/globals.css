@@ -76,3 +76,7 @@ body {
 .reverse-button-gradient {
   @apply bg-gradient-to-br from-rose-400 to-rose-700 drop-shadow-md dark:from-cyan-500 dark:to-cyan-900;
 }
+
+[data-state='open'] .accordion-rotate {
+  transform: rotate(90deg);
+}
