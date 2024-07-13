@@ -56,7 +56,7 @@ export default function FeedbackForm() {
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
-          className="flex min-h-[700px] w-full max-w-4xl flex-col justify-between space-y-2 rounded-lg border border-muted-foreground bg-white p-4 shadow-lg dark:bg-black lg:min-h-[700px]"
+          className="flex min-h-[700px] w-full max-w-3xl flex-col justify-between space-y-2 rounded-lg border border-muted-foreground bg-white p-6 shadow-lg dark:bg-black lg:min-h-[700px]"
         >
           <div className="space-y-2">
             <FormField
