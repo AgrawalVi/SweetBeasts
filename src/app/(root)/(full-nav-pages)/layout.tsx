@@ -7,7 +7,7 @@ export default function Layout({
   return (
     <div className="h-full w-full flex-grow justify-center align-middle">
       <Navbar />
-      <div className="mx-5 my-12 md:mx-10 md:my-12">{children}</div>
+      <div className="mx-5 my-6 big-phone:my-12 md:mx-10">{children}</div>
       <Footer />
     </div>
   )

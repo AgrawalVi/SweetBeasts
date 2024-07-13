@@ -32,27 +32,35 @@ export default async function Pogo({
   return (
     <main className="flex w-full flex-col items-center">
       <div className="relative flex w-full max-w-5xl flex-col items-center">
-        <div className="header-gradient text-center text-5xl sm:text-6xl lg:text-9xl">
-          POGO
+        <div className="mb-5 md:mb-10">
+          <div className="header-gradient text-center text-7xl sm:text-6xl md:text-9xl">
+            POGO
+          </div>
+          <div className="bg-gradient-to-b from-cyan-700 from-50% to-cyan-400 bg-clip-text pb-2 text-center text-2xl font-semibold text-transparent dark:from-rose-600 dark:to-rose-400 md:text-[2.65rem]">
+            The Peach Penguin
+          </div>
         </div>
-        <div className="bg-gradient-to-b from-cyan-700 from-50% to-cyan-400 bg-clip-text text-center font-semibold text-transparent dark:from-rose-600 dark:to-rose-400 lg:text-[2.65rem]">
-          The Peach Penguin
+        <div className="flex grid-cols-2 flex-col justify-center md:grid md:gap-4">
+          <ImageDialog
+            src={product.primaryImagePath as string}
+            alt={product.name}
+            className="w-full rounded-md"
+          />
+          <div className="flex flex-col items-center justify-center">
+            <div className="w-full max-w-[20rem]">
+              <div className="relative my-2 ml-6 flex w-fit justify-center">
+                <div className="absolute -left-3 top-1/2 size-2 -translate-y-1/2 transform animate-pulse rounded-full bg-accent-foreground/70 duration-1000 dark:bg-accent" />
+                <div className="absolute -left-[14px] top-1.5 size-3 transform animate-ping rounded-full bg-accent-foreground dark:bg-accent" />
+                <div className="ml-2 font-bold">LIMITED SUPPLY - BUY NOW</div>
+              </div>
+              <AddToCartAndBuyNowWithQuantitySection
+                productId={product.id}
+                priceInCents={product.priceInCents}
+                initialQuantity={quantity}
+              />
+            </div>
+          </div>
         </div>
-        <ImageDialog
-          src={product.primaryImagePath as string}
-          alt={product.name}
-          className="w-full rounded-md"
-        />
-        <div className="relative my-2 ml-6 flex w-fit justify-center">
-          <div className="absolute -left-3 top-1/2 size-2 -translate-y-1/2 transform animate-pulse rounded-full bg-accent-foreground/70 duration-1000 dark:bg-accent" />
-          <div className="absolute -left-[14px] top-1.5 size-3 transform animate-ping rounded-full bg-accent-foreground dark:bg-accent" />
-          <div className="ml-2 font-bold">LIMITED SUPPLY - BUY NOW</div>
-        </div>
-        <AddToCartAndBuyNowWithQuantitySection
-          productId={product.id}
-          priceInCents={product.priceInCents}
-          initialQuantity={quantity}
-        />
       </div>
     </main>
   )
