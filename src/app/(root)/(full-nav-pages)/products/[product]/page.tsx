@@ -5,6 +5,7 @@ import ImageDialog from '@/components/custom/image-dialog'
 import ProductAccordion from '@/components/general/pages/product/product-accordion'
 import LimitedSupplyBuyNow from '@/components/general/pages/product/limited-supply-buy-now'
 import PriceSection from '@/components/general/pages/product/price-section'
+import LoreTeaser from '@/components/general/pages/product/lore-teaser'
 
 export default async function Pogo({
   params,
@@ -34,8 +35,8 @@ export default async function Pogo({
 
   return (
     <main className="flex w-full flex-col items-center">
-      <div className="relative flex w-full max-w-5xl flex-col items-center">
-        <div className="mb-5 md:mb-10">
+      <div className="relative flex w-full max-w-5xl flex-col items-center space-y-12">
+        <div>
           <div className="header-gradient text-center text-7xl sm:text-6xl md:text-9xl">
             POGO
           </div>
@@ -68,6 +69,7 @@ export default async function Pogo({
             </div>
           </div>
         </div>
+        <LoreTeaser />
       </div>
     </main>
   )
