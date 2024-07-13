@@ -1,9 +1,11 @@
 'use client'
 
 import { useState, useEffect } from 'react'
+import { usePathname } from 'next/navigation'
+import { useRouter } from 'next/navigation'
+
 import AddToCartButton from './add-to-cart-button'
 import QuantitySelector from './quantity-selector'
-import { useRouter } from 'next/navigation'
 
 interface AddToCartWithQuantitySectionProps {
   productId: number
@@ -20,12 +22,13 @@ export default function AddToCartWithQuantitySection({
 }: AddToCartWithQuantitySectionProps) {
   const [quantity, setQuantity] = useState<number>(initialQuantity)
   const router = useRouter()
+  const pathname = usePathname()
 
   useEffect(() => {
     if (quantity > 1) {
-      router.replace(`/products/pogo?quantity=${quantity}`)
+      router.replace(`${pathname}?quantity=${quantity}`)
     } else {
-      router.replace(`/products/pogo`)
+      router.replace(`${pathname}`)
     }
   }, [quantity])
 
