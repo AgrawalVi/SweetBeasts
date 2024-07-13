@@ -1,6 +1,5 @@
 import { Button } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
-import { set } from 'date-fns'
 import { Minus, Plus } from 'lucide-react'
 
 interface QuantitySelectorProps {
@@ -15,7 +14,7 @@ export default function QuantitySelector({
   className,
 }: QuantitySelectorProps) {
   return (
-    <div className={cn('flex items-center space-x-2 pt-2', className)}>
+    <div className={cn('flex items-center space-x-2', className)}>
       <div className="flex h-full items-center justify-between space-x-1 rounded-md border">
         <Button
           variant="ghost"
