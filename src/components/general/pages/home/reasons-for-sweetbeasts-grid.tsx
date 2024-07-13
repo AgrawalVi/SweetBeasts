@@ -70,9 +70,6 @@ export function ReasonsForSweetBeastsGrid() {
 
 const colorList = [
   'group-hover/feature:bg-red-500',
-  'group-hover/feature:bg-orange-500',
-  'group-hover/feature:bg-emerald-500',
-  'group-hover/feature:bg-teal-500',
   'group-hover/feature:bg-cyan-500',
   'group-hover/feature:bg-sky-500',
   'group-hover/feature:bg-blue-500',
