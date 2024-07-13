@@ -8,9 +8,9 @@ import AddToCartButton from './add-to-cart-button'
 import QuantitySelector from './quantity-selector'
 import { Button } from '@/components/ui/button'
 import { formatPrice } from '@/lib/utils'
-import { createCheckoutSession } from '@/actions/stripe/checkout'
 import { useShoppingCart } from '@/hooks/use-shopping-cart'
 import GradientButton from '@/components/aceternity/gradient-button'
+import BuyNowButton from './buy-now-button'
 
 interface AddToCartAndBuyNowWithQuantitySectionProps {
   productId: number
@@ -28,14 +28,6 @@ export default function AddToCartAndBuyNowWithQuantitySection({
   const [quantity, setQuantity] = useState<number>(initialQuantity)
   const router = useRouter()
   const pathname = usePathname()
-  const { guestId } = useShoppingCart()
-
-  const handleBuyNowClick = async () => {
-    await createCheckoutSession(
-      [{ productId: productId, quantity: quantity }],
-      guestId,
-    )
-  }
 
   useEffect(() => {
     if (quantity > 1) {
@@ -51,12 +43,11 @@ export default function AddToCartAndBuyNowWithQuantitySection({
         <AddToCartButton productId={productId} quantity={quantity} />
         <QuantitySelector quantity={quantity} setQuantity={setQuantity} />
       </div>
-      <Button
-        className="hover:shadow-accent-light click:scale-[0.99] bg-accent text-accent-foreground duration-500 ease-in-out hover:scale-[1.01] hover:bg-accent hover:text-[0.9rem]"
-        onClick={handleBuyNowClick}
-      >
-        {`Buy Now • ${formatPrice(priceInCents * quantity)}`}
-      </Button>
+      <BuyNowButton
+        productId={productId}
+        priceInCents={priceInCents}
+        quantity={quantity}
+      />
     </main>
   )
 }
