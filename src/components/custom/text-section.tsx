@@ -21,17 +21,18 @@ const TextSection = ({ text, className, linkInfo }: TextSectionProps) => {
       )}
     >
       <div className="text-center">{text}</div>
-      <div className="text-start underline underline-offset-2 opacity-60 transition-all duration-300 hover:opacity-80">
+      <div className="flex justify-end underline underline-offset-2">
         {linkInfo && (
           <>
-            <Link href={linkInfo.linkHref} className="w-fit">
-              <div className="flex items-center">
-                {linkInfo.linkText}
-                <ArrowUpRight
-                  size="18"
-                  className="align-self-middle ml-1 h-full"
-                />
-              </div>
+            <Link
+              href={linkInfo.linkHref}
+              className="flex w-fit items-center opacity-60 transition-all duration-300 hover:opacity-80"
+            >
+              {linkInfo.linkText}
+              <ArrowUpRight
+                size="18"
+                className="align-self-middle ml-1 h-full"
+              />
             </Link>
           </>
         )}
