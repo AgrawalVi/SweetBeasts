@@ -15,6 +15,22 @@ export const getProductById = async (id: number) => {
   }
 }
 
+export const getProductByName = async (name: string) => {
+  try {
+    const product = await db.product.findFirst({
+      where: {
+        name: {
+          equals: name,
+          mode: 'insensitive',
+        },
+      },
+    })
+    return product
+  } catch (e) {
+    console.error('Error getting product by name', e)
+  }
+}
+
 export async function getProductByStripePriceId(
   stripePriceId: string | undefined | null,
 ) {
