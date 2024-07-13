@@ -217,8 +217,8 @@ model Price {
 
   productId Int @unique
 
-  ProductVariant ProductVariant? @relation("historicalPrices", fields: [productId], references: [id], onDelete: Restrict)
-  Product        ProductVariant  @relation("currentPrice", fields: [id], references: [currentPriceId], onDelete: Restrict)
+  ProductVariant ProductVariant @relation("historicalPrices", fields: [productId], references: [id], onDelete: Restrict, map: "ProductVariantHistorical_FK")
+  Product        ProductVariant @relation("currentPrice", fields: [productId], references: [id], onDelete: Restrict, map: "ProductVariantCurrent_FK")
 }
 
 model Order {
