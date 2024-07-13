@@ -6,11 +6,7 @@ import {
 } from '@/components/ui/accordion'
 import { IconIroning3 } from '@tabler/icons-react'
 
-import {
-  ClipboardPenLine,
-  MessageCircleWarning,
-  ScrollText,
-} from 'lucide-react'
+import { ClipboardPen, MessageCircleWarning, ScrollText } from 'lucide-react'
 
 export default function ProductAccordion() {
   return (
@@ -18,7 +14,7 @@ export default function ProductAccordion() {
       <AccordionItem value="description" className="relative">
         <AccordionTrigger className="py-3 hover:no-underline">
           <ScrollText className="" />
-          Details
+          Description
         </AccordionTrigger>
         <AccordionContent className="text-base md:w-3/4">
           Hello
@@ -26,7 +22,7 @@ export default function ProductAccordion() {
       </AccordionItem>
       <AccordionItem value="specs" className="relative">
         <AccordionTrigger className="py-3 hover:no-underline">
-          <ClipboardPenLine className="" />
+          <ClipboardPen className="" />
           Specifications
         </AccordionTrigger>
         <AccordionContent className="text-base md:w-3/4">

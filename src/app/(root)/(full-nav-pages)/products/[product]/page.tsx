@@ -4,6 +4,7 @@ import { getProductByName } from '@/data/shop/product'
 import ImageDialog from '@/components/custom/image-dialog'
 import ProductAccordion from '@/components/general/pages/product/product-accordion'
 import LimitedSupplyBuyNow from '@/components/general/pages/product/limited-supply-buy-now'
+import PriceSection from '@/components/general/pages/product/price-section'
 
 export default async function Pogo({
   params,
@@ -42,7 +43,7 @@ export default async function Pogo({
             The Peach Penguin
           </div>
         </div>
-        <div className="flex grid-cols-2 flex-col justify-center md:grid md:gap-4">
+        <div className="flex grid-cols-2 flex-col justify-center space-y-4 md:grid md:gap-4 md:space-y-0">
           <ImageDialog
             src={product.primaryImagePath as string}
             alt={product.name}
@@ -50,6 +51,7 @@ export default async function Pogo({
           />
           <div className="flex flex-col items-center justify-center">
             <div className="flex w-full max-w-[20rem] flex-col space-y-4">
+              <PriceSection />
               <div>
                 <LimitedSupplyBuyNow />
                 <AddToCartAndBuyNowWithQuantitySection
