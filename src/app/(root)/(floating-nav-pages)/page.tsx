@@ -5,7 +5,12 @@ import HomeSweetbeastsMission from '@/components/general/pages/home/heros/home-s
 import HomeWhySweetBeastsHero from '@/components/general/pages/home/heros/home-why-sweetbeasts'
 import { getUserByEmail } from '@/data/shop/user'
 
+
+
 export default function Home() {
+   
+  console.log(getUserByEmail("john.doe@example.com"))
+
   return (
     <main className="flex flex-col items-start justify-start bg-background">
       <HomeProductHero />
