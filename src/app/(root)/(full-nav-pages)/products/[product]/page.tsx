@@ -2,6 +2,7 @@ import { redirect } from 'next/navigation'
 import AddToCartAndBuyNowWithQuantitySection from '@/components/general/pages/product/add-to-cart-quantity/add-to-cart-and-buy-now-quantity-secton'
 import { getProductByName } from '@/data/shop/product'
 import ImageDialog from '@/components/custom/image-dialog'
+import LimitedSupplyBuyNow from '@/components/general/pages/product/limited-supply-buy-now'
 
 export default async function Pogo({
   params,
@@ -48,11 +49,7 @@ export default async function Pogo({
           />
           <div className="flex flex-col items-center justify-center">
             <div className="w-full max-w-[20rem]">
-              <div className="relative my-2 ml-6 flex w-fit justify-center">
-                <div className="absolute -left-3 top-1/2 size-2 -translate-y-1/2 transform animate-pulse rounded-full bg-accent-foreground/70 duration-1000 dark:bg-accent" />
-                <div className="absolute -left-[14px] top-1.5 size-3 transform animate-ping rounded-full bg-accent-foreground dark:bg-accent" />
-                <div className="ml-2 font-bold">LIMITED SUPPLY - BUY NOW</div>
-              </div>
+              <LimitedSupplyBuyNow />
               <AddToCartAndBuyNowWithQuantitySection
                 productId={product.id}
                 priceInCents={product.priceInCents}
