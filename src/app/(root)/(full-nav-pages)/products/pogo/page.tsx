@@ -28,6 +28,7 @@ import {
 } from '@/components/ui/accordion'
 import { useCurrentUser } from '@/hooks/use-current-user'
 import { useShoppingCart } from '@/hooks/use-shopping-cart'
+import AddToCartWithQuantitySection from '@/components/general/pages/product/add-to-cart-quantity/add-to-cart-quantity-secton'
 
 export default function Pogo() {
   const { addToCart, setIsCartOpen } = useShoppingCart()
@@ -38,7 +39,6 @@ export default function Pogo() {
       quantity: 1,
     }
     const response = await addToCart(newItem)
-    console.log(response)
     setIsCartOpen(true) // Open the cart when an item is added
   }
 
@@ -129,47 +129,7 @@ export default function Pogo() {
               <CardDescription className="text-2xl">$15.99</CardDescription>
             </CardHeader>
             <CardContent className="flex flex-col items-center">
-              <div className="mt-2 flex items-center justify-center space-x-8">
-                <Button
-                  className="h-[80px] w-[200px] text-xl"
-                  onClick={handleAddPinguToCart}
-                >
-                  Add pingu to Cart
-                </Button>
-                <Button
-                  className="h-[80px] w-[200px] text-xl"
-                  onClick={handleAddBlimpersToCart}
-                >
-                  Add blimpers to Cart
-                </Button>
-                <Select>
-                  <SelectTrigger className="h-[80px] w-[200px] text-xl">
-                    <SelectValue placeholder="Quantity" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectGroup>
-                      <SelectLabel>Quantity</SelectLabel>
-                      <SelectItem value="1">1</SelectItem>
-                      <SelectItem value="2">2</SelectItem>
-                      <SelectItem value="3">3</SelectItem>
-                      <SelectItem value="4">4</SelectItem>
-                      <SelectItem value="5">5</SelectItem>
-                    </SelectGroup>
-                  </SelectContent>
-                </Select>
-              </div>
-              <div className="mt-8 w-full">
-                <Accordion type="single" collapsible>
-                  <AccordionItem value="item-1">
-                    <AccordionTrigger>Details</AccordionTrigger>
-                    <AccordionContent>
-                      <p className="text-lg">- Size: 10 inches tall</p>
-                      <p className="text-lg">- Material: Soft plush</p>
-                      <p className="text-lg">- Scent: Peach</p>
-                    </AccordionContent>
-                  </AccordionItem>
-                </Accordion>
-              </div>
+              <AddToCartWithQuantitySection productId={1} priceInCents={1500} />
             </CardContent>
             <CardFooter className="mt-8 flex items-center justify-center">
               <p className="text-center text-2xl">Share with Friends</p>
