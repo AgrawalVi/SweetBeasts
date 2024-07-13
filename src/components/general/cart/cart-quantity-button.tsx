@@ -26,8 +26,7 @@ export default function CartQuantityButton({
         const response = await decrementItemFromCart(item.productId)
         if (response.error) {
           toast({
-            title:
-              "An error has occurred while decrementing a product's quantity from the cart",
+            title: 'An error has occurred',
             description: response.error,
             variant: 'destructive',
           })
@@ -48,8 +47,7 @@ export default function CartQuantityButton({
         })
         if (response.error) {
           toast({
-            title:
-              "An error has occurred while incrementing a product's quantity in the cart",
+            title: 'An error has occurred',
             description: response.error,
             variant: 'destructive',
           })
