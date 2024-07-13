@@ -87,9 +87,7 @@ export default function TwoFactorConfirmationEmail({
                 <tbody>
                   <tr>
                     {twoFactorCode.split('').map((digit, index) => (
-                      <td key={index}>
-                        {digit}
-                      </td>
+                      <td key={index}>{digit}</td>
                     ))}
                   </tr>
                 </tbody>
