@@ -10,12 +10,21 @@ import {
 import Image from 'next/image'
 
 import AddToCartWithQuantitySection from '@/components/general/pages/product/add-to-cart-quantity/add-to-cart-quantity-secton'
+import { getProductByName } from '@/data/shop/product'
 
-export default function Pogo({
+export default async function Pogo({
+  params,
   searchParams,
 }: {
+  params: { product: string }
   searchParams: { quantity?: string }
 }) {
+  const product = await getProductByName(params.product.toLowerCase()) // set to pogo product id for now, but can easily change to a slug later
+
+  if (!product) {
+    redirect('/products')
+  }
+
   const parsedQuantity = searchParams.quantity
     ? parseInt(searchParams.quantity)
     : 1
@@ -28,8 +37,8 @@ export default function Pogo({
   return (
     <main>
       <AddToCartWithQuantitySection
-        productId={1}
-        priceInCents={1500}
+        productId={product.id}
+        priceInCents={product.priceInCents}
         initialQuantity={quantity}
       />
     </main>
