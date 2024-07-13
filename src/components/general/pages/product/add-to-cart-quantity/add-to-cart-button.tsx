@@ -35,7 +35,7 @@ export default function AddToCartButton({
 
   return (
     <Button
-      className="w-full bg-primary text-accent-foreground duration-500 ease-in-out hover:scale-[1.01] hover:bg-primary hover:text-[0.9rem] hover:shadow-accent-light"
+      className="hover:shadow-primary-light w-full duration-500 ease-in-out hover:scale-[1.01] hover:bg-primary hover:text-[0.9rem]"
       onClick={handleAddToCart}
     >
       Add to Cart
