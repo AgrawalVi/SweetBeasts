@@ -25,6 +25,10 @@ export default async function Pogo({
     redirect('/products')
   }
 
+  if (params.product !== product.name.toLowerCase()) {
+    redirect(`/products/${product.name.toLowerCase()}`)
+  }
+
   const parsedQuantity = searchParams.quantity
     ? parseInt(searchParams.quantity)
     : 1
