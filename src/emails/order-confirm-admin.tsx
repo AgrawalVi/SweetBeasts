@@ -1,17 +1,18 @@
 import React from 'react';
 import { Tailwind, Body, Container, Head, Heading, Hr, Html, Img, Link, Preview, Section, Text } from '@react-email/components';
+import { OrderWithData } from '@/types';
 
 interface OrderConfirmedAdminEmailProps {
   userName: string;
   userEmail: string;
-  orderNumber: string;
   plushie: string;
+  orderWithData: OrderWithData; 
 }
 
 export default function OrderConfirmedAdminEmail({
   userName = "SweetUser",
   userEmail = "user@example.com",
-  orderNumber = "123456",
+  orderWithData, 
   plushie = "Plushie Name",
 }: OrderConfirmedAdminEmailProps): JSX.Element {
   return (
@@ -39,7 +40,7 @@ export default function OrderConfirmedAdminEmail({
               <Section className="bg-white p-4 rounded my-4">
                 <Heading className="text-2xl font-bold text-black">Order Details</Heading>
                 <Text className="text-black text-base mt-2">
-                  <strong>Order Number:</strong> {orderNumber}
+                  <strong>Order Info:</strong> {JSON.stringify(orderWithData, null, 2)}
                 </Text>
                 <Text className="text-black text-base mt-2">
                   <strong>Customer Name:</strong> {userName}
