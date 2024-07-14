@@ -52,11 +52,11 @@ export default function FeedbackForm() {
   }
 
   return (
-    <div className="bg-gray-10 flex min-h-screen items-center justify-center pb-24 ">
+    <div className="bg-gray-10 flex items-center justify-center">
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
-          className="flex min-h-[700px] w-full max-w-3xl flex-col justify-between space-y-2 rounded-lg border border-purple-200 bg-white p-6 shadow-lg dark:border-purple-200 dark:bg-black lg:min-h-[700px]"
+          className="flex w-[30rem] flex-col justify-between space-y-2 rounded-lg border border-purple-200 bg-white p-6 shadow-lg dark:border-purple-200 dark:bg-black"
         >
           <div className="space-y-2">
             <FormField
@@ -112,7 +112,7 @@ export default function FeedbackForm() {
               )}
             />
           </div>
-          <div className="space-y-2 mt-4">
+          <div className="mt-4 space-y-2">
             <FormError message={error} />
             <FormSuccess message={success} />
             <Button type="submit" className="w-full" disabled={isPending}>
