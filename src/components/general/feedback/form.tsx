@@ -52,11 +52,11 @@ export default function FeedbackForm() {
   }
 
   return (
-    <div className="bg-gray-10 flex min-h-screen items-center justify-center pb-24">
+    <div className="bg-gray-10 flex min-h-screen items-center justify-center pb-24 ">
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
-          className="flex min-h-[700px] w-full max-w-3xl flex-col justify-between space-y-2 rounded-lg border border-muted-foreground bg-white p-6 shadow-lg dark:bg-black lg:min-h-[700px]"
+          className="flex min-h-[700px] w-full max-w-3xl flex-col justify-between space-y-2 rounded-lg border border-purple-200 bg-white p-6 shadow-lg dark:border-purple-200 dark:bg-black lg:min-h-[700px]"
         >
           <div className="space-y-2">
             <FormField
@@ -70,7 +70,6 @@ export default function FeedbackForm() {
                       {...field}
                       placeholder="John Doe"
                       disabled={isPending}
-                      className="dark:border-purple-200"
                     />
                   </FormControl>
                   <FormMessage />
@@ -88,7 +87,6 @@ export default function FeedbackForm() {
                       {...field}
                       placeholder="john.doe@example.com"
                       disabled={isPending}
-                      className="dark:border-purple-200"
                     />
                   </FormControl>
                   <FormMessage />
@@ -106,7 +104,7 @@ export default function FeedbackForm() {
                       {...field}
                       placeholder="Your feedback here..."
                       disabled={isPending}
-                      className="h-40 dark:border-purple-200 lg:h-60"
+                      className="h-40 lg:h-60"
                     />
                   </FormControl>
                   <FormMessage />
