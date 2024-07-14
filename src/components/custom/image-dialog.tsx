@@ -6,51 +6,53 @@ import {
   DialogOverlay,
 } from '@/components/ui/dialog'
 import Image from 'next/image'
-import { BorderBeam } from '../magicui/border-beam'
+import { useState } from 'react'
 import { BackgroundGradient } from '../aceternity/background-gradient'
 import { cn } from '@/lib/utils'
-import placeholderImage from '@/assets/placeholder-image.png'
+import { LayoutGrid } from '../aceternity/layout-grid';
 
 interface ImageDialogProps {
-  src: string
-  alt: string
+  images: { src: string, alt: string, width: number, height: number }[]
   className?: string
   containerClassName?: string
 }
 
 export default function ImageDialog({
-  src,
-  alt,
+  images,
   className,
   containerClassName,
 }: ImageDialogProps) {
+  const [selectedImage, setSelectedImage] = useState<string | null>(null)
+
   return (
-    <Dialog>
-      <DialogTrigger className="cursor-zoom-in">
-        <div className="relative h-fit w-fit rounded-lg">
-          <BackgroundGradient
-            containerClassName={cn('rounded-lg', containerClassName)}
-          >
-            <Image
-              src={src}
-              alt={alt}
-              width={500}
-              height={500}
-              className={className}
-            />
-          </BackgroundGradient>
+    <div className="relative h-fit w-fit rounded-lg">
+      <BackgroundGradient containerClassName={cn('rounded-lg', containerClassName)}>
+        <div className="grid grid-cols-2 grid-rows-2 gap-2">
+          {images.map((image, index) => (
+            <Dialog key={index} open={selectedImage === image.src} onOpenChange={(isOpen) => setSelectedImage(isOpen ? image.src : null)}>
+              <DialogTrigger className="cursor-zoom-in" onClick={() => setSelectedImage(image.src)}>
+                <Image
+                  src={image.src}
+                  alt={image.alt}
+                  width={image.width}
+                  height={image.height}
+                  className={cn(className, 'w-full h-full object-cover')}
+                />
+              </DialogTrigger>
+              <DialogOverlay className="bg-black/60" />
+              <DialogContent className="max-w-[70vh] justify-center p-0">
+                <Image
+                  src={image.src}
+                  alt={image.alt}
+                  width={1000}
+                  height={1000}
+                  className="w-[70vh] rounded-lg"
+                />
+              </DialogContent>
+            </Dialog>
+          ))}
         </div>
-      </DialogTrigger>
-      <DialogOverlay className="bg-black/60" />
-      <DialogContent className="max-w-[70vh] justify-center p-0">
-        <Image
-          src={src}
-          alt={alt}
-          width={1000}
-          height={1000}
-          className="w-[70vh] rounded-lg"
-        />
-      </DialogContent>
-    </Dialog>
+      </BackgroundGradient>
+    </div>
   )
 }

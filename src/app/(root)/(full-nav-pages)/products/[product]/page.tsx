@@ -14,7 +14,7 @@ export default async function Pogo({
   params: { product: string }
   searchParams: { quantity?: string }
 }) {
-  const product = await getProductByName(params.product.toLowerCase()) // set to pogo product id for now, but can easily change to a slug later
+  const product = await getProductByName(params.product.toLowerCase()) 
 
   if (!product) {
     redirect('/products')
@@ -33,6 +33,13 @@ export default async function Pogo({
     redirect(`/products/pogo`)
   }
 
+  const images = [
+    { src: product.primaryImagePath ?? 'https://via.placeholder.com/300', alt: product.name, width: 300, height: 300 },
+    { src: product.primaryImagePath ?? 'https://via.placeholder.com/300', alt: product.name, width: 200, height: 200 },
+    { src: product.primaryImagePath ?? 'https://via.placeholder.com/300', alt: product.name, width: 400, height: 400 },
+    { src: product.primaryImagePath ?? 'https://via.placeholder.com/300', alt: product.name, width: 250, height: 250 },
+  ]
+
   return (
     <main className="flex w-full flex-col items-center">
       <div className="relative flex w-full max-w-5xl flex-col items-center space-y-12">
@@ -47,8 +54,7 @@ export default async function Pogo({
         <div className="flex grid-cols-2 flex-col space-y-4 md:grid md:gap-4 md:space-y-0">
           <div>
             <ImageDialog
-              src={product.primaryImagePath as string}
-              alt={product.name}
+              images={images}
               className="w-full rounded-md"
             />
           </div>
