@@ -9,6 +9,7 @@ import Image from 'next/image'
 import { BorderBeam } from '../magicui/border-beam'
 import { BackgroundGradient } from '../aceternity/background-gradient'
 import { cn } from '@/lib/utils'
+import placeholderImage from '@/assets/placeholder-image.png'
 
 interface ImageDialogProps {
   src: string
