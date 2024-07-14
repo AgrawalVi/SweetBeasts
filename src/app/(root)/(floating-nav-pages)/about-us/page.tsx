@@ -6,7 +6,7 @@ import TextSection from '@/components/custom/text-section'
 
 export default function CanvasRevealEffectDemo() {
   return (
-    <main className="relative bg-dot-black/[0.2] dark:bg-dot-white/[0.2]">
+    <main className="relative pt-20 bg-dot-black/[0.2] dark:bg-dot-white/[0.2]">
       <div className="pointer-events-none absolute inset-0 flex items-center justify-center bg-background [mask-image:radial-gradient(ellipse_at_center,transparent_10%,black)]"></div>
       <div className="relative space-y-10 pb-20 pt-10">
         <div className="flex flex-col place-items-center">
