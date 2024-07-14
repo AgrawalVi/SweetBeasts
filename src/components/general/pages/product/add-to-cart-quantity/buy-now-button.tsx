@@ -50,7 +50,7 @@ export default function BuyNowButton({
 
   return (
     <Button
-      className="flex flex-col justify-center bg-accent text-accent-foreground duration-500 ease-in-out hover:scale-[1.01] hover:bg-accent hover:text-[0.9rem] hover:shadow-accent-light"
+      className="flex flex-col justify-center bg-accent text-accent-foreground duration-500 ease-in-out hover:scale-[1.01] hover:bg-accent hover:shadow-accent-light"
       onClick={handleBuyNowClick}
       disabled={isPending}
     >
