@@ -14,21 +14,25 @@ import {
   Text,
 } from '@react-email/components'
 
-interface ThankYouForOrderEmailProps {
-  firstName: string
+interface OrderConfirmedUserEmailProps {
+  userName: string
+  userEmail: string
   orderNumber: string
+  plushie: string
 }
 
-export default function ThankYouForOrderEmail({
-  firstName = 'SweetUser',
-  orderNumber,
-}: ThankYouForOrderEmailProps): JSX.Element {
+export default function OrderConfirmedUserEmail({
+  userName = 'SweetUser',
+  userEmail = 'user@example.com',
+  orderNumber = '123456',
+  plushie = 'Plushie Name',
+}: OrderConfirmedUserEmailProps): JSX.Element {
   return (
     <Html>
       <Head>
-        <title>Thank You for Your Order</title>
+        <title>Order Confirmation</title>
       </Head>
-      <Preview>Thank You for Your Order - SweetBeasts</Preview>
+      <Preview>Order Confirmed - SweetBeasts</Preview>
       <Tailwind>
         <Body className="bg-white-100">
           <Container className="mx-auto max-w-lg rounded-lg bg-pink-100 p-6">
@@ -39,21 +43,21 @@ export default function ThankYouForOrderEmail({
                 width="120"
               />
               <Heading className="my-4 text-3xl font-bold text-black">
-                Thank You for Your Order!
+                Order Confirmed
               </Heading>
-              <Text className="my-2 text-xl text-black">Hi {firstName},</Text>
+              <Text className="my-2 text-xl text-black">Hi {userName},</Text>
               <Text className="text-lg text-black">
-                Thank you for your purchase! Your order number is {orderNumber}.
-                We appreciate your support and hope you enjoy our products.
+                Thank you for your order! We have received your order #
+                {orderNumber} for the {plushie}.
               </Text>
-              <Text className="mt-4 text-lg text-black">
-                We will send you another email once your order has been shipped.
+              <Text className="text-lg text-black">
+                We will send you another email once your order has shipped.
               </Text>
             </Section>
             <Hr className="my-4 border-pink-300" />
             <Text className="text-sm text-black">
-              If you have any questions about your order, please contact our
-              support team.
+              If you have any questions, feel free to contact us at
+              support@example.com.
             </Text>
             <Text className="my-2 text-xs text-gray-400">
               © {new Date().getFullYear()} SweetBeasts. All rights reserved.

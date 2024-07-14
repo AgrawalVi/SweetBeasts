@@ -1,18 +1,12 @@
-// React and Next.js imports
+'use client'
 import React from 'react'
-
-// Third-party library imports
 import { ArrowUpRight } from 'lucide-react'
-
-// UI component imports
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
 } from '@/components/ui/accordion'
-
-// Custom components
 import { Section, Container } from '@/components/craft'
 
 export type FAQItem = {
@@ -27,12 +21,18 @@ interface FAQSectionProps {
   subtitle?: string
 }
 
-const FAQ = ({ content, title, subtitle }: FAQSectionProps) => {
+export default function FAQSection({
+  content,
+  title,
+  subtitle,
+}: FAQSectionProps) {
   return (
     <Section>
-      <Container className="rounded-lg border bg-card">
-        <h3 className="!mt-0">{title}</h3>
-        <h4 className="text-muted-foreground">{subtitle}</h4>
+      <Container className="rounded-lg border bg-card p-4">
+        <h3 className="h2-gradient text-center text-xl font-bold sm:text-3xl">
+          {title}
+        </h3>
+        <h4 className="mb-4 text-center text-muted-foreground">{subtitle}</h4>
         <div className="not-prose mt-4 flex flex-col gap-4 md:mt-8">
           {content.map((item, index) => (
             <Accordion key={index} type="single" collapsible>
@@ -62,5 +62,3 @@ const FAQ = ({ content, title, subtitle }: FAQSectionProps) => {
     </Section>
   )
 }
-
-export default FAQ

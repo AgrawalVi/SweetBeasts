@@ -13,22 +13,27 @@ import {
   Section,
   Text,
 } from '@react-email/components'
+import { OrderWithData } from '@/types'
 
-interface ThankYouForOrderEmailProps {
-  firstName: string
-  orderNumber: string
+interface OrderConfirmedAdminEmailProps {
+  userName: string
+  userEmail: string
+  plushie: string
+  orderWithData: OrderWithData
 }
 
-export default function ThankYouForOrderEmail({
-  firstName = 'SweetUser',
-  orderNumber,
-}: ThankYouForOrderEmailProps): JSX.Element {
+export default function OrderConfirmedAdminEmail({
+  userName = 'SweetUser',
+  userEmail = 'user@example.com',
+  orderWithData,
+  plushie = 'Plushie Name',
+}: OrderConfirmedAdminEmailProps): JSX.Element {
   return (
     <Html>
       <Head>
-        <title>Thank You for Your Order</title>
+        <title>New Order Confirmed</title>
       </Head>
-      <Preview>Thank You for Your Order - SweetBeasts</Preview>
+      <Preview>New Order Confirmed - SweetBeasts</Preview>
       <Tailwind>
         <Body className="bg-white-100">
           <Container className="mx-auto max-w-lg rounded-lg bg-pink-100 p-6">
@@ -39,22 +44,32 @@ export default function ThankYouForOrderEmail({
                 width="120"
               />
               <Heading className="my-4 text-3xl font-bold text-black">
-                Thank You for Your Order!
+                New Order Confirmed
               </Heading>
-              <Text className="my-2 text-xl text-black">Hi {firstName},</Text>
+              <Text className="my-2 text-xl text-black">Hi Team,</Text>
               <Text className="text-lg text-black">
-                Thank you for your purchase! Your order number is {orderNumber}.
-                We appreciate your support and hope you enjoy our products.
+                A new order has been confirmed.
               </Text>
-              <Text className="mt-4 text-lg text-black">
-                We will send you another email once your order has been shipped.
-              </Text>
+              <Section className="my-4 rounded bg-white p-4">
+                <Heading className="text-2xl font-bold text-black">
+                  Order Details
+                </Heading>
+                <Text className="mt-2 text-base text-black">
+                  <strong>Order Info:</strong>{' '}
+                  {JSON.stringify(orderWithData, null, 2)}
+                </Text>
+                <Text className="mt-2 text-base text-black">
+                  <strong>Customer Name:</strong> {userName}
+                </Text>
+                <Text className="mt-2 text-base text-black">
+                  <strong>Customer Email:</strong> {userEmail}
+                </Text>
+                <Text className="mt-2 text-base text-black">
+                  <strong>Plushie Ordered:</strong> {plushie}
+                </Text>
+              </Section>
             </Section>
             <Hr className="my-4 border-pink-300" />
-            <Text className="text-sm text-black">
-              If you have any questions about your order, please contact our
-              support team.
-            </Text>
             <Text className="my-2 text-xs text-gray-400">
               © {new Date().getFullYear()} SweetBeasts. All rights reserved.
             </Text>
