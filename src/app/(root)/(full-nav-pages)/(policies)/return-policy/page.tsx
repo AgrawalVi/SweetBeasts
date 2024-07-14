@@ -7,7 +7,7 @@ import {
   CardTitle,
 } from '@/components/ui/card'
 
-const ReturnPolicy = () => {
+export default function ReturnPolicy() {
   return (
     <Card className="mx-auto flex min-h-[70vh] max-w-4xl flex-col px-4 py-8 mb-24">
       <CardHeader>
@@ -60,4 +60,3 @@ const ReturnPolicy = () => {
   )
 }
 
-export default ReturnPolicy
