@@ -2,18 +2,16 @@ import FeedbackForm from '@/components/general/feedback/form'
 
 export default function FeedbackFormPage() {
   return (
-    <div>
-      <h1 className="text-bold header-gradient text-center text-6xl mb-4">
-        Feedback Form
+    <div className="flex flex-col items-center space-y-4">
+      <h1 className="text-bold header-gradient mb-4 text-center text-6xl">
+        Feedback
       </h1>
-      <h3 className="text-semibold h2-gradient text-center text-3xl text-indigo-900 dark:text-purple-300 mb-2">
-        Have any Suggestions?
-      </h3>
-      <h4 className="text-semibold h2-gradient text-center text-2xl text-indigo-900 dark:text-purple-300 mb-2">
-        Fill out the Form below!
-      </h4>
-      <p className="text-semibold p-gradient text-center text-xl mb-2">
-        We will get back to you as soon as possible!
+      <p className="text-semibold font-muted-foreground mb-2 flex w-[30rem] justify-center text-center text-xl">
+        At SweetBeasts, we value your feedback and suggestions deeply. We are
+        always looking for ways to improve our products and services. If you
+        have any suggestions or feedback, please fill out the form below. We
+        appreciate every opportunity to improve our offerings, and we appreciate
+        any criticism.
       </p>
       <FeedbackForm />
     </div>

@@ -74,5 +74,5 @@ body {
 }
 
 .p-gradient {
-  @apply bg-gradient-to-b from-cyan-700 to-indigo-600 bg-clip-text font-coiny text-transparent drop-shadow-md dark:from-rose-400 dark:to-purple-400;
+  @apply bg-gradient-to-b from-cyan-700 to-indigo-600 bg-clip-text font-nunito text-transparent drop-shadow-md dark:from-rose-400 dark:to-purple-400;
 }

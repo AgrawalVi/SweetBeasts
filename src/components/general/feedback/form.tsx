@@ -18,6 +18,7 @@ import { FormError } from '@/components/custom/form-error'
 import { FormSuccess } from '@/components/custom/form-success'
 import { FeedbackSchema } from '@/schemas'
 import { sendFeedBack } from '@/actions/customer/feedback'
+import { Card, CardContent } from '@/components/ui/card'
 
 interface FeedbackFormInputs {
   name: string
@@ -52,75 +53,77 @@ export default function FeedbackForm() {
   }
 
   return (
-    <div className="bg-gray-10 flex items-center justify-center">
-      <Form {...form}>
-        <form
-          onSubmit={form.handleSubmit(onSubmit)}
-          className="flex w-[30rem] flex-col justify-between space-y-2 rounded-lg border border-purple-200 bg-white p-6 shadow-lg dark:border-purple-200 dark:bg-black"
-        >
-          <div className="space-y-2">
-            <FormField
-              control={form.control}
-              name="name"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel className="text-lg">Name</FormLabel>
-                  <FormControl>
-                    <Input
-                      {...field}
-                      placeholder="John Doe"
-                      disabled={isPending}
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <FormField
-              control={form.control}
-              name="email"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel className="text-lg">Email</FormLabel>
-                  <FormControl>
-                    <Input
-                      {...field}
-                      placeholder="john.doe@example.com"
-                      disabled={isPending}
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <FormField
-              control={form.control}
-              name="feedback"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel className="text-lg">Feedback</FormLabel>
-                  <FormControl>
-                    <Textarea
-                      {...field}
-                      placeholder="Your feedback here..."
-                      disabled={isPending}
-                      className="h-40 lg:h-60"
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-          </div>
-          <div className="mt-4 space-y-2">
-            <FormError message={error} />
-            <FormSuccess message={success} />
-            <Button type="submit" className="w-full" disabled={isPending}>
-              Send Feedback
-            </Button>
-          </div>
-        </form>
-      </Form>
-    </div>
+    <Card className="w-full sm:w-[30rem]">
+      <CardContent className="pt-6">
+        <Form {...form}>
+          <form
+            onSubmit={form.handleSubmit(onSubmit)}
+            className="flex w-full max-w-lg flex-col justify-between space-y-6"
+          >
+            <div className="space-y-6">
+              <FormField
+                control={form.control}
+                name="name"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel className="text-lg">Name</FormLabel>
+                    <FormControl>
+                      <Input
+                        {...field}
+                        placeholder="John Doe"
+                        disabled={isPending}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="email"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel className="text-lg">Email</FormLabel>
+                    <FormControl>
+                      <Input
+                        {...field}
+                        placeholder="john.doe@example.com"
+                        disabled={isPending}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="feedback"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel className="text-lg">Feedback</FormLabel>
+                    <FormControl>
+                      <Textarea
+                        {...field}
+                        placeholder="Your feedback here..."
+                        disabled={isPending}
+                        className="h-40 lg:h-60"
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            </div>
+            <div className="mt-4 space-y-2">
+              <FormError message={error} />
+              <FormSuccess message={success} />
+              <Button type="submit" className="w-full" disabled={isPending}>
+                Send Feedback
+              </Button>
+            </div>
+          </form>
+        </Form>
+      </CardContent>
+    </Card>
   )
 }
