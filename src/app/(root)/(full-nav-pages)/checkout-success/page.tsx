@@ -5,7 +5,7 @@ import { getOrderWithDataByStripeSessionid } from '@/data/shop/orders'
 import { OrderWithData } from '@/types'
 import { formatDate } from '@/lib/date-functions'
 import Link from 'next/link'
-import { MultiStepLoaderDemo } from '@/components/general/pages/checkout-success/multi-step-loader'
+import { CheckoutSuccessLoader } from '@/components/general/pages/checkout-success/multi-step-loader'
 
 export default async function CheckoutSuccess({
   searchParams,
@@ -48,7 +48,7 @@ export default async function CheckoutSuccess({
 
   return (
     <>
-      <MultiStepLoaderDemo />
+      <CheckoutSuccessLoader />
       <main className="flex w-full flex-col items-center justify-center space-y-8">
         <div className="mx-5 flex w-full max-w-6xl flex-col items-center justify-between lg:flex-row">
           <div className="header-gradient text-center text-5xl lg:text-left">

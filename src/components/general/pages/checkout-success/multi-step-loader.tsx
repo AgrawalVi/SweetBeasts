@@ -1,39 +1,50 @@
 'use client'
 
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { MultiStepLoader as Loader } from '@/components/aceternity/multi-step-loader'
 import { IconSquareRoundedX } from '@tabler/icons-react'
 
 const loadingStates = [
   {
-    text: 'Buying a condo',
+    text: 'Order Received',
   },
   {
-    text: 'Travelling in a flight',
+    text: 'Charitable Contribution Initiated',
   },
   {
-    text: 'Meeting Tyler Durden',
+    text: 'Finding Your Plushie',
   },
   {
-    text: 'He makes soap',
+    text: 'Sweet Haven Rescue Initiated',
   },
   {
-    text: 'We goto a bar',
+    text: 'Preparing for Dispatch',
   },
   {
-    text: 'Start a fight',
+    text: 'Keep Posted',
   },
   {
-    text: 'We like it',
-  },
-  {
-    text: 'Welcome to F**** C***',
+    text: 'PS: Follow us on Instagram',
   },
 ]
 
-export function MultiStepLoaderDemo() {
+export function CheckoutSuccessLoader() {
   const [loading, setLoading] = useState(true)
 
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        setLoading(false)
+      }
+    }
+
+    window.addEventListener('keydown', handleKeyDown)
+
+    // Clean up the event listener
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown)
+    }
+  }, [])
   return (
     <>
       {/* Core Loader Modal */}
