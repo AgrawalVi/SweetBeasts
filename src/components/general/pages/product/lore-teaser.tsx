@@ -1,6 +1,4 @@
 import TextSection from '@/components/custom/text-section'
-import { ArrowUpRight } from 'lucide-react'
-import Link from 'next/link'
 
 export default function LoreTeaser() {
   return (
