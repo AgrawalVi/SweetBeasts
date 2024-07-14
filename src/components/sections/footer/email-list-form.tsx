@@ -59,8 +59,8 @@ const JoinEmailListForm = () => {
           render={({ field }) => (
             <FormItem className="w-3/4 3xl:w-[50rem]">
               <FormLabel>
-                Join our email list to be notified about new products, restocks,
-                sales, and more!
+                Join our email list to stay updated on new products, charitable
+                initiatives, Sweet Haven news, and more exciting updates!
               </FormLabel>
               <FormControl>
                 <Input
