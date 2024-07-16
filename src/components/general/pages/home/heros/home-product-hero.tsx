@@ -8,7 +8,7 @@ export default function HomeProductHero() {
   return (
     <div className="flex h-screen w-full items-center justify-center bg-[url('/home-page.jpg')] bg-cover bg-center lg:h-[70vh]">
       <div>
-        <ExploreSection className="relative z-20" />
+        <ExploreSection />
         <WobbleButton className="relative z-20">
           <Link href="/products/pogo">Shop Now</Link>
         </WobbleButton>
