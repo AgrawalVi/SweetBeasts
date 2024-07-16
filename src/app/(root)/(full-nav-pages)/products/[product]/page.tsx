@@ -34,10 +34,10 @@ export default async function Pogo({
   }
 
   const images = [
-    { src: product.primaryImagePath ?? 'https://via.placeholder.com/300', alt: product.name, width: 300, height: 300 },
-    { src: product.primaryImagePath ?? 'https://via.placeholder.com/300', alt: product.name, width: 200, height: 200 },
-    { src: product.primaryImagePath ?? 'https://via.placeholder.com/300', alt: product.name, width: 400, height: 400 },
     { src: product.primaryImagePath ?? 'https://via.placeholder.com/300', alt: product.name, width: 250, height: 250 },
+    { src: product.primaryImagePath ?? 'https://via.placeholder.com/200', alt: product.name, width: 215, height: 215 },
+    { src: product.primaryImagePath ?? 'https://via.placeholder.com/400', alt: product.name, width: 225, height: 225 },
+    { src: product.primaryImagePath ?? 'https://via.placeholder.com/250', alt: product.name, width: 250, height: 250 },
   ]
 
   return (

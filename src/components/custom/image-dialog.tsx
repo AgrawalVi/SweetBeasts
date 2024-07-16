@@ -9,7 +9,6 @@ import Image from 'next/image'
 import { useState } from 'react'
 import { BackgroundGradient } from '../aceternity/background-gradient'
 import { cn } from '@/lib/utils'
-import { LayoutGrid } from '../aceternity/layout-grid';
 
 interface ImageDialogProps {
   images: { src: string, alt: string, width: number, height: number }[]
@@ -26,33 +25,48 @@ export default function ImageDialog({
 
   return (
     <div className="relative h-fit w-fit rounded-lg">
-      <BackgroundGradient containerClassName={cn('rounded-lg', containerClassName)}>
-        <div className="grid grid-cols-2 grid-rows-2 gap-2">
-          {images.map((image, index) => (
-            <Dialog key={index} open={selectedImage === image.src} onOpenChange={(isOpen) => setSelectedImage(isOpen ? image.src : null)}>
-              <DialogTrigger className="cursor-zoom-in" onClick={() => setSelectedImage(image.src)}>
-                <Image
-                  src={image.src}
-                  alt={image.alt}
-                  width={image.width}
-                  height={image.height}
-                  className={cn(className, 'w-full h-full object-cover')}
-                />
-              </DialogTrigger>
-              <DialogOverlay className="bg-black/60" />
-              <DialogContent className="max-w-[70vh] justify-center p-0">
-                <Image
-                  src={image.src}
-                  alt={image.alt}
-                  width={1000}
-                  height={1000}
-                  className="w-[70vh] rounded-lg"
-                />
-              </DialogContent>
-            </Dialog>
-          ))}
-        </div>
-      </BackgroundGradient>
+      <div className="grid grid-cols-2 grid-rows-2 gap-1"> 
+        {images.map((image, index) => (
+          <Dialog
+            key={index}
+            open={selectedImage === image.src}
+            onOpenChange={(isOpen) => setSelectedImage(isOpen ? image.src : null)}
+          >
+            <DialogTrigger className="cursor-zoom-in" onClick={() => setSelectedImage(image.src)}>
+              <BackgroundGradient containerClassName={cn('rounded-lg', containerClassName)}>
+                <div
+                  className={cn('relative', className)}
+                  style={{
+                    width: `${image.width}px`,
+                    height: `${image.height}px`,
+                    overflow: 'hidden'
+                  }} 
+                >
+                  <Image
+                    src={image.src}
+                    alt={image.alt}
+                    layout="responsive"
+                    width={image.width}
+                    height={image.height}
+                    objectFit="cover"
+                    className="rounded-md"
+                  />
+                </div>
+              </BackgroundGradient>
+            </DialogTrigger>
+            <DialogOverlay className="bg-black/60" />
+            <DialogContent className="max-w-[70vh] justify-center p-0">
+              <Image
+                src={image.src}
+                alt={image.alt}
+                width={1000}
+                height={1000}
+                className="w-[70vh] rounded-lg"
+              />
+            </DialogContent>
+          </Dialog>
+        ))}
+      </div>
     </div>
   )
 }
