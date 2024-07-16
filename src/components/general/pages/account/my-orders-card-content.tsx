@@ -1,5 +1,3 @@
-'use server'
-
 import { getFourMostRecentOrdersWithDataByUserId } from '@/data/shop/orders'
 import { currentUser } from '@/lib/auth'
 import { OrderWithData } from '@/types'
