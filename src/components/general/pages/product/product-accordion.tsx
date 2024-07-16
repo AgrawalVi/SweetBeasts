@@ -16,21 +16,21 @@ export default function ProductAccordion() {
           <ScrollText className="" />
           Description
         </AccordionTrigger>
-        <AccordionContent className="text-base md:w-3/4">
+        <AccordionContent className="flex text-base">
           lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem
           ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum
           lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem
         </AccordionContent>
       </AccordionItem>
-      <AccordionItem value="specs" className="relative">
+      <AccordionItem value="details" className="relative">
         <AccordionTrigger className="py-3 hover:no-underline">
           <ClipboardPen className="" />
-          Specifications
+          Details
         </AccordionTrigger>
-        <AccordionContent className="text-base md:w-3/4">
-          lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem
+        <AccordionContent className="text-base">
+          lorem ipsum lorem ipsum asdf sd ds ipsum lorem ipsum lorem ipsum lorem
           ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum
-          lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem
+          lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem
         </AccordionContent>
       </AccordionItem>
       <AccordionItem value="care" className="relative">
@@ -38,18 +38,7 @@ export default function ProductAccordion() {
           <IconIroning3 />
           Care Instructions
         </AccordionTrigger>
-        <AccordionContent className="text-base md:w-3/4">
-          lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem
-          ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum
-          lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem
-        </AccordionContent>
-      </AccordionItem>
-      <AccordionItem value="disclaimer" className="relative">
-        <AccordionTrigger className="py-3 hover:no-underline">
-          <MessageCircleWarning className="scale-x-[-1]" />
-          Disclaimer
-        </AccordionTrigger>
-        <AccordionContent className="text-base md:w-3/4">
+        <AccordionContent className="text-base">
           lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem
           ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum
           lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem
