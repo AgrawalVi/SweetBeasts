@@ -8,6 +8,7 @@ import LimitedSupplyBuyNow from '@/components/general/pages/product/limited-supp
 import PriceSection from '@/components/general/pages/product/price-section'
 import LoreTeaser from '@/components/general/pages/product/lore-teaser'
 import ImageGrid from '@/components/custom/image-grid' // Import the new ImageGrid component
+import ImageDialog from '@/components/custom/image-dialog'
 
 export default async function Pogo({
   params,
@@ -75,12 +76,12 @@ export default async function Pogo({
         </div>
         <div className="flex grid-cols-1 flex-col space-y-4 md:grid md:grid-cols-2 md:gap-4 md:space-y-0">
           <div>
-            <Image
+            <ImageDialog
               src={product.primaryImagePath as string}
               alt={product.name}
               width={500}
               height={500}
-              className="w-full rounded-md"
+              className={'w-full rounded-md'}
             />
           </div>
           <div className="flex flex-col items-center justify-start">
