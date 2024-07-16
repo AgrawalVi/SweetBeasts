@@ -16,46 +16,49 @@ export function ReasonsForSweetBeastsGrid() {
     {
       title: 'Fast Shipping',
       description:
-        'Built for engineers, developers, dreamers, thinkers and doers.',
+        'Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum',
       icon: <Truck />,
     },
     {
       title: 'Packed with Love',
       description:
-        "It's as easy as using an Apple, and as expensive as buying one.",
+        'Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum',
       icon: <Heart />,
     },
     {
       title: '14 Day Return Policy',
       description:
-        'Our prices are best in the market. No cap, no lock, no credit card required.',
+        'Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum',
       icon: <IconExchange />,
     },
     {
       title: 'Easy Support',
-      description: 'We just cannot be taken down by anyone.',
+      description:
+        'Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum',
       icon: <MessageCircleQuestion />,
     },
     {
       title: 'Free Shipping',
-      description: 'You can simply share passwords instead of buying new seats',
+      description:
+        'Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum',
       icon: <ThumbsUp />,
     },
     {
       title: 'Our Mission',
       description:
-        'We are available a 100% of the time. Atleast our AI Agents are.',
+        'Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum',
       icon: <RocketIcon />,
     },
     {
       title: 'Payment Options',
       description:
-        'If you donot like EveryAI, we will convince you to like us.',
+        'Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum',
       icon: <WalletCards />,
     },
     {
-      title: 'The Cheapest Prices',
-      description: 'I just ran out of copy ideas. Accept my sincere apologies',
+      title: 'Affordable Prices',
+      description:
+        'Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum',
       icon: <Tags />,
     },
   ]

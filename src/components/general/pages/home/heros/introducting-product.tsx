@@ -19,7 +19,10 @@ export default function IntroducingProduct({
         className,
       )}
     >
-      <CardContainer className="m-0 h-full w-full rounded-none p-0 shadow-none">
+      <CardContainer
+        className="m-0 h-full w-full rounded-none p-0 shadow-none"
+        containerClassName="py-10"
+      >
         <CardBody className="group/card flex h-full w-full flex-col items-center justify-center rounded-none border-none">
           <CardItem
             as="div"
