@@ -6,14 +6,15 @@ import {
   DialogOverlay,
 } from '@/components/ui/dialog'
 import Image from 'next/image'
-import { BorderBeam } from '../magicui/border-beam'
+import { useState } from 'react'
 import { BackgroundGradient } from '../aceternity/background-gradient'
 import { cn } from '@/lib/utils'
-import placeholderImage from '@/assets/placeholder-image.png'
 
 interface ImageDialogProps {
   src: string
   alt: string
+  width: number
+  height: number
   className?: string
   containerClassName?: string
 }
@@ -21,25 +22,44 @@ interface ImageDialogProps {
 export default function ImageDialog({
   src,
   alt,
+  width,
+  height,
   className,
   containerClassName,
 }: ImageDialogProps) {
+  const [selectedImage, setSelectedImage] = useState<string | null>(null)
+
   return (
-    <Dialog>
-      <DialogTrigger className="cursor-zoom-in">
-        <div className="relative h-fit w-fit rounded-lg">
-          <BackgroundGradient
-            containerClassName={cn('rounded-lg', containerClassName)}
+    <Dialog
+      open={selectedImage === src}
+      onOpenChange={(isOpen) => setSelectedImage(isOpen ? src : null)}
+    >
+      <DialogTrigger
+        className="cursor-zoom-in"
+        onClick={() => setSelectedImage(src)}
+      >
+        <BackgroundGradient
+          containerClassName={cn('rounded-lg', containerClassName)}
+        >
+          <div
+            className={cn('relative', className)}
+            style={{
+              width: `${width}px`,
+              height: `${height}px`,
+              overflow: 'hidden',
+            }}
           >
             <Image
               src={src}
               alt={alt}
-              width={500}
-              height={500}
-              className={className}
+              layout="responsive"
+              width={width}
+              height={height}
+              objectFit="cover"
+              className="rounded-md"
             />
-          </BackgroundGradient>
-        </div>
+          </div>
+        </BackgroundGradient>
       </DialogTrigger>
       <DialogOverlay className="bg-black/60" />
       <DialogContent className="max-w-[70vh] justify-center p-0">

@@ -64,7 +64,7 @@ const charityDonationsFAQ: FAQItem[] = [
     question: 'How can I learn more about the impact of my purchase?',
     answer:
       'We provide regular updates on our website and through our newsletter about the projects and initiatives we support. You can also follow us on social media for the latest news and impact stories.',
-    link: "/support/contact-us"
+    link: '/support/contact-us',
   },
 ]
 
@@ -79,25 +79,25 @@ const returnsExchangesFAQ: FAQItem[] = [
     question: 'Can I cancel or modify my order after it has been placed?',
     answer:
       'Orders can typically be canceled or modified within 24 hours of placement. Please contact our customer service team immediately with your order details to request changes.',
-    link: "/support/contact-us"
+    link: '/support/contact-us',
   },
   {
     question: 'What should I do if I receive a defective or damaged item?',
     answer:
       'If you receive a defective or damaged item, please contact our customer service team immediately with your order details and photos of the issue. We will resolve the matter as quickly as possible.',
-    link: "/support/contact-us"
+    link: '/support/contact-us',
   },
   {
     question: 'Can I exchange my plushie for a different one?',
     answer:
       'We may offer exchanges for damaged plushies within 2 weeks (14 days) of delivery. Please contact our customer service team with your order details and photos of the damage to initiate the exchange process. We will assess the situation and work with you to find a suitable solution.',
-    link: "/support/contact-us"
+    link: '/support/contact-us',
   },
   {
     question: 'How long does it take to process a refund?',
     answer:
       'Once your return is received and inspected, we will notify you of the approval or rejection of your refund. If approved, refunds are typically processed within 5-7 business days.',
-    link: '/return-policy'
+    link: '/return-policy',
   },
 ]
 
@@ -116,7 +116,7 @@ const otherFAQ: FAQItem[] = [
     question: 'How can I contact your customer service team?',
     answer:
       'You can reach our customer service team via Email, Instagram, Discord, or filling out the form on our contact page. We are here to assist you with any questions, concerns, or feedback you may have.',
-    link: "/support/contact-us"
+    link: '/support/contact-us',
   },
 ]
 

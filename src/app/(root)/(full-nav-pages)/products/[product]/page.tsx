@@ -1,11 +1,14 @@
+// pages/Pogo.tsx
 import { redirect } from 'next/navigation'
 import AddToCartAndBuyNowWithQuantitySection from '@/components/general/pages/product/add-to-cart-quantity/add-to-cart-and-buy-now-quantity-secton'
 import { getProductByName } from '@/data/shop/product'
-import ImageDialog from '@/components/custom/image-dialog'
+import Image from 'next/image'
 import ProductAccordion from '@/components/general/pages/product/product-accordion'
 import LimitedSupplyBuyNow from '@/components/general/pages/product/limited-supply-buy-now'
 import PriceSection from '@/components/general/pages/product/price-section'
 import LoreTeaser from '@/components/general/pages/product/lore-teaser'
+import ImageGrid from '@/components/custom/image-grid' // Import the new ImageGrid component
+import ImageDialog from '@/components/custom/image-dialog'
 
 export default async function Pogo({
   params,
@@ -14,7 +17,7 @@ export default async function Pogo({
   params: { product: string }
   searchParams: { quantity?: string }
 }) {
-  const product = await getProductByName(params.product.toLowerCase()) // set to pogo product id for now, but can easily change to a slug later
+  const product = await getProductByName(params.product.toLowerCase())
 
   if (!product) {
     redirect('/products')
@@ -33,6 +36,33 @@ export default async function Pogo({
     redirect(`/products/pogo`)
   }
 
+  const images = [
+    {
+      src: product.primaryImagePath ?? 'https://via.placeholder.com/300',
+      alt: product.name,
+      width: 300,
+      height: 300,
+    },
+    {
+      src: product.primaryImagePath ?? 'https://via.placeholder.com/200',
+      alt: product.name,
+      width: 250,
+      height: 250,
+    },
+    {
+      src: product.primaryImagePath ?? 'https://via.placeholder.com/400',
+      alt: product.name,
+      width: 275,
+      height: 275,
+    },
+    {
+      src: product.primaryImagePath ?? 'https://via.placeholder.com/300',
+      alt: product.name,
+      width: 300,
+      height: 300,
+    },
+  ]
+
   return (
     <main className="flex w-full flex-col items-center">
       <div className="relative flex w-full max-w-5xl flex-col items-center space-y-12">
@@ -44,12 +74,14 @@ export default async function Pogo({
             The Peach Penguin
           </div>
         </div>
-        <div className="flex grid-cols-2 flex-col space-y-4 md:grid md:gap-4 md:space-y-0">
+        <div className="flex grid-cols-1 flex-col space-y-4 md:grid md:grid-cols-2 md:gap-4 md:space-y-0">
           <div>
             <ImageDialog
               src={product.primaryImagePath as string}
               alt={product.name}
-              className="w-full rounded-md"
+              width={500}
+              height={500}
+              className={'w-full rounded-md'}
             />
           </div>
           <div className="flex flex-col items-center justify-start">
@@ -70,6 +102,7 @@ export default async function Pogo({
           </div>
         </div>
         <LoreTeaser />
+        <ImageGrid images={images} className="w-full rounded-md" />
       </div>
     </main>
   )
