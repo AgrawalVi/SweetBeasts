@@ -66,7 +66,7 @@ const JoinEmailListForm = () => {
                 <Input
                   {...field}
                   placeholder="welcome@sweetbeasts.shop"
-                  className="border-muted bg-card font-josefin lg:w-full"
+                  className="border-muted bg-muted font-josefin lg:w-full"
                 />
               </FormControl>
               <FormMessage />
