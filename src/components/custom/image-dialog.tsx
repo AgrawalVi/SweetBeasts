@@ -44,8 +44,6 @@ export default function ImageDialog({
           <div
             className={cn('relative', className)}
             style={{
-              width: `${width}px`,
-              height: `${height}px`,
               overflow: 'hidden',
             }}
           >
@@ -56,7 +54,7 @@ export default function ImageDialog({
               width={width}
               height={height}
               objectFit="cover"
-              className="rounded-md"
+              className="max-w-[90vw] rounded-md"
             />
           </div>
         </BackgroundGradient>
