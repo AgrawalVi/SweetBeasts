@@ -24,21 +24,21 @@ export default function IntroducingProduct({
           <CardItem
             as="div"
             translateZ="50"
-            className="sm:text-56xl text-center font-coiny text-[2.5rem] text-cyan-500 transition-all dark:text-rose-400 big-phone:text-6xl"
+            className="sm:text-56xl text-center font-coiny text-[2.5rem] text-rose-400 transition-all big-phone:text-6xl"
           >
             Introducing
           </CardItem>
           <CardItem
             as="h1"
             translateZ="50"
-            className="text-center font-coiny text-8xl text-cyan-500 transition-all dark:text-rose-400 big-phone:text-9xl sm:text-9xl 3xl:text-[10rem]"
+            className="text-center font-coiny text-8xl text-rose-400 transition-all big-phone:text-9xl sm:text-9xl 3xl:text-[10rem]"
           >
             Pogo
           </CardItem>
           <CardItem
             as="p"
             translateZ="50"
-            className="mb-4 mt-2 max-w-2xl text-center font-coiny text-2xl text-cyan-500 transition-all dark:text-rose-400 big-phone:text-3xl sm:text-4xl md:text-6xl"
+            className="mb-4 mt-2 max-w-2xl text-center font-coiny text-2xl text-rose-400 transition-all big-phone:text-3xl sm:text-4xl md:text-6xl"
           >
             The Peach Penguin
           </CardItem>
