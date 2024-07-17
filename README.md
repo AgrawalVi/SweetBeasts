@@ -1,4 +1,21 @@
-# [SweetBeasts](https://www.sweetbeasts.shop)
+# [SweetBeasts](https://www.sweetbeasts.shop) - [Demo](https://sweetbeasts-demo.vishrut.tech/)
+
+## Running it yourself
+
+- Make a Postgres database, I used [Neon](https://neon.tech/) to create the database
+- Copy the .env.example file to .env and fill in the values
+- Need to create a Stripe account and get secrets from there, as well as a Resend account
+- Run `npm install` and `npm run dev` to start the server
+
+## Stripe Webhooks
+
+- To use webhooks locally, you need to first install the Stripe CLI, instructions [here](https://stripe.com/docs/stripe-cli)
+- run the command `stripe listen --forward-to localhost:3000/api/stripe/webhook/`, and then webhooks will work locally
+
+## Adding a new product
+
+- To add a product, you need to add a product in the [SweetBeasts admin portal](https://github.com/agrawalvi/sweetbeasts-admin). To create an account, create an account in this project and then add in the database manually change the role to admin.
+- In the SweetBeasts admin portal, login, and then go to the products page. Click on the "Add Product" button, and fill in the details. Then click on the "Save Changes" button. This will add the product to the database and Stripe.
 
 ## Tech Stack
 
@@ -13,7 +30,6 @@
   - [**Tailwind CSS**](https://tailwindcss.com/)
   - [**Framer Motion**](https://www.framer.com/motion/)
   - [**Auth.js**](https://authjs.dev/)
-  - [**MDX**](https://mdxjs.com/)
 
 - ### Database
 
@@ -158,11 +174,6 @@
 - Handles Payments
 - Calls should be made from the `@/lib/stripe` folder, but those should be called from server actions
 
-### [MDX](https://mdxjs.com/docs/)
-
-- Markdown for the web
-- Not yet configured, but will be used
-
 ### [React Email](https://react.email/docs/introduction)
 
 - Used for making email templates
@@ -182,3 +193,5 @@
 - Settings are in the `.prettierrc` file
 - Can run `npm run pretty` to style all the code in the codebase.
 - Tab space of 2 is used throughout the project.
+
+-- Created by [Vishrut Agrawal](https://vishrut.tech) and Pranav Gogineni --
