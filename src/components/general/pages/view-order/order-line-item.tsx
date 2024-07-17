@@ -1,8 +1,6 @@
 import { CardDescription } from '@/components/ui/card'
 import { formatPrice } from '@/lib/utils'
 import Image from 'next/image'
-import pogo from '/public/product-images/pogo/main.jpg'
-import blimpy from '/public/product-images/lemon-lion/main.jpg'
 import { LineItemWithProduct } from '@/types'
 import Link from 'next/link'
 
@@ -15,7 +13,7 @@ export default function OrderLineItem({
     <div className="flex w-full space-x-6 align-middle">
       <div className="relative">
         <Image
-          src={product.Product.name.includes('pogo') ? pogo : blimpy}
+          src={product.Product.primaryImagePath}
           alt={`${product.Product.name} image`}
           width={100}
           height={100}

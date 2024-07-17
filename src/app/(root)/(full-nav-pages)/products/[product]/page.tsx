@@ -77,7 +77,7 @@ export default async function Pogo({
         <div className="flex grid-cols-1 flex-col space-y-4 md:grid md:grid-cols-2 md:gap-4 md:space-y-0">
           <div>
             <ImageDialog
-              src={product.primaryImagePath as string}
+              src={product.primaryImagePath}
               alt={product.name}
               width={500}
               height={500}

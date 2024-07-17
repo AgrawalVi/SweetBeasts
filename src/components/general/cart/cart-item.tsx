@@ -14,8 +14,6 @@ import CartItemSkeleton from '@/components/skeletons/cart/cart-item-skeleton'
 import CartQuantityButton from './cart-quantity-button'
 import RemoveProductButton from './remove-product-button'
 
-import pogo from '/public/product-images/pogo/main.jpg'
-import blimpy from '/public/product-images/lemon-lion/main.jpg'
 import { formatPrice } from '@/lib/utils'
 import Link from 'next/link'
 
@@ -50,7 +48,7 @@ const CartItem = ({ item }: { item: CartItemType }) => {
           <div className="hidden sm:block">
             <div className="grid w-full grid-cols-8 items-center space-x-6">
               <Image
-                src={product.name.includes('pogo') ? pogo : blimpy}
+                src={product.primaryImagePath}
                 alt={`${product.name} image`}
                 width={100}
                 height={100}
@@ -77,7 +75,7 @@ const CartItem = ({ item }: { item: CartItemType }) => {
           <div className="block sm:hidden">
             <div className="grid w-full grid-cols-5 items-center">
               <Image
-                src={product.name.includes('pogo') ? pogo : blimpy}
+                src={product.primaryImagePath}
                 alt={`${product.name} image`}
                 width={100}
                 height={100}
