@@ -1,5 +1,9 @@
 # [SweetBeasts](https://www.sweetbeasts.shop)
 
+# THIS BRANCH IS THE PRODUCTION DEPLOYMENT, WHICH IS CURRENTLY A PLACEHOLDER
+
+## TO VIEW THE SOURCE OF THE ACTUAL ECOMMERCE PLATFORM, PLEASE GO TO THE DEVELOP OR TESTING BRANCH
+
 ## Tech Stack
 
 - ### Programming Language
@@ -154,11 +158,6 @@
 
 - Handles Payments
 - Calls should be made from the `@/lib/stripe` folder, but those should be called from server actions
-
-### [MDX](https://mdxjs.com/docs/)
-
-- Markdown for the web
-- Not yet configured, but will be used
 
 ### [React Email](https://react.email/docs/introduction)
 
