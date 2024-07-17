@@ -38,7 +38,7 @@ export default function OrderConfirmedUserEmail({
           <Container className="mx-auto max-w-lg rounded-lg bg-pink-100 p-6">
             <Section className="text-center">
               <Img
-                src="https://example.com/static/sweetbeasts-logo.png"
+                src="https://sweetbeasts.shop/sweetbeasts-logo.svg"
                 alt="SweetBeasts Logo"
                 width="120"
               />

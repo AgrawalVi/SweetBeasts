@@ -18,7 +18,6 @@ import { OrderWithData } from '@/types'
 interface OrderConfirmedAdminEmailProps {
   userName: string
   userEmail: string
-  plushie: string
   orderWithData: OrderWithData
 }
 
@@ -26,7 +25,6 @@ export default function OrderConfirmedAdminEmail({
   userName = 'SweetUser',
   userEmail = 'user@example.com',
   orderWithData,
-  plushie = 'Plushie Name',
 }: OrderConfirmedAdminEmailProps): JSX.Element {
   return (
     <Html>
