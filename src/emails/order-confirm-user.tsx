@@ -12,6 +12,7 @@ import {
   Preview,
   Section,
   Text,
+  Button,
 } from '@react-email/components';
 import { OrderWithData } from '@/types';
 import { formatPrice } from '@/lib/utils';
@@ -30,7 +31,7 @@ export default function OrderConfirmedUserEmail({
   const subtotal = lineItems.reduce((prev, item) => item.pricePerUnitInCents * item.quantity + prev, 0);
   const shipping = orderWithData.shippingPaidInCents || 0;
   const taxes = orderWithData.taxesPaidInCents || 0;
-  const total = orderWithData.totalPaidInCents || 0;
+  const total = subtotal + shipping + taxes;
 
   return (
     <Html>
@@ -43,7 +44,7 @@ export default function OrderConfirmedUserEmail({
           <Container className="mx-auto max-w-lg rounded-lg bg-pink-100 p-6">
             <Section className="text-center">
               <Img
-                src="https://example.com/static/sweetbeasts-logo.png"
+                src="https://www.sweetbeasts.shop/sweetbeasts-logo.svg"
                 alt="SweetBeasts Logo"
                 width="120"
               />
@@ -53,7 +54,7 @@ export default function OrderConfirmedUserEmail({
               <Text className="my-2 text-xl text-black">Hi {recipientName},</Text>
               <Text className="text-lg text-black">
                 Thank you for your order! We have received your order #
-                {orderWithData.orderNumber}
+                <span className="text-2xl font-bold">{orderWithData.orderNumber}</span>
               </Text>
               <Text className="text-lg text-black">
                 We will send you another email once your order has shipped.
@@ -65,30 +66,37 @@ export default function OrderConfirmedUserEmail({
               {lineItems.map((item, index) => (
                 <div key={index} className="flex justify-between text-lg text-black my-2">
                   <Text>{item.Product.name}</Text>
-                  <Text>{formatPrice(item.pricePerUnitInCents)} x {item.quantity}</Text>
+                  <Text className="ml-auto">{formatPrice(item.pricePerUnitInCents)} x {item.quantity}</Text>
                 </div>
               ))}
               <div className="flex w-full justify-between mt-4">
                 <Text className="text-lg text-black">Subtotal</Text>
-                <Text className="text-lg text-black">{formatPrice(subtotal)}</Text>
+                <Text className="ml-auto">{formatPrice(subtotal)}</Text>
               </div>
               <div className="flex w-full justify-between">
                 <Text className="text-lg text-black">Shipping</Text>
-                <Text className="text-lg text-black">
+                <Text className="ml-auto">
                   {shipping ? formatPrice(shipping) : 'Free :)'}
                 </Text>
               </div>
               {taxes > 0 && (
                 <div className="flex w-full justify-between">
                   <Text className="text-lg text-black">Taxes</Text>
-                  <Text className="text-lg text-black">{formatPrice(taxes)}</Text>
+                  <Text className="ml-auto">{formatPrice(taxes)}</Text>
                 </div>
               )}
               <Hr className="my-4 border-pink-300" />
               <div className="flex w-full justify-between">
                 <Text className="text-lg font-bold text-black">Total</Text>
-                <Text className="text-lg font-bold text-black">{formatPrice(total)}</Text>
+                <Text className="ml-auto text-lg font-bold text-black">{formatPrice(total)}</Text>
               </div>
+            </Section>
+            <Section className="text-center my-6">
+              <Link href={`https://example.com/orders/${orderWithData.orderNumber}`}>
+                <Button className="bg-pink-500 text-white font-bold py-2 px-4 rounded-full">
+                  View My Order
+                </Button>
+              </Link>
             </Section>
             <Hr className="my-4 border-pink-300" />
             <Text className="text-sm text-black">

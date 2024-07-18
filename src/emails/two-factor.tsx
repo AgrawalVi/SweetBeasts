@@ -70,7 +70,7 @@ export default function TwoFactorConfirmationEmail({
         <Container className="container">
           <Section className="text-center">
             <Img
-              src="https://example.com/static/sweetbeasts-logo.png"
+              src="https://www.sweetbeasts.shop/sweetbeasts-logo.svg"
               alt="SweetBeasts Logo"
               width="120"
             />
