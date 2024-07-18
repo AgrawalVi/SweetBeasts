@@ -24,6 +24,7 @@ import {
   getAllOpenCheckoutSessionsWithProductByProductId,
 } from '@/data/shop/open-checkout-session'
 import { createGuestUser, getGuestUserByEmail } from '@/data/shop/guest-user'
+import { sendOrderConfirmationEmail } from '@/lib/resend'
 
 const generateOrderNumber = async (): Promise<string> => {
   const orderNumber = `SB${crypto.randomInt(100_000, 100_000_0).toString()}`
@@ -296,6 +297,15 @@ export const createOrder = async (
 
   // delete the current checkout session from the database
   await deleteOpenCheckoutSessionByStripeCheckoutSessionId(checkoutSession.id)
+
+  // get order with data by stripe session id
+  const orderWithData = await getOrderWithDataByStripeSessionid(
+    checkoutSession.id,
+  )
+  if (orderWithData) {
+    // send order confirmation email to user
+    await sendOrderConfirmationEmail(orderWithData)
+  }
 
   return { success: 'order successfully created' }
 }

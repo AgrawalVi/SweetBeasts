@@ -8,6 +8,8 @@ import EmailConfirmation from '@/emails/email-confirmation'
 import ContactUsEmail from '@/emails/contact-us'
 import { CONTACT_US_EMAILS } from '@/constants'
 import TeamNotificationEmail from '@/emails/contact-us-team'
+import { OrderWithData } from '@/types'
+import OrderConfirmedUserEmail from '@/emails/order-confirm-user'
 
 const resend = new Resend(process.env.RESEND_API_KEY)
 const generalAudienceId = process.env.RESEND_GENERAL_AUDIENCE_ID!
@@ -162,4 +164,13 @@ export const sendFeedBackAdmin = async (
     }),
   })
   console.log('Feedback email sent to:', CONTACT_US_EMAILS)
+}
+
+export const sendOrderConfirmationEmail = async (order: OrderWithData) => {
+  await resend.emails.send({
+    from: fromEmail,
+    to: CONTACT_US_EMAILS,
+    subject: 'Thank You for Your Order!',
+    react: OrderConfirmedUserEmail({ orderWithData: order }),
+  })
 }
