@@ -38,25 +38,25 @@ export default async function Pogo({
 
   const images = [
     {
-      src: '/product-images/pogo/back.jpg',
+      src: '/test-product.jpg',
       alt: product.name,
       width: 300,
       height: 300,
     },
     {
-      src: '/product-images/pogo/tag-back.jpg',
+      src: '/test-product.jpg',
       alt: product.name,
       width: 250,
       height: 250,
     },
     {
-      src: '/product-images/pogo/tag-front.jpg',
+      src: '/test-product.jpg',
       alt: product.name,
       width: 275,
       height: 275,
     },
     {
-      src: product.primaryImagePath ?? 'https://via.placeholder.com/300',
+      src: '/test-product.jpg',
       alt: product.name,
       width: 300,
       height: 300,
