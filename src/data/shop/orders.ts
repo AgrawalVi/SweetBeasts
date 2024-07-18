@@ -59,8 +59,6 @@ export const getOrderWithDataByStripeSessionid = async (
         ShippingAddress: true,
       },
     })
-    console.log('order from db function', order)
-    console.log('product from db function', order?.lineItems[0]?.Product)
     return order
   } catch (e) {
     console.error('Error getting order by stripe session id', e)
