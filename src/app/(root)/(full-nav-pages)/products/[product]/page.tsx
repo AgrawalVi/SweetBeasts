@@ -20,7 +20,7 @@ export default async function Pogo({
   const product = await getProductByName(params.product.toLowerCase())
 
   if (!product) {
-    redirect('/products')
+    redirect('/')
   }
 
   if (params.product !== product.name.toLowerCase()) {
