@@ -177,8 +177,7 @@
 ### [React Email](https://react.email/docs/introduction)
 
 - Used for making email templates
-- All components should be placed in `@/components/emails`
-- Not yet configured, but will be used
+- Email components placed in '@/emails
 
 ## Branch Naming
 
