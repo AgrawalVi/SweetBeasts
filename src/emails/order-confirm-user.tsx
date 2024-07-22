@@ -64,9 +64,17 @@ export default function OrderConfirmedUserEmail({
             <Section>
               <Heading className="text-2xl font-bold text-black">Order Summary</Heading>
               {lineItems.map((item, index) => (
-                <div key={index} className="flex justify-between text-lg text-black my-2">
-                  <Text>{item.Product.name}</Text>
-                  <Text className="ml-auto">{formatPrice(item.pricePerUnitInCents)} x {item.quantity}</Text>
+                <div key={index} className="flex items-center my-2">
+                  <Img
+                    src={item.Product.primaryImagePath}
+                    alt={item.Product.name}
+                    width="50"
+                    className="rounded-lg mr-4"
+                  />
+                  <div className="flex justify-between w-full text-lg text-black">
+                    <Text>{item.Product.name}</Text>
+                    <Text className="ml-auto">{formatPrice(item.pricePerUnitInCents)} x {item.quantity}</Text>
+                  </div>
                 </div>
               ))}
               <div className="flex w-full justify-between mt-4">
