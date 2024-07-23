@@ -53,8 +53,10 @@ export default function OrderConfirmedUserEmail({
               </Heading>
               <Text className="my-2 text-xl text-black">Hi {recipientName},</Text>
               <Text className="text-lg text-black">
-                Thank you for your order! We have received your order #
-                <span className="text-2xl font-bold">{orderWithData.orderNumber}</span>
+                Thank you for your order! We have received your order number:
+              </Text>
+              <Text className="text-2xl font-bold text-black">
+                {orderWithData.orderNumber}
               </Text>
               <Text className="text-lg text-black">
                 We will send you another email once your order has shipped.
