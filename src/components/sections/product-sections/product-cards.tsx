@@ -5,7 +5,7 @@ import { InfiniteMovingCards } from '@/components/aceternity/infinite-cards'
 
 const testimonials = [
   {
-    img: '/product-images/pogo/main.jpg',
+    img: '/test-product.jpg',
     name: 'Pogo',
   },
   {

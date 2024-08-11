@@ -62,9 +62,6 @@ export default function OrderConfirmedAdminEmail({
                 <Text className="mt-2 text-base text-black">
                   <strong>Customer Email:</strong> {userEmail}
                 </Text>
-                <Text className="mt-2 text-base text-black">
-                  <strong>Plushie Ordered:</strong> {plushie}
-                </Text>
               </Section>
             </Section>
             <Hr className="my-4 border-pink-300" />
