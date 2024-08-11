@@ -51,16 +51,6 @@ const charityDonationsFAQ: FAQItem[] = [
       'We support charities focused on fighting hunger and protecting wildlife. Your purchase helps provide essential food resources to those in need and helps protect endangered species and their habitats.',
   },
   {
-    question: 'How much of the proceeds are donated to charity?',
-    answer:
-      'We donate 10% of each sale to our partner charities. Your purchase makes a meaningful difference!',
-  },
-  {
-    question: 'Can I choose which charity my purchase supports?',
-    answer:
-      'Yes, at checkout, you can choose from a variety of charities dedicated to fighting hunger or protecting wildlife. This way, you can direct your donation to a cause that is most meaningful to you.',
-  },
-  {
     question: 'How can I learn more about the impact of my purchase?',
     answer:
       'We provide regular updates on our website and through our newsletter about the projects and initiatives we support. You can also follow us on social media for the latest news and impact stories.',
