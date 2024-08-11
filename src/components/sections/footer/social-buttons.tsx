@@ -6,32 +6,24 @@ import {
   IconBrandTiktok,
 } from '@tabler/icons-react'
 
+const discordUrl = process.env.NEXT_PUBLIC_DISCORD_URL!
+const instagramUrl = process.env.NEXT_PUBLIC_INSTAGRAM_URL!
+const tiktokUrl = process.env.NEXT_PUBLIC_TIKTOK_URL!
+
 export default function SocialButton() {
   return (
     <div className="space-x-4 py-5">
-      <Link
-        href="https://discord.gg/fFQ9evv7aA"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
+      <Link href={discordUrl} target="_blank" rel="noopener noreferrer">
         <Button size="icon" variant="outline">
           <IconBrandDiscord />
         </Button>
       </Link>
-      <Link
-        href="https://www.instagram.com/sweetbeastsshop"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
+      <Link href={instagramUrl} target="_blank" rel="noopener noreferrer">
         <Button size="icon" variant="outline">
           <IconBrandInstagram />
         </Button>
       </Link>
-      <Link
-        href="https://www.tiktok.com/@sweetbeasts"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
+      <Link href={tiktokUrl} target="_blank" rel="noopener noreferrer">
         <Button size="icon" variant="outline">
           <IconBrandTiktok />
         </Button>

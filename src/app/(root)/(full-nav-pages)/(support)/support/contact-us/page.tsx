@@ -5,6 +5,10 @@ import ContactForm from '@/components/general/pages/contact-us/contact-us-form'
 import { Mail } from 'lucide-react'
 import Link from 'next/link'
 
+const discordUrl = process.env.NEXT_PUBLIC_DISCORD_URL!
+const instagramUrl = process.env.NEXT_PUBLIC_INSTAGRAM_URL!
+const emailUrl = process.env.NEXT_PUBLIC_SUPPORT_EMAIL_URL!
+
 export default function WobbleCardDemo() {
   return (
     <div className="mx-auto flex max-w-7xl flex-col px-4 py-8">
@@ -48,7 +52,7 @@ export default function WobbleCardDemo() {
                 Contact us via email at account@sweetbeasts.shop for inquiries.
               </p>
               <Link
-                href="mailto:account@sweetbeasts.shop"
+                href={emailUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="mt-4 inline-flex items-center rounded-lg bg-red-600 px-4 py-2 text-sm font-medium text-white shadow-md transition duration-300 ease-in-out hover:bg-red-700"
@@ -73,7 +77,7 @@ export default function WobbleCardDemo() {
                 Open a support ticket with us on Discord.
               </p>
               <Link
-                href="https://discord.gg/Rf4AecyDnB"
+                href={discordUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="mt-4 inline-flex items-center rounded-lg bg-indigo-600 px-4 py-2 text-sm font-medium text-white shadow-md transition duration-300 ease-in-out hover:bg-indigo-700"
@@ -102,7 +106,7 @@ export default function WobbleCardDemo() {
                 Send us a message on Instagram
               </p>
               <Link
-                href="https://www.instagram.com/sweetbeastsshop/"
+                href={instagramUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="mt-4 inline-flex items-center rounded-lg bg-pink-600 px-4 py-2 text-sm font-medium text-white shadow-md transition duration-300 ease-in-out hover:bg-pink-700"
@@ -113,7 +117,7 @@ export default function WobbleCardDemo() {
                   color={'#f5f5f5'}
                   className="mr-2"
                 />
-                Follow on Instagram
+                Our Instagram
               </Link>
             </div>
           </WobbleCard>
