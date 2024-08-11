@@ -11,16 +11,12 @@ import {
 const footerLinks = {
   shop: [
     {
-      name: 'All Products',
-      href: '/products',
+      name: 'Pogo',
+      href: '/products/pogo',
     },
     {
       name: 'Account',
       href: '/account',
-    },
-    {
-      name: 'Product Updates',
-      href: '/product-updates',
     },
     {
       name: 'Order Status',
@@ -35,10 +31,6 @@ const footerLinks = {
     {
       name: 'About Us',
       href: '/about-us',
-    },
-    {
-      name: 'Meet The Team',
-      href: '/about-us/team',
     },
     {
       name: 'Give Feedback',
