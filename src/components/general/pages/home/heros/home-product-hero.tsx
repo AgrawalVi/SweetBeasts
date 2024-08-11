@@ -6,7 +6,7 @@ import Image from 'next/image'
 
 export default function HomeProductHero() {
   return (
-    <div className="flex h-screen w-full items-center justify-center bg-[url('/home-page.jpg')] bg-cover bg-center lg:h-[70vh]">
+    <div className="flex h-screen w-full items-center justify-center bg-[url('/home-page.webp')] bg-cover bg-center lg:h-[70vh]">
       <div>
         <IntroducingProduct />
         <WobbleButton className="relative z-20">
