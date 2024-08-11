@@ -2,8 +2,16 @@ import SweetCards from "@/components/about-us/sweet-cards"
 import { TextGenerateEffect } from "@/components/aceternity/text-generate-effect"
 import TextSection from "@/components/custom/text-section"
 import { Button } from "@/components/ui/button"
-import { IconBrandDiscord, IconBrandInstagram, IconBrandTiktok } from "@tabler/icons-react"
+import {
+  IconBrandDiscord,
+  IconBrandInstagram,
+  IconBrandTiktok,
+} from "@tabler/icons-react"
 import Link from "next/link"
+
+const discordUrl = process.env.NEXT_PUBLIC_DISCORD_URL!
+const instagramUrl = process.env.NEXT_PUBLIC_INSTAGRAM_URL!
+const tiktokUrl = process.env.NEXT_PUBLIC_TIKTOK_URL!
 
 export default function CanvasRevealEffectDemo() {
   return (
@@ -46,35 +54,26 @@ export default function CanvasRevealEffectDemo() {
       </div>
       <div className="absolute z-10 bottom-3 flex flex-col w-full items-center space-y-3">
         <div className="flex flex-row space-x-5">
-          <Link
-            href="https://discord.gg/fFQ9evv7aA"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
+          <Link href={discordUrl} target="_blank" rel="noopener noreferrer">
             <Button size="icon" variant="outline">
               <IconBrandDiscord />
             </Button>
           </Link>
-          <Link
-            href="https://www.instagram.com/sweetbeastsshop"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
+          <Link href={instagramUrl} target="_blank" rel="noopener noreferrer">
             <Button size="icon" variant="outline">
               <IconBrandInstagram />
             </Button>
           </Link>
-          <Link
-            href="https://www.tiktok.com/@sweetbeasts"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
+          <Link href={tiktokUrl} target="_blank" rel="noopener noreferrer">
             <Button size="icon" variant="outline">
               <IconBrandTiktok />
             </Button>
           </Link>
         </div>
-        <div className="text-sm"> © 2024 SweetBeasts. All rights reserved.</div>
+        <div className="text-sm">
+          {" "}
+          © 2024 SweetBeasts. All rights reserved.
+        </div>
       </div>
     </main>
   )
