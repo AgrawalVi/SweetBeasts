@@ -13,17 +13,17 @@ import {
   Section,
   Text,
 } from '@react-email/components'
-import SweetbeastsLogo from '@/assets/logo/sweetbeasts-logo.svg'
 
 interface ContactUsEmailProps {
-  userName: string
-  userMessage: string
+  userName: string;
+  userMessage: string;
 }
-const logoImage = "https://www.sweetbeasts.shop/sweetbeasts-logo.svg"
+
+const logoImage = "https://www.sweetbeasts.shop/sweetbeasts-logo.svg";
 
 export default function ContactUsEmail({
-  userName = 'SweetUser',
-  userMessage = 'Message from SweetUser',
+  userName, 
+  userMessage, 
 }: ContactUsEmailProps): JSX.Element {
   return (
     <Html>
