@@ -18,6 +18,9 @@ interface ThankYouEmailProps {
   firstName: string
 }
 
+const baseURL = process.env.NEXT_PUBLIC_BASE_URL!
+const logoURL = process.env.NEXT_PUBLIC_LOGO_PNG_URL!
+
 export default function ThankYouEmail({
   firstName,
 }: ThankYouEmailProps): JSX.Element {
@@ -32,7 +35,7 @@ export default function ThankYouEmail({
           <Container className="mx-auto max-w-lg rounded-lg bg-pink-100 p-6">
             <Section className="text-center">
               <Img
-                src="https://www.sweetbeasts.shop/sweetbeasts-logo.svg"
+                src={logoURL}
                 alt="SweetBeasts Logo"
                 width="120"
               />
@@ -55,13 +58,13 @@ export default function ThankYouEmail({
             </Text>
             <Section className="mt-6 text-center">
               <Link
-                href="https://example.com/privacy-policy"
+                href={`${baseURL}/privacy-policy`}
                 className="mx-4 text-xs text-gray-400 underline underline-offset-2"
               >
                 Privacy Policy
               </Link>
               <Link
-                href="https://example.com/terms-of-service"
+                href={`${baseURL}/terms-of-service`}
                 className="mx-4 text-xs text-gray-400 underline underline-offset-2"
               >
                 Terms of Service
