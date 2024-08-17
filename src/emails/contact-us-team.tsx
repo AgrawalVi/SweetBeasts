@@ -13,6 +13,7 @@ import {
   Section,
   Text,
 } from '@react-email/components'
+import sweetbeastslogo from '@/assets/logo/sweetbeasts-logo.svg'
 
 interface TeamNotificationEmailProps {
   userName: string
@@ -40,7 +41,7 @@ export default function TeamNotificationEmail({
           <Container className="mx-auto max-w-lg rounded-lg bg-pink-100 p-6">
             <Section className="text-center">
               <Img
-                src="https://example.com/static/sweetbeasts-logo.png"
+                src={sweetbeastslogo}
                 alt="SweetBeasts Logo"
                 width="120"
               />

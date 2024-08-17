@@ -13,11 +13,13 @@ import {
   Section,
   Text,
 } from '@react-email/components'
+import SweetbeastsLogo from '@/assets/logo/sweetbeasts-logo.svg'
 
 interface ContactUsEmailProps {
   userName: string
   userMessage: string
 }
+const logoImage = "https://www.sweetbeasts.shop/sweetbeasts-logo.svg"
 
 export default function ContactUsEmail({
   userName = 'SweetUser',
@@ -34,9 +36,9 @@ export default function ContactUsEmail({
           <Container className="mx-auto max-w-lg rounded-lg bg-pink-100 p-6">
             <Section className="text-center">
               <Img
-                src="https://example.com/static/sweetbeasts-logo.png"
+                src={logoImage}
                 alt="SweetBeasts Logo"
-                width="120"
+                width="80"
               />
               <Heading className="my-4 text-3xl font-bold text-black">
                 Thank You for Contacting Us!
