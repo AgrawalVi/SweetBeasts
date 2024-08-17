@@ -3,9 +3,9 @@ import { cn } from '@/lib/utils'
 import {
   Heart,
   MessageCircleQuestion,
-  RocketIcon,
+  Rocket,
+  ShieldCheck,
   Tags,
-  ThumbsUp,
   Truck,
   WalletCards,
 } from 'lucide-react'
@@ -14,52 +14,52 @@ import { IconExchange } from '@tabler/icons-react'
 export function ReasonsForSweetBeastsGrid() {
   const features = [
     {
-      title: 'Fast Shipping',
+      title: 'Quality and Safety',
       description:
-        'Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum',
-      icon: <Truck />,
+        'Our plushies are made from high-quality, safe materials, ensuring they are perfect for all ages.',
+      icon: <ShieldCheck />,
     },
     {
-      title: 'Packed with Love',
+      title: 'Support a New Business',
       description:
-        'Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum',
+        'Your purchase helps a budding business grow and thrive, enabling us to bring more joy through our plushies.',
+      icon: <Rocket />,
+    },
+    {
+      title: 'Affordable Prices',
+      description:
+        'Our plushies are competitively priced, offering great value without compromising quality.',
+      icon: <Tags />,
+    },
+    {
+      title: 'Community Support',
+      description:
+        'We actively contribute to local hospitals and organize food drives, making a positive impact in our community.',
       icon: <Heart />,
     },
     {
-      title: '14 Day Return Policy',
+      title: 'Fast Shipping',
       description:
-        'Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum',
-      icon: <IconExchange />,
+        'Most orders are dispatched within 24 hours and delivered within 3-5 business days.',
+      icon: <Truck />,
     },
     {
-      title: 'Easy Support',
+      title: 'Excellent Customer Support',
       description:
-        'Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum',
+        'Reach our dedicated support team at support@sweetbeasts.shop for any assistance you need.',
       icon: <MessageCircleQuestion />,
     },
     {
       title: 'Free Shipping',
       description:
-        'Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum',
-      icon: <ThumbsUp />,
-    },
-    {
-      title: 'Our Mission',
-      description:
-        'Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum',
-      icon: <RocketIcon />,
-    },
-    {
-      title: 'Payment Options',
-      description:
-        'Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum',
+        'Enjoy free shipping on all orders, with no minimum purchase required.',
       icon: <WalletCards />,
     },
     {
-      title: 'Affordable Prices',
+      title: 'Easy Returns',
       description:
-        'Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum',
-      icon: <Tags />,
+        'Return any product within 14 days for a full refund or exchange, no questions asked.',
+      icon: <IconExchange />,
     },
   ]
   return (

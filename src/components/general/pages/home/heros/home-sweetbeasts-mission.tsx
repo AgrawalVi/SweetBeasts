@@ -10,7 +10,7 @@ export default function HomeSweetbeastsMission() {
           Our Mission
         </div>
         <div className="col-span-2">
-          <TextSection text="lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum" />
+          <TextSection text="At SweetBeasts we are dedicated to bringing joy and comfort to everyone through our plushies. We are committed to supporting children in need, spreading joy across generations, and promoting healthier lifestyles. Through our products and initiatives, we aim to make a positive impact on the world, one plushie at a time." />
         </div>
       </div>
     </div>
