@@ -42,7 +42,7 @@ export default function EmailConfirmation({
               <Heading className="my-4 text-3xl font-bold text-black">
                 Email Confirmation
               </Heading>
-              <Text className="my-2 text-xl text-black">Hi {firstName},</Text>
+              <Text className="my-2 text-xl text-black">Hi!</Text>
               <Text className="text-lg text-black">
                 Thanks for registering at SweetBeasts! Please confirm your email
                 address by clicking the button below.
