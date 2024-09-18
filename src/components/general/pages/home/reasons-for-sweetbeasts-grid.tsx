@@ -16,49 +16,49 @@ export function ReasonsForSweetBeastsGrid() {
     {
       title: 'Fast Shipping',
       description:
-        'Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum',
+        '',
       icon: <Truck />,
     },
     {
       title: 'Packed with Love',
       description:
-        'Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum',
+        '',
       icon: <Heart />,
     },
     {
       title: '14 Day Return Policy',
       description:
-        'Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum',
+        '',
       icon: <IconExchange />,
     },
     {
       title: 'Easy Support',
       description:
-        'Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum',
+        '',
       icon: <MessageCircleQuestion />,
     },
     {
       title: 'Free Shipping',
       description:
-        'Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum',
+        '',
       icon: <ThumbsUp />,
     },
     {
       title: 'Our Mission',
       description:
-        'Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum',
+        '',
       icon: <RocketIcon />,
     },
     {
       title: 'Payment Options',
       description:
-        'Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum',
+        '',
       icon: <WalletCards />,
     },
     {
       title: 'Affordable Prices',
       description:
-        'Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum',
+        '',
       icon: <Tags />,
     },
   ]

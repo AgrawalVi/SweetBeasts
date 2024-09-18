@@ -10,7 +10,7 @@ export default function HomeSweetbeastsMission() {
           Our Mission
         </div>
         <div className="col-span-2">
-          <TextSection text="lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum" />
+          <TextSection text="At SweetBeasts, our plushies are created by combining the sweetness of fruits with the playfulness of animals. Each one of our creations encourages a balanced diet and a healthier lifestyle. We foster a community that strives to make the world a better place. A portion of all our sales are donated to a variety of hunger and wild-life charities of your choice. We also team up with local children’s nonprofits to donate our plushies to bring comfort and joy to children who need it most. Each purchase is a step towards building a more caring, connected, and healthier world." />
         </div>
       </div>
     </div>
