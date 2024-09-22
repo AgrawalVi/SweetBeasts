@@ -29,7 +29,7 @@ export default function QuantitySelector({
           variant="ghost"
           size="sm"
           onClick={() => setQuantity(quantity + 1)}
-          className="hover:bg-background hover:text-primary"
+          className="hover:bg-background hover:text-foreground/40"
         >
           <Plus className="h-4 w-4" />
         </Button>

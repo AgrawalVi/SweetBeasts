@@ -76,7 +76,7 @@ export default function CartQuantityButton({
           size="sm"
           onClick={() => incrementProduct()}
           disabled={incrementProductPending}
-          className="hover:bg-background hover:text-primary"
+          className="hover:bg-background hover:text-foreground/40"
         >
           <Plus className="h-4 w-4" />
         </Button>
