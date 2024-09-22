@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'
 import {
   Tailwind,
   Body,
@@ -12,25 +12,28 @@ import {
   Preview,
   Section,
   Text,
-} from '@react-email/components';
-import { OrderWithData } from '@/types';
-import { formatPrice } from '@/lib/utils';
+} from '@react-email/components'
+import { OrderWithData } from '@/types'
+import { formatPrice } from '@/lib/utils'
 
 interface OrderConfirmedUserEmailProps {
-  orderWithData: OrderWithData;
+  orderWithData: OrderWithData
 }
 
 export default function OrderConfirmedUserEmail({
   orderWithData,
 }: OrderConfirmedUserEmailProps): JSX.Element {
-  const lineItems = orderWithData?.lineItems || [];
-  const shippingAddress = orderWithData?.ShippingAddress || {};
-  const recipientName = shippingAddress.recipientName || 'SweetUser';
+  const lineItems = orderWithData?.lineItems || []
+  const shippingAddress = orderWithData?.ShippingAddress || {}
+  const recipientName = shippingAddress.recipientName || 'SweetUser'
 
-  const subtotal = lineItems.reduce((prev, item) => item.pricePerUnitInCents * item.quantity + prev, 0);
-  const shipping = orderWithData.shippingPaidInCents || 0;
-  const taxes = orderWithData.taxesPaidInCents || 0;
-  const total = orderWithData.totalPaidInCents || 0;
+  const subtotal = lineItems.reduce(
+    (prev, item) => item.pricePerUnitInCents * item.quantity + prev,
+    0,
+  )
+  const shipping = orderWithData.shippingPaidInCents || 0
+  const taxes = orderWithData.taxesPaidInCents || 0
+  const total = orderWithData.totalPaidInCents || 0
   const baseURL = process.env.NEXT_PUBLIC_BASE_URL!
   const logoURL = process.env.NEXT_PUBLIC_LOGO_PNG_URL!
 
@@ -44,15 +47,13 @@ export default function OrderConfirmedUserEmail({
         <Body className="bg-white-100">
           <Container className="mx-auto max-w-lg rounded-lg bg-pink-100 p-6">
             <Section className="text-center">
-              <Img
-                src={logoURL}
-                alt="SweetBeasts Logo"
-                width="120"
-              />
+              <Img src={logoURL} alt="SweetBeasts Logo" width="120" />
               <Heading className="my-4 text-3xl font-bold text-black">
                 Order Confirmed
               </Heading>
-              <Text className="my-2 text-xl text-black">Hi {recipientName},</Text>
+              <Text className="my-2 text-xl text-black">
+                Hi {recipientName},
+              </Text>
               <Text className="text-lg text-black">
                 Thank you for your order! We have received your order #
                 {orderWithData.orderNumber}
@@ -63,16 +64,25 @@ export default function OrderConfirmedUserEmail({
             </Section>
             <Hr className="my-4 border-pink-300" />
             <Section>
-              <Heading className="text-2xl font-bold text-black">Order Summary</Heading>
+              <Heading className="text-2xl font-bold text-black">
+                Order Summary
+              </Heading>
               {lineItems.map((item, index) => (
-                <div key={index} className="flex justify-between text-lg text-black my-2">
+                <div
+                  key={index}
+                  className="my-2 flex justify-between text-lg text-black"
+                >
                   <Text>{item.Product.name}</Text>
-                  <Text>{formatPrice(item.pricePerUnitInCents)} x {item.quantity}</Text>
+                  <Text>
+                    {formatPrice(item.pricePerUnitInCents)} x {item.quantity}
+                  </Text>
                 </div>
               ))}
-              <div className="flex w-full justify-between mt-4">
+              <div className="mt-4 flex w-full justify-between">
                 <Text className="text-lg text-black">Subtotal</Text>
-                <Text className="text-lg text-black">{formatPrice(subtotal)}</Text>
+                <Text className="text-lg text-black">
+                  {formatPrice(subtotal)}
+                </Text>
               </div>
               <div className="flex w-full justify-between">
                 <Text className="text-lg text-black">Shipping</Text>
@@ -83,18 +93,23 @@ export default function OrderConfirmedUserEmail({
               {taxes > 0 && (
                 <div className="flex w-full justify-between">
                   <Text className="text-lg text-black">Taxes</Text>
-                  <Text className="text-lg text-black">{formatPrice(taxes)}</Text>
+                  <Text className="text-lg text-black">
+                    {formatPrice(taxes)}
+                  </Text>
                 </div>
               )}
               <Hr className="my-4 border-pink-300" />
               <div className="flex w-full justify-between">
                 <Text className="text-lg font-bold text-black">Total</Text>
-                <Text className="text-lg font-bold text-black">{formatPrice(total)}</Text>
+                <Text className="text-lg font-bold text-black">
+                  {formatPrice(total)}
+                </Text>
               </div>
             </Section>
             <Hr className="my-4 border-pink-300" />
             <Text className="text-sm text-black">
-              If you have any questions, feel free to contact us at support@example.com.
+              If you have any questions, feel free to contact us at
+              support@example.com.
             </Text>
             <Text className="my-2 text-xs text-gray-400">
               © {new Date().getFullYear()} SweetBeasts. All rights reserved.
@@ -117,5 +132,5 @@ export default function OrderConfirmedUserEmail({
         </Body>
       </Tailwind>
     </Html>
-  );
+  )
 }

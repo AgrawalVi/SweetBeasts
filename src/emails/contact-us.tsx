@@ -15,16 +15,16 @@ import {
 } from '@react-email/components'
 
 interface ContactUsEmailProps {
-  userName: string;
-  userMessage: string;
+  userName: string
+  userMessage: string
 }
 
 const baseURL = process.env.NEXT_PUBLIC_BASE_URL!
 const logoURL = process.env.NEXT_PUBLIC_LOGO_PNG_URL!
 
 export default function ContactUsEmail({
-  userName, 
-  userMessage, 
+  userName,
+  userMessage,
 }: ContactUsEmailProps): JSX.Element {
   return (
     <Html>

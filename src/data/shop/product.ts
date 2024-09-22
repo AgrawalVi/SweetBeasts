@@ -31,13 +31,12 @@ export const getProductByName = async (name: string) => {
   }
 }
 
-export const getProducts = async() => {
+export const getProducts = async () => {
   try {
     const products = await db.product.findMany()
     return products
   } catch (e) {
     console.error('Error getting products', e)
-  
   }
 }
 

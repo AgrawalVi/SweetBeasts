@@ -74,4 +74,3 @@ export const BackgroundGradient = ({
     </div>
   )
 }
-
