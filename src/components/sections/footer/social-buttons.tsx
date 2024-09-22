@@ -5,25 +5,22 @@ import {
   IconBrandInstagram,
   IconBrandTiktok,
 } from '@tabler/icons-react'
-
-const discordUrl = process.env.NEXT_PUBLIC_DISCORD_URL!
-const instagramUrl = process.env.NEXT_PUBLIC_INSTAGRAM_URL!
-const tiktokUrl = process.env.NEXT_PUBLIC_TIKTOK_URL!
+import { DISCORD_URL, INSTAGRAM_URL, TIKTOK_URL } from '@/constants'
 
 export default function SocialButton() {
   return (
     <div className="space-x-4 py-5">
-      <Link href={discordUrl} target="_blank" rel="noopener noreferrer">
+      <Link href={DISCORD_URL} target="_blank" rel="noopener noreferrer">
         <Button size="icon" variant="outline">
           <IconBrandDiscord />
         </Button>
       </Link>
-      <Link href={instagramUrl} target="_blank" rel="noopener noreferrer">
+      <Link href={INSTAGRAM_URL} target="_blank" rel="noopener noreferrer">
         <Button size="icon" variant="outline">
           <IconBrandInstagram />
         </Button>
       </Link>
-      <Link href={tiktokUrl} target="_blank" rel="noopener noreferrer">
+      <Link href={TIKTOK_URL} target="_blank" rel="noopener noreferrer">
         <Button size="icon" variant="outline">
           <IconBrandTiktok />
         </Button>
