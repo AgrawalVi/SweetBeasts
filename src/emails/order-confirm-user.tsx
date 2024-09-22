@@ -31,6 +31,8 @@ export default function OrderConfirmedUserEmail({
   const shipping = orderWithData.shippingPaidInCents || 0;
   const taxes = orderWithData.taxesPaidInCents || 0;
   const total = orderWithData.totalPaidInCents || 0;
+  const baseURL = process.env.NEXT_PUBLIC_BASE_URL!
+  const logoURL = process.env.NEXT_PUBLIC_LOGO_PNG_URL!
 
   return (
     <Html>
@@ -43,7 +45,7 @@ export default function OrderConfirmedUserEmail({
           <Container className="mx-auto max-w-lg rounded-lg bg-pink-100 p-6">
             <Section className="text-center">
               <Img
-                src="https://sweetbeasts.shop/sweetbeasts-logo.svg"
+                src={logoURL}
                 alt="SweetBeasts Logo"
                 width="120"
               />
@@ -99,13 +101,13 @@ export default function OrderConfirmedUserEmail({
             </Text>
             <Section className="mt-6 text-center">
               <Link
-                href="https://example.com/privacy-policy"
+                href={`${baseURL}/privacy-policy`}
                 className="mx-4 text-pink-500 underline"
               >
                 Privacy Policy
               </Link>
               <Link
-                href="https://example.com/terms-of-service"
+                href={`${baseURL}/terms-of-service`}
                 className="mx-4 text-pink-500 underline"
               >
                 Terms of Service

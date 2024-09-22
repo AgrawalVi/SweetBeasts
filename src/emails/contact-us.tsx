@@ -15,13 +15,16 @@ import {
 } from '@react-email/components'
 
 interface ContactUsEmailProps {
-  userName: string
-  userMessage: string
+  userName: string;
+  userMessage: string;
 }
 
+const baseURL = process.env.NEXT_PUBLIC_BASE_URL!
+const logoURL = process.env.NEXT_PUBLIC_LOGO_PNG_URL!
+
 export default function ContactUsEmail({
-  userName = 'SweetUser',
-  userMessage = 'Message from SweetUser',
+  userName, 
+  userMessage, 
 }: ContactUsEmailProps): JSX.Element {
   return (
     <Html>
@@ -34,9 +37,10 @@ export default function ContactUsEmail({
           <Container className="mx-auto max-w-lg rounded-lg bg-pink-100 p-6">
             <Section className="text-center">
               <Img
-                src="https://example.com/static/sweetbeasts-logo.png"
+                src={logoURL}
                 alt="SweetBeasts Logo"
                 width="120"
+                className="mx-auto"
               />
               <Heading className="my-4 text-3xl font-bold text-black">
                 Thank You for Contacting Us!
@@ -63,13 +67,13 @@ export default function ContactUsEmail({
             </Text>
             <Section className="mt-6 text-center">
               <Link
-                href="https://example.com/privacy-policy"
+                href={`${baseURL}/privacy-policy`}
                 className="mx-4 text-pink-500 underline"
               >
                 Privacy Policy
               </Link>
               <Link
-                href="https://example.com/terms-of-service"
+                href={`${baseURL}/terms-of-service`}
                 className="mx-4 text-pink-500 underline"
               >
                 Terms of Service

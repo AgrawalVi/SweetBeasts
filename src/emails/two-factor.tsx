@@ -16,7 +16,8 @@ interface TwoFactorConfirmationEmailProps {
   firstName: string
   twoFactorCode: string // Make the prop optional
 }
-
+const baseURL = process.env.NEXT_PUBLIC_BASE_URL!
+const logoURL = process.env.NEXT_PUBLIC_LOGO_PNG_URL!
 export default function TwoFactorConfirmationEmail({
   firstName,
   twoFactorCode = '000000',
@@ -70,9 +71,10 @@ export default function TwoFactorConfirmationEmail({
         <Container className="container">
           <Section className="text-center">
             <Img
-              src="https://example.com/static/sweetbeasts-logo.png"
+              src={logoURL}
               alt="SweetBeasts Logo"
               width="120"
+              className="mx-auto"
             />
             <Heading className="my-4 text-3xl font-bold text-black">
               Two-Factor Confirmation
@@ -104,13 +106,13 @@ export default function TwoFactorConfirmationEmail({
           </Text>
           <Section className="mt-6 text-center text-xs">
             <a
-              href="https://sweetbeasts.shop/privacy-policy"
+              href={`${baseURL}/privacy-policy`}
               className="mx-4 text-gray-400 underline underline-offset-2"
             >
               Privacy Policy
             </a>
             <a
-              href="https://sweetbeasts.shop/terms-of-service"
+              href={`${baseURL}/terms-of-service`}
               className="mx-4 text-gray-400 underline underline-offset-2"
             >
               Terms of Service
