@@ -3,18 +3,18 @@ const nextConfig = {
   redirects: async () => [
     {
       source: '/pogo',
-      destination: '/lore/pogo',
-      permanent: true,
+      destination: '/sweet-haven/pogo',
+      permanent: false,
     },
     {
       source: '/all-products',
       destination: '/products/pogo',
-      permanent: true,
+      permanent: false,
     },
     {
       source: '/products',
       destination: '/products/pogo',
-      permanent: true,
+      permanent: false,
     },
   ],
 }
