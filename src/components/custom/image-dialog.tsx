@@ -54,20 +54,22 @@ export default function ImageDialog({
               width={width}
               height={height}
               objectFit="cover"
-              className="max-w-[90vw] rounded-md"
+              className="w-full max-w-[90vw] sm:max-w-[60vw] h-auto rounded-md mx-auto"
             />
           </div>
         </BackgroundGradient>
       </DialogTrigger>
       <DialogOverlay className="bg-black/60" />
-      <DialogContent className="max-w-[70vh] justify-center p-0">
-        <Image
-          src={src}
-          alt={alt}
-          width={1000}
-          height={1000}
-          className="w-[70vh] rounded-lg"
-        />
+      <DialogContent className="flex items-center justify-center p-0">
+        <div className="relative w-full max-w-[90vw] sm:max-w-[60vw] h-auto">
+          <Image
+            src={src}
+            alt={alt}
+            width={1000}
+            height={1000}
+            className="w-full h-auto max-h-[80vh] object-contain rounded-lg mx-auto"
+          />
+        </div>
       </DialogContent>
     </Dialog>
   )
