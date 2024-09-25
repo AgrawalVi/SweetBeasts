@@ -62,14 +62,15 @@ export default async function Pogo({
     },
   ]
 
-  // Add SVG paths here
+  // Add SVG paths here, ensure these SVG files are in your public folder
   const svgs = [
-    'plushie artwork R-04.svg',
-    '/path/to/svg2.svg',
-    '/path/to/svg3.svg',
-    '/path/to/svg4.svg',
-    '/path/to/svg5.svg',
-    '/path/to/svg6.svg',
+    '/plushie artwork R-04.svg',
+    '/plushie artwork R-05.svg',
+    '/plushie artwork R-06.svg',
+    '/plushie artwork R-07.svg',
+    '/plushie artwork R-08.svg',
+    '/plushie artwork R-09.svg',
+    '/plushie artwork R-10.svg',
   ]
 
   return (
@@ -91,8 +92,8 @@ export default async function Pogo({
             <ImageDialog
               src={product.primaryImagePath}
               alt={product.name}
-              width={500}
-              height={500}
+              width={400}
+              height={400}
               className={'w-full rounded-md'}
             />
           </div>
@@ -115,6 +116,13 @@ export default async function Pogo({
         </div>
 
         {/* Lore Section */}
+        <Image
+          src={svgs[0]}
+          alt="SVG 1"
+          width={300}
+          height={300}
+          className="absolute top-10 left-10 w-24 h-24 sm:w-24 sm:h-24 md:w-36 md:h-36 lg:w-36 lg:h-48 xl:w-48 xl:h-48"
+        />
         <LoreTeaser />
 
         {/* Image Grid Section */}
@@ -122,44 +130,65 @@ export default async function Pogo({
 
         {/* Fixed Irregularly Placed SVGs */}
         <div className="relative w-full h-screen">
-          {/* SVG 1 */}
-          <img
+          {/* SVG 1 (Already done) */}
+          <Image
             src={svgs[0]}
             alt="SVG 1"
-            className="absolute top-10 left-10 w-24 h-24"
+            width={100}
+            height={100}
+            className="absolute top-10 left-10 w-24 h-24 sm:w-36 sm:h-36 md:w-48 md:h-48 lg:w-64 lg:h-64 xl:w-80 xl:h-80"
           />
-          {/* SVG 2 */}
-          <img
+
+          {/* SVG 2 (Inverted on the right, placed higher) */}
+          <Image
             src={svgs[1]}
             alt="SVG 2"
-            className="absolute top-40 right-20 w-32 h-32"
+            width={128}
+            height={128}
+            className="absolute top-1/4 right-10 w-24 h-24 sm:w-36 sm:h-36 md:w-48 md:h-48 lg:w-64 lg:h-64 xl:w-80 xl:h-80"
           />
-          {/* SVG 3 */}
-          <img
+
+          {/* SVG 3 (Bottom left, near middle) */}
+          <Image
             src={svgs[2]}
             alt="SVG 3"
-            className="absolute bottom-20 left-20 w-28 h-28"
+            width={112}
+            height={112}
+            className="absolute bottom-1/4 left-10 w-24 h-24 sm:w-36 sm:h-36 md:w-48 md:h-48 lg:w-64 lg:h-64 xl:w-80 xl:h-80"
           />
-          {/* SVG 4 */}
-          <img
+
+          {/* SVG 4 (Bottom right) */}
+          <Image
             src={svgs[3]}
             alt="SVG 4"
-            className="absolute bottom-10 right-10 w-24 h-24"
+            width={96}
+            height={96}
+            className="absolute bottom-10 right-10 w-24 h-24 sm:w-36 sm:h-36 md:w-48 md:h-48 lg:w-64 lg:h-64 xl:w-80 xl:h-80"
           />
-          {/* SVG 5 */}
-          <img
+
+          {/* SVG 5 (Centered on the left) */}
+          <Image
             src={svgs[4]}
             alt="SVG 5"
-            className="absolute top-1/2 left-1/4 w-20 h-20"
+            width={80}
+            height={80}
+            className="absolute top-1/2 left-10 w-24 h-24 sm:w-36 sm:h-36 md:w-48 md:h-48 lg:w-64 lg:h-64 xl:w-80 xl:h-80"
           />
-          {/* SVG 6 */}
-          <img
+
+          {/* SVG 6 (Centered on the right) */}
+          <Image
             src={svgs[5]}
             alt="SVG 6"
-            className="absolute top-1/3 right-1/3 w-36 h-36"
+            width={144}
+            height={144}
+            className="absolute top-1/2 right-10 w-24 h-24 sm:w-36 sm:h-36 md:w-48 md:h-48 lg:w-64 lg:h-64 xl:w-80 xl:h-80"
           />
         </div>
       </div>
     </main>
   )
 }
+
+
+
+
