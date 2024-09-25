@@ -2,34 +2,38 @@ import 'server-only'
 
 import { db } from '@/lib/db'
 
-export const getProductById = async (id: number) => {
+export const getProductVariantById = async (id: number) => {
   try {
-    const product = await db.product.findUnique({
+    return await db.productVariant.findUnique({
       where: {
         id: id,
       },
+      include: {
+        ParentProduct: true,
+      },
     })
-    return product
   } catch (e) {
-    console.error('Error getting product by id', e)
+    console.error(e)
   }
 }
 
 export async function getProductByStripePriceId(
   stripePriceId: string | undefined | null,
 ) {
+  if (!stripePriceId) {
+    return null
+  }
   try {
-    if (!stripePriceId) {
-      return null
-    }
-    const product = await db.product.findFirst({
+    return await db.productVariant.findUnique({
       where: {
         stripePriceId: stripePriceId,
       },
+      include: {
+        ParentProduct: true,
+      },
     })
-    return product
   } catch (e) {
-    console.error('Error getting product by stripe price id', e)
+    console.error(e)
     return null
   }
 }
@@ -39,7 +43,7 @@ export const updateProductInventoryAndNumSold = async (
   quantity: number,
 ) => {
   try {
-    const product = await db.product.update({
+    return await db.productVariant.update({
       where: {
         id,
       },
@@ -52,9 +56,8 @@ export const updateProductInventoryAndNumSold = async (
         },
       },
     })
-    return product
   } catch (e) {
-    console.error('Error updating product inventory and num sold', e)
+    console.error(e)
     return null
   }
 }
