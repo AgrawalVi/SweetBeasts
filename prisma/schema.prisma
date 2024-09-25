@@ -155,74 +155,54 @@ model Product {
   id   Int    @id @default(autoincrement())
   name String @unique
 
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
-  active   Boolean @default(true)
+  active   Boolean @default(false)
   archived Boolean @default(false)
 
-  productHref         String
-  primaryProductImage String
+  productHref         String?
+  primaryProductImage String?
 
   description String
 
-  primaryVariantId Int              @unique
-  Variants         ProductVariant[] @relation("variants")
-  PrimaryVariant   ProductVariant   @relation("primaryVariant", fields: [primaryVariantId], references: [id])
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  Variants ProductVariant[] @relation("variants")
 }
 
 model ProductVariant {
   id Int @id @default(autoincrement())
 
-  variantProductName String @unique
-  variantKey         String
-  variantDescription String
+  variantProductName String  @unique
+  variantKey         String?
+  variantDescription String?
+  primaryVariant     Boolean @default(false)
 
   inventory Int
   numSold   Int @default(0)
 
-  available Boolean @default(true)
+  available Boolean @default(false)
   archived  Boolean @default(false)
 
   stripeProductId String @unique
 
+  imageHref String?
+
   parentProductId Int
-  ParentProduct   Product  @relation("variants", fields: [parentProductId], references: [id], onDelete: Restrict)
-  Product         Product? @relation("primaryVariant")
+  ParentProduct   Product @relation("variants", fields: [parentProductId], references: [id], onDelete: Restrict)
 
   cartItems            CartItem[]
   lineItems            LineItem[]
   openCheckoutSessions OpenCheckoutSessions[]
 
-  currentPriceId   Int     @unique
-  HistoricalPrices Price[] @relation("historicalPrices")
-  CurrentPrice     Price   @relation(fields: [currentPriceId], references: [id])
+  priceInCents  Int
+  stripePriceId String @unique
+
+  shippingIncluded Boolean @default(false)
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
   @@unique([parentProductId, variantKey])
-}
-
-model Price {
-  id Int @id @default(autoincrement())
-
-  priceInCents  Int
-  stripePriceId String @unique
-
-  shippingIncluded Boolean @default(false)
-  active           Boolean @default(true)
-
-  startDate DateTime  @default(now())
-  endDate   DateTime?
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
-  productId Int
-
-  ProductVariant ProductVariant  @relation("historicalPrices", fields: [productId], references: [id], onDelete: Restrict)
-  Product        ProductVariant?
 }
 
 model Order {
