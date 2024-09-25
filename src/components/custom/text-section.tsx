@@ -9,18 +9,24 @@ type TextSectionLink = {
 interface TextSectionProps {
   text: string
   className?: string
+  textClassName?: string
   linkInfo?: TextSectionLink
 }
 
-const TextSection = ({ text, className, linkInfo }: TextSectionProps) => {
+const TextSection = ({
+  text,
+  className,
+  textClassName,
+  linkInfo,
+}: TextSectionProps) => {
   return (
     <main
       className={cn(
-        'm-10 max-w-[60rem] rounded-xl bg-background p-5 text-base shadow-pink-light transition-all duration-1000 hover:scale-[1.01] hover:shadow-pink-strong dark:shadow-teal-light dark:hover:shadow-teal-strong sm:p-10 md:text-lg',
+        'm-10 max-w-[60rem] rounded-xl bg-background p-5 text-base shadow-pink-light transition-all duration-1000 hover:scale-[1.01] hover:shadow-pink-strong dark:shadow-teal-light dark:hover:shadow-teal-strong sm:p-8 md:text-lg',
         className,
       )}
     >
-      <div className="text-center">{text}</div>
+      <div className={cn('text-center', textClassName)}>{text}</div>
       <div className="flex justify-end underline underline-offset-2">
         {linkInfo && (
           <>

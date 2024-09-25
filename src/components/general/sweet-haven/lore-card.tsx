@@ -30,14 +30,14 @@ export default function LoreCard({
             alt={`${productName} Animation Static`}
             height="300"
             width="300"
-            className="absolute left-0 top-0 object-contain transition-opacity duration-300 group-hover:opacity-0"
+            className="absolute left-0 top-0 object-contain transition-opacity duration-200 group-hover:opacity-0"
           />
           <Image
             src={animatedImageHref}
             alt={`${productName} Animation`}
             height="300"
             width="300"
-            className="absolute left-0 top-0 object-contain opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+            className="absolute left-0 top-0 object-contain opacity-0 transition-opacity duration-200 group-hover:opacity-100"
           />
         </div>
       </BackgroundGradient>
