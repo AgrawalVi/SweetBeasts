@@ -91,8 +91,8 @@ export default async function Pogo({
             <ImageDialog
               src={product.primaryImagePath}
               alt={product.name}
-              width={400}
-              height={400}
+              width={500}
+              height={500}
               className={'w-full rounded-md'}
             />
           </div>
