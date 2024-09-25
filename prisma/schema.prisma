@@ -213,7 +213,8 @@ model Order {
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 
-  orderNumber String @unique
+  orderNumber    String @unique
+  viewOrderToken String @unique
 
   stripeOrderId    String @unique
   stripeCustomerId String
@@ -237,7 +238,6 @@ model Order {
   LineItems           LineItem[]
   User                User?                 @relation(fields: [userId], references: [id], onDelete: SetNull)
   guestUser           GuestUser?            @relation(fields: [guestUserId], references: [id], onDelete: SetNull)
-  ViewOrderToken      ViewOrderToken[]
   ContactUsSubmission ContactUsSubmission[]
 }
 
@@ -278,17 +278,6 @@ model ShippingAddress {
   Order     Order[]
   User      User?      @relation(fields: [userId], references: [id], onDelete: SetNull)
   GuestUser GuestUser? @relation(fields: [guestUserId], references: [id])
-}
-
-model ViewOrderToken {
-  id      String   @id @default(cuid())
-  orderId Int
-  token   String   @unique
-  expires DateTime
-
-  Order Order @relation(fields: [orderId], references: [id], onDelete: Cascade)
-
-  @@unique([orderId, token])
 }
 
 model OpenCheckoutSessions {
