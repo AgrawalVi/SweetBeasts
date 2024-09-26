@@ -3,7 +3,7 @@ import TextSection from '@/components/custom/text-section'
 export default function LoreTeaser() {
   return (
     <div className="flex flex-col">
-      <div className="header-gradient text-center text-5xl sm:text-6xl md:text-7xl">
+      <div className="header-gradient text-center text-4xl sm:text-5xl md:text-6xl">
         Pogo's Story
       </div>
       <div>

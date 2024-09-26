@@ -118,54 +118,66 @@ export default async function Pogo({
 
         {/* Lore Section */}
         <LoreTeaser />
+        
+        {/* Enlarged SVGs positioned on the margins and moved upwards */}
+        <div className="absolute inset-0 pointer-events-none hidden md:block">
+          {/* Left side SVGs next to the Lore Teaser, moved upwards and further to the margin */}
+          <div className="absolute top-[30%] left-[-15%] flex flex-col space-y-12"> {/* Moved further up */}
+            <Image
+              src={svgs[0]}
+              alt="SVG Left 1"
+              width={350}  
+              height={350} 
+              className="w-[350px] h-[350px]"  
+            />
+          </div>
+          <div className="absolute top-[10%] left-[-25%] flex flex-col space-y-12"> {/* Moved further up */}
+            <Image
+              src={svgs[4]}
+              alt="SVG Right 1"
+              width={350}  
+              height={350}
+              className="w-[350px] h-[350px]"  
+            />
+          </div>
+          <div className="absolute top-[40%] left-[-15%] flex flex-col space-y-12">
+            <Image
+              src={svgs[1]}
+              alt="SVG Left 2"
+              width={350}  
+              height={350} 
+              className="w-[350px] h-[350px]"  
+            />
+          </div>
+          {/* Right side SVGs next to the Lore Teaser, moved upwards and further to the margin */}
+          <div className="absolute top-[10%] right-[-25%] flex flex-col space-y-12"> {/* Moved further up */}
+            <Image
+              src={svgs[2]}
+              alt="SVG Right 1"
+              width={350}  
+              height={350}
+              className="w-[350px] h-[350px]"  
+            />
+            <Image
+              src={svgs[4]}
+              alt="SVG Right 1"
+              width={350}  
+              height={350}
+              className="w-[350px] h-[350px]"  
+            />
+            <Image
+              src={svgs[3]}
+              alt="SVG Right 2"
+              width={350}  
+              height={350} 
+              className="w-[350px] h-[350px]"  
+            />
+          </div>
+        </div>
 
         {/* Image Grid Section */}
         <ImageGrid images={images} className="w-full rounded-md" />
 
-        {/* Fixed Irregularly Placed SVGs */}
-        <div className="absolute inset-0 pointer-events-none">
-
-
-          {/* SVG 3 (Center left, far edge) */}
-          <Image
-            src={svgs[2]}
-            alt="SVG 3"
-            width={112}
-            height={112}
-            className="absolute top-1/2 left-0 transform -translate-y-1/2 w-24 h-24 sm:w-36 sm:h-36 md:w-48 md:h-48 lg:w-64 lg:h-64 xl:w-80 xl:h-80"
-            style={{ left: '1vw' }} // Responsive distance from left edge
-          />
-
-          {/* SVG 4 (Center right, far edge) */}
-          <Image
-            src={svgs[3]}
-            alt="SVG 4"
-            width={96}
-            height={96}
-            className="absolute top-1/2 right-0 transform -translate-y-1/2 w-24 h-24 sm:w-36 sm:h-36 md:w-48 md:h-48 lg:w-64 lg:h-64 xl:w-80 xl:h-80"
-            style={{ right: '1vw' }} // Responsive distance from right edge
-          />
-
-          {/* SVG 5 (Bottom left, far edge) */}
-          <Image
-            src={svgs[4]}
-            alt="SVG 5"
-            width={80}
-            height={80}
-            className="absolute bottom-10 left-0 w-24 h-24 sm:w-36 sm:h-36 md:w-48 md:h-48 lg:w-64 lg:h-64 xl:w-80 xl:h-80"
-            style={{ left: '1vw' }} // Use vw for consistency across screen sizes
-          />
-
-          {/* SVG 6 (Bottom right, far edge) */}
-          <Image
-            src={svgs[5]}
-            alt="SVG 6"
-            width={144}
-            height={144}
-            className="absolute bottom-10 right-0 w-24 h-24 sm:w-36 sm:h-36 md:w-48 md:h-48 lg:w-64 lg:h-64 xl:w-80 xl:h-80"
-            style={{ right: '1vw' }} // Maintain distance from the right edge with vw
-          />
-        </div>
       </div>
     </main>
   )
