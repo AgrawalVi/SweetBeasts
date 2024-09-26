@@ -16,20 +16,6 @@ export const getOrderById = async (id: number) => {
   }
 }
 
-export const getAllOrdersByEmail = async (email: string) => {
-  try {
-    const orders = await db.order.findMany({
-      where: {
-        email,
-      },
-    })
-    return orders
-  } catch (e) {
-    console.error('Error getting orders by email', e)
-    return null
-  }
-}
-
 export const getOrderByOrderNumber = async (orderNumber: string) => {
   try {
     const order = await db.order.findUnique({
@@ -44,26 +30,40 @@ export const getOrderByOrderNumber = async (orderNumber: string) => {
   }
 }
 
-export const getOrderWithDataByStripeSessionid = async (
+export const getOrderByStripeSessionId = async (stripeOrderId: string) => {
+  try {
+    return await db.order.findUnique({
+      where: {
+        stripeOrderId
+      }
+    })
+  } catch (e) {
+    console.error(e)
+    return null
+  }
+}
+
+export const getOrderWithDataByStripeSessionId = async (
   stripeOrderId: string,
 ) => {
   try {
-    const order = await db.order.findUnique({
+    return await db.order.findUnique({
       where: {
         stripeOrderId,
       },
       include: {
         lineItems: {
-          include: { Product: true },
+          include: {
+            productVariant: {
+              include: { parentProduct: true },
+            },
+          },
         },
         ShippingAddress: true,
       },
     })
-    console.log('order from db function', order)
-    console.log('product from db function', order?.lineItems[0]?.Product)
-    return order
   } catch (e) {
-    console.error('Error getting order by stripe session id', e)
+    console.error(e)
     return null
   }
 }

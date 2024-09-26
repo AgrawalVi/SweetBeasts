@@ -3,10 +3,13 @@ import {
   LineItem,
   Order,
   Product,
+  ProductVariant,
   ShippingAddress,
 } from '@prisma/client'
 
-export type LineItemWithProduct = LineItem & { Product: Product }
+export type LineItemWithProduct = LineItem & {
+  product: ProductVariant & { parentProduct: Product }
+}
 
 export type GuestUserWithData = GuestUser & {
   shippingAddresses: ShippingAddress[]

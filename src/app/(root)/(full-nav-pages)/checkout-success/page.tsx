@@ -1,7 +1,7 @@
 import OrderDetails from '@/components/general/pages/checkout-success/order-details'
 import OrderStatusBar from '@/components/general/pages/view-order/order-status-bar'
 import OrderSummary from '@/components/general/pages/view-order/order-summary'
-import { getOrderWithDataByStripeSessionid } from '@/data/shop/orders'
+import { getOrderWithDataByStripeSessionId } from '@/data/shop/orders'
 import { OrderWithData } from '@/types'
 import { formatDate } from '@/lib/date-functions'
 import Link from 'next/link'
@@ -18,7 +18,7 @@ export default async function CheckoutSuccess({
     return <div>Session ID not found</div>
   }
 
-  const order: OrderWithData | null = await getOrderWithDataByStripeSessionid(
+  const order: OrderWithData | null = await getOrderWithDataByStripeSessionId(
     searchParams.session_id,
   )
 

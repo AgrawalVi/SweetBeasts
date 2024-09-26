@@ -22,12 +22,11 @@ export const createGuestUser = async (
 
 export const getGuestUserByEmail = async (email: string) => {
   try {
-    const guestUser = await db.guestUser.findUnique({
+    return await db.guestUser.findUnique({
       where: {
         email,
       },
     })
-    return guestUser
   } catch (e) {
     console.error('Error getting guest user by email', e)
     return null

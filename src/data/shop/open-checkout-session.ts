@@ -63,12 +63,11 @@ export const deleteOpenCheckoutSessionByStripeCheckoutSessionId = async (
   stripeCheckoutSessionId: string,
 ) => {
   try {
-    const openCheckoutSession = await db.openCheckoutSessions.delete({
+    await db.openCheckoutSessions.delete({
       where: {
         stripeCheckoutSessionId,
       },
     })
-    return openCheckoutSession
   } catch (e) {
     console.error('Error deleting open checkout session', e)
     return null

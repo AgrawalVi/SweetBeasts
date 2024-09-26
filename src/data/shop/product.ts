@@ -9,7 +9,7 @@ export const getProductVariantById = async (id: number) => {
         id: id,
       },
       include: {
-        ParentProduct: true,
+        parentProduct: true,
       },
     })
   } catch (e) {
@@ -29,7 +29,7 @@ export async function getProductByStripePriceId(
         stripePriceId: stripePriceId,
       },
       include: {
-        ParentProduct: true,
+        parentProduct: true,
       },
     })
   } catch (e) {

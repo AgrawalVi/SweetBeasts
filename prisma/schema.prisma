@@ -220,7 +220,7 @@ model Order {
   stripeCustomerId String
 
   shippingAddressId Int
-  ShippingAddress   ShippingAddress @relation(fields: [shippingAddressId], references: [id], onDelete: Restrict)
+  shippingAddress   ShippingAddress @relation(fields: [shippingAddressId], references: [id], onDelete: Restrict)
 
   couponId String?
 
