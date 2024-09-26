@@ -8,7 +8,7 @@ export const createOpenCheckoutSession = async (
   items: stripeLineItemWithProductId[],
 ) => {
   try {
-    const openCheckoutSession = await db.openCheckoutSessions.create({
+    return await db.openCheckoutSessions.create({
       data: {
         stripeCheckoutSessionId,
         products: {
@@ -18,7 +18,6 @@ export const createOpenCheckoutSession = async (
         },
       },
     })
-    return openCheckoutSession
   } catch (e) {
     console.error('Error creating open checkout session', e)
     return null
@@ -29,7 +28,7 @@ export const getAllOpenCheckoutSessionsWithProductByProductId = async (
   productId: number,
 ) => {
   try {
-    const openCheckoutSessions = await db.openCheckoutSessions.findMany({
+    return await db.openCheckoutSessions.findMany({
       where: {
         products: {
           some: {
@@ -38,7 +37,6 @@ export const getAllOpenCheckoutSessionsWithProductByProductId = async (
         },
       },
     })
-    return openCheckoutSessions
   } catch (e) {
     console.error('Error getting all open checkout sessions with product', e)
     return []
@@ -47,12 +45,11 @@ export const getAllOpenCheckoutSessionsWithProductByProductId = async (
 
 export const deleteOpenCheckoutSessionById = async (id: number) => {
   try {
-    const openCheckoutSession = await db.openCheckoutSessions.delete({
+    return await db.openCheckoutSessions.delete({
       where: {
         id,
       },
     })
-    return openCheckoutSession
   } catch (e) {
     console.error('Error deleting open checkout session', e)
     return null

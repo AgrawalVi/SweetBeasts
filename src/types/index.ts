@@ -8,7 +8,7 @@ import {
 } from '@prisma/client'
 
 export type LineItemWithProduct = LineItem & {
-  product: ProductVariant & { parentProduct: Product }
+  productVariant: ProductVariant & { parentProduct: Product }
 }
 
 export type GuestUserWithData = GuestUser & {

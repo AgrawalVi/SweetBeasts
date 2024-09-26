@@ -7,13 +7,12 @@ export const createGuestUser = async (
   stripeCustomerId: string,
 ) => {
   try {
-    const guestUser = await db.guestUser.create({
+    return await db.guestUser.create({
       data: {
         email,
         stripeCustomerId,
       },
     })
-    return guestUser
   } catch (e) {
     console.error('Error creating guest user', e)
     return null
@@ -35,7 +34,7 @@ export const getGuestUserByEmail = async (email: string) => {
 
 export const getGuestUserWithDataByEmail = async (email: string) => {
   try {
-    const guestUser = await db.guestUser.findFirst({
+    return await db.guestUser.findFirst({
       where: {
         email,
       },
@@ -44,7 +43,6 @@ export const getGuestUserWithDataByEmail = async (email: string) => {
         shippingAddresses: true,
       },
     })
-    return guestUser
   } catch (e) {
     console.error('Error getting guest user by email', e)
     return null
@@ -53,12 +51,11 @@ export const getGuestUserWithDataByEmail = async (email: string) => {
 
 export const deleteGuestUserById = async (id: string) => {
   try {
-    const guestUser = await db.guestUser.delete({
+    return await db.guestUser.delete({
       where: {
         id,
       },
     })
-    return guestUser
   } catch (e) {
     console.error('Error deleting guest user by id', e)
     return null

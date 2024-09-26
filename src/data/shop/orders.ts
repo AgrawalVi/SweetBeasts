@@ -32,8 +32,8 @@ export const getOrderByStripeSessionId = async (stripeOrderId: string) => {
   try {
     return await db.order.findUnique({
       where: {
-        stripeOrderId
-      }
+        stripeOrderId,
+      },
     })
   } catch (e) {
     console.error(e)
@@ -97,8 +97,8 @@ export const getOrderWithDataByEmailAndOrderNumber = async (
         lineItems: {
           include: {
             productVariant: {
-              include: {parentProduct: true}
-            }
+              include: { parentProduct: true },
+            },
           },
         },
         ShippingAddress: true,
@@ -122,8 +122,8 @@ export const getFourMostRecentOrdersWithDataByUserId = async (
         lineItems: {
           include: {
             productVariant: {
-              include: {parentProduct: true}
-            }
+              include: { parentProduct: true },
+            },
           },
         },
         ShippingAddress: true,
@@ -149,8 +149,8 @@ export const getAllOrdersWithDataByUserId = async (userId: string) => {
         lineItems: {
           include: {
             productVariant: {
-              include: {parentProduct: true}
-            }
+              include: { parentProduct: true },
+            },
           },
         },
         ShippingAddress: true,
@@ -181,6 +181,24 @@ export const transferOrderToUserFromGuestUser = async (
     })
   } catch (e) {
     console.error('Error transferring order to user from guest user', e)
+    return null
+  }
+}
+
+export const getOrderWithDataByViewOrderToken = async (token: string) => {
+  try {
+    return await db.order.findUnique({
+      where: {
+        viewOrderToken: token,
+      },
+      include: {
+        lineItems: {
+          include: { productVariant: { include: { parentProduct: true } } },
+        },
+      },
+    })
+  } catch (e) {
+    console.error(e)
     return null
   }
 }
