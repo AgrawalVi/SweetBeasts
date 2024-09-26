@@ -8,6 +8,7 @@ import PriceSection from '@/components/general/pages/product/price-section'
 import LoreTeaser from '@/components/general/pages/product/lore-teaser'
 import ImageGrid from '@/components/custom/image-grid'
 import ImageDialog from '@/components/custom/image-dialog'
+import SVGDecoration from '@/components/custom/svg-component'
 
 export default async function Pogo({
   params,
@@ -62,15 +63,16 @@ export default async function Pogo({
     },
   ]
 
-  // Add SVG paths here, ensure these SVG files are in your public folder
-  const svgs = [
+  // SVG paths for left and right sides
+  const leftSvgs = [
     '/plushie artwork R-04.svg',
-    '/plushie artwork R-05.svg',
+    '/plushie artwork R-06.svg',
+    '/plushie artwork R-09.svg', // Third left SVG
+  ]
+  const rightSvgs = [
     '/plushie artwork R-06.svg',
     '/plushie artwork R-07.svg',
     '/plushie artwork R-08.svg',
-    '/plushie artwork R-09.svg',
-    '/plushie artwork R-10.svg',
   ]
 
   return (
@@ -119,65 +121,11 @@ export default async function Pogo({
         {/* Lore Section */}
         <LoreTeaser />
         
-        {/* Enlarged SVGs positioned on the margins and moved upwards */}
-        <div className="absolute inset-0 pointer-events-none hidden md:block">
-          {/* Left side SVGs next to the Lore Teaser, moved upwards and further to the margin */}
-          <div className="absolute top-[30%] left-[-15%] flex flex-col space-y-12"> {/* Moved further up */}
-            <Image
-              src={svgs[0]}
-              alt="SVG Left 1"
-              width={350}  
-              height={350} 
-              className="w-[350px] h-[350px]"  
-            />
-          </div>
-          <div className="absolute top-[10%] left-[-25%] flex flex-col space-y-12"> {/* Moved further up */}
-            <Image
-              src={svgs[4]}
-              alt="SVG Right 1"
-              width={350}  
-              height={350}
-              className="w-[350px] h-[350px]"  
-            />
-          </div>
-          <div className="absolute top-[40%] left-[-15%] flex flex-col space-y-12">
-            <Image
-              src={svgs[1]}
-              alt="SVG Left 2"
-              width={350}  
-              height={350} 
-              className="w-[350px] h-[350px]"  
-            />
-          </div>
-          {/* Right side SVGs next to the Lore Teaser, moved upwards and further to the margin */}
-          <div className="absolute top-[10%] right-[-25%] flex flex-col space-y-12"> {/* Moved further up */}
-            <Image
-              src={svgs[2]}
-              alt="SVG Right 1"
-              width={350}  
-              height={350}
-              className="w-[350px] h-[350px]"  
-            />
-            <Image
-              src={svgs[4]}
-              alt="SVG Right 1"
-              width={350}  
-              height={350}
-              className="w-[350px] h-[350px]"  
-            />
-            <Image
-              src={svgs[3]}
-              alt="SVG Right 2"
-              width={350}  
-              height={350} 
-              className="w-[350px] h-[350px]"  
-            />
-          </div>
-        </div>
+        {/* Use the SVGDecoration component */}
+        <SVGDecoration leftSvgs={leftSvgs} rightSvgs={rightSvgs} />
 
         {/* Image Grid Section */}
         <ImageGrid images={images} className="w-full rounded-md" />
-
       </div>
     </main>
   )
