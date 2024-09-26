@@ -74,7 +74,8 @@ export default async function Pogo({
   ]
 
   return (
-    <main className="flex w-full flex-col items-center">
+    <main className="relative flex w-full flex-col items-center">
+      {/* Main container positioned relatively */}
       <div className="relative flex w-full max-w-5xl flex-col items-center space-y-12">
         {/* Title and Header */}
         <div>
@@ -116,79 +117,56 @@ export default async function Pogo({
         </div>
 
         {/* Lore Section */}
-        <Image
-          src={svgs[0]}
-          alt="SVG 1"
-          width={300}
-          height={300}
-          className="absolute top-10 left-10 w-24 h-24 sm:w-24 sm:h-24 md:w-36 md:h-36 lg:w-36 lg:h-48 xl:w-48 xl:h-48"
-        />
         <LoreTeaser />
 
         {/* Image Grid Section */}
         <ImageGrid images={images} className="w-full rounded-md" />
 
         {/* Fixed Irregularly Placed SVGs */}
-        <div className="relative w-full h-screen">
-          {/* SVG 1 (Already done) */}
-          <Image
-            src={svgs[0]}
-            alt="SVG 1"
-            width={100}
-            height={100}
-            className="absolute top-10 left-10 w-24 h-24 sm:w-36 sm:h-36 md:w-48 md:h-48 lg:w-64 lg:h-64 xl:w-80 xl:h-80"
-          />
+        <div className="absolute inset-0 pointer-events-none">
 
-          {/* SVG 2 (Inverted on the right, placed higher) */}
-          <Image
-            src={svgs[1]}
-            alt="SVG 2"
-            width={128}
-            height={128}
-            className="absolute top-1/4 right-10 w-24 h-24 sm:w-36 sm:h-36 md:w-48 md:h-48 lg:w-64 lg:h-64 xl:w-80 xl:h-80"
-          />
 
-          {/* SVG 3 (Bottom left, near middle) */}
+          {/* SVG 3 (Center left, far edge) */}
           <Image
             src={svgs[2]}
             alt="SVG 3"
             width={112}
             height={112}
-            className="absolute bottom-1/4 left-10 w-24 h-24 sm:w-36 sm:h-36 md:w-48 md:h-48 lg:w-64 lg:h-64 xl:w-80 xl:h-80"
+            className="absolute top-1/2 left-0 transform -translate-y-1/2 w-24 h-24 sm:w-36 sm:h-36 md:w-48 md:h-48 lg:w-64 lg:h-64 xl:w-80 xl:h-80"
+            style={{ left: '1vw' }} // Responsive distance from left edge
           />
 
-          {/* SVG 4 (Bottom right) */}
+          {/* SVG 4 (Center right, far edge) */}
           <Image
             src={svgs[3]}
             alt="SVG 4"
             width={96}
             height={96}
-            className="absolute bottom-10 right-10 w-24 h-24 sm:w-36 sm:h-36 md:w-48 md:h-48 lg:w-64 lg:h-64 xl:w-80 xl:h-80"
+            className="absolute top-1/2 right-0 transform -translate-y-1/2 w-24 h-24 sm:w-36 sm:h-36 md:w-48 md:h-48 lg:w-64 lg:h-64 xl:w-80 xl:h-80"
+            style={{ right: '1vw' }} // Responsive distance from right edge
           />
 
-          {/* SVG 5 (Centered on the left) */}
+          {/* SVG 5 (Bottom left, far edge) */}
           <Image
             src={svgs[4]}
             alt="SVG 5"
             width={80}
             height={80}
-            className="absolute top-1/2 left-10 w-24 h-24 sm:w-36 sm:h-36 md:w-48 md:h-48 lg:w-64 lg:h-64 xl:w-80 xl:h-80"
+            className="absolute bottom-10 left-0 w-24 h-24 sm:w-36 sm:h-36 md:w-48 md:h-48 lg:w-64 lg:h-64 xl:w-80 xl:h-80"
+            style={{ left: '1vw' }} // Use vw for consistency across screen sizes
           />
 
-          {/* SVG 6 (Centered on the right) */}
+          {/* SVG 6 (Bottom right, far edge) */}
           <Image
             src={svgs[5]}
             alt="SVG 6"
             width={144}
             height={144}
-            className="absolute top-1/2 right-10 w-24 h-24 sm:w-36 sm:h-36 md:w-48 md:h-48 lg:w-64 lg:h-64 xl:w-80 xl:h-80"
+            className="absolute bottom-10 right-0 w-24 h-24 sm:w-36 sm:h-36 md:w-48 md:h-48 lg:w-64 lg:h-64 xl:w-80 xl:h-80"
+            style={{ right: '1vw' }} // Maintain distance from the right edge with vw
           />
         </div>
       </div>
     </main>
   )
 }
-
-
-
-
