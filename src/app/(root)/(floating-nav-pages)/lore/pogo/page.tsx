@@ -21,57 +21,46 @@ export default function HomeSweetbeastsMission() {
         <Image
           src={svgs[0]}
           alt="SVG 1"
-          width={150}
-          height={150}
-          className="absolute top-10 left-10 w-20 h-20 sm:w-24 sm:h-24 md:w-32 md:h-32 lg:w-40 lg:h-40"
-        />
-        {/* SVG 2 (Top right) */}
-        <Image
-          src={svgs[1]}
-          alt="SVG 2"
-          width={150}
-          height={150}
-          className="absolute top-20 right-10 w-20 h-20 sm:w-24 sm:h-24 md:w-32 md:h-32 lg:w-40 lg:h-40"
+          width={300}
+          height={300}
+          className="absolute top-0 left-0 w-40 h-40 sm:w-48 sm:h-48 md:w-56 md:h-56 lg:w-64 lg:h-64"
+          style={{ top: '5%', left: '-3%' }} // Moved slightly farther left
         />
         {/* SVG 3 (Center left) */}
         <Image
           src={svgs[2]}
           alt="SVG 3"
-          width={150}
-          height={150}
-          className="absolute top-1/3 left-10 w-20 h-20 sm:w-24 sm:h-24 md:w-32 md:h-32 lg:w-40 lg:h-40"
+          width={300}
+          height={300}
+          className="absolute w-40 h-40 sm:w-48 sm:h-48 md:w-56 md:h-56 lg:w-64 lg:h-64"
+          style={{ top: '35%', left: '-3%' }} // Moved slightly farther left
         />
         {/* SVG 4 (Bottom left) */}
         <Image
           src={svgs[3]}
           alt="SVG 4"
-          width={150}
-          height={150}
-          className="absolute bottom-10 left-10 w-20 h-20 sm:w-24 sm:h-24 md:w-32 md:h-32 lg:w-40 lg:h-40"
+          width={300}
+          height={300}
+          className="absolute bottom-0 left-0 w-40 h-40 sm:w-48 sm:h-48 md:w-56 md:h-56 lg:w-64 lg:h-64"
+          style={{ bottom: '5%', left: '-3%' }} // Moved slightly farther left
         />
         {/* SVG 5 (Center right) */}
         <Image
           src={svgs[4]}
           alt="SVG 5"
-          width={150}
-          height={150}
-          className="absolute top-1/3 right-10 w-20 h-20 sm:w-24 sm:h-24 md:w-32 md:h-32 lg:w-40 lg:h-40"
+          width={300}
+          height={300}
+          className="absolute w-40 h-40 sm:w-48 sm:h-48 md:w-56 md:h-56 lg:w-64 lg:h-64"
+          style={{ top: '35%', right: '-3%' }} // Moved slightly farther right
         />
         {/* SVG 6 (Bottom right) */}
         <Image
           src={svgs[5]}
           alt="SVG 6"
-          width={150}
-          height={150}
-          className="absolute bottom-10 right-10 w-20 h-20 sm:w-24 sm:h-24 md:w-32 md:h-32 lg:w-40 lg:h-40"
-        />
-        {/* SVG 7 (Middle top) */}
-        <Image
-          src={svgs[6]}
-          alt="SVG 7"
-          width={150}
-          height={150}
-          className="absolute top-1/4 left-1/2 w-20 h-20 sm:w-24 sm:h-24 md:w-32 md:h-32 lg:w-40 lg:h-40 transform -translate-x-1/2"
+          width={600}
+          height={600}
+          className="absolute w-64 h-64 sm:w-72 sm:h-72 md:w-80 md:h-80 lg:w-96 lg:h-96"
+          style={{ bottom: '5%', right: '-3%' }} // Moved slightly farther right
         />
       </div>
 
