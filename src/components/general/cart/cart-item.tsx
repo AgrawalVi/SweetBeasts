@@ -56,7 +56,7 @@ const CartItem = ({ item }: { item: CartItemType }) => {
               />
               <div className="col-span-3 flex flex-col">
                 <Link
-                  href={product.productHref}
+                  href={`${product.productHref}`}
                   onClick={() => setIsCartOpen(false)}
                 >
                   {product.name}
@@ -83,7 +83,7 @@ const CartItem = ({ item }: { item: CartItemType }) => {
               />
               <div className="col-span-2 flex h-full flex-col justify-between">
                 <Link
-                  href={product.productHref}
+                  href={`${product.productHref}`}
                   onClick={() => setIsCartOpen(false)}
                 >
                   {product.name}

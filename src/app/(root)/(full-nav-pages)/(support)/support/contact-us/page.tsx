@@ -52,7 +52,7 @@ export default function WobbleCardDemo() {
                 Contact us via email at account@sweetbeasts.shop for inquiries.
               </p>
               <Link
-                href={emailUrl}
+                href={`${emailUrl}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="mt-4 inline-flex items-center rounded-lg bg-red-600 px-4 py-2 text-sm font-medium text-white shadow-md transition duration-300 ease-in-out hover:bg-red-700"
@@ -77,7 +77,7 @@ export default function WobbleCardDemo() {
                 Open a support ticket with us on Discord.
               </p>
               <Link
-                href={discordUrl}
+                href={`${discordUrl}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="mt-4 inline-flex items-center rounded-lg bg-indigo-600 px-4 py-2 text-sm font-medium text-white shadow-md transition duration-300 ease-in-out hover:bg-indigo-700"
@@ -106,7 +106,7 @@ export default function WobbleCardDemo() {
                 Send us a message on Instagram
               </p>
               <Link
-                href={instagramUrl}
+                href={`${instagramUrl}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="mt-4 inline-flex items-center rounded-lg bg-pink-600 px-4 py-2 text-sm font-medium text-white shadow-md transition duration-300 ease-in-out hover:bg-pink-700"

@@ -24,7 +24,7 @@ export default function OrderLineItem({
         </div>
       </div>
       <div className="flex grow flex-col items-start justify-center text-sm md:text-base">
-        <Link href={product.Product.productHref}>
+        <Link href={`${product.Product.productHref}`}>
           <div className="md:text-lg">{product.Product.name}</div>
         </Link>
         <CardDescription>{product.Product.description}</CardDescription>

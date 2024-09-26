@@ -25,7 +25,7 @@ const TextSection = ({ text, className, linkInfo }: TextSectionProps) => {
         {linkInfo && (
           <>
             <Link
-              href={linkInfo.linkHref}
+              href={`${linkInfo.linkHref}`}
               className="flex w-fit items-center opacity-60 transition-all duration-300 hover:opacity-80"
             >
               {linkInfo.linkText}
