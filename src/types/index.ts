@@ -28,4 +28,4 @@ export type OrderWithData = Order & {
   shippingAddress: ShippingAddress
 }
 
-export type ProductVariantWithParent = ProductVariant & {parent: Product}
+export type ProductVariantWithParent = ProductVariant & {parentProduct: Product}

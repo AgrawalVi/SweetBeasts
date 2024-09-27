@@ -1,5 +1,5 @@
 // route config to cache GET endpoint
-export const dynamic = 'force-static'
+// export const dynamic = 'force-static'
 
 import { type NextRequest, NextResponse } from 'next/server'
 import { getProductVariantWithParentById } from "@/data/shop/product";

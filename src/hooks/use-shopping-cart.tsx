@@ -216,7 +216,7 @@ export const ShoppingCartProvider = ({ children }: { children: ReactNode }) => {
       return [...prevCart, item]
     })
     setIsCartOpen(true) // open the cart in the menu
-    return { success: `Successfully added ${product.parent.name} to cart!` }
+    return { success: `Successfully added ${product.parentProduct.name} to cart!` }
   }
 
   const removeItemFromCart = async (productId: number) => {

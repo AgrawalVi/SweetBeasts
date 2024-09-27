@@ -25,6 +25,7 @@ const CartItem = ({ item }: { item: CartItemType }) => {
     queryKey: ['product', item.productId],
     queryFn: async () => {
       const response = await getProductByIdApi(item.productId)
+      console.log(response)
       if (response.error) {
         toast({
           title: 'An error has occurred while fetching cart items',
@@ -48,7 +49,7 @@ const CartItem = ({ item }: { item: CartItemType }) => {
           <div className="hidden sm:block">
             <div className="grid w-full grid-cols-8 items-center space-x-6">
               <Image
-                src={`${product.parent.primaryProductImage}`}
+                src={`${product.parentProduct.primaryProductImage}`}
                 alt={`${product.variantProductName} image`}
                 width={100}
                 height={100}
@@ -75,7 +76,7 @@ const CartItem = ({ item }: { item: CartItemType }) => {
           <div className="block sm:hidden">
             <div className="grid w-full grid-cols-5 items-center">
               <Image
-                src={`${product.parent.primaryProductImage}`}
+                src={`${product.parentProduct.primaryProductImage}`}
                 alt={`${product.variantProductName} image`}
                 width={100}
                 height={100}
@@ -83,13 +84,13 @@ const CartItem = ({ item }: { item: CartItemType }) => {
               />
               <div className="col-span-2 flex h-full flex-col justify-between">
                 <Link
-                  href={product.parent.productHref as string}
+                  href={product.parentProduct.productHref as string}
                   onClick={() => setIsCartOpen(false)}
                 >
-                  {product.parent.name}
+                  {product.parentProduct.name}
                 </Link>
                 <div className="text-xs text-muted-foreground">
-                  {product.parent.description}
+                  {product.parentProduct.description}
                 </div>
                 <div className="flex h-full items-center">
                   <CartQuantityButton item={item} className="pt-0" />

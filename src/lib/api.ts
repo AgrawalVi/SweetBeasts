@@ -5,6 +5,7 @@ export const getProductByIdApi = async (productId: number) => {
     method: 'GET'
   })
 
+
   if (response.ok) {
     return {success: (await response.json()) as ProductVariantWithParent}
   } else {
