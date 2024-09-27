@@ -8,12 +8,10 @@ export default function TrackOrder({
 }: {
   searchParams: { orderToken?: string; error?: string }
 }) {
-  console.log(searchParams)
-
   const orderToken = searchParams.orderToken
   const error = searchParams.error
 
-  if (!orderToken) {
+  if (!orderToken || error) {
     return (
       <main className="flex w-full flex-col items-center justify-center">
         <div className="header-gradient text-4xl font-semibold sm:text-6xl">

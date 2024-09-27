@@ -2,7 +2,6 @@
 
 import Image from 'next/image'
 import { useQuery } from '@tanstack/react-query'
-import { getProductById } from '@/actions/products/products'
 
 import {
   CartItem as CartItemType,
@@ -16,6 +15,7 @@ import RemoveProductButton from './remove-product-button'
 
 import { formatPrice } from '@/lib/utils'
 import Link from 'next/link'
+import { getProductByIdApi } from '@/lib/api'
 
 const CartItem = ({ item }: { item: CartItemType }) => {
   const { toast } = useToast()
@@ -24,7 +24,8 @@ const CartItem = ({ item }: { item: CartItemType }) => {
   const { data: product, isPending: productLoading } = useQuery({
     queryKey: ['product', item.productId],
     queryFn: async () => {
-      const response = await getProductById(item.productId)
+      const response = await getProductByIdApi(item.productId)
+      console.log(response)
       if (response.error) {
         toast({
           title: 'An error has occurred while fetching cart items',
@@ -48,21 +49,21 @@ const CartItem = ({ item }: { item: CartItemType }) => {
           <div className="hidden sm:block">
             <div className="grid w-full grid-cols-8 items-center space-x-6">
               <Image
-                src={product.primaryImagePath}
-                alt={`${product.name} image`}
+                src={`${product.parentProduct.primaryProductImage}`}
+                alt={`${product.variantProductName} image`}
                 width={100}
                 height={100}
                 className="col-span-2 h-24 w-24 rounded-md"
               />
               <div className="col-span-3 flex flex-col">
                 <Link
-                  href={product.productHref}
+                  href={product.variantProductName}
                   onClick={() => setIsCartOpen(false)}
                 >
-                  {product.name}
+                  {product.variantProductName}
                 </Link>
                 <div className="text-xs text-muted-foreground">
-                  {product.description}
+                  {product.variantDescription}
                 </div>
                 <CartQuantityButton item={item} />
               </div>
@@ -75,21 +76,21 @@ const CartItem = ({ item }: { item: CartItemType }) => {
           <div className="block sm:hidden">
             <div className="grid w-full grid-cols-5 items-center">
               <Image
-                src={product.primaryImagePath}
-                alt={`${product.name} image`}
+                src={`${product.parentProduct.primaryProductImage}`}
+                alt={`${product.variantProductName} image`}
                 width={100}
                 height={100}
                 className="col-span-2 h-24 w-24 rounded-md"
               />
               <div className="col-span-2 flex h-full flex-col justify-between">
                 <Link
-                  href={product.productHref}
+                  href={product.parentProduct.productHref as string}
                   onClick={() => setIsCartOpen(false)}
                 >
-                  {product.name}
+                  {product.parentProduct.name}
                 </Link>
                 <div className="text-xs text-muted-foreground">
-                  {product.description}
+                  {product.parentProduct.description}
                 </div>
                 <div className="flex h-full items-center">
                   <CartQuantityButton item={item} className="pt-0" />

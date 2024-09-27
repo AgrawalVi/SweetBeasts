@@ -24,7 +24,7 @@ export default function OrderConfirmedUserEmail({
   orderWithData,
 }: OrderConfirmedUserEmailProps): JSX.Element {
   const lineItems = orderWithData?.lineItems || []
-  const shippingAddress = orderWithData?.ShippingAddress || {}
+  const shippingAddress = orderWithData?.shippingAddress || {}
   const recipientName = shippingAddress.recipientName || 'SweetUser'
 
   const subtotal = lineItems.reduce(
@@ -72,7 +72,7 @@ export default function OrderConfirmedUserEmail({
                   key={index}
                   className="my-2 flex justify-between text-lg text-black"
                 >
-                  <Text>{item.Product.name}</Text>
+                  <Text>{item.productVariant.parentProduct.name}</Text>
                   <Text>
                     {formatPrice(item.pricePerUnitInCents)} x {item.quantity}
                   </Text>

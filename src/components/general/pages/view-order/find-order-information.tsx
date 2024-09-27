@@ -1,34 +1,22 @@
 import { Button } from '@/components/ui/button'
 import Link from 'next/link'
 import { redirect } from 'next/navigation'
-import { getLineItemsByOrderId } from '@/data/shop/line-items'
 import OrderSummary from './order-summary'
 import OrderStatusBar from './censored-order-status-bar'
 import CensoredOrderDetails from './censored-order-details'
-import { LineItemWithProduct } from '@/types'
-import { verifyViewOrderToken } from '@/actions/shop/order'
 import { formatDate } from '@/lib/date-functions'
 import { ChevronLeft } from 'lucide-react'
+import { getOrderWithDataByViewOrderToken } from '@/data/shop/orders'
 
 export default async function FindOrderInformation({
   token,
 }: {
   token: string
 }) {
-  console.log('token', token)
-
-  const response = await verifyViewOrderToken(token)
-  if (response.error) {
-    redirect('/order-status?error=your%20session%20has%20expired')
-  }
-  const order = response.success
-
+  const order = await getOrderWithDataByViewOrderToken(token)
   if (!order) {
     redirect('/order-status?error=your%20session%20has%20expired')
   }
-  const lineItems: LineItemWithProduct[] | null = await getLineItemsByOrderId(
-    order.id,
-  )
 
   return (
     <main className="relative flex w-full flex-col items-center justify-center">
@@ -63,14 +51,14 @@ export default async function FindOrderInformation({
       </div>
       <div className="h-full max-w-5xl flex-col items-start justify-start space-y-4 xl:grid xl:grid-cols-2 xl:gap-4 xl:space-y-0">
         <div className="flex w-full">
-          {lineItems && lineItems.length > 0 ? (
-            <OrderSummary orderItems={lineItems} order={order} />
+          {order.lineItems && order.lineItems.length > 0 ? (
+            <OrderSummary orderItems={order.lineItems} totalPaidInCents={order.totalPaidInCents} shippingPaidInCents={order.shippingPaidInCents} taxesPaidInCents={order.taxesPaidInCents} />
           ) : (
             <div>No items found in your order</div>
           )}
         </div>
         <div className="flex w-full flex-col space-y-4 xl:items-start xl:justify-center">
-          <OrderStatusBar order={order} />
+          <OrderStatusBar orderStatus={order.orderStatus} />
           <CensoredOrderDetails orderNumber={order.orderNumber} />
         </div>
       </div>

@@ -1,7 +1,6 @@
 import 'server-only'
 
 import Stripe from 'stripe'
-import { getProductById } from '@/data/shop/product'
 
 const API_KEY = process.env.STRIPE_SECRET_KEY
 
