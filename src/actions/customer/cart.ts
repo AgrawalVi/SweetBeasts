@@ -1,7 +1,7 @@
 'use server'
 
 import { getUserById } from '@/data/shop/user'
-import { getProductById } from '@/data/shop/product'
+import { getProductVariantWithParentById } from '@/data/shop/product'
 import {
   getCartItemByUserIdAndProductId,
   getCartItemByGuestIdAndProductId,
@@ -16,7 +16,6 @@ import {
   deleteCartItemByUserIdAndProductId,
   deleteCartItemById,
 } from '@/data/shop/cart'
-import { CartItem } from '@prisma/client'
 import { CartItem as LocalCartItem } from '@/hooks/use-shopping-cart'
 import { getTotalCartPrice as getTotalCartPriceDB } from '@/data/shop/cart'
 
@@ -31,7 +30,7 @@ export const addToUserCart = async (
     return { error: 'User does not exist' }
   }
   // Verify that a product exists with the given productId
-  let existingProduct = await getProductById(productId)
+  let existingProduct = await getProductVariantWithParentById(productId)
   if (!existingProduct) {
     return { error: 'Product does not exist' }
   }
@@ -70,7 +69,7 @@ export const addToGuestCart = async (
   quantity: number,
 ) => {
   // Verify that the product exists
-  const existingProduct = await getProductById(productId)
+  const existingProduct = await getProductVariantWithParentById(productId)
   if (!existingProduct) {
     return { error: 'Product does not exist' }
   }

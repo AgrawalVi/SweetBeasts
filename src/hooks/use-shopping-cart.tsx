@@ -9,7 +9,6 @@ import React, {
 } from 'react'
 import { useCurrentUser } from '@/hooks/use-current-user'
 
-import { logout } from '@/actions/auth/logout'
 import { v4 as uuidv4 } from 'uuid'
 import Cookies from 'js-cookie'
 
@@ -21,6 +20,7 @@ import {
   removeProductFromCartByIdAndProductId,
   decrementProductFromCartByIdAndProductId,
 } from '@/actions/customer/cart'
+// TODO: Convert to API endpoint
 import { getProductById } from '@/actions/products/products'
 
 import { cartLoginHandler } from '@/lib/cart-utils'

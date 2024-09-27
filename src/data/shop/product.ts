@@ -2,7 +2,7 @@ import 'server-only'
 
 import { db } from '@/lib/db'
 
-export const getProductVariantById = async (id: number) => {
+export const getProductVariantWithParentById = async (id: number) => {
   try {
     return await db.productVariant.findUnique({
       where: {
@@ -10,6 +10,18 @@ export const getProductVariantById = async (id: number) => {
       },
       include: {
         parentProduct: true,
+      },
+    })
+  } catch (e) {
+    console.error(e)
+  }
+}
+
+export const getProductVariantById = async (id: number) => {
+  try {
+    return await db.productVariant.findUnique({
+      where: {
+        id: id,
       },
     })
   } catch (e) {
