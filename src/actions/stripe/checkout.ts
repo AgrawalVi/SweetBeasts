@@ -4,7 +4,7 @@ import { CartItem } from '@/hooks/use-shopping-cart'
 import { stripe } from '@/lib/stripe'
 import { addStripeCustomerIdToUser, getUserById } from '@/data/shop/user'
 import { redirect } from 'next/navigation'
-import { getProductById, getProductByStripePriceId } from '@/data/shop/product'
+import { getProductVariantWithParentById, getProductByStripePriceId } from '@/data/shop/product'
 import Stripe from 'stripe'
 import { notEmpty } from '@/lib/utils'
 import { stripeLineItemWithProductId } from '@/types'
@@ -20,7 +20,7 @@ export const createCheckoutSession = async (
   const lineItems: stripeLineItemWithProductId[] = (
     await Promise.all(
       cart.map(async (item) => {
-        const product = await getProductById(item.productId)
+        const product = await getProductVariantWithParentById(item.productId)
         if (product) {
           return {
             price: product.stripePriceId,

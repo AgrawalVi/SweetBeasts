@@ -2,13 +2,11 @@ import {
   Card,
   CardContent,
   CardDescription,
-  CardFooter,
   CardHeader,
   CardTitle,
 } from '@/components/ui/card'
 import { Skeleton } from '@/components/ui/skeleton'
 
-import { Order, ShippingAddress } from '@prisma/client'
 import Link from 'next/link'
 
 export default function CensoredOrderDetails({

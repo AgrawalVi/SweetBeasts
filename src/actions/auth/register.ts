@@ -80,7 +80,7 @@ export const register = async (values: z.infer<typeof RegisterSchema>) => {
   }
 
   if (guestUser) {
-    guestUser.orders.forEach(async (order) => {
+    for (const order of guestUser.orders) {
       const updatedOrder = await transferOrderToUserFromGuestUser(
         order.id,
         newUser.id,
@@ -88,8 +88,8 @@ export const register = async (values: z.infer<typeof RegisterSchema>) => {
       if (!updatedOrder) {
         console.error('Error transferring order to user from guest user')
       }
-    })
-    guestUser.shippingAddresses.forEach(async (shippingAddress) => {
+    }
+    for (const shippingAddress of guestUser.shippingAddresses) {
       const updatedShippingAddress =
         await transferShippingAddressToUserFromGuestUser(
           shippingAddress.id,
@@ -102,7 +102,7 @@ export const register = async (values: z.infer<typeof RegisterSchema>) => {
           newUser.id,
         )
       }
-    })
+    }
 
     const deletedUser = await deleteGuestUserById(guestUser.id)
     if (!deletedUser) {

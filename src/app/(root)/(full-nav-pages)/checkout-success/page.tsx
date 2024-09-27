@@ -1,7 +1,7 @@
 import OrderDetails from '@/components/general/pages/checkout-success/order-details'
 import OrderStatusBar from '@/components/general/pages/view-order/order-status-bar'
 import OrderSummary from '@/components/general/pages/view-order/order-summary'
-import { getOrderWithDataByStripeSessionid } from '@/data/shop/orders'
+import { getOrderWithDataByStripeSessionId } from '@/data/shop/orders'
 import { OrderWithData } from '@/types'
 import { formatDate } from '@/lib/date-functions'
 import Link from 'next/link'
@@ -18,7 +18,7 @@ export default async function CheckoutSuccess({
     return <div>Session ID not found</div>
   }
 
-  const order: OrderWithData | null = await getOrderWithDataByStripeSessionid(
+  const order: OrderWithData | null = await getOrderWithDataByStripeSessionId(
     searchParams.session_id,
   )
 
@@ -62,7 +62,7 @@ export default async function CheckoutSuccess({
         <div className="h-full max-w-6xl flex-col items-start justify-start space-y-4 xl:grid xl:grid-cols-2 xl:gap-4 xl:space-y-0">
           <div className="flex w-full">
             {lineItems && lineItems.length > 0 ? (
-              <OrderSummary orderItems={lineItems} order={order} />
+              <OrderSummary orderItems={lineItems} totalPaidInCents={order.totalPaidInCents} shippingPaidInCents={order.shippingPaidInCents} taxesPaidInCents={order.taxesPaidInCents} />
             ) : (
               <div>No items found in your order</div>
             )}

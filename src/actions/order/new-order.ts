@@ -1,5 +1,3 @@
-'use server'
-
 import { stripe } from '@/lib/stripe'
 import Stripe from 'stripe'
 import { getUserByEmail } from '@/data/shop/user'
@@ -16,7 +14,8 @@ import { clearGuestIdCart, clearUserCart } from '../customer/cart'
 import crypto from 'crypto'
 import {
   getOrderByOrderNumber,
-  getOrderWithDataByStripeSessionid,
+  getOrderByStripeSessionId,
+  getOrderWithDataByStripeSessionId,
 } from '@/data/shop/orders'
 import {
   deleteOpenCheckoutSessionById,
@@ -25,13 +24,15 @@ import {
 } from '@/data/shop/open-checkout-session'
 import { createGuestUser, getGuestUserByEmail } from '@/data/shop/guest-user'
 import { sendOrderConfirmationEmail } from '@/lib/resend'
+import { v4 as uuidv4 } from 'uuid'
 
 const generateOrderNumber = async (): Promise<string> => {
-  const orderNumber = `SB${crypto.randomInt(100_000, 100_000_0).toString()}`
+  let orderNumber = `SB${crypto.randomInt(100_000, 100_000_0).toString()}`
   // check if the order number already exists in the database
-  const existingOrder = await getOrderByOrderNumber(orderNumber)
-  if (existingOrder) {
-    return generateOrderNumber()
+  let existingOrder = await getOrderByOrderNumber(orderNumber)
+  while (existingOrder) {
+    orderNumber = `SB${crypto.randomInt(100_000, 100_000_0).toString()}`
+    existingOrder = await getOrderByOrderNumber(orderNumber)
   }
   return orderNumber
 }
@@ -65,11 +66,8 @@ export const createOrder = async (
   if (!checkoutSession) {
     return { error: 'Invalid checkout session' }
   }
-
   // verify that the stripeCheckoutSessionId is valid and that the order is not already created
-  const existingOrder = await getOrderWithDataByStripeSessionid(
-    checkoutSession.id,
-  )
+  const existingOrder = await getOrderByStripeSessionId(checkoutSession.id)
   if (existingOrder) {
     return { error: 'Order already exists' }
   }
@@ -88,7 +86,6 @@ export const createOrder = async (
   const timePlaced = new Date(event.created * 1000)
 
   // get user and create an order in the database
-  const stripeCustomerId = checkoutSession.customer as string | null
 
   let stripeCustomer
 
@@ -197,14 +194,10 @@ export const createOrder = async (
   // generate an order number
   const orderNumber = await generateOrderNumber()
 
-  console.log('address', address)
-
   const existingAddress = await getAddressByAddressAndEmail(
     address,
     stripeCustomer.email as string,
   )
-
-  console.log('existingAddress', existingAddress)
 
   let addressIdToAdd = existingAddress?.id
 
@@ -230,6 +223,7 @@ export const createOrder = async (
           },
           totalPaidInCents: totalPrice,
           shippingAddressId: addressIdToAdd,
+          viewOrderToken: uuidv4(),
         },
       })
     } else {
@@ -269,6 +263,7 @@ export const createOrder = async (
           },
           totalPaidInCents: totalPrice,
           shippingAddressId: shippingAddress.id,
+          viewOrderToken: uuidv4(),
         },
       })
     }
@@ -299,7 +294,7 @@ export const createOrder = async (
   await deleteOpenCheckoutSessionByStripeCheckoutSessionId(checkoutSession.id)
 
   // get order with data by stripe session id
-  const orderWithData = await getOrderWithDataByStripeSessionid(
+  const orderWithData = await getOrderWithDataByStripeSessionId(
     checkoutSession.id,
   )
   if (orderWithData) {

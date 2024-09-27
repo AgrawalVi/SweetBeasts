@@ -11,7 +11,11 @@ export const getLineItemsByOrderId = async (orderId: number) => {
         orderId,
       },
       include: {
-        Product: true,
+        productVariant: {
+          include: {
+            parentProduct: true
+          }
+        }
       },
     })
   } catch (e) {
@@ -25,6 +29,6 @@ export const getLineItemsByOrderId = async (orderId: number) => {
 
   return lineItems.filter(
     (item): item is LineItemWithProduct =>
-      item !== null && item.Product !== null,
+      item !== null && item.productId !== null,
   )
 }

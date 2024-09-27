@@ -12,10 +12,14 @@ import { LineItemWithProduct } from '@/types'
 
 export default function OrderSummary({
   orderItems,
-  order,
+  shippingPaidInCents,
+  taxesPaidInCents,
+  totalPaidInCents,
 }: {
   orderItems: LineItemWithProduct[]
-  order: Order
+  shippingPaidInCents: number | null
+  taxesPaidInCents: number | null
+  totalPaidInCents: number
 }) {
   const subtotal = orderItems.reduce(
     (prev, item) => item.pricePerUnitInCents * item.quantity + prev,
@@ -31,7 +35,7 @@ export default function OrderSummary({
       <CardContent>
         <div className="flex flex-col space-y-3">
           {orderItems.map((item) => (
-            <OrderLineItem key={item.id} product={item} />
+            <OrderLineItem key={item.id} lineItem={item} />
           ))}
         </div>
         <div className="flex w-full flex-col space-y-2 pt-5">
@@ -42,22 +46,22 @@ export default function OrderSummary({
           <div className="flex w-full justify-between">
             <div>Shipping</div>
             <div>
-              {order.shippingPaidInCents
-                ? formatPrice(order.shippingPaidInCents)
+              {shippingPaidInCents
+                ? formatPrice(shippingPaidInCents)
                 : 'Free :)'}
             </div>
           </div>
-          {order.taxesPaidInCents && (
+          {taxesPaidInCents && (
             <div className="flex w-full justify-between">
               <div>Taxes</div>
-              <div>{formatPrice(order.taxesPaidInCents)}</div>
+              <div>{formatPrice(taxesPaidInCents)}</div>
             </div>
           )}
         </div>
       </CardContent>
       <CardFooter className="flex justify-between">
         <CardTitle>Total</CardTitle>
-        <CardTitle>{formatPrice(order.totalPaidInCents)}</CardTitle>
+        <CardTitle>{formatPrice(totalPaidInCents)}</CardTitle>
       </CardFooter>
     </Card>
   )
