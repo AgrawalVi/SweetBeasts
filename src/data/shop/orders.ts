@@ -57,7 +57,7 @@ export const getOrderWithDataByStripeSessionId = async (
             },
           },
         },
-        ShippingAddress: true,
+        shippingAddress: true,
       },
     })
   } catch (e) {
@@ -126,7 +126,7 @@ export const getFourMostRecentOrdersWithDataByUserId = async (
             },
           },
         },
-        ShippingAddress: true,
+        shippingAddress: true,
       },
       orderBy: {
         createdAt: 'desc',
@@ -153,7 +153,7 @@ export const getAllOrdersWithDataByUserId = async (userId: string) => {
             },
           },
         },
-        ShippingAddress: true,
+        shippingAddress: true,
       },
       orderBy: {
         createdAt: 'desc',
