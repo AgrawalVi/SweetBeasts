@@ -1,4 +1,3 @@
-// pages/Pogo.tsx
 import { redirect } from 'next/navigation'
 import AddToCartAndBuyNowWithQuantitySection from '@/components/general/pages/product/add-to-cart-quantity/add-to-cart-and-buy-now-quantity-secton'
 import { getProductByName } from '@/data/shop/product'
@@ -7,8 +6,9 @@ import ProductAccordion from '@/components/general/pages/product/product-accordi
 import LimitedSupplyBuyNow from '@/components/general/pages/product/limited-supply-buy-now'
 import PriceSection from '@/components/general/pages/product/price-section'
 import LoreTeaser from '@/components/general/pages/product/lore-teaser'
-import ImageGrid from '@/components/custom/image-grid' // Import the new ImageGrid component
+import ImageGrid from '@/components/custom/image-grid'
 import ImageDialog from '@/components/custom/image-dialog'
+import SVGDecoration from '@/components/custom/svg-component'
 
 export default async function Pogo({
   params,
@@ -65,9 +65,23 @@ export default async function Pogo({
     },
   ]
 
+  // SVG paths for left and right sides
+  const leftSvgs = [
+    '/plushie artwork R-04.svg',
+    '/plushie artwork R-06.svg',
+    '/plushie artwork R-09.svg', // Third left SVG
+  ]
+  const rightSvgs = [
+    '/plushie artwork R-06.svg',
+    '/plushie artwork R-07.svg',
+    '/plushie artwork R-08.svg',
+  ]
+
   return (
-    <main className="flex w-full flex-col items-center">
+    <main className="relative flex w-full flex-col items-center">
+      {/* Main container positioned relatively */}
       <div className="relative flex w-full max-w-5xl flex-col items-center space-y-12">
+        {/* Title and Header */}
         <div>
           <div className="header-gradient text-center text-7xl sm:text-6xl md:text-9xl">
             POGO
@@ -76,13 +90,15 @@ export default async function Pogo({
             The Peach Penguin
           </div>
         </div>
+
+        {/* Product Image and Details */}
         <div className="flex grid-cols-1 flex-col space-y-4 md:grid md:grid-cols-2 md:gap-4 md:space-y-0">
           <div>
             <ImageDialog
               src={`${product.primaryProductImage}`}
               alt={product.name}
-              width={500}
-              height={500}
+              width={400}
+              height={400}
               className={'w-full rounded-md'}
             />
           </div>
@@ -103,7 +119,14 @@ export default async function Pogo({
             </div>
           </div>
         </div>
+
+        {/* Lore Section */}
         <LoreTeaser />
+        
+        {/* Use the SVGDecoration component */}
+        <SVGDecoration leftSvgs={leftSvgs} rightSvgs={rightSvgs} />
+
+        {/* Image Grid Section */}
         <ImageGrid images={images} className="w-full rounded-md" />
       </div>
     </main>
