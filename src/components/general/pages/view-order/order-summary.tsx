@@ -31,7 +31,7 @@ export default function OrderSummary({
       <CardContent>
         <div className="flex flex-col space-y-3">
           {orderItems.map((item) => (
-            <OrderLineItem key={item.id} product={item} />
+            <OrderLineItem key={item.id} lineItem={item} />
           ))}
         </div>
         <div className="flex w-full flex-col space-y-2 pt-5">

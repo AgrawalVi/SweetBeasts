@@ -11,7 +11,7 @@ export default function CartItemProductNameLink({
   className?: string
 }) {
   return (
-    <Link href={product.productHref}>
+    <Link href={`${product.productHref}`}>
       <div className={className}>{product.name}</div>
     </Link>
   )

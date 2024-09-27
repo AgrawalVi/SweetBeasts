@@ -25,7 +25,7 @@ export type stripeLineItemWithProductId = {
 export type OrderWithData = Order & {
   lineItems: LineItemWithProduct[] | null
 } & {
-  ShippingAddress: ShippingAddress
+  shippingAddress: ShippingAddress
 }
 
 export type ProductVariantWithParent = ProductVariant & {parent: Product}

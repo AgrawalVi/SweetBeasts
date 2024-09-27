@@ -21,10 +21,10 @@ import {
   decrementProductFromCartByIdAndProductId,
 } from '@/actions/customer/cart'
 // TODO: Convert to API endpoint
-import { getProductById } from '@/actions/products/products'
 
 import { cartLoginHandler } from '@/lib/cart-utils'
 import { signOut } from 'next-auth/react'
+import { getProductByIdApi } from "@/lib/api";
 
 export interface CartItem {
   productId: number
@@ -157,7 +157,7 @@ export const ShoppingCartProvider = ({ children }: { children: ReactNode }) => {
 
   const addToCart = async (item: CartItem) => {
     // Verify that the product exists
-    const response = await getProductById(item.productId)
+    const response = await getProductByIdApi(item.productId)
     if (!response.success) {
       return { error: 'Product does not exist' }
     }
@@ -216,7 +216,7 @@ export const ShoppingCartProvider = ({ children }: { children: ReactNode }) => {
       return [...prevCart, item]
     })
     setIsCartOpen(true) // open the cart in the menu
-    return { success: `Successfully added ${product.name} to cart!` }
+    return { success: `Successfully added ${product.parent.name} to cart!` }
   }
 
   const removeItemFromCart = async (productId: number) => {

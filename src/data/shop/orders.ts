@@ -101,7 +101,7 @@ export const getOrderWithDataByEmailAndOrderNumber = async (
             },
           },
         },
-        ShippingAddress: true,
+        shippingAddress: true,
       },
     })
   } catch (e) {

@@ -2,7 +2,6 @@
 
 import Image from 'next/image'
 import { useQuery } from '@tanstack/react-query'
-import { getProductById } from '@/actions/products/products'
 
 import {
   CartItem as CartItemType,
@@ -15,7 +14,6 @@ import CartQuantityButton from './cart-quantity-button'
 import RemoveProductButton from './remove-product-button'
 
 import pogo from '/public/product-images/pogo/main.jpg'
-import blimpy from '/public/product-images/lemon-lion/main.jpg'
 import { formatPrice } from '@/lib/utils'
 import Link from 'next/link'
 import { getProductByIdApi } from "@/lib/api";
