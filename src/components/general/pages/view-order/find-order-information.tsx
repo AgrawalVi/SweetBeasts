@@ -52,13 +52,13 @@ export default async function FindOrderInformation({
       <div className="h-full max-w-5xl flex-col items-start justify-start space-y-4 xl:grid xl:grid-cols-2 xl:gap-4 xl:space-y-0">
         <div className="flex w-full">
           {order.lineItems && order.lineItems.length > 0 ? (
-            <OrderSummary orderItems={order.lineItems} order={order} />
+            <OrderSummary orderItems={order.lineItems} totalPaidInCents={order.totalPaidInCents} shippingPaidInCents={order.shippingPaidInCents} taxesPaidInCents={order.taxesPaidInCents} />
           ) : (
             <div>No items found in your order</div>
           )}
         </div>
         <div className="flex w-full flex-col space-y-4 xl:items-start xl:justify-center">
-          <OrderStatusBar order={order} />
+          <OrderStatusBar orderStatus={order.orderStatus} />
           <CensoredOrderDetails orderNumber={order.orderNumber} />
         </div>
       </div>

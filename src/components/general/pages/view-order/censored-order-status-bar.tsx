@@ -1,4 +1,4 @@
-import { Order } from '@prisma/client'
+import { OrderStatus } from '@prisma/client'
 import { Progress } from '@/components/ui/progress'
 import {
   Card,
@@ -9,21 +9,21 @@ import {
 } from '@/components/ui/card'
 import Link from 'next/link'
 
-export default function OrderStatusBar({ order }: { order: Order }) {
+export default function OrderStatusBar({ orderStatus }: { orderStatus: OrderStatus }) {
   return (
     <Card className="h-full w-full sm:w-[30rem]">
       <CardHeader>
         <CardTitle>Order Progress</CardTitle>
       </CardHeader>
       <CardContent>
-        {order.orderStatus === 'PROCESSING' && (
+        {orderStatus === 'PROCESSING' && (
           <div className="flex flex-col space-y-2">
             <div>Your order has been confirmed!</div>
             <Progress className="h-6" value={33} />
             <CardDescription>Your order will be shipped soon</CardDescription>
           </div>
         )}
-        {order.orderStatus === 'SHIPPED' && (
+        {orderStatus === 'SHIPPED' && (
           <div className="flex flex-col space-y-2">
             <div>Your order is on the way!</div>
             <Progress className="h-6" value={66} />
@@ -35,7 +35,7 @@ export default function OrderStatusBar({ order }: { order: Order }) {
             </CardDescription>
           </div>
         )}
-        {order.orderStatus === 'DELIVERED' && (
+        {orderStatus === 'DELIVERED' && (
           <div className="flex flex-col space-y-2">
             <div>Your order has been delivered!</div>
             <Progress className="h-6" value={100} />
@@ -50,13 +50,13 @@ export default function OrderStatusBar({ order }: { order: Order }) {
             </CardDescription>
           </div>
         )}
-        {order.orderStatus === 'CANCELLED' && (
+        {orderStatus === 'CANCELLED' && (
           <div className="flex flex-col space-y-2">
             <div>Your order has been cancelled</div>
             <Progress className="h-6" value={0} />
           </div>
         )}
-        {order.orderStatus === 'RETURNED' && (
+        {orderStatus === 'RETURNED' && (
           <div className="flex flex-col space-y-2">
             <div>Your return has been processed</div>
             <Progress className="h-6" value={100} color="bg-secondary" />
@@ -71,7 +71,7 @@ export default function OrderStatusBar({ order }: { order: Order }) {
             </CardDescription>
           </div>
         )}
-        {order.orderStatus === 'EXCEPTION' && (
+        {orderStatus === 'EXCEPTION' && (
           <div className="flex flex-col space-y-2">
             <div>An Exception has occurred!</div>
             <Progress className="h-6" color="bg-destructive" value={100} />
