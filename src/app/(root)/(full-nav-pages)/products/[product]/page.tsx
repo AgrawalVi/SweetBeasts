@@ -27,6 +27,8 @@ export default async function Pogo({
     redirect(`/products/${product.name.toLowerCase()}`)
   }
 
+  const variant = product.variants[0]
+
   const parsedQuantity = searchParams.quantity
     ? parseInt(searchParams.quantity)
     : 1
@@ -77,7 +79,7 @@ export default async function Pogo({
         <div className="flex grid-cols-1 flex-col space-y-4 md:grid md:grid-cols-2 md:gap-4 md:space-y-0">
           <div>
             <ImageDialog
-              src={product.primaryImagePath}
+              src={`${product.primaryProductImage}`}
               alt={product.name}
               width={500}
               height={500}
@@ -91,8 +93,8 @@ export default async function Pogo({
                 <div>
                   <LimitedSupplyBuyNow />
                   <AddToCartAndBuyNowWithQuantitySection
-                    productId={product.id}
-                    priceInCents={product.priceInCents}
+                    productId={variant.id}
+                    priceInCents={variant.priceInCents}
                     initialQuantity={quantity}
                   />
                 </div>

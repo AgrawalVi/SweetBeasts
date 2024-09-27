@@ -13,7 +13,6 @@ import CartItemSkeleton from '@/components/skeletons/cart/cart-item-skeleton'
 import CartQuantityButton from './cart-quantity-button'
 import RemoveProductButton from './remove-product-button'
 
-import pogo from '/public/product-images/pogo/main.jpg'
 import { formatPrice } from '@/lib/utils'
 import Link from 'next/link'
 import { getProductByIdApi } from '@/lib/api'
@@ -49,7 +48,7 @@ const CartItem = ({ item }: { item: CartItemType }) => {
           <div className="hidden sm:block">
             <div className="grid w-full grid-cols-8 items-center space-x-6">
               <Image
-                src={pogo}
+                src={`${product.parent.primaryProductImage}`}
                 alt={`${product.variantProductName} image`}
                 width={100}
                 height={100}
@@ -76,7 +75,7 @@ const CartItem = ({ item }: { item: CartItemType }) => {
           <div className="block sm:hidden">
             <div className="grid w-full grid-cols-5 items-center">
               <Image
-                src={pogo}
+                src={`${product.parent.primaryProductImage}`}
                 alt={`${product.variantProductName} image`}
                 width={100}
                 height={100}

@@ -38,6 +38,9 @@ export const getProductByName = async (name: string) => {
           mode: 'insensitive',
         },
       },
+      include: {
+        variants: true,
+      },
     })
     return product
   } catch (e) {
