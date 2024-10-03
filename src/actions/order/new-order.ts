@@ -151,13 +151,6 @@ export const createOrder = async (
     }),
   )
 
-  // add up all the prices to get the total price paid in the lineItems array
-  let totalPrice = 0
-  lineItems.data.forEach((item) => {
-    totalPrice +=
-      (item.price?.unit_amount as number) * (item.quantity as number)
-  })
-
   let filteredLineItemsToAdd = lineItemsToAdd.filter(notEmpty)
 
   // check if the customer already has used this address
@@ -221,9 +214,11 @@ export const createOrder = async (
               pricePerUnitInCents: item.pricePaidInCents,
             })),
           },
-          totalPaidInCents: totalPrice,
+          totalPaidInCents: checkoutSession.amount_total as number,
           shippingAddressId: addressIdToAdd,
           viewOrderToken: uuidv4(),
+          taxesPaidInCents: checkoutSession.total_details?.amount_tax,
+          shippingPaidInCents: checkoutSession.total_details?.amount_shipping,
         },
       })
     } else {
@@ -261,9 +256,11 @@ export const createOrder = async (
               pricePerUnitInCents: item.pricePaidInCents,
             })),
           },
-          totalPaidInCents: totalPrice,
+          totalPaidInCents: checkoutSession.amount_total as number,
           shippingAddressId: shippingAddress.id,
           viewOrderToken: uuidv4(),
+          taxesPaidInCents: checkoutSession.total_details?.amount_tax,
+          shippingPaidInCents: checkoutSession.total_details?.amount_shipping,
         },
       })
     }

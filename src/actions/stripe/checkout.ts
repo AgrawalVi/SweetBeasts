@@ -4,7 +4,10 @@ import { CartItem } from '@/hooks/use-shopping-cart'
 import { stripe } from '@/lib/stripe'
 import { addStripeCustomerIdToUser, getUserById } from '@/data/shop/user'
 import { redirect } from 'next/navigation'
-import { getProductVariantWithParentById, getProductByStripePriceId } from '@/data/shop/product'
+import {
+  getProductVariantWithParentById,
+  getProductByStripePriceId,
+} from '@/data/shop/product'
 import Stripe from 'stripe'
 import { notEmpty } from '@/lib/utils'
 import { stripeLineItemWithProductId } from '@/types'
@@ -82,6 +85,12 @@ export const createCheckoutSession = async (
     cancel_url: `${process.env.NEXT_PUBLIC_BASE_URL}/`,
     shipping_address_collection: {
       allowed_countries: ['US'],
+    },
+    automatic_tax: {
+      enabled: true,
+    },
+    customer_update: {
+      shipping: 'auto',
     },
     custom_text: {
       after_submit: {
