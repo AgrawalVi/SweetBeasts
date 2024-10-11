@@ -14,13 +14,14 @@ import {
   Section,
   Text,
 } from '@react-email/components'
+import { LOGO_PNG_URL } from '@/constants'
 
 interface ResetPasswordEmailProps {
   firstName: string
   resetLink: string
 }
 const baseURL = process.env.NEXT_PUBLIC_BASE_URL!
-const logoURL = process.env.NEXT_PUBLIC_LOGO_PNG_URL!
+const logoURL = LOGO_PNG_URL
 
 export function ResetPasswordEmail({
   firstName,

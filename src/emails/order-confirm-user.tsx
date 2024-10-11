@@ -15,6 +15,7 @@ import {
 } from '@react-email/components'
 import { OrderWithData } from '@/types'
 import { formatPrice } from '@/lib/utils'
+import { LOGO_PNG_URL } from '@/constants'
 
 interface OrderConfirmedUserEmailProps {
   orderWithData: OrderWithData
@@ -35,7 +36,7 @@ export default function OrderConfirmedUserEmail({
   const taxes = orderWithData.taxesPaidInCents || 0
   const total = orderWithData.totalPaidInCents || 0
   const baseURL = process.env.NEXT_PUBLIC_BASE_URL!
-  const logoURL = process.env.NEXT_PUBLIC_LOGO_PNG_URL!
+  const logoURL = LOGO_PNG_URL
 
   return (
     <Html>
