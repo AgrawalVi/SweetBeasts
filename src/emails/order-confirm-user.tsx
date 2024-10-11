@@ -67,29 +67,29 @@ export default function OrderConfirmedUserEmail({
               {lineItems.map((item, index) => (
                 <div key={index} className="flex justify-between text-lg text-black my-2">
                   <Text>{item.Product.name}</Text>
-                  <Text>{formatPrice(item.pricePerUnitInCents)} x {item.quantity}</Text>
+                  <Text className="text-right">{formatPrice(item.pricePerUnitInCents)} x {item.quantity}</Text>
                 </div>
               ))}
               <div className="flex w-full justify-between mt-4">
                 <Text className="text-lg text-black">Subtotal</Text>
-                <Text className="text-lg text-black">{formatPrice(subtotal)}</Text>
+                <Text className="text-lg text-black text-right">{formatPrice(subtotal)}</Text>
               </div>
               <div className="flex w-full justify-between">
                 <Text className="text-lg text-black">Shipping</Text>
-                <Text className="text-lg text-black">
+                <Text className="text-lg text-black text-right">
                   {shipping ? formatPrice(shipping) : 'Free :)'}
                 </Text>
               </div>
               {taxes > 0 && (
                 <div className="flex w-full justify-between">
                   <Text className="text-lg text-black">Taxes</Text>
-                  <Text className="text-lg text-black">{formatPrice(taxes)}</Text>
+                  <Text className="text-lg text-black text-right">{formatPrice(taxes)}</Text>
                 </div>
               )}
               <Hr className="my-4 border-pink-300" />
               <div className="flex w-full justify-between">
                 <Text className="text-lg font-bold text-black">Total</Text>
-                <Text className="text-lg font-bold text-black">{formatPrice(total)}</Text>
+                <Text className="text-lg font-bold text-black text-right">{formatPrice(total)}</Text>
               </div>
             </Section>
             <Hr className="my-4 border-pink-300" />
