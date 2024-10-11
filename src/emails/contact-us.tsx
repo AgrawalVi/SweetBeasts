@@ -13,6 +13,7 @@ import {
   Section,
   Text,
 } from '@react-email/components'
+import { LOGO_PNG_URL } from '@/constants'
 
 interface ContactUsEmailProps {
   userName: string
@@ -20,7 +21,7 @@ interface ContactUsEmailProps {
 }
 
 const baseURL = process.env.NEXT_PUBLIC_BASE_URL!
-const logoURL = process.env.NEXT_PUBLIC_LOGO_PNG_URL!
+const logoURL = LOGO_PNG_URL
 
 export default function ContactUsEmail({
   userName,

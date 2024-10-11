@@ -9,4 +9,4 @@ export const DISCORD_URL = 'https://discord.gg/sweetbeasts'
 export const TIKTOK_URL = 'https://www.tiktok.com/@sweetbeasts'
 export const SUPPORT_EMAIL_URL = 'mailto:support@sweetbeasts.shop'
 
-export const LOGO_PNG_URL = 'https://sweetbeasts.shop/logo.png'
+export const LOGO_PNG_URL = 'https://sweetbeasts.shop/sweetbeasts-logo.png'

@@ -4,7 +4,10 @@ import { CartItem } from '@/hooks/use-shopping-cart'
 import { stripe } from '@/lib/stripe'
 import { addStripeCustomerIdToUser, getUserById } from '@/data/shop/user'
 import { redirect } from 'next/navigation'
-import { getProductVariantWithParentById, getProductByStripePriceId } from '@/data/shop/product'
+import {
+  getProductVariantWithParentById,
+  getProductByStripePriceId,
+} from '@/data/shop/product'
 import Stripe from 'stripe'
 import { notEmpty } from '@/lib/utils'
 import { stripeLineItemWithProductId } from '@/types'
@@ -79,9 +82,12 @@ export const createCheckoutSession = async (
     mode: 'payment',
     ui_mode: 'hosted',
     success_url: `${process.env.NEXT_PUBLIC_BASE_URL}/checkout-success?session_id={CHECKOUT_SESSION_ID}`,
-    cancel_url: `${process.env.NEXT_PUBLIC_BASE_URL}/`,
+    cancel_url: `${process.env.NEXT_PUBLIC_BASE_URL}/products/pogo`,
     shipping_address_collection: {
       allowed_countries: ['US'],
+    },
+    automatic_tax: {
+      enabled: true,
     },
     custom_text: {
       after_submit: {
@@ -125,6 +131,9 @@ export const createCheckoutSession = async (
     checkoutSessionConfig.customer = existingUser.stripeCustomerId
   }
 
+  checkoutSessionConfig.customer_update = {
+    shipping: 'auto',
+  }
   // if the user exists and they have a stripeCustomerId, we can use it to create a checkout session
   return createCheckoutSessionHelper(filteredItems, checkoutSessionConfig)
 }

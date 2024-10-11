@@ -29,7 +29,7 @@ const TextSection = ({
       <div className={cn('text-center', textClassName)}>{text}</div>
       <div className="flex justify-end underline underline-offset-2">
         {linkInfo && (
-          <>
+          <div className="pt-2">
             <Link
               href={`${linkInfo.linkHref}`}
               className="flex w-fit items-center opacity-60 transition-all duration-300 hover:opacity-80"
@@ -40,7 +40,7 @@ const TextSection = ({
                 className="align-self-middle ml-1 h-full"
               />
             </Link>
-          </>
+          </div>
         )}
       </div>
     </main>
