@@ -1,7 +1,6 @@
 import { redirect } from 'next/navigation'
 import AddToCartAndBuyNowWithQuantitySection from '@/components/general/pages/product/add-to-cart-quantity/add-to-cart-and-buy-now-quantity-secton'
 import { getProductByName } from '@/data/shop/product'
-import Image from 'next/image'
 import ProductAccordion from '@/components/general/pages/product/product-accordion'
 import LimitedSupplyBuyNow from '@/components/general/pages/product/limited-supply-buy-now'
 import PriceSection from '@/components/general/pages/product/price-section'
@@ -93,7 +92,7 @@ export default async function Pogo({
 
         {/* Product Image and Details */}
         <div className="flex grid-cols-1 flex-col space-y-4 md:grid md:grid-cols-2 md:gap-4 md:space-y-0">
-          <div>
+          <div className="flex justify-center">
             <ImageDialog
               src={`${product.primaryProductImage}`}
               alt={product.name}
@@ -122,7 +121,7 @@ export default async function Pogo({
 
         {/* Lore Section */}
         <LoreTeaser />
-        
+
         {/* Use the SVGDecoration component */}
         <SVGDecoration leftSvgs={leftSvgs} rightSvgs={rightSvgs} />
 
