@@ -65,6 +65,13 @@ export default function TwoFactorConfirmationEmail({
               max-width: 600px;
               margin: 0 auto;
             }
+            .center-text {
+              text-align: center;
+            }
+            .img-center {
+              display: block;
+              margin: 0 auto; /* Ensures image is centered */
+            }
           `}
         </style>
       </Head>
@@ -76,7 +83,7 @@ export default function TwoFactorConfirmationEmail({
               src={logoURL}
               alt="SweetBeasts Logo"
               width="120"
-              className="mx-auto"
+              className="img-center" // Ensures image is centered
             />
             <Heading className="my-4 text-3xl font-bold text-black">
               Two-Factor Confirmation
@@ -99,23 +106,24 @@ export default function TwoFactorConfirmationEmail({
             </Section>
           </Section>
           <Hr className="my-4 border-pink-300" />
-          <Text className="text-center text-sm text-black">
+          <Text className="center-text text-sm text-black">
             If you did not request this action, please contact support
             immediately.
           </Text>
-          <Text className="my-2 text-center text-xs text-gray-400">
+          <Text className="my-2 center-text text-xs text-gray-400">
             © {new Date().getFullYear()} SweetBeasts. All rights reserved.
           </Text>
-          <Section className="mt-6 text-center text-xs">
+          <Section className="center-text mt-6 text-xs">
             <a
               href={`${baseURL}/privacy-policy`}
-              className="mx-4 text-gray-400 underline underline-offset-2"
+              className="text-gray-400 underline underline-offset-2"
             >
               Privacy Policy
             </a>
+            &nbsp;&nbsp;&nbsp; {/* Adds horizontal space */}
             <a
               href={`${baseURL}/terms-of-service`}
-              className="mx-4 text-gray-400 underline underline-offset-2"
+              className="text-gray-400 underline underline-offset-2"
             >
               Terms of Service
             </a>
