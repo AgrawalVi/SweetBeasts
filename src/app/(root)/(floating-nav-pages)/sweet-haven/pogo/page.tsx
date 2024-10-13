@@ -12,7 +12,7 @@ const rightSvgs = [
 export default function PogoLorePage() {
   return (
     <main className="relative pt-10">
-      <SVGDecoration leftSvgs={leftSvgs} rightSvgs={rightSvgs} />
+      {/* <SVGDecoration leftSvgs={leftSvgs} rightSvgs={rightSvgs} /> */}
       <div className="flex flex-col items-center gap-4">
         <div className="header-gradient text-center text-5xl sm:text-6xl md:text-7xl">
           Pogo's Story
