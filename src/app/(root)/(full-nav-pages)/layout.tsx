@@ -6,7 +6,7 @@ export default function Layout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <div className="flex min-h-screen flex-col">
-      <div className="sticky top-0 z-10 w-full">
+      <div className="sticky top-0 z-[1000] w-full">
         <Navbar />
       </div>
       <div className="mx-5 my-6 flex-grow big-phone:my-12 md:mx-10">
