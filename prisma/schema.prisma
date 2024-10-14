@@ -229,6 +229,12 @@ model Order {
   shippingMethod ShippingMethod @default(STANDARD)
   orderStatus    OrderStatus    @default(PROCESSING)
 
+  orderShippedDate DateTime?
+  orderCancelledDate DateTime?
+  orderDeliveredDate DateTime?
+  orderExceptionDate    DateTime?
+  orderExceptionMessage String?
+
   trackingNumber String?
   trackingUrl    String?
 
