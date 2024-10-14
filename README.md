@@ -1,8 +1,21 @@
 # [SweetBeasts](https://www.sweetbeasts.shop)
 
-# THIS BRANCH IS THE PRODUCTION DEPLOYMENT, WHICH IS CURRENTLY A PLACEHOLDER
+## Running it yourself
 
-## TO VIEW THE SOURCE OF THE ACTUAL ECOMMERCE PLATFORM, PLEASE GO TO THE DEVELOP OR TESTING BRANCH
+- Make a Postgres database, I used [Neon](https://neon.tech/) to create the database
+- Copy the .env.example file to .env and fill in the values
+- Need to create a Stripe account and get secrets from there, as well as a Resend account
+- Run `npm install` and `npm run dev` to start the server
+
+## Stripe Webhooks
+
+- To use webhooks locally, you need to first install the Stripe CLI, instructions [here](https://stripe.com/docs/stripe-cli)
+- run the command `stripe listen --forward-to localhost:3000/api/stripe/webhook/`, and then webhooks will work locally
+
+## Adding a new product
+
+- To add a product, you need to add a product in the [SweetBeasts admin portal](https://github.com/agrawalvi/sweetbeasts-admin). To create an account, create an account in this project and then add in the database manually change the role to admin.
+- In the SweetBeasts admin portal, login, and then go to the products page. Click on the "Add Product" button, and fill in the details. Then click on the "Save Changes" button. This will add the product to the database and Stripe.
 
 ## Tech Stack
 
@@ -16,9 +29,7 @@
   - [**React**](https://react.dev/)
   - [**Tailwind CSS**](https://tailwindcss.com/)
   - [**Framer Motion**](https://www.framer.com/motion/)
-  - [**AuthJS**](https://authjs.dev/)
-  - [**MDX**](https://mdxjs.com/)
-  - **Other Libraries:** [ShadCN UI Components](https://ui.shadcn.com/), [AceternityUI Components](https://ui.aceternity.com/), [React Email](https://react.email/), [Lucide](https://lucide.dev/), [Tabler](https://tablericons.com/), [Zod Form Validation](https://zod.dev/)
+  - [**Auth.js**](https://authjs.dev/)
 
 - ### Database
 
@@ -64,12 +75,14 @@
   - Custom: This contains components that are not necessarily specific to a necessary page and can be used among many pages. Look at the files in there to see what kind of Components fit in there. (They are usually smaller components)
   - General: Contains components used for specific pages throughout the site. Should be split up into folders similar to app router to show which page the component is fore
   - Map: Self Explanatory
+  - Skeleton: Used for all loading state components (Should be derived from ShadCN's Skeleton Component)
   - UI: Only ShadCN components and a few ShadCN extensions found online
 
   `@/data` - contains all data fetching functions
 
   - Data fetching should be done in the data folder, while data creation is done in server actions after making all the necessary checks.
   - Split into folders and files based on the actions that are made
+  - **ALL FUNCTIONS IN DATA FOLDER SHOULD BE CALLED BY SERVER ACTIONS. CALLING THESE FROM THE FRONTEND CODE WILL RESULT IN DATABASE SECRETS BEING LEAKED**
 
   `@/hooks` - contains all the custom hooks used in the application
 
@@ -77,7 +90,9 @@
 
   `@/schemas` - contains a sole file `index.ts` with all the zod schemas for any forms used throughout the application
 
-## Libraries being used and for what purpose:
+  `@/utils` - contains any utility logic that is used. Usually a ts file that will be somewhat static to the context.
+
+## Usage instructions for libraries and frameworks:
 
 ### [Next.js](https://nextjs.org/docs)
 
@@ -88,21 +103,6 @@
 
 - Version 18
 
-### [ShadCN](https://ui.shadcn.com/docs)
-
-- This is the UI library that we are using. All of the components that we can use are in the @/components/ui folder.
-- ShadCN also provides a universal color scheme for the application. This colorscheme has been customized to fit SweetBeasts colors, and it can be found in the `global.css` file, along with the variables associated, which can be found in `tailwind.config.js`
-- Some ShadCN components are built off Radix primitives, and the API reference for Radix is more in depth for those components. [Link to RadixUI Docs](https://www.radix-ui.com/primitives/docs/overview/introduction)
-  - Take a look at this for what kind of customization can be done to the components that are in ShadCN. Most of the components have the same structure as the ShadCN files, but for some, ShadCN either combines or omits some elements, so just watch for that.
-
-### [Lucide-React](https://lucide.dev/icons/)
-
-- 1 of 2 icon libraries being used
-
-### [Tabler React Icons](https://tabler.io/docs/icons/react) - [Icons](https://tablericons.com/)
-
-- 2 of 2 icon libraries being used
-
 ### [TailwindCSS](https://tailwindcss.com/docs/installation)
 
 - Library for inline styling. Documentation is very good
@@ -112,26 +112,9 @@
 - If this is your first time using tailwind, I'd highly recommend reading through the core concepts tabs in the documentation. Those outline everything very nicely. As of now, mobile support and dark mode are not priorities.
 - The documentation for tailwind is generally very good so if you are ever wondering what a class does or how to do something searching there is always helpful.
 
-### [React-Spinners](https://www.davidhu.io/react-spinners/) - [Storybook](https://www.davidhu.io/react-spinners/storybook/?path=/docs/barloader--main)
-
-- Loading spinners used throughout the application.
-
-### [Zod](https://zod.dev/)
-
-- Used for form validation
-- ShadCN has a great write-up for how to use with their components [here](https://ui.shadcn.com/docs/components/form)
-- Place all schemas in `@/schemas/index.ts` and verify validity on the server side as well as the client side.
-
 ### [Framer Motion](https://www.framer.com/motion/https://www.framer.com/motion/)
 
 - Animation library, take a look at the docs for more information
-
-### [AceternityUI](https://ui.aceternity.com/components)
-
-- Copy Paste Animation components. Most of these have a cn import, so make sure to change the cn import at the top of the page to point to where our cn folder is: `@/lib/utils`
-  - When importing components, follow instructions but keep in mind that our `cn` function is located at a different place in our folder, along with where we place them.
-  - **DO NOT** put them in `@/components/ui`, but instead put them in the `@components/aceternity` folder
-- These components will require a good amount of customization to be used properly in our app.
 
 ### [Prisma](https://www.prisma.io/docs)
 
@@ -143,11 +126,43 @@
 - `npx prisma studio` to open a localhost of the database (very useful!!)
 - `data` folder should contain all data fetching, while `server actions` contain calls to add new data as well as updates and deletes after making all the necessary checks
 
-### [AuthJS](https://authjs.dev/reference/overview)
+### [Auth.js](https://authjs.dev/reference/overview)
 
 - Using `next-auth v5`
 - Library used for Authentication
 - Using Credentials and Google as the main providers.
+
+### [ShadCN](https://ui.shadcn.com/docs)
+
+- This is the UI library that we are using. All of the components that we can use are in the @/components/ui folder.
+- ShadCN also provides a universal color scheme for the application. This colorscheme has been customized to fit SweetBeasts colors, and it can be found in the `global.css` file, along with the variables associated, which can be found in `tailwind.config.js`
+- Some ShadCN components are built off Radix primitives, and the API reference for Radix is more in depth for those components. [Link to RadixUI Docs](https://www.radix-ui.com/primitives/docs/overview/introduction)
+  - Take a look at this for what kind of customization can be done to the components that are in ShadCN. Most of the components have the same structure as the ShadCN files, but for some, ShadCN either combines or omits some elements, so just watch for that.
+
+### [Aceternity UI](https://ui.aceternity.com/components)
+
+- Copy Paste Animation components. Most of these have a cn import, so make sure to change the cn import at the top of the page to point to where our cn folder is: `@/lib/utils`
+  - When importing components, follow instructions but keep in mind that our `cn` function is located at a different place in our folder, along with where we place them.
+  - **DO NOT** put them in `@/components/ui`, but instead put them in the `@components/aceternity` folder
+- These components will require a good amount of customization to be used properly in our app.
+
+### [Lucide-React](https://lucide.dev/icons/)
+
+- 1 of 2 icon libraries being used
+
+### [Tabler React Icons](https://tabler.io/docs/icons/react) - [Icons](https://tablericons.com/)
+
+- 2 of 2 icon libraries being used
+
+### [React-Spinners](https://www.davidhu.io/react-spinners/) - [Storybook](https://www.davidhu.io/react-spinners/storybook/?path=/docs/barloader--main)
+
+- Loading spinners used throughout the application.
+
+### [Zod](https://zod.dev/)
+
+- Used for form validation
+- ShadCN has a great write-up for how to use with their components [here](https://ui.shadcn.com/docs/components/form)
+- Place all schemas in `@/schemas/index.ts` and verify validity on the server side as well as the client side.
 
 ### [Resend](https://resend.com/docs/send-with-nodejs)
 
@@ -162,8 +177,7 @@
 ### [React Email](https://react.email/docs/introduction)
 
 - Used for making email templates
-- All components should be placed in `@/components/emails`
-- Not yet configured, but will be used
+- Email components placed in '@/emails
 
 ## Branch Naming
 
@@ -171,3 +185,12 @@
 - **develop** - current branch with latest merged dev changes. Merged into main from here
 - **dev/<YOUR_NAME>-main** - Developer's main branch, merged off develop, and all their branches merged into here, to be PRd into develop
 - **<YOUR_NAME>/<FEATURE/PAGE/TICKET>** - Developer's branch for what is currently being worked on.
+
+## Code Formatting
+
+- Using Prettier as well as the Prettier Plugin for TailwindCSS.
+- Settings are in the `.prettierrc` file
+- Can run `npm run pretty` to style all the code in the codebase.
+- Tab space of 2 is used throughout the project.
+
+-- Created by [Vishrut Agrawal](https://vishrut.tech) and Pranav Gogineni --

@@ -2,52 +2,51 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --background: hsl(275, 100%, 96%);
-  --foreground: hsl(0, 0%, 11%);
-  --card: hsl(278, 49%, 90%);
-  --card-foreground: hsl(352.6 5% 10%);
-  --popover: hsl(268, 100%, 95%);
-  --popover-foreground: hsl(352.6 100% 2%);
-  --primary: hsl(272, 96%, 82%);
-  --primary-foreground: hsl(0 0% 0%);
-  --secondary: hsl(284, 29%, 70%);
-  --secondary-foreground: hsl(0 0% 0%);
-  --muted: hsl(284, 30%, 85%);
-  --muted-foreground: hsl(352.6 5% 35%);
-  --accent: hsl(278, 100%, 89%);
-  --accent-foreground: hsl(352.6 5% 10%);
-  --destructive: hsl(0 100% 30%);
-  --destructive-foreground: hsl(352.6 5% 90%);
-  --border: hsl(217, 30%, 50%);
-  --input: hsl(277, 100%, 95%);
-  --ring: hsl(210, 96%, 82%);
-  --radius: 0.5rem;
-  --aceternity-accent: #0891b2;
-}
+@layer base {
+  :root {
+    --background: 259 100% 97.59%;
+    --foreground: 259 68% 2%;
+    --muted: 229 0% 90%;
+    --muted-foreground: 229 5.07% 38.07%;
+    --popover: 259 53% 99%;
+    --popover-foreground: 259 68% 2%;
+    --card: 259 100% 98.68%;
+    --card-foreground: 259 68% 2%;
+    --border: 259 100% 91.01%;
+    --input: 259 4% 91%;
+    --primary: 259 83% 87%;
+    --primary-foreground: 259 83% 27%;
+    --secondary: 229 83% 87%;
+    --secondary-foreground: 229 83% 27%;
+    --accent: 289 83% 87%;
+    --accent-foreground: 289 83% 27%;
+    --destructive: 6 97% 26%;
+    --destructive-foreground: 6 97% 86%;
+    --ring: 259 83% 87%;
+    --radius: 0.5rem;
+  }
 
-.dark {
-  --background: hsl(0, 0%, 5%);
-  --foreground: hsl(352.6 5% 90%);
-  --card: hsl(0, 35%, 13%);
-  --card-foreground: hsl(352.6 5% 90%);
-  --popover: hsl(352.6 50% 5%);
-  --popover-foreground: hsl(352.6 5% 90%);
-  --primary: hsl(352.6 95.7% 81.8%);
-  --primary-foreground: hsl(0 0% 0%);
-  --secondary: hsl(352.6 30% 10%);
-  --secondary-foreground: hsl(0 0% 100%);
-  --muted: hsl(314.6 30% 15%);
-  --muted-foreground: hsl(352.6 5% 60%);
-  --accent: hsl(314.6 30% 15%);
-  --accent-foreground: hsl(352.6 5% 90%);
-  --destructive: hsl(0 100% 30%);
-  --destructive-foreground: hsl(352.6 5% 90%);
-  --border: hsl(352.6 30% 18%);
-  --input: hsl(352.6 30% 18%);
-  --ring: hsl(352.6 95.7% 81.8%);
-  --aceternity-accent: #f43f5e;
-  --radius: 0.5rem;
+  .dark {
+    --background: 0 0% 5%;
+    --foreground: 259 24% 97%;
+    --muted: 229 0% 10.38%;
+    --muted-foreground: 229 0% 52.69%;
+    --popover: 259 43% 1%;
+    --popover-foreground: 259 24% 97%;
+    --card: 274.29 100% 1%;
+    --card-foreground: 259 24% 97%;
+    --border: 229.09 20.26% 50.32%;
+    --input: 259 4% 11%;
+    --primary: 259 83% 87%;
+    --primary-foreground: 259 83% 27%;
+    --secondary: 229 83% 87%;
+    --secondary-foreground: 229 83% 27%;
+    --accent: 289 83% 87%;
+    --accent-foreground: 289 83% 27%;
+    --destructive: 6 97% 54%;
+    --destructive-foreground: 0 0% 100%;
+    --ring: 259 83% 87%;
+  }
 }
 
 @layer base {
@@ -56,13 +55,36 @@
   }
   body {
     @apply bg-background text-foreground;
+    @apply min-h-screen;
+    @apply relative;
   }
 }
 
 body {
   font-family: var(--font-nunito);
+  height: fit-content;
 }
 
 .header-gradient {
-  @apply bg-gradient-to-br dark:from-rose-300 dark:to-rose-700 from-cyan-500 to-cyan-900 drop-shadow-md;
+  @apply bg-gradient-to-br from-cyan-500 to-cyan-900 bg-clip-text font-coiny text-transparent drop-shadow-md dark:from-rose-300 dark:to-rose-700;
+}
+
+.button-gradient {
+  @apply bg-gradient-to-br from-cyan-500 to-cyan-900 drop-shadow-md dark:from-rose-300 dark:to-rose-700;
+}
+
+.reverse-button-gradient {
+  @apply bg-gradient-to-br from-rose-400 to-rose-700 drop-shadow-md dark:from-cyan-500 dark:to-cyan-900;
+}
+
+[data-state='open'] .accordion-rotate {
+  transform: rotate(90deg);
+}
+
+.h2-gradient {
+  @apply bg-gradient-to-b from-indigo-600 via-40% to-violet-500 bg-clip-text font-coiny text-transparent drop-shadow-md dark:from-purple-300 dark:via-50% dark:to-purple-700;
+}
+
+.p-gradient {
+  @apply bg-gradient-to-b from-cyan-700 to-indigo-600 bg-clip-text text-transparent drop-shadow-md dark:from-rose-400 dark:to-purple-400;
 }

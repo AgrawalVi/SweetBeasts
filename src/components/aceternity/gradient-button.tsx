@@ -1,11 +1,11 @@
-import { cn } from "@/lib/utils"
-import * as React from "react"
+import { cn } from '@/lib/utils'
+import * as React from 'react'
 
 const BottomGradient = () => {
   return (
     <>
-      <span className="group-hover/btn:opacity-100 block transition duration-500 opacity-0 absolute h-px w-full -bottom-px inset-x-0 bg-gradient-to-r from-transparent via-pink-500 to-transparent" />
-      <span className="group-hover/btn:opacity-100 blur-sm block transition duration-500 opacity-0 absolute h-px w-1/2 mx-auto -bottom-px inset-x-10 bg-gradient-to-r from-transparent via-rose-500 to-transparent" />
+      <span className="absolute inset-x-0 -bottom-px block h-[2px] w-full bg-gradient-to-r from-transparent via-secondary to-transparent opacity-0 transition duration-500 group-hover/btn:opacity-100" />
+      <span className="absolute inset-x-10 -bottom-px mx-auto block h-[2px] w-1/2 bg-gradient-to-r from-transparent via-secondary to-transparent opacity-0 blur-sm transition duration-500 group-hover/btn:opacity-100" />
     </>
   )
 }
@@ -20,8 +20,8 @@ const GradientButton = React.forwardRef<HTMLButtonElement, ButtonProps>(
     return (
       <button
         className={cn(
-          "relative group/btn flex space-x-2 items-center justify-start px-4 text-black dark:text-neutral-300 rounded-md h-10 font-medium shadow-input bg-gray-50 dark:bg-zinc-900 dark:shadow-[0px_0px_1px_1px_var(--neutral-800)]",
-          className
+          'group/btn relative flex h-10 items-center justify-start space-x-2 rounded-md bg-gray-50 px-4 font-medium text-black shadow-input dark:bg-zinc-900 dark:text-neutral-300 dark:shadow-[0px_0px_1px_1px_var(--neutral-800)]',
+          className,
         )}
         ref={ref}
         {...props}
@@ -30,9 +30,9 @@ const GradientButton = React.forwardRef<HTMLButtonElement, ButtonProps>(
         <BottomGradient />
       </button>
     )
-  }
+  },
 )
 
-GradientButton.displayName = "GradientButton"
+GradientButton.displayName = 'GradientButton'
 
 export default GradientButton

@@ -84,12 +84,12 @@ export const BackgroundBeams = React.memo(
     return (
       <div
         className={cn(
-          "absolute  h-full w-full inset-0  [mask-size:40px] [mask-repeat:no-repeat] flex items-center justify-center",
-          className
+          'absolute inset-0 flex h-full w-full items-center justify-center [mask-repeat:no-repeat] [mask-size:40px]',
+          className,
         )}
       >
         <svg
-          className=" z-0 h-full w-full pointer-events-none absolute "
+          className="pointer-events-none absolute z-0 h-full w-full"
           width="100%"
           height="100%"
           viewBox="0 0 696 316"
@@ -118,16 +118,16 @@ export const BackgroundBeams = React.memo(
                 id={`linearGradient-${index}`}
                 key={`gradient-${index}`}
                 initial={{
-                  x1: "0%",
-                  x2: "0%",
-                  y1: "0%",
-                  y2: "0%",
+                  x1: '0%',
+                  x2: '0%',
+                  y1: '0%',
+                  y2: '0%',
                 }}
                 animate={{
-                  x1: ["0%", "100%"],
-                  x2: ["0%", "95%"],
-                  y1: ["0%", "100%"],
-                  y2: ["0%", `${93 + Math.random() * 8}%`],
+                  x1: ['0%', '100%'],
+                  x2: ['0%', '95%'],
+                  y1: ['0%', '100%'],
+                  y2: ['0%', `${93 + Math.random() * 8}%`],
                 }}
                 transition={{
                   duration: slowDown ? Math.random() * 10 + 15 : Math.random() * 10 + 10,
@@ -139,6 +139,11 @@ export const BackgroundBeams = React.memo(
                 <stop stopColor="#18CCFC" stopOpacity="0"></stop>
                 <stop stopColor="#18CCFC"></stop>
                 <stop offset="32.5%" stopColor="#6344F5"></stop>
+                <stop
+                  offset="100%"
+                  stopColor="var(--rose-500)"
+                  stopOpacity="0"
+                ></stop>
                 <stop
                   offset="100%"
                   stopColor="var(--rose-500)"

@@ -1,0 +1,370 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+// prisma/schema.prisma
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum UserRole {
+  CUSTOMER
+  ADMIN
+}
+
+enum OrderStatus {
+  PROCESSING
+  CANCELLED
+  SHIPPED
+  DELIVERED
+  EXCEPTION
+  RETURNED
+}
+
+enum OrderReturnStatus {
+  INITIATED
+  APPROVED
+  REJECTED
+}
+
+enum ShippingMethod {
+  STANDARD
+  EXPEDITED
+}
+
+enum ContactUsStatus {
+  OPEN
+  CLAIMED
+  RESOLVED
+}
+
+enum ContactUsType {
+  FEEDBACK
+  SUPPORT
+}
+
+model User {
+  id                    String                 @id @default(cuid())
+  firstName             String
+  lastName              String
+  email                 String                 @unique
+  emailVerified         DateTime?
+  image                 String?
+  password              String
+  role                  UserRole               @default(CUSTOMER)
+  accounts              Account[]
+  isTwoFactorEnabled    Boolean                @default(false)
+  TwoFactorConfirmation TwoFactorConfirmation?
+
+  newsletterSubscribed Boolean @default(false)
+
+  stripeCustomerId String @unique
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  cartItem             CartItem[]
+  shippingAddress      ShippingAddress[]
+  order                Order[]
+  contactUsSubmissions ContactUsSubmission[] @relation("SubmittedBy")
+  contactUsUserClaims  ContactUsSubmission[] @relation("ClaimedBy")
+}
+
+model Account {
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String?
+  access_token      String?
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String?
+  session_state     String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@id([provider, providerAccountId])
+}
+
+model VerificationToken {
+  id      String   @id @default(cuid())
+  email   String
+  token   String   @unique
+  expires DateTime
+
+  @@unique([email, token])
+}
+
+model ResetPasswordToken {
+  id      String   @id @default(cuid())
+  email   String
+  token   String   @unique
+  expires DateTime
+
+  @@unique([email, token])
+}
+
+model TwoFactorToken {
+  id      String   @id @default(cuid())
+  email   String
+  token   String   @unique
+  expires DateTime
+
+  @@unique([email, token])
+}
+
+model TwoFactorConfirmation {
+  id String @id @default(cuid())
+
+  userId String
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId])
+}
+
+model CartItem {
+  id        Int      @id @default(autoincrement())
+  userId    String?
+  guestId   String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  quantity  Int
+  productId Int
+
+  user    User?           @relation(fields: [userId], references: [id], onDelete: Cascade)
+  product ProductVariant? @relation(fields: [productId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, productId]) // user can only have 1 product active at a time
+  @@unique([guestId, productId]) // guest can only have 1 product active at a time
+}
+
+model Product {
+  id   Int    @id @default(autoincrement())
+  name String @unique
+
+  active   Boolean @default(false)
+  archived Boolean @default(false)
+
+  productHref         String?
+  primaryProductImage String?
+
+  description String
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  variants ProductVariant[] @relation("variants")
+}
+
+model ProductVariant {
+  id Int @id @default(autoincrement())
+
+  variantProductName String  @unique
+  variantKey         String?
+  variantDescription String?
+  primaryVariant     Boolean @default(false)
+
+  inventory Int
+  numSold   Int @default(0)
+
+  available Boolean @default(false)
+  archived  Boolean @default(false)
+
+  stripeProductId String @unique
+
+  imageHref String?
+
+  parentProductId Int
+  parentProduct   Product @relation("variants", fields: [parentProductId], references: [id], onDelete: Restrict)
+
+  cartItems            CartItem[]
+  lineItems            LineItem[]
+  openCheckoutSessions OpenCheckoutSessions[]
+
+  priceInCents  Int
+  stripePriceId String @unique
+
+  shippingIncluded Boolean @default(false)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([parentProductId, variantKey])
+}
+
+model Order {
+  id          Int      @id @default(autoincrement())
+  userId      String?
+  guestUserId String?
+  email       String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  orderNumber    String @unique
+  viewOrderToken String @unique
+
+  stripeOrderId    String @unique
+  stripeCustomerId String
+
+  shippingAddressId Int
+  shippingAddress   ShippingAddress @relation(fields: [shippingAddressId], references: [id], onDelete: Restrict)
+
+  couponId String?
+
+  labelUrl        String?
+  shippoLabelId   String?
+  courier         String?
+  shippingService String?
+
+  totalPaidInCents    Int
+  taxesPaidInCents    Int?
+  shippingPaidInCents Int?
+
+  shippingMethod ShippingMethod @default(STANDARD)
+  orderStatus    OrderStatus    @default(PROCESSING)
+
+  orderShippedDate      DateTime?
+  orderCancelledDate    DateTime?
+  orderDeliveredDate    DateTime?
+  orderExceptionDate    DateTime?
+  orderExceptionMessage String?
+
+  returnQuantity         Int?
+  returnReason           String?
+  returnStatus           OrderReturnStatus?
+  returnInitiatedDate    DateTime?
+  returnApprovedDate     DateTime?
+  returnRejectedDate     DateTime?
+  returnApprovedByUserId String?
+
+  trackingNumber String?
+  trackingUrl    String?
+
+  lineItems           LineItem[]
+  user                User?                 @relation(fields: [userId], references: [id], onDelete: SetNull)
+  guestUser           GuestUser?            @relation(fields: [guestUserId], references: [id], onDelete: SetNull)
+  contactUsSubmission ContactUsSubmission[]
+}
+
+model LineItem {
+  id Int @id @default(autoincrement())
+
+  pricePerUnitInCents Int
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  productId Int
+  quantity  Int
+
+  order          Order          @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  productVariant ProductVariant @relation(fields: [productId], references: [id], onDelete: Restrict)
+
+  orderId Int
+}
+
+model ShippingAddress {
+  id          Int     @id @default(autoincrement())
+  userId      String?
+  guestUserId String?
+  email       String
+
+  recipientName String?
+  addressLine1  String?
+  addressLine2  String?
+  city          String?
+  state         String?
+  zipCode       String?
+  countryCode   String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  order                 Order[]
+  user                  User?                   @relation(fields: [userId], references: [id], onDelete: SetNull)
+  guestUser             GuestUser?              @relation(fields: [guestUserId], references: [id])
+  ShippingFromAddresses ShippingFromAddresses[]
+}
+
+model OpenCheckoutSessions {
+  id Int @id @default(autoincrement())
+
+  createdAt               DateTime @default(now())
+  stripeCheckoutSessionId String   @unique
+
+  products ProductVariant[]
+}
+
+model GuestUser {
+  id String @id @default(uuid())
+
+  stripeCustomerId String @unique
+  email            String @unique
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  shippingAddresses   ShippingAddress[]
+  orders              Order[]
+  contactUsSubmission ContactUsSubmission[]
+}
+
+model ContactUsSubmission {
+  id String @id @default(cuid())
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  contactUsStatus ContactUsStatus @default(OPEN)
+
+  userId      String?
+  guestUserId String?
+
+  email String
+  name  String
+
+  claimedAt       DateTime?
+  claimedByUserId String?
+
+  claimedByUser User?      @relation("ClaimedBy", fields: [claimedByUserId], references: [id], onDelete: SetNull)
+  user          User?      @relation("SubmittedBy", fields: [userId], references: [id], onDelete: SetNull)
+  guestUser     GuestUser? @relation(fields: [guestUserId], references: [id], onDelete: SetNull)
+
+  orderId Int?
+  order   Order? @relation(fields: [orderId], references: [id])
+
+  contactUsType ContactUsType
+
+  message String[]
+}
+
+model ShippingFromAddresses {
+  id                Int             @id @default(autoincrement())
+  name              String          @unique
+  shippingAddressId Int
+  shippingAddress   ShippingAddress @relation(fields: [shippingAddressId], references: [id], onDelete: Restrict)
+  createdAt         DateTime        @default(now())
+  updatedAt         DateTime        @updatedAt
+}
+
+model Boxes {
+  id             Int      @id @default(autoincrement())
+  // in inches
+  heightInInches Int
+  widthInInches  Int
+  depthInInches  Int
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+}

@@ -1,18 +1,49 @@
-import { cn } from "@/lib/utils"
+import { cn } from '@/lib/utils'
+import { ArrowUpRight } from 'lucide-react'
+import Link from 'next/link'
+
+type TextSectionLink = {
+  linkText: string
+  linkHref: string
+}
+interface TextSectionProps {
+  text: string
+  className?: string
+  textClassName?: string
+  linkInfo?: TextSectionLink
+}
 
 const TextSection = ({
   text,
-  className = "",
-}: {
-  text: string
-  className?: string
-}) => {
+  className,
+  textClassName,
+  linkInfo,
+}: TextSectionProps) => {
   return (
-    <>
-      <div className={cn("bg-background rounded-xl max-w-[60rem] text-base md:text-lg text-center p-5 sm:p-10 m-10 shadow-pink-light dark:shadow-teal-light hover:shadow-pink-strong dark:hover:shadow-teal-strong transition-all hover:scale-[1.03] duration-1000", className)}>
-        {text}
+    <main
+      className={cn(
+        'm-10 max-w-[60rem] rounded-xl bg-background p-5 text-base shadow-pink-light transition-all duration-1000 hover:scale-[1.01] hover:shadow-pink-strong dark:shadow-teal-light dark:hover:shadow-teal-strong sm:p-8 md:text-lg',
+        className,
+      )}
+    >
+      <div className={cn('text-center', textClassName)}>{text}</div>
+      <div className="flex justify-end underline underline-offset-2">
+        {linkInfo && (
+          <div className="pt-2">
+            <Link
+              href={`${linkInfo.linkHref}`}
+              className="flex w-fit items-center opacity-60 transition-all duration-300 hover:opacity-80"
+            >
+              {linkInfo.linkText}
+              <ArrowUpRight
+                size="18"
+                className="align-self-middle ml-1 h-full"
+              />
+            </Link>
+          </div>
+        )}
       </div>
-    </>
+    </main>
   )
 }
 
