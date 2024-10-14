@@ -79,7 +79,7 @@ export const login = async (
       await createTwoFactorConfirmation(existingUser.id)
     } else {
       const twoFactorToken = await generateTwoFactorToken(existingUser.email)
-      await sendTwoFactorEmail(twoFactorToken.email, twoFactorToken.token)
+      await sendTwoFactorEmail(existingUser.firstName, twoFactorToken.email, twoFactorToken.token)
       return { twoFactor: true }
     }
   }

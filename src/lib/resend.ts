@@ -65,34 +65,41 @@ export const sendVerificationEmail = async (email: string, token: string) => {
   const confirmLink = `${base_url}/auth/verify-email?token=${token}`
   console.log('confirmLink', confirmLink)
   await resend.emails.send({
-    from: RESEND_FROM_EMAIL_ACCOUNT,
+    from: `SweetBeasts <${RESEND_FROM_EMAIL_ACCOUNT}>`,
     to: email,
     subject: 'Verify your email',
     react: EmailConfirmation({
-      firstName: 'john',
       confirmationLink: confirmLink,
     }),
   })
 }
 
-export const sendResetPasswordEmail = async (email: string, token: string) => {
+export const sendResetPasswordEmail = async (
+  first_name: string,
+  email: string,
+  token: string,
+) => {
   const resetLink = `${base_url}/auth/new-password?token=${token}`
 
   await resend.emails.send({
-    from: RESEND_FROM_EMAIL_ACCOUNT,
+    from: `SweetBeasts <${RESEND_FROM_EMAIL_ACCOUNT}>`,
     to: email,
     subject: 'Reset your password',
-    react: ResetPasswordEmail({ firstName: 'john', resetLink }),
+    react: ResetPasswordEmail({ firstName: first_name, resetLink }),
   })
 }
 
-export const sendTwoFactorEmail = async (email: string, token: string) => {
+export const sendTwoFactorEmail = async (
+  first_name: string,
+  email: string,
+  token: string,
+) => {
   await resend.emails.send({
-    from: RESEND_FROM_EMAIL_ACCOUNT,
+    from: `SweetBeasts <${RESEND_FROM_EMAIL_ACCOUNT}>`,
     to: email,
     subject: 'Your Two Factor Authentication Code',
     react: TwoFactorConfirmationEmail({
-      firstName: 'john',
+      firstName: first_name,
       twoFactorCode: token,
     }),
   })
@@ -105,7 +112,7 @@ export const sendContactUs = async (
 ) => {
   console.log('Sending confirmation email to:', email)
   await resend.emails.send({
-    from: RESEND_FROM_EMAIL_SUPPORT,
+    from: `SweetBeasts Support <${RESEND_FROM_EMAIL_SUPPORT}>`,
     to: email,
     bcc: CONTACT_US_EMAILS,
     subject: "We've received your support request",
@@ -143,9 +150,10 @@ export const sendFeedBack = async (
 ) => {
   console.log('Sending feedback email to:', email)
   await resend.emails.send({
-    from: RESEND_FROM_EMAIL_SUPPORT,
+    from: `SweetBeasts Support <${RESEND_FROM_EMAIL_SUPPORT}>`,
     to: email,
     subject: 'Feedback Received',
+    bcc: CONTACT_US_EMAILS,
     react: ContactUsEmail({ userName: name, userMessage: feedback }),
   })
   console.log('Feedback email sent to:', email)
@@ -173,7 +181,7 @@ export const sendFeedBackAdmin = async (
 
 export const sendOrderConfirmationEmail = async (order: OrderWithData) => {
   await resend.emails.send({
-    from: RESEND_FROM_EMAIL_ORDER,
+    from: `SweetBeasts <${RESEND_FROM_EMAIL_ORDER}>`,
     to: CONTACT_US_EMAILS,
     subject: 'Thank You for Your Order!',
     react: OrderConfirmedUserEmail({ orderWithData: order }),

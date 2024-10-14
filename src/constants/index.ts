@@ -1,4 +1,4 @@
-export const CONTACT_US_EMAILS = ['zvishrut@gmail.com', 'pranavgv@gmail.com']
+export const CONTACT_US_EMAILS = ['zvishrut@gmail.com', 'pranavgv@gmail.com', 'hashirahmad257@gmail.com']
 
 export const RESEND_FROM_EMAIL_ACCOUNT = 'account@sweetbeasts.shop'
 export const RESEND_FROM_EMAIL_SUPPORT = 'account@sweetbeasts.shop'

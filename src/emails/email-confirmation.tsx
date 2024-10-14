@@ -17,7 +17,6 @@ import {
 import { LOGO_PNG_URL } from '@/constants'
 
 interface EmailConfirmationEmailProps {
-  firstName: string
   confirmationLink: string
 }
 
@@ -25,7 +24,6 @@ const baseURL = process.env.NEXT_PUBLIC_BASE_URL!
 const logoURL = LOGO_PNG_URL
 
 export default function EmailConfirmation({
-  firstName,
   confirmationLink,
 }: EmailConfirmationEmailProps): JSX.Element {
   return (

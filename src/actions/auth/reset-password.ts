@@ -33,6 +33,7 @@ export const resetPassword = async (
   }
 
   await sendResetPasswordEmail(
+    existingUser.firstName,
     resetPasswordToken.email,
     resetPasswordToken.token,
   )
