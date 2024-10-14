@@ -33,13 +33,6 @@ enum ShippingMethod {
   EXPEDITED
 }
 
-enum Courier {
-  UPS
-  USPS
-  FEDEX
-  DHL
-}
-
 enum ContactUsStatus {
   OPEN
   CLAIMED
@@ -224,7 +217,10 @@ model Order {
 
   couponId String?
 
-  shippoLabelId String?
+  labelUrl        String?
+  shippoLabelId   String?
+  courier         String?
+  shippingService String?
 
   totalPaidInCents    Int
   taxesPaidInCents    Int?
@@ -235,7 +231,6 @@ model Order {
 
   trackingNumber String?
   trackingUrl    String?
-  courier        Courier?
 
   lineItems           LineItem[]
   user                User?                 @relation(fields: [userId], references: [id], onDelete: SetNull)
