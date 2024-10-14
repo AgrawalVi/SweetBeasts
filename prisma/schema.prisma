@@ -224,6 +224,8 @@ model Order {
 
   couponId String?
 
+  shippoLabelId String?
+
   totalPaidInCents    Int
   taxesPaidInCents    Int?
   shippingPaidInCents Int?
