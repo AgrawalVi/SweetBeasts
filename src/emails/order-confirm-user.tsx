@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'
 import {
   Tailwind,
   Body,
@@ -12,31 +12,31 @@ import {
   Preview,
   Section,
   Text,
-} from '@react-email/components';
-import { OrderWithData } from '@/types';
-import { formatPrice } from '@/lib/utils';
-import { LOGO_PNG_URL } from '@/constants';
+} from '@react-email/components'
+import { OrderWithData } from '@/types'
+import { formatPrice } from '@/lib/utils'
+import { LOGO_PNG_URL } from '@/constants'
 
 interface OrderConfirmedUserEmailProps {
-  orderWithData: OrderWithData;
+  orderWithData: OrderWithData
 }
 
 export default function OrderConfirmedUserEmail({
   orderWithData,
 }: OrderConfirmedUserEmailProps): JSX.Element {
-  const lineItems = orderWithData?.lineItems || [];
-  const shippingAddress = orderWithData?.shippingAddress || {};
-  const recipientName = shippingAddress.recipientName || 'SweetUser';
+  const lineItems = orderWithData?.lineItems || []
+  const shippingAddress = orderWithData?.shippingAddress || {}
+  const recipientName = shippingAddress.recipientName || 'SweetUser'
 
   const subtotal = lineItems.reduce(
     (prev, item) => item.pricePerUnitInCents * item.quantity + prev,
-    0
-  );
-  const shipping = orderWithData.shippingPaidInCents || 0;
-  const taxes = orderWithData.taxesPaidInCents || 0;
-  const total = orderWithData.totalPaidInCents || 0;
-  const baseURL = process.env.NEXT_PUBLIC_BASE_URL!;
-  const logoURL = LOGO_PNG_URL;
+    0,
+  )
+  const shipping = orderWithData.shippingPaidInCents || 0
+  const taxes = orderWithData.taxesPaidInCents || 0
+  const total = orderWithData.totalPaidInCents || 0
+  const baseURL = process.env.NEXT_PUBLIC_BASE_URL!
+  const logoURL = LOGO_PNG_URL
 
   return (
     <Html>
@@ -57,13 +57,22 @@ export default function OrderConfirmedUserEmail({
               <Heading className="my-4 text-3xl font-bold text-black">
                 Order Confirmed
               </Heading>
-              <Text className="my-2 text-xl text-black">Hi {recipientName},</Text>
+              <Text className="my-2 text-xl text-black">
+                Hi {recipientName},
+              </Text>
               <Text className="text-lg text-black">
                 Thank you for your order! We have received your order #
                 {orderWithData.orderNumber}
               </Text>
               <Text className="text-lg text-black">
-                We will send you another email once your order has shipped.
+                You can view your order{' '}
+                <Link
+                  href={`${baseURL}/order-status?orderToken=${orderWithData.viewOrderToken}`}
+                  className="underline underline-offset-2"
+                >
+                  here
+                </Link>
+                .
               </Text>
             </Section>
             <Hr className="my-4 border-pink-300" />
@@ -76,46 +85,65 @@ export default function OrderConfirmedUserEmail({
                   key={index}
                   className="my-2 flex justify-between text-lg text-black"
                 >
-                  <Text className="text-lg text-black text-left">{item.productVariant.parentProduct.name}</Text>
-                  <Text className="text-lg text-black text-right" style={{ marginLeft: 'auto' }}>
+                  <Text className="text-left text-lg text-black">
+                    {item.productVariant.parentProduct.name}
+                  </Text>
+                  <Text
+                    className="text-right text-lg text-black"
+                    style={{ marginLeft: 'auto' }}
+                  >
                     {formatPrice(item.pricePerUnitInCents)} x {item.quantity}
                   </Text>
                 </div>
               ))}
               <div className="mt-4 flex justify-between">
-                <Text className="text-lg text-black text-left">Subtotal:</Text>
-                <Text className="text-lg text-black text-right" style={{ marginLeft: 'auto' }}>
+                <Text className="text-left text-lg text-black">Subtotal:</Text>
+                <Text
+                  className="text-right text-lg text-black"
+                  style={{ marginLeft: 'auto' }}
+                >
                   {formatPrice(subtotal)}
                 </Text>
               </div>
               <div className="flex justify-between">
-                <Text className="text-lg text-black text-left">Shipping:</Text>
-                <Text className="text-lg text-black text-right" style={{ marginLeft: 'auto' }}>
+                <Text className="text-left text-lg text-black">Shipping:</Text>
+                <Text
+                  className="text-right text-lg text-black"
+                  style={{ marginLeft: 'auto' }}
+                >
                   {shipping ? formatPrice(shipping) : 'Free :)'}
                 </Text>
               </div>
               {taxes > 0 && (
                 <div className="flex justify-between">
-                  <Text className="text-lg text-black text-left">Taxes:</Text>
-                  <Text className="text-lg text-black text-right" style={{ marginLeft: 'auto' }}>
+                  <Text className="text-left text-lg text-black">Taxes:</Text>
+                  <Text
+                    className="text-right text-lg text-black"
+                    style={{ marginLeft: 'auto' }}
+                  >
                     {formatPrice(taxes)}
                   </Text>
                 </div>
               )}
               <Hr className="my-4 border-pink-300" />
               <div className="flex justify-between">
-                <Text className="text-lg font-bold text-black text-left">Total:</Text>
-                <Text className="text-lg font-bold text-black text-right" style={{ marginLeft: 'auto' }}>
+                <Text className="text-left text-lg font-bold text-black">
+                  Total:
+                </Text>
+                <Text
+                  className="text-right text-lg font-bold text-black"
+                  style={{ marginLeft: 'auto' }}
+                >
                   {formatPrice(total)}
                 </Text>
               </div>
             </Section>
             <Hr className="my-4 border-pink-300" />
-            <Text className="text-sm text-black text-center">
+            <Text className="text-center text-sm text-black">
               If you have any questions, feel free to contact us at
               support@example.com.
             </Text>
-            <Text className="my-2 text-xs text-gray-400 text-center">
+            <Text className="my-2 text-center text-xs text-gray-400">
               © {new Date().getFullYear()} SweetBeasts. All rights reserved.
             </Text>
             <Section className="mt-6 text-center">
@@ -136,5 +164,5 @@ export default function OrderConfirmedUserEmail({
         </Body>
       </Tailwind>
     </Html>
-  );
+  )
 }

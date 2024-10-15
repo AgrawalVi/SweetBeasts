@@ -8,7 +8,7 @@
     "start": "next start",
     "lint": "next lint",
     "pretty": "prettier --write .",
-    "email": "email dev --dir src/emails"
+    "email": "email dev --dir src/emails/promo"
   },
   "dependencies": {
     "@auth/prisma-adapter": "^2.1.0",

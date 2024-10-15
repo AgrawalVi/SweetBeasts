@@ -16,7 +16,7 @@ export const BackButton = ({ href, label }: BackButtonProps) => {
       size="sm"
       asChild
     >
-      <Link href={href} passHref>
+      <Link href={`${href}`} passHref>
         {label}
       </Link>
     </Button>

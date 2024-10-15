@@ -2,7 +2,7 @@ import SweetCards from '@/components/general/pages/about-us/sweet-cards'
 import { TextGenerateEffect } from '@/components/aceternity/text-generate-effect'
 import TextSection from '@/components/custom/text-section'
 
-export default function CanvasRevealEffectDemo() {
+export default function AboutUsPage() {
   return (
     <main className="relative pt-20 bg-dot-black/[0.2] dark:bg-dot-white/[0.2]">
       <div className="pointer-events-none absolute inset-0 flex items-center justify-center bg-background [mask-image:radial-gradient(ellipse_at_center,transparent_10%,black)]"></div>

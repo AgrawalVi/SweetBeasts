@@ -26,7 +26,7 @@ export default function OrderCard({ order }: { order: OrderWithData }) {
         </div>
         {order.trackingUrl && (
           <Link
-            href={order.trackingUrl}
+            href={`${order.trackingUrl}`}
             className="group flex w-fit text-xs font-semibold underline underline-offset-2"
           >
             Track Order

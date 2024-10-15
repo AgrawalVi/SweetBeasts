@@ -4,8 +4,6 @@ import {
   CardItem,
 } from '@/components/aceternity/3d-card'
 import { cn } from '@/lib/utils'
-import Image from 'next/image'
-import Link from 'next/link'
 
 export default function IntroducingProduct({
   className,

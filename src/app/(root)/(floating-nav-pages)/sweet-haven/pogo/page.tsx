@@ -1,8 +1,18 @@
+import SVGDecoration from '@/components/custom/svg-component'
 import TextSection from '@/components/custom/text-section'
+
+// SVG paths for left and right sides
+const leftSvgs = ['/plushie artwork R-04.svg', '/plushie artwork R-06.svg']
+const rightSvgs = [
+  '/plushie artwork R-06.svg',
+  '/plushie artwork R-07.svg',
+  '/plushie artwork R-08.svg',
+]
 
 export default function PogoLorePage() {
   return (
-    <main className="pt-10">
+    <main className="relative pt-10">
+      {/* <SVGDecoration leftSvgs={leftSvgs} rightSvgs={rightSvgs} /> */}
       <div className="flex flex-col items-center gap-4">
         <div className="header-gradient text-center text-5xl sm:text-6xl md:text-7xl">
           Pogo's Story
