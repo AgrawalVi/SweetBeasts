@@ -11,15 +11,13 @@ import {
   Section,
   Text,
 } from '@react-email/components'
-import { LOGO_PNG_URL, INSTAGRAM_URL, DISCORD_URL, SUPPORT_EMAIL_URL } from '@/constants'
-import { IconBrandDiscord, IconBrandInstagram } from '@tabler/icons-react'
-import { Mail } from 'lucide-react'
+import { IconBrandDiscord, IconBrandInstagram, IconBrandTiktok } from '@tabler/icons-react'
 interface NewsletterProps {
   firstName: string
 }
 
 const baseURL = process.env.NEXT_PUBLIC_BASE_URL!
-const logoURL = LOGO_PNG_URL
+const logoURL = "https://sweetbeasts.shop/sweetbeasts-logo.png"
 
 export default function Newsletter({
   firstName,
@@ -53,7 +51,7 @@ export default function Newsletter({
               </Section>
           </Section>
               {/* Image Section */}
-<Img src="https://www.sweetbeasts.shop/newsletter/new-signup/pogo-leaf-hole-art.png" alt="Sweet Haven Banner" className="w-full rounded-lg my-4" />
+<Img src="https://www.sweetbeasts.shop/newsletter/new-signup/pogo-leaf-hole-art.webp" alt="Sweet Haven Banner" className="w-full rounded-lg my-4" />
 
 {/* Centered Text Below the Image */}
 <Section className="text-center">
@@ -79,7 +77,7 @@ export default function Newsletter({
               <Section className="flex justify-center items-center mt-8">
   {/* Left Side - Image */}
   <Img 
-  src="https://www.sweetbeasts.shop/newsletter/new-signup/pogo-tree.png" 
+  src="https://www.sweetbeasts.shop/newsletter/new-signup/pogo-tree.webp" 
   alt="Side Image" 
   style={{
     width: '90%', // ensures it takes the full width of its container
@@ -136,18 +134,17 @@ export default function Newsletter({
 
 
               {/* "Our Contributions" Section */}
-              <Section className="bg-blue-200 text-black p-6 rounded-lg mt-8">
-                <Text className="text-lg font-bold mb-2">
-                  Plushies with a Purpose
-                </Text>
-                <Text className="text-sm">
-                  By choosing SweetBeasts, you’re joining a community dedicated to making the world a better place!
+              <Section className="bg-blue-200 text-black p-6 rounded-lg mt-8 flex flex-col items-center text-center">
+  <Text className="text-lg font-bold mb-2">
+    Plushies with a Purpose
+  </Text>
+  <Text className="text-sm max-w-xl">
+    By choosing SweetBeasts, you’re joining a community dedicated to making the world a better place!
+    A portion of every purchase goes to hunger relief and wildlife conservation charities.
+    Every plushie you take home helps build a more caring, connected, and compassionate world.
+  </Text>
+</Section>
 
-                  A portion of every purchase goes to hunger relief and wildlife conservation charities.
-
-                  Every plushie you take home helps build a more caring, connected, and compassionate world.
-                </Text>
-              </Section>
               <Section style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column', textAlign: 'center', width: '100%' }}>
   {/* Image */}
   <Img 
@@ -200,18 +197,30 @@ export default function Newsletter({
 
     {/* Social Media Links */}
     <Section style={{ marginTop: '16px', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-      <Link href={INSTAGRAM_URL} style={{ color: '#E1306C', textDecoration: 'underline', marginRight: '16px' }}>
+      <Link href="https://www.instagram.com/sweetbeastsusa" style={{ color: '#E1306C', textDecoration: 'underline', marginRight: '16px' }}>
         <IconBrandInstagram size={30} strokeWidth={2} color={'#E1306C'} />
       </Link>
-      <Link href={DISCORD_URL} style={{ color: '#5865F2', textDecoration: 'underline', marginRight: '16px' }}>
+      <Link href={"https://discord.gg/sweetbeasts"} style={{ color: '#5865F2', textDecoration: 'underline', marginRight: '16px' }}>
         <IconBrandDiscord size={30} strokeWidth={2} color={'#5865F2'} />
       </Link>
-      <Link href={`mailto:${SUPPORT_EMAIL_URL}`} style={{ color: '#ff0000', textDecoration: 'underline' }}>
-        <Mail size={30} strokeWidth={2} color={'#ff0000'} />
+      <Link href={`https://www.tiktok.com/@sweetbeasts`} style={{ color: '#ff0000', textDecoration: 'underline' }}>
+        <IconBrandTiktok size={30} strokeWidth={2} color={'#000000'} />
       </Link>
     </Section>
   </Section>
 </Section>
+
+              {/* Footer Section with Copyright and Unsubscribe */}
+              <Section className="text-center text-xs mt-8 text-gray-500">
+                <Text>© 2024 SweetBeasts, All Rights Reserved</Text>
+                <Text>432 W Gorham St, Madison, WI 53703</Text>
+                <Link
+                  href={`{base_url}/unsubscribe?email={email}`}
+                  className="text-blue-500 underline"
+                >
+                  Unsubscribe
+                </Link>
+              </Section>
 
           </Container>
         </Body>
