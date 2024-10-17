@@ -26,6 +26,7 @@ export default function ImageGrid({
             height={image.height}
             className={className}
             containerClassName={containerClassName}
+            showGradient={false}
           />
         ))}
       </div>
