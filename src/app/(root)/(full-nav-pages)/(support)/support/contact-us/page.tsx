@@ -5,7 +5,7 @@ import ContactForm from '@/components/general/pages/contact-us/contact-us-form'
 import { Mail } from 'lucide-react'
 import Link from 'next/link'
 
-import { INSTAGRAM_URL, DISCORD_URL, SUPPORT_EMAIL_URL } from '@/constants'
+import { INSTAGRAM_URL, DISCORD_URL, TIKTOK_URL } from '@/constants'
 
 export default function WobbleCardDemo() {
   return (
@@ -50,7 +50,7 @@ export default function WobbleCardDemo() {
                 Contact us via email at account@sweetbeasts.shop for inquiries.
               </p>
               <Link
-                href={`${SUPPORT_EMAIL_URL}`}
+                href={`${TIKTOK_URL}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="mt-4 inline-flex items-center rounded-lg bg-red-600 px-4 py-2 text-sm font-medium text-white shadow-md transition duration-300 ease-in-out hover:bg-red-700"

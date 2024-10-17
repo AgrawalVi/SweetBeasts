@@ -8,7 +8,6 @@ export const createUser = async (
   email: string,
   password: string,
   stripeCustomerId: string,
-  newsletterSubscribed: boolean,
 ) => {
   try {
     const newUser = await db.user.create({
@@ -18,7 +17,6 @@ export const createUser = async (
         email,
         password,
         stripeCustomerId,
-        newsletterSubscribed,
       },
     })
     return newUser

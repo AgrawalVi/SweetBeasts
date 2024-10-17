@@ -28,4 +28,22 @@ export type OrderWithData = Order & {
   shippingAddress: ShippingAddress
 }
 
-export type ProductVariantWithParent = ProductVariant & {parentProduct: Product}
+export type ProductVariantWithParent = ProductVariant & {
+  parentProduct: Product
+}
+
+// RESEND TYPES
+export type ResendWebhookBody = {
+  type: 'contact.created' | 'contact.deleted' | 'contact.updated'
+  created_at: Date
+  data: {
+    id: string
+    audience_id: string
+    created_at: Date
+    updated_at: Date
+    email: string
+    first_name: string
+    last_name: string
+    unsubscribed: boolean
+  }
+}

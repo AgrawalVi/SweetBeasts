@@ -59,7 +59,6 @@ export const register = async (values: z.infer<typeof RegisterSchema>) => {
     email,
     hashedPassword,
     guestUser ? guestUser.stripeCustomerId : (customer?.id as string),
-    newsletter,
   )
 
   if (!newUser) {
