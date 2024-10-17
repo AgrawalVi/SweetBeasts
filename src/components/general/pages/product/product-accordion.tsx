@@ -17,9 +17,10 @@ export default function ProductAccordion() {
           Description
         </AccordionTrigger>
         <AccordionContent className="flex text-base">
-          lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem
-          ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum
-          lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem
+          Pogo, our debut plushie, embodies a dream brought to life! Crafted
+          with a luxuriously soft exterior and a snuggly interior, Pogo is
+          designed to be your ideal cuddle buddy. Experience the perfect blend
+          of comfort and charm with Pogo at your side!
         </AccordionContent>
       </AccordionItem>
       <AccordionItem value="details" className="relative">
@@ -28,9 +29,11 @@ export default function ProductAccordion() {
           Details
         </AccordionTrigger>
         <AccordionContent className="text-base">
-          lorem ipsum lorem ipsum asdf sd ds ipsum lorem ipsum lorem ipsum lorem
-          ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum
-          lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem
+          <ul className="list-inside list-disc pl-2">
+            <li>11 x 9.8 x 11 inches</li>
+            <li>Smooth, soft, high-quality fabric</li>
+            <li>Polyester filling for extra cuddliness :)</li>
+          </ul>
         </AccordionContent>
       </AccordionItem>
       <AccordionItem value="care" className="relative">
@@ -39,9 +42,9 @@ export default function ProductAccordion() {
           Care Instructions
         </AccordionTrigger>
         <AccordionContent className="text-base">
-          lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem
-          ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum
-          lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem
+          To keep your plushie in top condition, clean it by gently surface
+          washing by hand. Avoid submerging it in water to maintain its shape
+          and softness.
         </AccordionContent>
       </AccordionItem>
     </Accordion>
