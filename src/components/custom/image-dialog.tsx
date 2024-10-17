@@ -1,14 +1,17 @@
 'use client'
+
+import { useState } from 'react'
+import Image from 'next/image'
+
+import { cn } from '@/lib/utils'
 import {
   Dialog,
   DialogContent,
-  DialogTrigger,
   DialogOverlay,
+  DialogTrigger,
 } from '@/components/ui/dialog'
-import Image from 'next/image'
-import { useState } from 'react'
+
 import { BackgroundGradient } from '../aceternity/background-gradient'
-import { cn } from '@/lib/utils'
 
 interface ImageDialogProps {
   src: string

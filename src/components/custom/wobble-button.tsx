@@ -2,10 +2,11 @@
 
 // This component was abstracted from the wobble-card, by aceternity ui by Vishrut Agrawal
 // The source code for that component can be found here: https://ui.aceternity.com/components/wobble-card
-
-import { cn } from '@/lib/utils'
 import React, { useState } from 'react'
 import { motion } from 'framer-motion'
+
+import { cn } from '@/lib/utils'
+
 import { Noise } from '../aceternity/wobble-card'
 
 interface WobbleButtonProps

@@ -1,7 +1,10 @@
 'use client'
 
-import * as z from 'zod'
 import { JoinEmailListSchema } from '@/schemas'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { useForm } from 'react-hook-form'
+import * as z from 'zod'
+
 import {
   Form,
   FormControl,
@@ -10,13 +13,10 @@ import {
   FormLabel,
   FormMessage,
 } from '@/components/ui/form'
-import { useForm } from 'react-hook-form'
-import { zodResolver } from '@hookform/resolvers/zod'
-import { addToEmailList } from '@/actions/customer/email-list'
 import { useToast } from '@/components/ui/use-toast'
-
-import { Input } from '@/components/aceternity/input'
 import { HoverBorderGradient } from '@/components/aceternity/hover-border-gradient'
+import { Input } from '@/components/aceternity/input'
+import { addToEmailList } from '@/actions/customer/email-list'
 
 const JoinEmailListForm = () => {
   const { toast } = useToast()

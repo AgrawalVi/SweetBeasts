@@ -1,8 +1,9 @@
 'use client'
 
-import { CanvasRevealEffect } from '@/components/aceternity/canvas-reveal-effect'
-import { AnimatePresence, motion } from 'framer-motion'
 import React from 'react'
+import { AnimatePresence, motion } from 'framer-motion'
+
+import { CanvasRevealEffect } from '@/components/aceternity/canvas-reveal-effect'
 
 export default function SweetCards() {
   return (

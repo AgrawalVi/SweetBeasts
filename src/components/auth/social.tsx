@@ -1,9 +1,10 @@
 'use client'
 
-import { IconBrandGoogle } from '@tabler/icons-react'
-import { Button } from '@/components/ui/button'
-import { signIn } from 'next-auth/react'
 import { DEFAULT_LOGIN_REDIRECT } from '@/routes'
+import { IconBrandGoogle } from '@tabler/icons-react'
+import { signIn } from 'next-auth/react'
+
+import { Button } from '@/components/ui/button'
 
 export const Social = ({
   googleButtonText = 'Sign in with Google',

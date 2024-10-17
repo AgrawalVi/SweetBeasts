@@ -1,15 +1,21 @@
 'use server'
 
+import { FeedbackSchema } from '@/schemas'
+import { ContactUsType, GuestUser, User } from '@prisma/client'
+import * as z from 'zod'
+
+import {
+  sendFeedBackAdmin,
+  sendFeedBack as sendFeedBackEmail,
+} from '@/lib/resend'
+import {
+  createContactUsRequestForGuestUser,
+  createContactUsRequestForUser,
+} from '@/data/customer/contact-us'
 import { getGuestUserByEmail } from '@/data/shop/guest-user'
 import { getUserByEmail } from '@/data/shop/user'
-import { FeedbackSchema } from '@/schemas'
-import * as z from 'zod'
+
 import { createGuestUser } from '../shop/guest-user'
-import { ContactUsType, GuestUser, User } from '@prisma/client'
-import { createContactUsRequestForUser } from '@/data/customer/contact-us'
-import { createContactUsRequestForGuestUser } from '@/data/customer/contact-us'
-import { sendFeedBackAdmin } from '@/lib/resend'
-import { sendFeedBack as sendFeedBackEmail } from '@/lib/resend'
 
 export const sendFeedBack = async (data: z.infer<typeof FeedbackSchema>) => {
   const validatedFields = FeedbackSchema.safeParse(data)

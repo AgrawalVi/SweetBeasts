@@ -1,6 +1,7 @@
-import { BackgroundGradient } from '@/components/aceternity/background-gradient'
 import Image from 'next/image'
 import Link from 'next/link'
+
+import { BackgroundGradient } from '@/components/aceternity/background-gradient'
 
 interface LoreCardProps {
   staticImageHref: string

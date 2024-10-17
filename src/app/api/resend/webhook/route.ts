@@ -1,9 +1,13 @@
-import { addToMailingList, deleteFromMailingList, updateMailingListSubscribedStatus } from '@/data/customer/mailing-list'
-import { sendWelcomeEmail } from '@/lib/resend'
-import { ResendWebhookBody } from '@/types'
 import { NextRequest, NextResponse } from 'next/server'
+import { ResendWebhookBody } from '@/types'
 import { Webhook } from 'svix'
 
+import { sendWelcomeEmail } from '@/lib/resend'
+import {
+  addToMailingList,
+  deleteFromMailingList,
+  updateMailingListSubscribedStatus,
+} from '@/data/customer/mailing-list'
 
 const secret = process.env.RESEND_WEBHOOK_SECRET!
 
@@ -17,15 +21,18 @@ export const POST = async (req: NextRequest, res: NextResponse) => {
     const svixHeaders = {
       'svix-id': req.headers.get('svix-id') ?? '',
       'svix-timestamp': req.headers.get('svix-timestamp') ?? '',
-      'svix-signature': req.headers.get('svix-signature') ?? ''
+      'svix-signature': req.headers.get('svix-signature') ?? '',
     }
-    payload = wh.verify(rawBody, svixHeaders) as ResendWebhookBody | null | undefined
+    payload = wh.verify(rawBody, svixHeaders) as
+      | ResendWebhookBody
+      | null
+      | undefined
   } catch (e) {
-    return new Response("Invalid webhook signature", { status: 400 })
+    return new Response('Invalid webhook signature', { status: 400 })
   }
 
   if (!payload) {
-    return new Response("Invalid webhook payload", { status: 400 })
+    return new Response('Invalid webhook payload', { status: 400 })
   }
 
   let response
@@ -40,13 +47,17 @@ export const POST = async (req: NextRequest, res: NextResponse) => {
       break
     case 'contact.updated':
       // handle the contact.updated event
-      response = await updateMailingListSubscribedStatus(payload.data.email, payload.data.id, !payload.data.unsubscribed)
+      response = await updateMailingListSubscribedStatus(
+        payload.data.email,
+        payload.data.id,
+        !payload.data.unsubscribed,
+      )
       break
   }
 
   if (!response) {
-    return new Response("Error handling webhook event", { status: 500 })
+    return new Response('Error handling webhook event', { status: 500 })
   }
 
-  return new Response("Webhook event handled successfully", { status: 200 })
+  return new Response('Webhook event handled successfully', { status: 200 })
 }

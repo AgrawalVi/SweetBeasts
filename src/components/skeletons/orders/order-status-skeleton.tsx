@@ -1,9 +1,11 @@
-import { Skeleton } from '@/components/ui/skeleton'
 import Link from 'next/link'
+
+import { Skeleton } from '@/components/ui/skeleton'
+
 import { Button } from '../../ui/button'
 import OrderDetailsSkeleton from './order-details-skeleton'
-import OrderSummarySkeleton from './order-summary-skeleton'
 import OrderStatusbarSkeleton from './order-statusbar-skeleton'
+import OrderSummarySkeleton from './order-summary-skeleton'
 
 export default function OrderStatusSkeleton() {
   return (

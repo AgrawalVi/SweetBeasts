@@ -1,6 +1,6 @@
-import { addToMailingList } from '@/data/customer/mailing-list'
 import { currentRole } from '@/lib/auth'
 import { getAllContacts } from '@/lib/resend'
+import { addToMailingList } from '@/data/customer/mailing-list'
 
 export async function GET() {
   const role = await currentRole()

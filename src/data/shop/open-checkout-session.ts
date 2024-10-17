@@ -1,7 +1,8 @@
 import 'server-only'
 
-import { db } from '@/lib/db'
 import { stripeLineItemWithProductId } from '@/types'
+
+import { db } from '@/lib/db'
 
 export const createOpenCheckoutSession = async (
   stripeCheckoutSessionId: string,

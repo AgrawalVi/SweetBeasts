@@ -1,5 +1,6 @@
+import Link from 'next/link'
 import { OrderStatus } from '@prisma/client'
-import { Progress } from '@/components/ui/progress'
+
 import {
   Card,
   CardContent,
@@ -7,9 +8,13 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card'
-import Link from 'next/link'
+import { Progress } from '@/components/ui/progress'
 
-export default function OrderStatusBar({ orderStatus }: { orderStatus: OrderStatus }) {
+export default function OrderStatusBar({
+  orderStatus,
+}: {
+  orderStatus: OrderStatus
+}) {
   return (
     <Card className="h-full w-full sm:w-[30rem]">
       <CardHeader>

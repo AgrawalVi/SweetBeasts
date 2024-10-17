@@ -1,17 +1,19 @@
 'use client'
 
 import React from 'react'
-import { Button } from '@/components/ui/button'
 import { ShoppingCart } from 'lucide-react'
+
 import { useShoppingCart } from '@/hooks/use-shopping-cart'
-import CartContents from './cart-contents'
+import { Button } from '@/components/ui/button'
 import {
   Dialog,
   DialogContent,
   DialogHeader,
-  DialogTrigger,
   DialogTitle,
+  DialogTrigger,
 } from '@/components/ui/dialog'
+
+import CartContents from './cart-contents'
 
 export default function CartButton() {
   const { cart, isCartOpen, setIsCartOpen } = useShoppingCart()

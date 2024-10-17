@@ -1,30 +1,31 @@
-import { stripe } from '@/lib/stripe'
-import Stripe from 'stripe'
-import { getUserByEmail } from '@/data/shop/user'
+import crypto from 'crypto'
 import { ShippingAddress } from '@prisma/client'
+import Stripe from 'stripe'
+import { v4 as uuidv4 } from 'uuid'
+
 import { db } from '@/lib/db'
-import {
-  getProductByStripePriceId,
-  updateProductInventoryAndNumSold,
-} from '@/data/shop/product'
+import { sendOrderConfirmationEmail } from '@/lib/resend'
+import { stripe } from '@/lib/stripe'
 import { notEmpty } from '@/lib/utils'
 import { getAddressByAddressAndEmail } from '@/data/shop/address'
-import { clearGuestIdCart, clearUserCart } from '../customer/cart'
-
-import crypto from 'crypto'
+import { createGuestUser, getGuestUserByEmail } from '@/data/shop/guest-user'
+import {
+  deleteOpenCheckoutSessionById,
+  deleteOpenCheckoutSessionByStripeCheckoutSessionId,
+  getAllOpenCheckoutSessionsWithProductByProductId,
+} from '@/data/shop/open-checkout-session'
 import {
   getOrderByOrderNumber,
   getOrderByStripeSessionId,
   getOrderWithDataByStripeSessionId,
 } from '@/data/shop/orders'
 import {
-  deleteOpenCheckoutSessionById,
-  deleteOpenCheckoutSessionByStripeCheckoutSessionId,
-  getAllOpenCheckoutSessionsWithProductByProductId,
-} from '@/data/shop/open-checkout-session'
-import { createGuestUser, getGuestUserByEmail } from '@/data/shop/guest-user'
-import { sendOrderConfirmationEmail } from '@/lib/resend'
-import { v4 as uuidv4 } from 'uuid'
+  getProductByStripePriceId,
+  updateProductInventoryAndNumSold,
+} from '@/data/shop/product'
+import { getUserByEmail } from '@/data/shop/user'
+
+import { clearGuestIdCart, clearUserCart } from '../customer/cart'
 
 const generateOrderNumber = async (): Promise<string> => {
   let orderNumber = `SB${crypto.randomInt(100_000, 100_000_0).toString()}`

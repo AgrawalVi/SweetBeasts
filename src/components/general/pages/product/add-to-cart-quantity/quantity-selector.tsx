@@ -1,6 +1,7 @@
-import { Button } from '@/components/ui/button'
-import { cn } from '@/lib/utils'
 import { Minus, Plus } from 'lucide-react'
+
+import { cn } from '@/lib/utils'
+import { Button } from '@/components/ui/button'
 
 interface QuantitySelectorProps {
   quantity: number

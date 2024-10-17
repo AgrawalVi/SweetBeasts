@@ -1,3 +1,5 @@
+import { Suspense } from 'react'
+
 import {
   Card,
   CardContent,
@@ -5,9 +7,9 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card'
-import OrderContent from './my-orders-card-content'
-import { Suspense } from 'react'
 import OrderContentSkeleton from '@/components/skeletons/account/order-content-skeleton'
+
+import OrderContent from './my-orders-card-content'
 
 export default function MyOrdersCard() {
   return (

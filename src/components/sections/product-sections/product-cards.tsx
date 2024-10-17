@@ -1,6 +1,7 @@
 'use client'
 
 import React from 'react'
+
 import { InfiniteMovingCards } from '@/components/aceternity/infinite-cards'
 
 const testimonials = [

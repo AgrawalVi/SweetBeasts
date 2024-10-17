@@ -1,9 +1,11 @@
 import 'server-only'
 
-import { db } from '@/lib/db'
 import { CartItem } from '@prisma/client'
-import { getProductVariantById } from './product'
+
+import { db } from '@/lib/db'
 import { CartItem as CartItemType } from '@/hooks/use-shopping-cart'
+
+import { getProductVariantById } from './product'
 
 export const createUserCartItem = async (
   productId: number,
@@ -58,7 +60,7 @@ export const getCartByUserId = async (id: string) => {
 
 export const getCartByGuestId = async (guestId: string) => {
   try {
-      return await db.cartItem.findMany({
+    return await db.cartItem.findMany({
       where: {
         guestId: guestId,
       },

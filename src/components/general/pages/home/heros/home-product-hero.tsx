@@ -1,6 +1,8 @@
-import IntroducingProduct from './introducting-product'
 import Link from 'next/link'
+
 import { WobbleButton } from '@/components/custom/wobble-button'
+
+import IntroducingProduct from './introducting-product'
 
 export default function HomeProductHero() {
   return (

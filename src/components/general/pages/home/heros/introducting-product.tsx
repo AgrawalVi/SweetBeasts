@@ -1,9 +1,9 @@
+import { cn } from '@/lib/utils'
 import {
   CardBody,
   CardContainer,
   CardItem,
 } from '@/components/aceternity/3d-card'
-import { cn } from '@/lib/utils'
 
 export default function IntroducingProduct({
   className,

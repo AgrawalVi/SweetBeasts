@@ -1,12 +1,14 @@
-import { Button } from '@/components/ui/button'
 import Link from 'next/link'
 import { redirect } from 'next/navigation'
-import OrderSummary from './order-summary'
-import OrderStatusBar from './censored-order-status-bar'
-import CensoredOrderDetails from './censored-order-details'
-import { formatDate } from '@/lib/date-functions'
 import { ChevronLeft } from 'lucide-react'
+
+import { formatDate } from '@/lib/date-functions'
+import { Button } from '@/components/ui/button'
 import { getOrderWithDataByViewOrderToken } from '@/data/shop/orders'
+
+import CensoredOrderDetails from './censored-order-details'
+import OrderStatusBar from './censored-order-status-bar'
+import OrderSummary from './order-summary'
 
 export default async function FindOrderInformation({
   token,
@@ -52,7 +54,12 @@ export default async function FindOrderInformation({
       <div className="h-full max-w-5xl flex-col items-start justify-start space-y-4 xl:grid xl:grid-cols-2 xl:gap-4 xl:space-y-0">
         <div className="flex w-full">
           {order.lineItems && order.lineItems.length > 0 ? (
-            <OrderSummary orderItems={order.lineItems} totalPaidInCents={order.totalPaidInCents} shippingPaidInCents={order.shippingPaidInCents} taxesPaidInCents={order.taxesPaidInCents} />
+            <OrderSummary
+              orderItems={order.lineItems}
+              totalPaidInCents={order.totalPaidInCents}
+              shippingPaidInCents={order.shippingPaidInCents}
+              taxesPaidInCents={order.taxesPaidInCents}
+            />
           ) : (
             <div>No items found in your order</div>
           )}

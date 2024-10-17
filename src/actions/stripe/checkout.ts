@@ -1,18 +1,19 @@
 'use server'
 
-import { CartItem } from '@/hooks/use-shopping-cart'
-import { stripe } from '@/lib/stripe'
-import { addStripeCustomerIdToUser, getUserById } from '@/data/shop/user'
 import { redirect } from 'next/navigation'
-import {
-  getProductVariantWithParentById,
-  getProductByStripePriceId,
-} from '@/data/shop/product'
-import Stripe from 'stripe'
-import { notEmpty } from '@/lib/utils'
 import { stripeLineItemWithProductId } from '@/types'
-import { createOpenCheckoutSession } from '@/data/shop/open-checkout-session'
+import Stripe from 'stripe'
+
 import { currentUser } from '@/lib/auth'
+import { stripe } from '@/lib/stripe'
+import { notEmpty } from '@/lib/utils'
+import { CartItem } from '@/hooks/use-shopping-cart'
+import { createOpenCheckoutSession } from '@/data/shop/open-checkout-session'
+import {
+  getProductByStripePriceId,
+  getProductVariantWithParentById,
+} from '@/data/shop/product'
+import { addStripeCustomerIdToUser, getUserById } from '@/data/shop/user'
 
 export const createCheckoutSession = async (
   cart: CartItem[],

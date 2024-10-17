@@ -1,3 +1,6 @@
+import Link from 'next/link'
+import { Order, ShippingAddress } from '@prisma/client'
+
 import {
   Card,
   CardContent,
@@ -7,9 +10,6 @@ import {
   CardTitle,
 } from '@/components/ui/card'
 import { Skeleton } from '@/components/ui/skeleton'
-
-import { Order, ShippingAddress } from '@prisma/client'
-import Link from 'next/link'
 
 export default function OrderDetailsSkeleton() {
   return (

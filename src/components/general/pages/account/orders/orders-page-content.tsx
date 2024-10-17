@@ -1,12 +1,14 @@
-import { Card } from '@/components/ui/card'
-import { getAllOrdersWithDataByUserId } from '@/data/shop/orders'
-import { currentUser } from '@/lib/auth'
-import { OrderWithData } from '@/types'
 import Link from 'next/link'
 import { redirect } from 'next/navigation'
-import OrdersPageOrderItem from './orders-page-order-item'
-import OrderCard from '../order-card'
+import { OrderWithData } from '@/types'
+
+import { currentUser } from '@/lib/auth'
 import { cn } from '@/lib/utils'
+import { Card } from '@/components/ui/card'
+import { getAllOrdersWithDataByUserId } from '@/data/shop/orders'
+
+import OrderCard from '../order-card'
+import OrdersPageOrderItem from './orders-page-order-item'
 
 export async function OrdersPageContent() {
   const user = await currentUser()

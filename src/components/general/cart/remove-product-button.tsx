@@ -1,8 +1,9 @@
-import { Button } from '@/components/ui/button'
-import { useToast } from '@/components/ui/use-toast'
-import { CartItem, useShoppingCart } from '@/hooks/use-shopping-cart'
 import { useMutation } from '@tanstack/react-query'
 import { Trash2 } from 'lucide-react'
+
+import { CartItem, useShoppingCart } from '@/hooks/use-shopping-cart'
+import { Button } from '@/components/ui/button'
+import { useToast } from '@/components/ui/use-toast'
 
 export default function RemoveProductButton({ item }: { item: CartItem }) {
   const { removeItemFromCart } = useShoppingCart()

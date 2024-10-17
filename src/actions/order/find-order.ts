@@ -1,9 +1,10 @@
 'use server'
 
+import { redirect } from 'next/navigation'
 import { FindOrderSchema } from '@/schemas'
 import * as z from 'zod'
+
 import { getOrderByEmailAndOrderNumber } from '@/data/shop/orders'
-import { redirect } from 'next/navigation'
 
 export const findOrder = async (values: z.infer<typeof FindOrderSchema>) => {
   const validatedFields = FindOrderSchema.safeParse(values)

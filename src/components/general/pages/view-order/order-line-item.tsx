@@ -1,8 +1,9 @@
-import { CardDescription } from '@/components/ui/card'
-import { formatPrice } from '@/lib/utils'
 import Image from 'next/image'
-import { LineItemWithProduct } from '@/types'
 import Link from 'next/link'
+import { LineItemWithProduct } from '@/types'
+
+import { formatPrice } from '@/lib/utils'
+import { CardDescription } from '@/components/ui/card'
 
 export default function OrderLineItem({
   lineItem,

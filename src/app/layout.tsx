@@ -1,17 +1,19 @@
 import type { Metadata } from 'next'
-import { Coiny, Nunito, Josefin_Sans } from 'next/font/google'
-import { ThemeProvider } from '@/components/theme-provider'
-import { Toaster } from '@/components/ui/toaster'
+import { Coiny, Josefin_Sans, Nunito } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/react'
+
+import { Toaster } from '@/components/ui/toaster'
+import { ThemeProvider } from '@/components/theme-provider'
+
 import './globals.css'
 
-import { ShoppingCartProvider } from '@/hooks/use-shopping-cart'
-
-import { SessionProvider } from 'next-auth/react'
 import { auth } from '@/auth'
-import NavigationEvents from '@/components/navigation-events'
+import { SessionProvider } from 'next-auth/react'
+
 import { NewsletterPopupProvider } from '@/hooks/use-popup'
+import { ShoppingCartProvider } from '@/hooks/use-shopping-cart'
 import NewsletterPopup from '@/components/general/newsletter-popup/popup'
+import NavigationEvents from '@/components/navigation-events'
 
 const nunito = Nunito({
   subsets: ['latin'],

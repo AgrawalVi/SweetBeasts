@@ -1,13 +1,12 @@
 'use client'
 
-import { Button } from '@/components/ui/button'
-import { useShoppingCart } from '@/hooks/use-shopping-cart'
 import { useMutation } from '@tanstack/react-query'
-
-import { CartItem } from '@/hooks/use-shopping-cart'
-import { useToast } from '@/components/ui/use-toast'
 import { Minus, Plus } from 'lucide-react'
+
 import { cn } from '@/lib/utils'
+import { CartItem, useShoppingCart } from '@/hooks/use-shopping-cart'
+import { Button } from '@/components/ui/button'
+import { useToast } from '@/components/ui/use-toast'
 
 export default function CartQuantityButton({
   item,

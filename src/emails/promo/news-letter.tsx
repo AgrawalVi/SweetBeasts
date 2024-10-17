@@ -1,6 +1,5 @@
 import React from 'react'
 import {
-  Tailwind,
   Body,
   Container,
   Head,
@@ -9,6 +8,7 @@ import {
   Link,
   Preview,
   Section,
+  Tailwind,
   Text,
 } from '@react-email/components'
 import {

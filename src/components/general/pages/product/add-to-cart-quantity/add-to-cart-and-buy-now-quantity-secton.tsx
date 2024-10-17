@@ -1,16 +1,16 @@
 'use client'
 
-import { useState, useEffect } from 'react'
-import { usePathname } from 'next/navigation'
-import { useRouter } from 'next/navigation'
+import { useEffect, useState } from 'react'
+import { usePathname, useRouter } from 'next/navigation'
 
-import AddToCartButton from './add-to-cart-button'
-import QuantitySelector from './quantity-selector'
-import { Button } from '@/components/ui/button'
 import { formatPrice } from '@/lib/utils'
 import { useShoppingCart } from '@/hooks/use-shopping-cart'
+import { Button } from '@/components/ui/button'
 import GradientButton from '@/components/aceternity/gradient-button'
+
+import AddToCartButton from './add-to-cart-button'
 import BuyNowButton from './buy-now-button'
+import QuantitySelector from './quantity-selector'
 
 interface AddToCartAndBuyNowWithQuantitySectionProps {
   productId: number

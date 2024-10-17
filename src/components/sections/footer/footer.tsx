@@ -1,12 +1,14 @@
 import Link from 'next/link'
-import SocialButtons from './social-buttons'
-import JoinEmailListForm from './email-list-form'
+
 import {
   Accordion,
-  AccordionTrigger,
   AccordionContent,
   AccordionItem,
+  AccordionTrigger,
 } from '@/components/ui/accordion'
+
+import JoinEmailListForm from './email-list-form'
+import SocialButtons from './social-buttons'
 
 const footerLinks = {
   shop: [

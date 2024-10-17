@@ -1,16 +1,22 @@
 'use server'
 
-import { getGuestUserByEmail } from '@/data/shop/guest-user'
-import { getUserByEmail } from '@/data/shop/user'
 import { ContactSchema } from '@/schemas'
-import * as z from 'zod'
-import { createGuestUser } from '../shop/guest-user'
 import { ContactUsType, GuestUser, User } from '@prisma/client'
-import { createContactUsRequestForUser } from '@/data/customer/contact-us'
-import { createContactUsRequestForGuestUser } from '@/data/customer/contact-us'
+import * as z from 'zod'
+
+import {
+  sendContactUsAdmin,
+  sendContactUs as sendContactUsEmail,
+} from '@/lib/resend'
+import {
+  createContactUsRequestForGuestUser,
+  createContactUsRequestForUser,
+} from '@/data/customer/contact-us'
+import { getGuestUserByEmail } from '@/data/shop/guest-user'
 import { getOrderByOrderNumber } from '@/data/shop/orders'
-import { sendContactUs as sendContactUsEmail } from '@/lib/resend'
-import { sendContactUsAdmin } from '@/lib/resend'
+import { getUserByEmail } from '@/data/shop/user'
+
+import { createGuestUser } from '../shop/guest-user'
 
 export const sendContactUs = async (data: z.infer<typeof ContactSchema>) => {
   const validatedFields = ContactSchema.safeParse(data)

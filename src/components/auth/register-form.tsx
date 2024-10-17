@@ -1,10 +1,12 @@
 'use client'
 
-import { Input } from '@/components/ui/input'
 import { useState, useTransition } from 'react'
-import { CardWrapper } from '@/components/auth/card-wrapper'
-import { useForm } from 'react-hook-form'
+import { RegisterSchema } from '@/schemas'
 import { zodResolver } from '@hookform/resolvers/zod'
+import { useForm } from 'react-hook-form'
+import * as z from 'zod'
+
+import { Button } from '@/components/ui/button'
 import {
   Form,
   FormControl,
@@ -14,13 +16,12 @@ import {
   FormLabel,
   FormMessage,
 } from '@/components/ui/form'
-
-import * as z from 'zod'
-import { RegisterSchema } from '@/schemas'
-import { Button } from '@/components/ui/button'
+import { Input } from '@/components/ui/input'
+import { CardWrapper } from '@/components/auth/card-wrapper'
 import { FormError } from '@/components/custom/form-error'
 import { FormSuccess } from '@/components/custom/form-success'
 import { register } from '@/actions/auth/register'
+
 import { Checkbox } from '../ui/checkbox'
 
 export const RegisterForm = ({ redirectTo }: { redirectTo?: string }) => {

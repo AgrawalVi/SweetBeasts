@@ -2,17 +2,15 @@ import { useTransition } from 'react'
 import { useQuery } from '@tanstack/react-query'
 import Cookies from 'js-cookie'
 
-import { createCheckoutSession } from '@/actions/stripe/checkout'
-import { getTotalCartPrice } from '@/actions/customer/cart'
-
+import { formatPrice } from '@/lib/utils'
 import { useShoppingCart } from '@/hooks/use-shopping-cart'
-
-import { useToast } from '@/components/ui/use-toast'
 import { Button } from '@/components/ui/button'
 import { Skeleton } from '@/components/ui/skeleton'
-import CartItem from './cart-item'
+import { useToast } from '@/components/ui/use-toast'
+import { getTotalCartPrice } from '@/actions/customer/cart'
+import { createCheckoutSession } from '@/actions/stripe/checkout'
 
-import { formatPrice } from '@/lib/utils'
+import CartItem from './cart-item'
 
 const CartContents = () => {
   const { cart } = useShoppingCart()

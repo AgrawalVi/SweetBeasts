@@ -1,12 +1,13 @@
 'use client'
 
 import React, { useState, useTransition } from 'react'
-import { useForm } from 'react-hook-form'
+import { ContactSchema } from '@/schemas'
 import { zodResolver } from '@hookform/resolvers/zod'
+import { useForm } from 'react-hook-form'
 import * as z from 'zod'
+
 import { Button } from '@/components/ui/button'
-import { Input } from '@/components/ui/input'
-import { Textarea } from '@/components/ui/textarea'
+import { Card, CardContent } from '@/components/ui/card'
 import {
   Form,
   FormControl,
@@ -15,10 +16,10 @@ import {
   FormLabel,
   FormMessage,
 } from '@/components/ui/form'
+import { Input } from '@/components/ui/input'
+import { Textarea } from '@/components/ui/textarea'
 import { FormError } from '@/components/custom/form-error'
 import { FormSuccess } from '@/components/custom/form-success'
-import { ContactSchema } from '@/schemas'
-import { Card, CardContent } from '@/components/ui/card'
 import { sendContactUs } from '@/actions/customer/contact-us'
 
 export default function ContactForm() {

@@ -1,10 +1,11 @@
 'use client'
 
 import { useState } from 'react'
+
 import {
+  HoveredLink,
   Menu,
   MenuItem,
-  HoveredLink,
   ProductItem,
 } from '@/components/aceternity/navbar-menu'
 

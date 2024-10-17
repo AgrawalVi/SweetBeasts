@@ -1,4 +1,5 @@
 import { Card } from '@/components/ui/card'
+
 import { OrderCardSkeleton } from './order-card-skeleton'
 
 export default function OrderPageContentSkeleton() {

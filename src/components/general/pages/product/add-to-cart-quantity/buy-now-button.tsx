@@ -2,11 +2,11 @@
 
 import { useEffect, useTransition } from 'react'
 
-import { createCheckoutSession } from '@/actions/stripe/checkout'
+import { formatPrice } from '@/lib/utils'
 import { useShoppingCart } from '@/hooks/use-shopping-cart'
 import { Button } from '@/components/ui/button'
 import { useToast } from '@/components/ui/use-toast'
-import { formatPrice } from '@/lib/utils'
+import { createCheckoutSession } from '@/actions/stripe/checkout'
 
 interface BuyNowButtonProps {
   productId: number

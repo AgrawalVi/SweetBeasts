@@ -1,7 +1,8 @@
 // components/ImageGrid.tsx
 'use client'
-import ImageDialog from '@/components/custom/image-dialog'
+
 import { cn } from '@/lib/utils'
+import ImageDialog from '@/components/custom/image-dialog'
 
 interface ImageGridProps {
   images: { src: string; alt: string; width: number; height: number }[]

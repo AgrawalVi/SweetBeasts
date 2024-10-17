@@ -1,7 +1,13 @@
 'use client'
 
-import * as z from 'zod'
+import { useState, useTransition } from 'react'
 import { JoinEmailListSchema } from '@/schemas'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { CheckIcon, ChevronRightIcon } from 'lucide-react'
+import { useForm } from 'react-hook-form'
+import * as z from 'zod'
+
+import { cn } from '@/lib/utils'
 import {
   Form,
   FormControl,
@@ -10,18 +16,12 @@ import {
   FormLabel,
   FormMessage,
 } from '@/components/ui/form'
-import { useForm } from 'react-hook-form'
-import { zodResolver } from '@hookform/resolvers/zod'
-import { addToEmailList } from '@/actions/customer/email-list'
-import { useToast } from '@/components/ui/use-toast'
-import { useState, useTransition } from 'react'
-
 import { Input } from '@/components/ui/input'
-import { HoverBorderGradient } from '@/components/aceternity/hover-border-gradient'
+import { useToast } from '@/components/ui/use-toast'
 import GradientButton from '@/components/aceternity/gradient-button'
+import { HoverBorderGradient } from '@/components/aceternity/hover-border-gradient'
 import { AnimatedSubscribeButton } from '@/components/magic-ui/subscribe-button'
-import { CheckIcon, ChevronRightIcon } from 'lucide-react'
-import { cn } from '@/lib/utils'
+import { addToEmailList } from '@/actions/customer/email-list'
 
 const JoinEmailListForm = ({
   showText = true,

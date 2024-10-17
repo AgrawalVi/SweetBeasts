@@ -1,13 +1,14 @@
 import React from 'react'
-import { cn } from '@/lib/utils'
-import Link from 'next/link'
-import { UserIcon } from 'lucide-react'
 import Image from 'next/image'
+import Link from 'next/link'
 import emblem from '@/assets/logos/icon.svg'
+import { UserIcon } from 'lucide-react'
 
+import { cn } from '@/lib/utils'
+
+import { FloatingModeToggle } from '../general/navbars/floating-mode-toggle'
 import { FullNavLinks } from '../general/navbars/full-nav-links'
 import { ModeToggle } from '../ui/mode-toggle'
-import { FloatingModeToggle } from '../general/navbars/floating-mode-toggle'
 
 export const FloatingNav = ({
   navItems,

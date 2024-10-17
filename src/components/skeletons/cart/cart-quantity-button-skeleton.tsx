@@ -1,8 +1,9 @@
 'use client'
 
-import { Button } from '@/components/ui/button'
 import { Minus, Plus } from 'lucide-react'
+
 import { cn } from '@/lib/utils'
+import { Button } from '@/components/ui/button'
 import { Skeleton } from '@/components/ui/skeleton'
 
 export default function CartQuantityButtonSkeleton({

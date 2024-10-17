@@ -1,11 +1,11 @@
 import React from 'react'
-import { WobbleCard } from '@/components/aceternity/wobble-card'
-import { IconBrandDiscord, IconBrandInstagram } from '@tabler/icons-react'
-import ContactForm from '@/components/general/pages/contact-us/contact-us-form'
-import { Mail } from 'lucide-react'
 import Link from 'next/link'
+import { DISCORD_URL, INSTAGRAM_URL, TIKTOK_URL } from '@/constants'
+import { IconBrandDiscord, IconBrandInstagram } from '@tabler/icons-react'
+import { Mail } from 'lucide-react'
 
-import { INSTAGRAM_URL, DISCORD_URL, TIKTOK_URL } from '@/constants'
+import { WobbleCard } from '@/components/aceternity/wobble-card'
+import ContactForm from '@/components/general/pages/contact-us/contact-us-form'
 
 export default function WobbleCardDemo() {
   return (

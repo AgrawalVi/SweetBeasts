@@ -1,12 +1,14 @@
 'use client'
 
-import * as z from 'zod'
-import { useForm } from 'react-hook-form'
+import { useState, useTransition } from 'react'
+import { ChangePasswordSchema } from '@/schemas'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { useTransition, useState } from 'react'
 import { useSession } from 'next-auth/react'
+import { useForm } from 'react-hook-form'
+import * as z from 'zod'
+
+import { useCurrentUser } from '@/hooks/use-current-user'
 import { Button } from '@/components/ui/button'
-import { Input } from '@/components/ui/input'
 import {
   Form,
   FormControl,
@@ -16,12 +18,10 @@ import {
   FormLabel,
   FormMessage,
 } from '@/components/ui/form'
-
-import { updatePassword } from '@/actions/auth/settings'
-import { ChangePasswordSchema } from '@/schemas'
-import { useCurrentUser } from '@/hooks/use-current-user'
+import { Input } from '@/components/ui/input'
 import { useToast } from '@/components/ui/use-toast'
 import { FormError } from '@/components/custom/form-error'
+import { updatePassword } from '@/actions/auth/settings'
 
 export const ChangePasswordForm = () => {
   const { update } = useSession()

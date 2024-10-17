@@ -1,14 +1,15 @@
-import { getOrderWithDataByEmailAndOrderNumber } from '@/data/shop/orders'
-import { currentUser } from '@/lib/auth'
-import { OrderWithData } from '@/types'
-import { redirect } from 'next/navigation'
-import OrderStatusBar from '@/components/general/pages/view-order/order-status-bar'
-import OrderDetails from '@/components/general/pages/checkout-success/order-details'
 import Link from 'next/link'
-import OrderSummary from '@/components/general/pages/view-order/order-summary'
+import { redirect } from 'next/navigation'
+import { OrderWithData } from '@/types'
+import { ChevronLeft } from 'lucide-react'
+
+import { currentUser } from '@/lib/auth'
 import { formatDate } from '@/lib/date-functions'
 import { Button } from '@/components/ui/button'
-import { ChevronLeft } from 'lucide-react'
+import OrderDetails from '@/components/general/pages/checkout-success/order-details'
+import OrderStatusBar from '@/components/general/pages/view-order/order-status-bar'
+import OrderSummary from '@/components/general/pages/view-order/order-summary'
+import { getOrderWithDataByEmailAndOrderNumber } from '@/data/shop/orders'
 
 export default async function OrderPage({
   params,
@@ -56,7 +57,12 @@ export default async function OrderPage({
       <div className="h-full max-w-5xl flex-col items-start justify-start space-y-4 xl:grid xl:grid-cols-2 xl:gap-4 xl:space-y-0">
         <div className="flex w-full">
           {lineItems && lineItems.length > 0 ? (
-            <OrderSummary orderItems={lineItems} totalPaidInCents={order.totalPaidInCents} shippingPaidInCents={order.shippingPaidInCents} taxesPaidInCents={order.taxesPaidInCents} />
+            <OrderSummary
+              orderItems={lineItems}
+              totalPaidInCents={order.totalPaidInCents}
+              shippingPaidInCents={order.shippingPaidInCents}
+              taxesPaidInCents={order.taxesPaidInCents}
+            />
           ) : (
             <div>No items found in your order</div>
           )}

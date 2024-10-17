@@ -1,7 +1,8 @@
 'use client'
 
-import { usePathname, useRouter, useSearchParams } from 'next/navigation'
 import { useEffect } from 'react'
+import { usePathname, useRouter, useSearchParams } from 'next/navigation'
+
 import { useShoppingCart } from '@/hooks/use-shopping-cart'
 
 export default function NavigationEvents() {

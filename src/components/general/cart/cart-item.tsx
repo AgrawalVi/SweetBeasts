@@ -1,21 +1,20 @@
 'use client'
 
 import Image from 'next/image'
+import Link from 'next/link'
 import { useQuery } from '@tanstack/react-query'
 
+import { getProductByIdApi } from '@/lib/api'
+import { formatPrice } from '@/lib/utils'
 import {
   CartItem as CartItemType,
   useShoppingCart,
 } from '@/hooks/use-shopping-cart'
-
 import { useToast } from '@/components/ui/use-toast'
 import CartItemSkeleton from '@/components/skeletons/cart/cart-item-skeleton'
+
 import CartQuantityButton from './cart-quantity-button'
 import RemoveProductButton from './remove-product-button'
-
-import { formatPrice } from '@/lib/utils'
-import Link from 'next/link'
-import { getProductByIdApi } from '@/lib/api'
 
 const CartItem = ({ item }: { item: CartItemType }) => {
   const { toast } = useToast()

@@ -1,8 +1,9 @@
 // route config to cache GET endpoint
 // export const dynamic = 'force-static'
 
-import { type NextRequest, NextResponse } from 'next/server'
-import { getProductVariantWithParentById } from "@/data/shop/product";
+import { NextResponse, type NextRequest } from 'next/server'
+
+import { getProductVariantWithParentById } from '@/data/shop/product'
 
 export const GET = async (req: NextRequest) => {
   const productId = req.url.split('/').pop()
@@ -15,7 +16,7 @@ export const GET = async (req: NextRequest) => {
   const product = await getProductVariantWithParentById(Number(productId))
 
   if (!product || product.archived) {
-    return NextResponse.json({error: 'Product not found'}, {status: 400})
+    return NextResponse.json({ error: 'Product not found' }, { status: 400 })
   }
 
   return NextResponse.json(product)

@@ -5,6 +5,7 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card'
+
 import { ChangePasswordForm } from './account-settings/change-password-form'
 import SignOutModalButton from './sign-out-modal-button'
 

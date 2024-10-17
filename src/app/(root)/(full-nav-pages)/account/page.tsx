@@ -1,6 +1,6 @@
-import AccountSettingsCard from '@/components/general/pages/account/account-settings-card'
 import AccountOrdersCard from '@/components/general/pages/account/account-orders-card'
 import AccountProfileCard from '@/components/general/pages/account/account-profile-card'
+import AccountSettingsCard from '@/components/general/pages/account/account-settings-card'
 
 export default function MyAccount() {
   return (

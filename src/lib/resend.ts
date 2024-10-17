@@ -1,24 +1,23 @@
 import 'server-only'
 
-import { Resend } from 'resend'
-
-import TwoFactorConfirmationEmail from '@/emails/two-factor'
-import { ResetPasswordEmail } from '@/emails/reset-password'
-import EmailConfirmation from '@/emails/email-confirmation'
+import {
+  CONTACT_US_EMAILS,
+  RESEND_FROM_EMAIL_ACCOUNT,
+  RESEND_FROM_EMAIL_NEWS,
+  RESEND_FROM_EMAIL_ORDER,
+  RESEND_FROM_EMAIL_SUPPORT,
+} from '@/constants'
 import ContactUsEmail from '@/emails/contact-us'
 import TeamNotificationEmail from '@/emails/contact-us-team'
-import { OrderWithData } from '@/types'
+import EmailConfirmation from '@/emails/email-confirmation'
 import OrderConfirmedUserEmail from '@/emails/order-confirm-user'
-
-import {
-  RESEND_FROM_EMAIL_ACCOUNT,
-  RESEND_FROM_EMAIL_SUPPORT,
-  RESEND_FROM_EMAIL_ORDER,
-  CONTACT_US_EMAILS,
-  RESEND_FROM_EMAIL_NEWS,
-} from '@/constants'
-import { getMailingListUserByEmail } from '@/data/customer/mailing-list'
 import Newsletter from '@/emails/promo/news-letter'
+import { ResetPasswordEmail } from '@/emails/reset-password'
+import TwoFactorConfirmationEmail from '@/emails/two-factor'
+import { OrderWithData } from '@/types'
+import { Resend } from 'resend'
+
+import { getMailingListUserByEmail } from '@/data/customer/mailing-list'
 
 const resend = new Resend(process.env.RESEND_API_KEY)
 const generalAudienceId = process.env.RESEND_GENERAL_AUDIENCE_ID!

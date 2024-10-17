@@ -1,6 +1,7 @@
-import { formatPrice } from '@/lib/utils'
+import { LineItemWithProduct } from '@/types'
 import { Order } from '@prisma/client'
-import OrderLineItem from './order-line-item'
+
+import { formatPrice } from '@/lib/utils'
 import {
   Card,
   CardContent,
@@ -8,7 +9,8 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card'
-import { LineItemWithProduct } from '@/types'
+
+import OrderLineItem from './order-line-item'
 
 export default function OrderSummary({
   orderItems,

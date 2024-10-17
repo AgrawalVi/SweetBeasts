@@ -1,10 +1,10 @@
 import crypto from 'crypto'
 import { v4 as uuidv4 } from 'uuid'
 
-import { getVerificationTokenByEmail } from '@/data/auth/verification-token'
+import { db } from '@/lib/db'
 import { getResetPasswordTokenByEmail } from '@/data/auth/reset-password-token'
 import { getTwoFactorTokenByEmail } from '@/data/auth/two-factor-token'
-import { db } from '@/lib/db'
+import { getVerificationTokenByEmail } from '@/data/auth/verification-token'
 
 export const generateTwoFactorToken = async (email: string) => {
   const token = crypto.randomInt(100_000, 1_000_000).toString()

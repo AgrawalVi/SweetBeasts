@@ -1,7 +1,8 @@
-import { CardDescription } from '@/components/ui/card'
-import { formatPrice } from '@/lib/utils'
 import { OrderWithData } from '@/types'
+
 import { formatDate } from '@/lib/date-functions'
+import { formatPrice } from '@/lib/utils'
+import { CardDescription } from '@/components/ui/card'
 
 export default function OrdersPageOrderItem({
   order,

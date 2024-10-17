@@ -1,8 +1,10 @@
 'use client'
-import React, { useState, useRef, useEffect } from 'react'
-import { motion } from 'framer-motion'
-import { cn } from '@/lib/utils'
+
+import React, { useEffect, useRef, useState } from 'react'
 import Image from 'next/image'
+import { motion } from 'framer-motion'
+
+import { cn } from '@/lib/utils'
 
 type Card = {
   id: number

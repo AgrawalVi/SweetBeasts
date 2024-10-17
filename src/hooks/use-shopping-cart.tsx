@@ -2,29 +2,28 @@
 
 import React, {
   createContext,
-  useState,
+  ReactNode,
   useContext,
   useEffect,
-  ReactNode,
+  useState,
 } from 'react'
-import { useCurrentUser } from '@/hooks/use-current-user'
-
-import { v4 as uuidv4 } from 'uuid'
 import Cookies from 'js-cookie'
+import { signOut } from 'next-auth/react'
+import { v4 as uuidv4 } from 'uuid'
 
-import {
-  addToUserCart,
-  addToGuestCart,
-  getCartByGuestId,
-  getCartByUserId,
-  removeProductFromCartByIdAndProductId,
-  decrementProductFromCartByIdAndProductId,
-} from '@/actions/customer/cart'
+import { getProductByIdApi } from '@/lib/api'
 // TODO: Convert to API endpoint
 
 import { cartLoginHandler } from '@/lib/cart-utils'
-import { signOut } from 'next-auth/react'
-import { getProductByIdApi } from "@/lib/api";
+import { useCurrentUser } from '@/hooks/use-current-user'
+import {
+  addToGuestCart,
+  addToUserCart,
+  decrementProductFromCartByIdAndProductId,
+  getCartByGuestId,
+  getCartByUserId,
+  removeProductFromCartByIdAndProductId,
+} from '@/actions/customer/cart'
 
 export interface CartItem {
   productId: number
@@ -216,7 +215,9 @@ export const ShoppingCartProvider = ({ children }: { children: ReactNode }) => {
       return [...prevCart, item]
     })
     setIsCartOpen(true) // open the cart in the menu
-    return { success: `Successfully added ${product.parentProduct.name} to cart!` }
+    return {
+      success: `Successfully added ${product.parentProduct.name} to cart!`,
+    }
   }
 
   const removeItemFromCart = async (productId: number) => {

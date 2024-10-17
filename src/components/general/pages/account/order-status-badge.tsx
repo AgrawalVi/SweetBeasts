@@ -1,6 +1,7 @@
 import { OrderWithData } from '@/types'
-import { Badge } from '@/components/ui/badge'
 import { OrderStatus } from '@prisma/client'
+
+import { Badge } from '@/components/ui/badge'
 
 export default function OrderStatusBadge({ status }: { status: OrderStatus }) {
   if (status === 'EXCEPTION') {

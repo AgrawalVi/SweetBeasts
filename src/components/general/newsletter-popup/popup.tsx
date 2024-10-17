@@ -1,18 +1,18 @@
 'use client'
 
+import Image from 'next/image'
+import Link from 'next/link'
 import desktopImage from '@/assets/newsletter/popup/desktop-popup-image.png'
 import mobileImage from '@/assets/newsletter/popup/mobile-popup-image.png'
-import JoinEmailListForm from '@/components/sections/footer/email-list-form'
 
+import { usePopup } from '@/hooks/use-popup'
 import {
   Dialog,
   DialogContent,
   DialogDescription,
   DialogHeader,
 } from '@/components/ui/dialog'
-import { usePopup } from '@/hooks/use-popup'
-import Image from 'next/image'
-import Link from 'next/link'
+import JoinEmailListForm from '@/components/sections/footer/email-list-form'
 
 export default function NewsletterPopup() {
   const { isOpen, setIsOpen } = usePopup()

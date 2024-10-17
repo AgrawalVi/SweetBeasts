@@ -1,5 +1,6 @@
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { OrderWithData } from '@/types'
+
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 
 export default function OrderDetails({ order }: { order: OrderWithData }) {
   return (

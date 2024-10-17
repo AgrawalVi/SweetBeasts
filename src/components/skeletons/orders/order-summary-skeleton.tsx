@@ -1,4 +1,3 @@
-import OrderLineItemSkeleton from './order-line-item-skeleton'
 import {
   Card,
   CardContent,
@@ -7,6 +6,8 @@ import {
   CardTitle,
 } from '@/components/ui/card'
 import { Skeleton } from '@/components/ui/skeleton'
+
+import OrderLineItemSkeleton from './order-line-item-skeleton'
 
 export default function OrderSummary() {
   return (

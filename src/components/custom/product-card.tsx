@@ -2,6 +2,7 @@
 
 import React from 'react'
 import Image from 'next/image'
+
 import { BackgroundGradient } from '@/components/aceternity/background-gradient'
 
 interface ProductCardProps {

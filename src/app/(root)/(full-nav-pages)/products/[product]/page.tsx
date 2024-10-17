@@ -1,13 +1,14 @@
 import { redirect } from 'next/navigation'
-import AddToCartAndBuyNowWithQuantitySection from '@/components/general/pages/product/add-to-cart-quantity/add-to-cart-and-buy-now-quantity-secton'
-import { getProductByName } from '@/data/shop/product'
-import ProductAccordion from '@/components/general/pages/product/product-accordion'
-import LimitedSupplyBuyNow from '@/components/general/pages/product/limited-supply-buy-now'
-import PriceSection from '@/components/general/pages/product/price-section'
-import LoreTeaser from '@/components/general/pages/product/lore-teaser'
-import ImageGrid from '@/components/custom/image-grid'
+
 import ImageDialog from '@/components/custom/image-dialog'
+import ImageGrid from '@/components/custom/image-grid'
 import SVGDecoration from '@/components/custom/svg-component'
+import AddToCartAndBuyNowWithQuantitySection from '@/components/general/pages/product/add-to-cart-quantity/add-to-cart-and-buy-now-quantity-secton'
+import LimitedSupplyBuyNow from '@/components/general/pages/product/limited-supply-buy-now'
+import LoreTeaser from '@/components/general/pages/product/lore-teaser'
+import PriceSection from '@/components/general/pages/product/price-section'
+import ProductAccordion from '@/components/general/pages/product/product-accordion'
+import { getProductByName } from '@/data/shop/product'
 
 export default async function Pogo({
   params,

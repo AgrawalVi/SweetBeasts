@@ -1,13 +1,15 @@
 'use client'
+
 import React from 'react'
 import { ArrowUpRight } from 'lucide-react'
+
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
 } from '@/components/ui/accordion'
-import { Section, Container } from '@/components/craft'
+import { Container, Section } from '@/components/craft'
 
 export type FAQItem = {
   question: string

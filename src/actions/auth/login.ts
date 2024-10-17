@@ -1,22 +1,23 @@
 'use server'
 
-import * as z from 'zod'
-import { LoginSchema } from '@/schemas'
 import { signIn } from '@/auth'
 import { DEFAULT_LOGIN_REDIRECT } from '@/routes'
+import { LoginSchema } from '@/schemas'
 import { AuthError } from 'next-auth'
-import { generateVerificationToken, generateTwoFactorToken } from '@/lib/tokens'
-import { getUserByEmail } from '@/data/shop/user'
-import {
-  deleteTwoFactorTokenById,
-  getTwoFactorTokenByEmail,
-} from '@/data/auth/two-factor-token'
-import { sendVerificationEmail, sendTwoFactorEmail } from '@/lib/resend'
+import * as z from 'zod'
+
+import { sendTwoFactorEmail, sendVerificationEmail } from '@/lib/resend'
+import { generateTwoFactorToken, generateVerificationToken } from '@/lib/tokens'
 import {
   createTwoFactorConfirmation,
   deleteTwoFactorConfirmationById,
   getTwoFactorConfirmationByUserId,
 } from '@/data/auth/two-factor-confirmation'
+import {
+  deleteTwoFactorTokenById,
+  getTwoFactorTokenByEmail,
+} from '@/data/auth/two-factor-token'
+import { getUserByEmail } from '@/data/shop/user'
 
 export const login = async (
   values: z.infer<typeof LoginSchema>,
@@ -79,7 +80,11 @@ export const login = async (
       await createTwoFactorConfirmation(existingUser.id)
     } else {
       const twoFactorToken = await generateTwoFactorToken(existingUser.email)
-      await sendTwoFactorEmail(existingUser.firstName, twoFactorToken.email, twoFactorToken.token)
+      await sendTwoFactorEmail(
+        existingUser.firstName,
+        twoFactorToken.email,
+        twoFactorToken.token,
+      )
       return { twoFactor: true }
     }
   }

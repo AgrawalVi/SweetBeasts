@@ -1,17 +1,16 @@
 'use server'
 
+import { ChangeNameSchema, ChangePasswordSchema } from '@/schemas'
+import bcrypt from 'bcryptjs'
 import * as z from 'zod'
 
-import bcrypt from 'bcryptjs'
-
+import { currentUser } from '@/lib/auth'
+import { stripe } from '@/lib/stripe'
 import {
   changePasswordById,
   changeUserNameById,
   getUserById,
 } from '@/data/shop/user'
-import { currentUser } from '@/lib/auth'
-import { ChangeNameSchema, ChangePasswordSchema } from '@/schemas'
-import { stripe } from '@/lib/stripe'
 
 export const updateName = async (values: z.infer<typeof ChangeNameSchema>) => {
   const validatedFields = ChangeNameSchema.safeParse(values)

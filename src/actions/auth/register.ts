@@ -1,23 +1,23 @@
 'use server'
 
-import * as z from 'zod'
-import bcrypt from 'bcryptjs'
-import { stripe } from '@/lib/stripe'
-
 import { RegisterSchema } from '@/schemas'
-import { createUser, getUserByEmail } from '@/data/shop/user'
-import { generateVerificationToken } from '@/lib/tokens'
+import { GuestUserWithData } from '@/types'
+import bcrypt from 'bcryptjs'
+import * as z from 'zod'
+
 import {
   addToGeneralEmailListWithName,
   sendVerificationEmail,
 } from '@/lib/resend'
+import { stripe } from '@/lib/stripe'
+import { generateVerificationToken } from '@/lib/tokens'
+import { transferShippingAddressToUserFromGuestUser } from '@/data/shop/address'
 import {
   deleteGuestUserById,
   getGuestUserWithDataByEmail,
 } from '@/data/shop/guest-user'
-import { GuestUserWithData } from '@/types'
 import { transferOrderToUserFromGuestUser } from '@/data/shop/orders'
-import { transferShippingAddressToUserFromGuestUser } from '@/data/shop/address'
+import { createUser, getUserByEmail } from '@/data/shop/user'
 
 export const register = async (values: z.infer<typeof RegisterSchema>) => {
   const validatedFields = RegisterSchema.safeParse(values)

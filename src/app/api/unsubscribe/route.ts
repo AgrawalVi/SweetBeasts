@@ -1,7 +1,11 @@
-import { getMailingListUserByEmail, updateMailingListSubscribedStatus } from '@/data/customer/mailing-list'
-import { unsubscribeFromGeneralEmailList } from '@/lib/resend'
-import { UnsubscribeSchema } from '@/schemas'
 import { NextRequest } from 'next/server'
+import { UnsubscribeSchema } from '@/schemas'
+
+import { unsubscribeFromGeneralEmailList } from '@/lib/resend'
+import {
+  getMailingListUserByEmail,
+  updateMailingListSubscribedStatus,
+} from '@/data/customer/mailing-list'
 
 export async function POST(req: NextRequest) {
   const email = req.nextUrl.searchParams.get('email')
@@ -22,7 +26,7 @@ export async function POST(req: NextRequest) {
     if (!user) {
       return new Response('User not found', { status: 404 })
     }
-    console.log("unsubscribing", email)
+    console.log('unsubscribing', email)
     await updateMailingListSubscribedStatus(user.email, user.resendId, false)
     await unsubscribeFromGeneralEmailList(user.resendId)
   } catch (e) {

@@ -1,6 +1,7 @@
 import TextSection from '@/components/custom/text-section'
-import { ReasonsForSweetBeastsGrid } from '../reasons-for-sweetbeasts-grid'
 import JoinEmailListForm from '@/components/sections/footer/email-list-form'
+
+import { ReasonsForSweetBeastsGrid } from '../reasons-for-sweetbeasts-grid'
 
 export default function HomeSweetbeastsMission() {
   return (

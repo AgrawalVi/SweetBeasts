@@ -1,5 +1,4 @@
-import { cn } from '@/lib/utils'
-
+import { IconExchange } from '@tabler/icons-react'
 import {
   Heart,
   MessageCircleQuestion,
@@ -9,7 +8,8 @@ import {
   Truck,
   WalletCards,
 } from 'lucide-react'
-import { IconExchange } from '@tabler/icons-react'
+
+import { cn } from '@/lib/utils'
 
 export function ReasonsForSweetBeastsGrid() {
   const features = [

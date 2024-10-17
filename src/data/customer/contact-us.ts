@@ -1,7 +1,8 @@
 import 'server-only'
 
-import { db } from '@/lib/db'
 import { ContactUsType, GuestUser, Order, User } from '@prisma/client'
+
+import { db } from '@/lib/db'
 
 export const createContactUsRequestForUser = async (
   user: User,

@@ -1,19 +1,19 @@
+import { cookies } from 'next/headers'
+import authConfig from '@/auth.config'
+import { PrismaAdapter } from '@auth/prisma-adapter'
+import { UserRole } from '@prisma/client'
 import NextAuth, { type DefaultSession } from 'next-auth'
 import { JWT } from 'next-auth/jwt'
-import { PrismaAdapter } from '@auth/prisma-adapter'
-import { db } from '@/lib/db'
-import { UserRole } from '@prisma/client'
-import authConfig from '@/auth.config'
 
-import { getUserById, verifyUser } from '@/data/shop/user'
+import { db } from '@/lib/db'
 import {
   deleteTwoFactorConfirmationById,
   getTwoFactorConfirmationByUserId,
 } from '@/data/auth/two-factor-confirmation'
+import { getUserById, verifyUser } from '@/data/shop/user'
 
-import { cookies } from 'next/headers'
-import { cartLoginHandler } from './lib/cart-utils'
 import { getCartByGuestId } from './data/shop/cart'
+import { cartLoginHandler } from './lib/cart-utils'
 
 declare module 'next-auth' {
   /**

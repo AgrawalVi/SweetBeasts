@@ -1,6 +1,7 @@
-import { getProducts } from '@/data/shop/product'
 import { redirect } from 'next/navigation'
+
 import ProductCard from '@/components/custom/product-card'
+import { getProducts } from '@/data/shop/product'
 
 export default async function ProductsPage() {
   const products = await getProducts()

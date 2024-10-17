@@ -1,7 +1,8 @@
+import { Suspense } from 'react'
+
+import { Card } from '@/components/ui/card'
 import { OrdersPageContent } from '@/components/general/pages/account/orders/orders-page-content'
 import OrderPageContentSkeleton from '@/components/skeletons/account/order-page-content-skeleton'
-import { Card } from '@/components/ui/card'
-import { Suspense } from 'react'
 
 export default function OrdersPage() {
   return (

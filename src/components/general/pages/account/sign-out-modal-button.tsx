@@ -1,17 +1,18 @@
 'use client'
 
-import { Button } from '@/components/ui/button'
+import { signOut } from 'next-auth/react'
+
 import { cn } from '@/lib/utils'
+import { Button } from '@/components/ui/button'
 import {
   Dialog,
-  DialogTrigger,
+  DialogClose,
   DialogContent,
   DialogHeader,
-  DialogTitle,
-  DialogClose,
   DialogOverlay,
+  DialogTitle,
+  DialogTrigger,
 } from '@/components/ui/dialog'
-import { signOut } from 'next-auth/react'
 import { logout } from '@/actions/auth/logout'
 
 export default function SignOutModalButton({

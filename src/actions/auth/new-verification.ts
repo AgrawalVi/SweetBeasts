@@ -1,10 +1,10 @@
 'use server'
 
-import { getUserByEmail, verifyUserWithEmail } from '@/data/shop/user'
 import {
   deleteVerificationTokenById,
   getVerificationTokenByToken,
 } from '@/data/auth/verification-token'
+import { getUserByEmail, verifyUserWithEmail } from '@/data/shop/user'
 
 export const newVerification = async (token: string) => {
   const existingToken = await getVerificationTokenByToken(token)

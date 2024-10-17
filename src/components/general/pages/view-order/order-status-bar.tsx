@@ -1,5 +1,6 @@
+import Link from 'next/link'
 import { Order } from '@prisma/client'
-import { Progress } from '@/components/ui/progress'
+
 import {
   Card,
   CardContent,
@@ -7,7 +8,7 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card'
-import Link from 'next/link'
+import { Progress } from '@/components/ui/progress'
 
 export default function OrderStatusBar({ order }: { order: Order }) {
   return (

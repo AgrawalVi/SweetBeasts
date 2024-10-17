@@ -1,16 +1,18 @@
 'use client'
 
 import React, { useState } from 'react'
-import { ModeToggle } from '@/components/ui/mode-toggle'
-import { Button } from '@/components/ui/button'
-import { MenuIcon } from 'lucide-react'
+import Image from 'next/image'
 import Link from 'next/link'
-import CartButton from '../cart/cart-button'
+import iconLogo from '@/assets/logos/icon.svg'
+import { MenuIcon } from 'lucide-react'
+
 import { cn } from '@/lib/utils'
+import { Button } from '@/components/ui/button'
+import { ModeToggle } from '@/components/ui/mode-toggle'
+
+import CartButton from '../cart/cart-button'
 import { FullNavLinks } from './full-nav-links'
 import UserButton from './user-button'
-import Image from 'next/image'
-import iconLogo from '@/assets/logos/icon.svg'
 
 export function Navbar({ className }: { className?: string }) {
   const [expanded, setExpanded] = useState(false)

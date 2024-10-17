@@ -1,11 +1,13 @@
 'use client'
+
 import React, { useState, useTransition } from 'react'
-import { useForm } from 'react-hook-form'
+import { FeedbackSchema } from '@/schemas'
 import { zodResolver } from '@hookform/resolvers/zod'
+import { useForm } from 'react-hook-form'
 import * as z from 'zod'
+
 import { Button } from '@/components/ui/button'
-import { Input } from '@/components/ui/input'
-import { Textarea } from '@/components/ui/textarea'
+import { Card, CardContent } from '@/components/ui/card'
 import {
   Form,
   FormControl,
@@ -14,11 +16,11 @@ import {
   FormLabel,
   FormMessage,
 } from '@/components/ui/form'
+import { Input } from '@/components/ui/input'
+import { Textarea } from '@/components/ui/textarea'
 import { FormError } from '@/components/custom/form-error'
 import { FormSuccess } from '@/components/custom/form-success'
-import { FeedbackSchema } from '@/schemas'
 import { sendFeedBack } from '@/actions/customer/feedback'
-import { Card, CardContent } from '@/components/ui/card'
 
 interface FeedbackFormInputs {
   name: string

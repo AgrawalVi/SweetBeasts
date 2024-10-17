@@ -1,10 +1,12 @@
-import { getFourMostRecentOrdersWithDataByUserId } from '@/data/shop/orders'
-import { currentUser } from '@/lib/auth'
-import { OrderWithData } from '@/types'
 import Link from 'next/link'
 import { redirect } from 'next/navigation'
-import OrderCard from './order-card'
+import { OrderWithData } from '@/types'
 import { ChevronRight } from 'lucide-react'
+
+import { currentUser } from '@/lib/auth'
+import { getFourMostRecentOrdersWithDataByUserId } from '@/data/shop/orders'
+
+import OrderCard from './order-card'
 
 export default async function OrderContent() {
   const user = await currentUser()

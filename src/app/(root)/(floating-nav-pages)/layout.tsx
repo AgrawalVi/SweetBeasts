@@ -1,7 +1,7 @@
+import React from 'react'
+
 import FloatingNavbar from '@/components/general/navbars/floating-navbar'
 import Footer from '@/components/sections/footer/footer'
-
-import React from 'react'
 
 export default function layout({ children }: { children: React.ReactNode }) {
   return (

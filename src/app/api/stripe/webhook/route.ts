@@ -1,7 +1,8 @@
+import { NextResponse } from 'next/server'
+
+import { stripe } from '@/lib/stripe'
 import { createOrder } from '@/actions/order/new-order'
 import { deleteOpenCheckoutSession } from '@/actions/stripe/checkout-session'
-import { stripe } from '@/lib/stripe'
-import { NextResponse } from 'next/server'
 
 const webhookSecret = process.env.STRIPE_WEBHOOK_SECRET!
 

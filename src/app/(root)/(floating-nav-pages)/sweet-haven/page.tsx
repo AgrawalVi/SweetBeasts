@@ -1,5 +1,6 @@
-import TextSection from '@/components/custom/text-section'
 import React from 'react'
+
+import TextSection from '@/components/custom/text-section'
 import LoreCard from '@/components/general/sweet-haven/lore-card'
 
 export default function PogoLorePage() {

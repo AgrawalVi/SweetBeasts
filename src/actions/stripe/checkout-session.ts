@@ -1,7 +1,8 @@
 'use server'
 
-import { deleteOpenCheckoutSessionByStripeCheckoutSessionId } from '@/data/shop/open-checkout-session'
 import Stripe from 'stripe'
+
+import { deleteOpenCheckoutSessionByStripeCheckoutSessionId } from '@/data/shop/open-checkout-session'
 
 export const deleteOpenCheckoutSession = async (
   event: Stripe.CheckoutSessionExpiredEvent,

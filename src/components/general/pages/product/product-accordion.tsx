@@ -1,12 +1,12 @@
+import { IconIroning3 } from '@tabler/icons-react'
+import { ClipboardPen, MessageCircleWarning, ScrollText } from 'lucide-react'
+
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
 } from '@/components/ui/accordion'
-import { IconIroning3 } from '@tabler/icons-react'
-
-import { ClipboardPen, MessageCircleWarning, ScrollText } from 'lucide-react'
 
 export default function ProductAccordion() {
   return (

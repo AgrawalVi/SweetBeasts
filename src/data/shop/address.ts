@@ -1,7 +1,8 @@
 import 'server-only'
 
-import { db } from '@/lib/db'
 import { ShippingAddress } from '@prisma/client'
+
+import { db } from '@/lib/db'
 
 export const getAddressByAddressAndEmail = async (
   address: ShippingAddress,

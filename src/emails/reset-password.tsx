@@ -1,6 +1,6 @@
 import React from 'react'
+import { LOGO_PNG_URL } from '@/constants'
 import {
-  Tailwind,
   Body,
   Button,
   Container,
@@ -12,9 +12,9 @@ import {
   Link,
   Preview,
   Section,
+  Tailwind,
   Text,
 } from '@react-email/components'
-import { LOGO_PNG_URL } from '@/constants'
 
 interface ResetPasswordEmailProps {
   firstName: string

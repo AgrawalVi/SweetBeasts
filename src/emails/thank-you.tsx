@@ -1,6 +1,6 @@
 import React from 'react'
+import { LOGO_PNG_URL } from '@/constants'
 import {
-  Tailwind,
   Body,
   Container,
   Head,
@@ -11,9 +11,9 @@ import {
   Link,
   Preview,
   Section,
+  Tailwind,
   Text,
 } from '@react-email/components'
-import { LOGO_PNG_URL } from '@/constants'
 
 interface ThankYouEmailProps {
   firstName: string
@@ -35,7 +35,12 @@ export default function ThankYouEmail({
         <Body className="bg-white-100">
           <Container className="mx-auto max-w-lg rounded-lg bg-pink-100 p-6">
             <Section className="text-center">
-              <Img src={logoURL} alt="SweetBeasts Logo" width="120" className="mx-auto" />
+              <Img
+                src={logoURL}
+                alt="SweetBeasts Logo"
+                width="120"
+                className="mx-auto"
+              />
               <Heading className="my-4 text-3xl font-bold text-black">
                 Thank You!
               </Heading>

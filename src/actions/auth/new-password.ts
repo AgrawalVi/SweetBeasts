@@ -1,9 +1,9 @@
 'use server'
 
+import { NewPasswordSchema } from '@/schemas'
+import bcrypt from 'bcryptjs'
 import * as z from 'zod'
 
-import bcrypt from 'bcryptjs'
-import { NewPasswordSchema } from '@/schemas'
 import {
   deleteResetPasswordTokenById,
   getPasswordResetTokenByToken,

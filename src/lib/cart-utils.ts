@@ -1,10 +1,11 @@
+import Cookies from 'js-cookie'
+
+import { CartItem } from '@/hooks/use-shopping-cart'
 import {
   addToUserCart,
   clearGuestIdCart,
   getCartByUserId,
 } from '@/actions/customer/cart'
-import { CartItem } from '@/hooks/use-shopping-cart'
-import Cookies from 'js-cookie'
 
 export const cartLoginHandler = async (
   guestCart: CartItem[],

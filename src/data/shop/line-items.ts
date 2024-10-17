@@ -1,7 +1,8 @@
 import 'server-only'
 
-import { db } from '@/lib/db'
 import { LineItemWithProduct } from '@/types'
+
+import { db } from '@/lib/db'
 
 export const getLineItemsByOrderId = async (orderId: number) => {
   let lineItems
@@ -13,9 +14,9 @@ export const getLineItemsByOrderId = async (orderId: number) => {
       include: {
         productVariant: {
           include: {
-            parentProduct: true
-          }
-        }
+            parentProduct: true,
+          },
+        },
       },
     })
   } catch (e) {

@@ -1,11 +1,12 @@
+import Link from 'next/link'
+import { OrderWithData } from '@/types'
+
+import { formatDate } from '@/lib/date-functions'
+import { CheckoutSuccessLoader } from '@/components/general/pages/checkout-success/multi-step-loader'
 import OrderDetails from '@/components/general/pages/checkout-success/order-details'
 import OrderStatusBar from '@/components/general/pages/view-order/order-status-bar'
 import OrderSummary from '@/components/general/pages/view-order/order-summary'
 import { getOrderWithDataByStripeSessionId } from '@/data/shop/orders'
-import { OrderWithData } from '@/types'
-import { formatDate } from '@/lib/date-functions'
-import Link from 'next/link'
-import { CheckoutSuccessLoader } from '@/components/general/pages/checkout-success/multi-step-loader'
 
 export default async function CheckoutSuccess({
   searchParams,

@@ -1,7 +1,7 @@
 'use client'
 
-import { Product } from '@prisma/client'
 import Link from 'next/link'
+import { Product } from '@prisma/client'
 
 export default function CartItemProductNameLink({
   product,

@@ -1,4 +1,5 @@
 import React from 'react'
+import { LOGO_PNG_URL } from '@/constants'
 import {
   Body,
   Container,
@@ -11,7 +12,6 @@ import {
   Section,
   Text,
 } from '@react-email/components'
-import { LOGO_PNG_URL } from '@/constants'
 
 interface TwoFactorConfirmationEmailProps {
   firstName: string

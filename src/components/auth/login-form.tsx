@@ -1,13 +1,16 @@
 'use client'
 
 import { useState, useTransition } from 'react'
+import Link from 'next/link'
 import { useSearchParams } from 'next/navigation'
-import { useForm } from 'react-hook-form'
+import { LoginSchema } from '@/schemas'
 import { zodResolver } from '@hookform/resolvers/zod'
-
 import { REGEXP_ONLY_DIGITS } from 'input-otp'
-import { Input } from '@/components/ui/input'
-import { CardWrapper } from '@/components/auth/card-wrapper'
+import { useForm } from 'react-hook-form'
+import * as z from 'zod'
+
+import { useShoppingCart } from '@/hooks/use-shopping-cart'
+import { Button } from '@/components/ui/button'
 import {
   Form,
   FormControl,
@@ -16,21 +19,16 @@ import {
   FormLabel,
   FormMessage,
 } from '@/components/ui/form'
+import { Input } from '@/components/ui/input'
 import {
   InputOTP,
   InputOTPGroup,
   InputOTPSlot,
 } from '@/components/ui/input-otp'
-
-import * as z from 'zod'
-import { LoginSchema } from '@/schemas'
-import { Button } from '@/components/ui/button'
+import { CardWrapper } from '@/components/auth/card-wrapper'
 import { FormError } from '@/components/custom/form-error'
 import { FormSuccess } from '@/components/custom/form-success'
 import { login } from '@/actions/auth/login'
-import Link from 'next/link'
-
-import { useShoppingCart } from '@/hooks/use-shopping-cart'
 
 export const LoginForm = ({ redirectTo }: { redirectTo?: string }) => {
   const searchParams = useSearchParams()

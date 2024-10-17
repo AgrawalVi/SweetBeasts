@@ -1,11 +1,12 @@
 import Link from 'next/link'
-import { Button } from '@/components/ui/button'
+import { DISCORD_URL, INSTAGRAM_URL, TIKTOK_URL } from '@/constants'
 import {
   IconBrandDiscord,
   IconBrandInstagram,
   IconBrandTiktok,
 } from '@tabler/icons-react'
-import { DISCORD_URL, INSTAGRAM_URL, TIKTOK_URL } from '@/constants'
+
+import { Button } from '@/components/ui/button'
 
 export default function SocialButton() {
   return (

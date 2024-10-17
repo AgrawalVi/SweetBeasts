@@ -1,6 +1,7 @@
 import React from 'react'
+import { LOGO_PNG_URL } from '@/constants'
+import { OrderWithData } from '@/types'
 import {
-  Tailwind,
   Body,
   Container,
   Head,
@@ -11,10 +12,9 @@ import {
   Link,
   Preview,
   Section,
+  Tailwind,
   Text,
 } from '@react-email/components'
-import { OrderWithData } from '@/types'
-import { LOGO_PNG_URL } from '@/constants'
 
 interface OrderConfirmedAdminEmailProps {
   userName: string

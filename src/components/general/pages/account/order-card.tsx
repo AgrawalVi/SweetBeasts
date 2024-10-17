@@ -1,9 +1,11 @@
-import { Card } from '@/components/ui/card'
-import { formatPrice } from '@/lib/utils'
-import { OrderWithData } from '@/types'
-import { formatDate } from '@/lib/date-functions'
-import { ChevronRight, CircleArrowOutUpRight } from 'lucide-react'
 import Link from 'next/link'
+import { OrderWithData } from '@/types'
+import { ChevronRight, CircleArrowOutUpRight } from 'lucide-react'
+
+import { formatDate } from '@/lib/date-functions'
+import { formatPrice } from '@/lib/utils'
+import { Card } from '@/components/ui/card'
+
 import OrderStatusBadge from './order-status-badge'
 
 export default function OrderCard({ order }: { order: OrderWithData }) {

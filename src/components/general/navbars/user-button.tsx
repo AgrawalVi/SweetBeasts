@@ -1,6 +1,7 @@
-import { Button } from '@/components/ui/button'
-import { UserIcon } from 'lucide-react'
 import Link from 'next/link'
+import { UserIcon } from 'lucide-react'
+
+import { Button } from '@/components/ui/button'
 
 export default function UserButton() {
   return (

@@ -1,8 +1,9 @@
 'use client'
 
 import React, { useEffect, useState } from 'react'
-import { MultiStepLoader as Loader } from '@/components/aceternity/multi-step-loader'
 import { IconSquareRoundedX } from '@tabler/icons-react'
+
+import { MultiStepLoader as Loader } from '@/components/aceternity/multi-step-loader'
 
 const loadingStates = [
   {
