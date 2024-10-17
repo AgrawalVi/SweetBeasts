@@ -28,6 +28,11 @@ export type OrderWithData = Order & {
   shippingAddress: ShippingAddress
 }
 
+export type ProductVariantWithParent = ProductVariant & {
+  parentProduct: Product
+}
+
+// RESEND TYPES
 export type ResendWebhookBody = {
   type: 'contact.created' | 'contact.deleted' | 'contact.updated'
   created_at: Date
@@ -41,8 +46,4 @@ export type ResendWebhookBody = {
     last_name: string
     unsubscribed: boolean
   }
-}
-
-export type ProductVariantWithParent = ProductVariant & {
-  parentProduct: Product
 }

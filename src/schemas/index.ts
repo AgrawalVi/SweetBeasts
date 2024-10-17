@@ -143,3 +143,9 @@ export const ChangePasswordSchema = z
       path: ['confirmNewPassword'],
     },
   )
+
+export const UnsubscribeSchema = z.object({
+  email: z.string().email({
+    message: 'Please enter a valid email address',
+  }),
+})

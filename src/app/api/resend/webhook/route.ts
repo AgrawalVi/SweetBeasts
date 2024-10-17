@@ -1,4 +1,5 @@
 import { addToMailingList, deleteFromMailingList, updateMailingListSubscribedStatus } from '@/data/customer/mailing-list'
+import { sendWelcomeEmail } from '@/lib/resend'
 import { ResendWebhookBody } from '@/types'
 import { NextRequest, NextResponse } from 'next/server'
 import { Webhook } from 'svix'
@@ -32,12 +33,15 @@ export const POST = async (req: NextRequest, res: NextResponse) => {
     case 'contact.created':
       // handle the contact.created event
       response = await addToMailingList(payload.data.email, payload.data.id)
+      break
     case 'contact.deleted':
       // handle the contact.deleted event
       response = await deleteFromMailingList(payload.data.id)
+      break
     case 'contact.updated':
       // handle the contact.updated event
-      response = await updateMailingListSubscribedStatus(payload.data.id, payload.data.unsubscribed)
+      response = await updateMailingListSubscribedStatus(payload.data.email, payload.data.id, !payload.data.unsubscribed)
+      break
   }
 
   if (!response) {

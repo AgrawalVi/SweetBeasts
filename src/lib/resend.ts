@@ -15,25 +15,48 @@ import {
   RESEND_FROM_EMAIL_SUPPORT,
   RESEND_FROM_EMAIL_ORDER,
   CONTACT_US_EMAILS,
+  RESEND_FROM_EMAIL_NEWS,
 } from '@/constants'
+import { getMailingListUserByEmail } from '@/data/customer/mailing-list'
+import Newsletter from '@/emails/promo/news-letter'
 
 const resend = new Resend(process.env.RESEND_API_KEY)
 const generalAudienceId = process.env.RESEND_GENERAL_AUDIENCE_ID!
 const base_url = process.env.NEXT_PUBLIC_BASE_URL!
 
 export const addToGeneralEmailList = async (email: string) => {
-  if (generalAudienceId) {
-    try {
-      await resend.contacts.create({
-        email,
-        unsubscribed: false,
+  try {
+    // check if there's already a user with the email
+    const existingUser = await getMailingListUserByEmail(email)
+    if (existingUser) {
+      await resend.contacts.update({
+        id: existingUser.resendId,
         audienceId: generalAudienceId,
+        unsubscribed: false,
       })
-    } catch {
-      throw new Error('Error adding to email list')
+      return
     }
-  } else {
+
+    await resend.contacts.create({
+      email,
+      audienceId: generalAudienceId,
+      unsubscribed: false,
+    })
+  } catch {
     throw new Error('Error adding to email list')
+  }
+}
+
+export const unsubscribeFromGeneralEmailList = async (id: string) => {
+  try {
+    await resend.contacts.update({
+      id,
+      audienceId: generalAudienceId,
+      unsubscribed: true,
+    })
+  } catch (e) {
+    console.error('Error unsubscribing from email list', e)
+    throw new Error('Error unsubscribing from email list')
   }
 }
 
@@ -185,5 +208,23 @@ export const sendOrderConfirmationEmail = async (order: OrderWithData) => {
     to: order.email,
     subject: 'Thank You for Your Order!',
     react: OrderConfirmedUserEmail({ orderWithData: order }),
+  })
+}
+
+export const getAllContacts = async () => {
+  return await resend.contacts.list({ audienceId: generalAudienceId })
+}
+
+export const sendWelcomeEmail = async (email: string) => {
+  await resend.emails.send({
+    from: `SweetBeasts <${RESEND_FROM_EMAIL_NEWS}>`,
+    to: email,
+    subject: 'Welcome to SweetBeasts!',
+    react: Newsletter(),
+    headers: {
+      // 'List-Unsubscribe': `<https://sweetbeasts.shop/api/unsubscribe?email=${email}>`,
+      'List-Unsubscribe': `<https://sunbeam-precious-badly.ngrok-free.app/api/unsubscribe?email=${email}>`,
+      'List-Unsubscribe-Post': 'List-Unsubscribe=One-Click',
+    },
   })
 }
