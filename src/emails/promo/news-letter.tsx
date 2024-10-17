@@ -87,7 +87,7 @@ export default function Newsletter(): JSX.Element {
             {/* Centered Find Your SweetBeast Button */}
             <Section className="mt-6 flex w-full flex-col items-center justify-center text-center">
               <Link
-                href={`${baseURL}/find_sweetbeasts`}
+                href={`${baseURL}/find-sweetbeasts`}
                 className="inline-block rounded-lg bg-white px-6 py-2 font-semibold text-black"
                 style={{
                   display: 'flex',

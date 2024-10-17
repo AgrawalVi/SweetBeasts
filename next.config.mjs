@@ -7,6 +7,11 @@ const nextConfig = {
       permanent: false,
     },
     {
+      source: '/lore/pogo',
+      destination: '/sweet-haven/pogo',
+      permanent: true,
+    },
+    {
       source: '/all-products',
       destination: '/products/pogo',
       permanent: false,
@@ -14,6 +19,21 @@ const nextConfig = {
     {
       source: '/products',
       destination: '/products/pogo',
+      permanent: false,
+    },
+    {
+      source: '/new-arrivals',
+      destination: '/products/pogo',
+      permanent: false,
+    },
+    {
+      source: '/find-sweetbeasts',
+      destination: '/products/pogo',
+      permanent: false,
+    },
+    {
+      source: '/contributions',
+      destination: '/about-us',
       permanent: false,
     },
   ],
