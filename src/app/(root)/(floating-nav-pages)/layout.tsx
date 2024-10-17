@@ -5,14 +5,13 @@ import React from 'react'
 
 export default function layout({ children }: { children: React.ReactNode }) {
   return (
-    <>
+    <main className="bg-dot-black/[0.2] dark:bg-dot-white/[0.2]">
       <FloatingNavbar />
-      <div className="flex h-full w-full flex-col">
-        {/*<div className="grid h-dvh w-full flex-grow grid-rows-[1fr_auto] justify-center align-middle">*/}
+      <div className="relative flex h-full w-full flex-col">
+        <div className="pointer-events-none absolute inset-0 flex items-center justify-center bg-background [mask-image:radial-gradient(ellipse_at_center,transparent_10%,black)]"></div>
         <div className="mb-12 h-full w-full">{children}</div>
         <Footer />
-        {/*</div>*/}
       </div>
-    </>
+    </main>
   )
 }

@@ -17,6 +17,7 @@ interface ImageDialogProps {
   height: number
   className?: string
   containerClassName?: string
+  showGradient?: boolean
 }
 
 export default function ImageDialog({
@@ -26,6 +27,7 @@ export default function ImageDialog({
   height,
   className,
   containerClassName,
+  showGradient = true,
 }: ImageDialogProps) {
   const [selectedImage, setSelectedImage] = useState<string | null>(null)
 
@@ -38,9 +40,28 @@ export default function ImageDialog({
         className="cursor-zoom-in"
         onClick={() => setSelectedImage(src)}
       >
-        <BackgroundGradient
-          containerClassName={cn('rounded-lg', containerClassName)}
-        >
+        {showGradient ? (
+          <BackgroundGradient
+            containerClassName={cn('rounded-lg', containerClassName)}
+          >
+            <div
+              className={cn('relative', className)}
+              style={{
+                overflow: 'hidden',
+              }}
+            >
+              <Image
+                src={src}
+                alt={alt}
+                layout="responsive"
+                width={width}
+                height={height}
+                objectFit="cover"
+                className="mx-auto h-auto w-full max-w-[85vw] rounded-md sm:max-w-[70vw] md:max-w-[50vw] lg:max-w-[40vw] xl:max-w-[30vw]"
+              />
+            </div>
+          </BackgroundGradient>
+        ) : (
           <div
             className={cn('relative', className)}
             style={{
@@ -54,20 +75,20 @@ export default function ImageDialog({
               width={width}
               height={height}
               objectFit="cover"
-              className="w-full max-w-[85vw] sm:max-w-[70vw] md:max-w-[50vw] lg:max-w-[40vw] xl:max-w-[30vw] h-auto rounded-md mx-auto"
+              className="mx-auto h-auto w-full max-w-[85vw] rounded-md sm:max-w-[70vw] md:max-w-[50vw] lg:max-w-[40vw] xl:max-w-[30vw]"
             />
           </div>
-        </BackgroundGradient>
+        )}
       </DialogTrigger>
       <DialogOverlay className="bg-black/60" />
       <DialogContent className="flex items-center justify-center p-0">
-        <div className="relative w-full h-auto max-w-[85vw] sm:max-w-[70vw] md:max-w-[60vw] lg:max-w-[50vw] xl:max-w-[40vw]">
+        <div className="relative h-auto w-full max-w-[85vw] sm:max-w-[70vw] md:max-w-[60vw] lg:max-w-[50vw] xl:max-w-[40vw]">
           <Image
             src={src}
             alt={alt}
             width={800}
             height={800}
-            className="w-full h-auto max-h-[80vh] object-contain rounded-lg mx-auto"
+            className="mx-auto h-auto max-h-[80vh] w-full rounded-lg object-contain"
           />
         </div>
       </DialogContent>

@@ -49,7 +49,7 @@ const footerLinks = {
 
 export default function Footer() {
   return (
-    <main className="flex w-full flex-col border-t border-muted p-12 pb-6 font-nunito">
+    <main className="flex w-full flex-col border-t border-muted p-12 pb-6 font-nunito z-5 relative">
       <div className="hidden w-full justify-center md:flex">
         <div className="grid w-full grid-cols-6">
           <div className="relative col-span-4 flex w-full flex-col items-center justify-center xl:col-span-3">

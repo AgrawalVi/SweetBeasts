@@ -11,7 +11,7 @@ export default function LoreTeaser() {
           text="Pogo, once spoiled and carefree, is thrust into the vibrant world of Sweet Haven after eating a mysterious peach. Now transformed into a Peach Penguin, she embarks on a journey of self-discovery and growth, learning that true richness may instead lie in heartfelt connections."
           linkInfo={{
             linkText: 'Learn about Pogo',
-            linkHref: '/lore/pogo',
+            linkHref: '/sweet-haven/pogo',
           }}
           textClassName="text-xl"
         />
