@@ -10,6 +10,8 @@ import { ShoppingCartProvider } from '@/hooks/use-shopping-cart'
 import { SessionProvider } from 'next-auth/react'
 import { auth } from '@/auth'
 import NavigationEvents from '@/components/navigation-events'
+import { NewsletterPopupProvider } from '@/hooks/use-popup'
+import NewsletterPopup from '@/components/general/newsletter-popup/popup'
 
 const nunito = Nunito({
   subsets: ['latin'],
@@ -48,22 +50,25 @@ export default async function RootLayout({
         className={`${nunito.variable} ${josefinSans.variable} ${coiny.variable}`}
       >
         <SessionProvider session={session}>
-          <ShoppingCartProvider>
-            <ThemeProvider
-              attribute="class"
-              defaultTheme="system"
-              enableSystem
-              disableTransitionOnChange
-            >
-              <div className="flex min-h-screen w-full bg-background">
-                {children}
-              </div>
-              <Analytics />
-              <link rel="icon" href="/favicon.ico" sizes="any" />
-              <Toaster />
-              <NavigationEvents />
-            </ThemeProvider>
-          </ShoppingCartProvider>
+          <NewsletterPopupProvider>
+            <NewsletterPopup />
+            <ShoppingCartProvider>
+              <ThemeProvider
+                attribute="class"
+                defaultTheme="system"
+                enableSystem
+                disableTransitionOnChange
+              >
+                <div className="flex min-h-screen w-full bg-background">
+                  {children}
+                </div>
+                <Analytics />
+                <link rel="icon" href="/favicon.ico" sizes="any" />
+                <Toaster />
+                <NavigationEvents />
+              </ThemeProvider>
+            </ShoppingCartProvider>
+          </NewsletterPopupProvider>
         </SessionProvider>
       </body>
     </html>

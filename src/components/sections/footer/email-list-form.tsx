@@ -21,8 +21,15 @@ import { HoverBorderGradient } from '@/components/aceternity/hover-border-gradie
 import GradientButton from '@/components/aceternity/gradient-button'
 import { AnimatedSubscribeButton } from '@/components/magic-ui/subscribe-button'
 import { CheckIcon, ChevronRightIcon } from 'lucide-react'
+import { cn } from '@/lib/utils'
 
-const JoinEmailListForm = () => {
+const JoinEmailListForm = ({
+  showText = true,
+  inputClassName,
+}: {
+  showText?: boolean
+  inputClassName?: string
+}) => {
   const { toast } = useToast()
   const [isSubscribed, setIsSubscribed] = useState(false)
   const [isPending, startTransition] = useTransition()
@@ -51,22 +58,28 @@ const JoinEmailListForm = () => {
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className="relative z-10 flex w-full flex-col place-items-center space-y-4"
+        className="relative z-10 flex w-full flex-col items-center space-y-4"
       >
         <FormField
           control={form.control}
           name="email"
           render={({ field }) => (
-            <FormItem className="w-3/4 3xl:w-[50rem]">
-              <FormLabel>
-                Join our email list to stay updated on new products, charitable
-                initiatives, Sweet Haven news, and more exciting updates!
-              </FormLabel>
+            <FormItem className="w-full">
+              {showText && (
+                <FormLabel>
+                  Join our email list to stay updated on new products,
+                  charitable initiatives, Sweet Haven news, and more exciting
+                  updates!
+                </FormLabel>
+              )}
               <FormControl>
                 <Input
                   {...field}
                   placeholder="welcome@sweetbeasts.shop"
-                  className="border-muted bg-muted font-josefin lg:w-full"
+                  className={cn(
+                    'border-muted bg-muted font-josefin lg:w-full',
+                    inputClassName,
+                  )}
                 />
               </FormControl>
               <FormMessage />
