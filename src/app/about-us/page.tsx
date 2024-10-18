@@ -9,11 +9,11 @@ import {
 } from "@tabler/icons-react"
 import Link from "next/link"
 
-const discordUrl = process.env.NEXT_PUBLIC_DISCORD_URL!
-const instagramUrl = process.env.NEXT_PUBLIC_INSTAGRAM_URL!
-const tiktokUrl = process.env.NEXT_PUBLIC_TIKTOK_URL!
+const discordUrl = 'https://discord.gg/sweetbeasts'
+const instagramUrl = 'https://www.instagram.com/sweetbeastsusa'
+const tiktokUrl = 'https://www.tiktok.com/@sweetbeasts'
 
-export default function CanvasRevealEffectDemo() {
+export default function AboutUsPage() {
   return (
     <main className="relative dark:bg-dot-white/[0.2] bg-dot-black/[0.2]">
       <div className="absolute pointer-events-none inset-0 flex items-center justify-center bg-background [mask-image:radial-gradient(ellipse_at_center,transparent_10%,black)]"></div>

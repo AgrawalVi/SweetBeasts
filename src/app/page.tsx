@@ -12,9 +12,9 @@ import Link from "next/link"
 import { HoverBorderGradient } from "@/components/aceternity/hover-border-gradient"
 import { ModeToggle } from "@/components/ui/mode-toggle"
 
-const instagramUrl = process.env.NEXT_PUBLIC_INSTAGRAM_URL!
-const discordUrl = process.env.NEXT_PUBLIC_DISCORD_URL!
-const tiktokUrl = process.env.NEXT_PUBLIC_TIKTOK_URL!
+const discordUrl = 'https://discord.gg/sweetbeasts'
+const instagramUrl = 'https://www.instagram.com/sweetbeastsusa'
+const tiktokUrl = 'https://www.tiktok.com/@sweetbeasts'
 
 export default function Home() {
   return (
