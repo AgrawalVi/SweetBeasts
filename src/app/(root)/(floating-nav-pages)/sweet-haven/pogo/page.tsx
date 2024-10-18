@@ -22,14 +22,23 @@ export default function PogoLorePage() {
           <TextSection text="Upon awakening in Sweet Haven, Pogo discovered she had transformed into a Peach Penguin on Pitfall Shores! She comes to realize slowly that no one cares to listen to her commands or tantrums. As her exploration outside her life of privilege continues, she embarks on a journey of becoming more open-minded, making heartfelt connections along the way. What lies in store?" />
         </div>
       </div>
+      <div className="header-gradient text-center text-3xl sm:text-4xl md:text-5xl">
+        See Pogo in Action
+      </div>
+      <div className="header-gradient text-center text-3xl sm:text-4xl md:text-5xl">
+        Animations from Sweet Haven!
+      </div>
+      <div className="p-gradient text-center text-xl sm:text-3xl">
+        Follow our socials to stay updated!
+      </div>
       <div className="flex flex-row flex-wrap items-center justify-center gap-4 pt-12 md:gap-10">
-        <video controls className="h-[600px] w-auto rounded-md">
+        <video controls className="h-[600px] w-auto rounded-md bg-muted/80">
           <source
             src="/plushie-animations/pogo/pogo-flames.mp4"
             type="video/mp4"
           />
         </video>
-        <video controls className="h-[600px] w-auto rounded-md">
+        <video controls className="h-[600px] w-auto rounded-md bg-muted/80">
           <source
             src="/plushie-animations/pogo/friendship-video.mp4"
             type="video/mp4"
