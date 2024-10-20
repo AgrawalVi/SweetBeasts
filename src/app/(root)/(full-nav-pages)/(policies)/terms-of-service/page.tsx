@@ -24,7 +24,7 @@ export default function TermsOfService() {
             customers, merchants, vendors, and contributors of content.
           </p>
 
-          <h2 className="p-gradient mb-4 text-2xl font-semibold">
+          <h2 className="p-gradient mb-4 text-center font-coiny text-2xl font-semibold">
             SECTION 1 - TERMS APPLICABLE TO ONLINE STORE
           </h2>
           <p className="mb-4">
@@ -38,7 +38,7 @@ export default function TermsOfService() {
             our Services.
           </p>
 
-          <h2 className="p-gradient mb-4 text-2xl font-semibold">
+          <h2 className="p-gradient mb-4 text-center font-coiny text-2xl font-semibold">
             SECTION 2 - GENERAL CONDITIONS
           </h2>
           <p className="mb-4">
@@ -55,7 +55,7 @@ export default function TermsOfService() {
             permission.
           </p>
 
-          <h2 className="p-gradient mb-4 text-2xl font-semibold">
+          <h2 className="p-gradient mb-4 text-center font-coiny text-2xl font-semibold">
             SECTION 3 - INFORMATION ACCURACY, COMPLETENESS, AND TIMELINESS
           </h2>
           <p className="mb-4">
@@ -71,7 +71,7 @@ export default function TermsOfService() {
             agree that it is your responsibility to monitor changes to our site.
           </p>
 
-          <h2 className="p-gradient mb-4 text-2xl font-semibold">
+          <h2 className="p-gradient mb-4 text-center font-coiny text-2xl font-semibold">
             SECTION 4 - MODIFICATIONS TO THE SERVICE AND PRICES
           </h2>
           <p className="mb-4">
@@ -82,7 +82,7 @@ export default function TermsOfService() {
             suspensions, or discontinuations of the Service.
           </p>
 
-          <h2 className="p-gradient mb-4 text-2xl font-semibold">
+          <h2 className="p-gradient mb-4 text-center font-coiny text-2xl font-semibold">
             SECTION 5 - ACCURACY OF BILLING AND ACCOUNT INFORMATION
           </h2>
           <p className="mb-4">
@@ -101,7 +101,7 @@ export default function TermsOfService() {
             For more information, please refer to our Returns Policy.
           </p>
 
-          <h2 className="p-gradient mb-4 text-2xl font-semibold">
+          <h2 className="p-gradient mb-4 text-center font-coiny text-2xl font-semibold">
             SECTION 6 - OPTIONAL TOOLS
           </h2>
           <p className="mb-4">
@@ -120,7 +120,7 @@ export default function TermsOfService() {
             services will also be governed by these Terms of Service.
           </p>
 
-          <h2 className="p-gradient mb-4 text-2xl font-semibold">
+          <h2 className="p-gradient mb-4 text-center font-coiny text-2xl font-semibold">
             SECTION 7 - THIRD-PARTY LINKS
           </h2>
           <p className="mb-4">
@@ -138,7 +138,7 @@ export default function TermsOfService() {
             should be directed to the respective third party.
           </p>
 
-          <h2 className="p-gradient mb-4 text-2xl font-semibold">
+          <h2 className="p-gradient mb-4 text-center font-coiny text-2xl font-semibold">
             SECTION 8 - PERSONAL INFORMATION
           </h2>
           <p className="mb-4">
@@ -146,7 +146,7 @@ export default function TermsOfService() {
             regulated by our Privacy Policy.
           </p>
 
-          <h2 className="p-gradient mb-4 text-2xl font-semibold">
+          <h2 className="p-gradient mb-4 text-center font-coiny text-2xl font-semibold">
             SECTION 9 - ERRORS, INACCURACIES AND OMISSIONS
           </h2>
           <p className="mb-4">
@@ -166,7 +166,7 @@ export default function TermsOfService() {
             modified or updated.
           </p>
 
-          <h2 className="p-gradient mb-4 text-2xl font-semibold">
+          <h2 className="p-gradient mb-4 text-center font-coiny text-2xl font-semibold">
             SECTION 10 - PROHIBITED USES
           </h2>
           <p className="mb-4">
@@ -191,7 +191,7 @@ export default function TermsOfService() {
             related website for any violation of these prohibited uses.
           </p>
 
-          <h2 className="p-gradient mb-4 text-2xl font-semibold">
+          <h2 className="p-gradient mb-4 text-center font-coiny text-2xl font-semibold">
             SECTION 11 - DISCLAIMER OF WARRANTIES; LIMITATION OF LIABILITY
           </h2>
           <p className="mb-4">
@@ -229,7 +229,7 @@ export default function TermsOfService() {
             the maximum extent permitted by law.
           </p>
 
-          <h2 className="p-gradient mb-4 text-2xl font-semibold">
+          <h2 className="p-gradient mb-4 text-center font-coiny text-2xl font-semibold">
             SECTION 12 - TERMINATION
           </h2>
           <p className="mb-4">
@@ -246,7 +246,7 @@ export default function TermsOfService() {
             deny you access to our Services (or any part thereof) accordingly.
           </p>
 
-          <h2 className="p-gradient mb-4 text-2xl font-semibold">
+          <h2 className="p-gradient mb-4 text-center font-coiny text-2xl font-semibold">
             SECTION 13 - ENTIRE AGREEMENT
           </h2>
           <p className="mb-4">
@@ -264,7 +264,7 @@ export default function TermsOfService() {
             against SweetBeasts, LLC. as the drafting party.
           </p>
 
-          <h2 className="p-gradient mb-4 text-2xl font-semibold">
+          <h2 className="p-gradient mb-4 text-center font-coiny text-2xl font-semibold">
             SECTION 14 - CHANGES TO TERMS OF SERVICE
           </h2>
           <p className="mb-4">
@@ -278,7 +278,7 @@ export default function TermsOfService() {
             acceptance of those changes.
           </p>
 
-          <h2 className="p-gradient mb-4 text-2xl font-semibold">
+          <h2 className="p-gradient mb-4 text-center font-coiny text-2xl font-semibold">
             SECTION 15 - CONTACT INFORMATION
           </h2>
           <p className="mb-4">
@@ -286,7 +286,7 @@ export default function TermsOfService() {
             contact us at support@sweetbeasts.shop.
           </p>
 
-          <h2 className="p-gradient mb-4 text-2xl font-semibold">
+          <h2 className="p-gradient mb-4 text-center font-coiny text-2xl font-semibold">
             SECTION 18 - GOVERNING LAW
           </h2>
           <p className="mb-4">
@@ -296,7 +296,7 @@ export default function TermsOfService() {
             Anytown CA 90001, United States.
           </p>
 
-          <h2 className="p-gradient mb-4 text-2xl font-semibold">
+          <h2 className="p-gradient mb-4 text-center font-coiny text-2xl font-semibold">
             SECTION 15 - SEVERABILITY
           </h2>
           <p className="mb-4">
@@ -309,7 +309,7 @@ export default function TermsOfService() {
             provisions.
           </p>
 
-          <h2 className="p-gradient mb-4 text-2xl font-semibold">
+          <h2 className="p-gradient mb-4 text-center font-coiny text-2xl font-semibold">
             SECTION 14 - INDEMNIFICATION
           </h2>
           <p className="mb-4">
@@ -323,7 +323,7 @@ export default function TermsOfService() {
             violation of any law or the rights of a third-party.
           </p>
 
-          <h2 className="p-gradient mb-4 text-2xl font-semibold">
+          <h2 className="p-gradient mb-4 text-center font-coiny text-2xl font-semibold">
             SECTION 9 - USER COMMENTS, FEEDBACK AND OTHER SUBMISSIONS
           </h2>
           <p className="mb-4">
@@ -355,7 +355,7 @@ export default function TermsOfService() {
             you or any third-party.
           </p>
 
-          <h2 className="p-gradient mb-4 text-2xl font-semibold">
+          <h2 className="p-gradient mb-4 text-center font-coiny text-2xl font-semibold">
             SECTION 5 - PRODUCTS OR SERVICES (if applicable)
           </h2>
           <p className="mb-4">
