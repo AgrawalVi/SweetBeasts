@@ -9,9 +9,9 @@ import {
 } from "@tabler/icons-react"
 import Link from "next/link"
 
-const discordUrl = 'https://discord.gg/sweetbeasts'
-const instagramUrl = 'https://www.instagram.com/sweetbeastsusa'
-const tiktokUrl = 'https://www.tiktok.com/@sweetbeasts'
+const discordUrl = "https://discord.gg/fFQ9evv7aA"
+const instagramUrl = "https://www.instagram.com/sweetbeastsusa"
+const tiktokUrl = "https://www.tiktok.com/@sweetbeasts"
 
 export default function AboutUsPage() {
   return (
@@ -70,10 +70,7 @@ export default function AboutUsPage() {
             </Button>
           </Link>
         </div>
-        <div className="text-sm">
-          {" "}
-          © 2024 SweetBeasts. All rights reserved.
-        </div>
+        <div className="text-sm"> © 2024 SweetBeasts. All rights reserved.</div>
       </div>
     </main>
   )

@@ -12,9 +12,9 @@ import Link from "next/link"
 import { HoverBorderGradient } from "@/components/aceternity/hover-border-gradient"
 import { ModeToggle } from "@/components/ui/mode-toggle"
 
-const discordUrl = 'https://discord.gg/sweetbeasts'
-const instagramUrl = 'https://www.instagram.com/sweetbeastsusa'
-const tiktokUrl = 'https://www.tiktok.com/@sweetbeasts'
+const discordUrl = "https://discord.gg/fFQ9evv7aA"
+const instagramUrl = "https://www.instagram.com/sweetbeastsusa"
+const tiktokUrl = "https://www.tiktok.com/@sweetbeasts"
 
 export default function Home() {
   return (
@@ -85,10 +85,7 @@ export default function Home() {
             </Button>
           </Link>
         </div>
-        <div className="text-sm">
-          {" "}
-          © 2024 SweetBeasts. All rights reserved.
-        </div>
+        <div className="text-sm"> © 2024 SweetBeasts. All rights reserved.</div>
       </div>
       <BackgroundBeams />
     </main>
