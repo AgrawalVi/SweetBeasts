@@ -35,6 +35,7 @@ export const POST = async (req: NextRequest, res: NextResponse) => {
     return new Response('Invalid webhook payload', { status: 400 })
   }
 
+
   let response
   switch (payload.type) {
     case 'contact.created':
@@ -53,6 +54,8 @@ export const POST = async (req: NextRequest, res: NextResponse) => {
         !payload.data.unsubscribed,
       )
       break
+    default:
+      return new Response('Invalid webhook event type', { status: 400 })
   }
 
   if (!response) {

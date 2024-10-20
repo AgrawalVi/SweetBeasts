@@ -1,24 +1,30 @@
 import React from 'react'
 import {
+  DISCORD_LOGO,
+  DISCORD_URL,
+  INSTAGRAM_LOGO,
+  INSTAGRAM_URL,
+  TIKTOK_LOGO,
+  TIKTOK_URL,
+} from '@/constants'
+import {
   Body,
+  Column,
   Container,
   Head,
   Html,
   Img,
   Link,
   Preview,
+  Row,
   Section,
   Tailwind,
   Text,
 } from '@react-email/components'
-import {
-  IconBrandDiscord,
-  IconBrandInstagram,
-  IconBrandTiktok,
-} from '@tabler/icons-react'
 
 const baseURL = process.env.NEXT_PUBLIC_BASE_URL!
 const logoURL = 'https://sweetbeasts.shop/sweetbeasts-logo.png'
+const logoWithTextURL = 'https://sweetbeasts.shop/sweetbeasts-logo-text.png'
 
 export default function Newsletter(): JSX.Element {
   return (
@@ -30,41 +36,59 @@ export default function Newsletter(): JSX.Element {
       <Tailwind>
         <Body className="bg-white-100">
           <Container className="mx-auto max-w-lg rounded-lg bg-blue-100 p-6">
-            <Section className="text-center">
-              <Img
-                src={logoURL}
-                alt="SweetBeasts Logo"
-                width="120"
-                className="mx-auto"
-              />
-
-              {/* Mini Dashboard Section */}
-              <Section className="mx-auto flex w-full justify-center rounded-lg bg-pink-100 p-2 font-serif">
-                <Link
-                  href={`${baseURL}/products`}
-                  className="mx-2 text-center text-sm text-black"
+            <Section className="px-[32px] pt-[20px]">
+              <Row>
+                <Column align="center">
+                  <Img
+                    alt="SweetBeasts Logo"
+                    height="100"
+                    src={logoWithTextURL}
+                  />
+                </Column>
+              </Row>
+              <Row className="mt-[40px]">
+                <Column
+                  align="center"
+                  className="bg-pink-100 rounded-lg border-white border-2"
                 >
-                  Shop All
-                </Link>
-                <Link
-                  href={`${baseURL}/new-arrivals`}
-                  className="mx-2 text-center text-sm text-black"
-                >
-                  New Arrivals
-                </Link>
-                <Link
-                  href={`${baseURL}/`}
-                  className="mx-2 text-center text-sm text-black"
-                >
-                  Social Media
-                </Link>
-                <Link
-                  href={`${baseURL}/about-us`}
-                  className="mx-2 text-center text-sm text-black"
-                >
-                  About Us
-                </Link>
-              </Section>
+                  <table>
+                    <tr>
+                      <td>
+                        <Link
+                          href={`${baseURL}/products`}
+                          className="mx-2 text-center text-xs text-black"
+                        >
+                          Shop All
+                        </Link>
+                      </td>
+                      <td>
+                        <Link
+                          href={`${baseURL}/new-arrivals`}
+                          className="mx-2 text-center text-xs text-black"
+                        >
+                          New Arrivals
+                        </Link>
+                      </td>
+                      <td>
+                        <Link
+                          href={TIKTOK_URL}
+                          className="mx-2 text-center text-xs text-black"
+                        >
+                          Social Media
+                        </Link>
+                      </td>
+                      <td>
+                        <Link
+                          href={`${baseURL}/about-us`}
+                          className="mx-2 text-center text-xs text-black"
+                        >
+                          About Us
+                        </Link>
+                      </td>
+                    </tr>
+                  </table>
+                </Column>
+              </Row>
             </Section>
 
             {/* Image Section */}
@@ -85,22 +109,18 @@ export default function Newsletter(): JSX.Element {
             </Section>
 
             {/* Centered Find Your SweetBeast Button */}
-            <Section className="mt-6 flex w-full flex-col items-center justify-center text-center">
-              <Link
-                href={`${baseURL}/find-sweetbeasts`}
-                className="inline-block rounded-lg bg-white px-6 py-2 font-semibold text-black"
-                style={{
-                  display: 'flex',
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                  width: 'fit-content',
-                }} // Ensures the button is only as wide as its content
-              >
-                Find Your SweetBeast
-              </Link>
-            </Section>
+            <Row>
+              <Column align="center">
+                <Link
+                  href={`${baseURL}/find-sweetbeasts`}
+                  className="rounded-lg bg-white px-6 py-2 font-semibold text-black"
+                >
+                  Find Your SweetBeast
+                </Link>
+              </Column>
+            </Row>
 
-            <Section className="mt-8 flex flex-col items-center justify-center">
+            <Section className="my-8 flex flex-col items-center justify-center">
               {/* Left Side - Image */}
               <Img
                 src="https://www.sweetbeasts.shop/newsletter/new-signup/pogo-tree.webp"
@@ -122,23 +142,17 @@ export default function Newsletter(): JSX.Element {
               </Section>
             </Section>
 
-            {/* Centered View Our Collections Button */}
-            <Section className="mt-6 flex w-full flex-col items-center justify-center text-center">
-              <Link
-                href={`${baseURL}/products`}
-                className="inline-block rounded-lg bg-white px-6 py-2 font-semibold text-black"
-                style={{
-                  display: 'flex',
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                  width: 'fit-content',
-                }} // Ensures the button is only as wide as its content
-              >
-                View Our Collections
-              </Link>
-            </Section>
+            <Row>
+              <Column align="center">
+                <Link
+                  href={`${baseURL}/products`}
+                  className="rounded-lg bg-white px-6 py-2 my-8 font-semibold text-black"
+                >
+                  View Our Collections
+                </Link>
+              </Column>
+            </Row>
 
-            {/* "Our Contributions" Section */}
             <Section className="mt-8 flex flex-col items-center rounded-lg bg-blue-200 p-6 text-center text-black">
               <Text className="mb-2 text-lg font-bold">
                 Plushies with a Purpose
@@ -173,7 +187,7 @@ export default function Newsletter(): JSX.Element {
             </Section>
 
             {/* Footer Section with Social Media and Support Links */}
-            <Section className="mt-8 text-center">
+            <Section className="mt-8 text-center bg-purple-200 p-6 rounded-lg text-black">
               <Text className="text-lg font-semibold">Join our Community!</Text>
               <Text className="my-2 text-sm">
                 Join the SweetBeasts community on Instagram, TikTok, and Discord
@@ -181,38 +195,70 @@ export default function Newsletter(): JSX.Element {
                 hear your feedback and thoughts. Don’t forget to tag us and use
                 #mysweetbeast.
               </Text>
-              <Section className="mt-4 flex justify-center space-x-4">
-                <Link
-                  href="https://www.instagram.com/sweetbeastsusa"
-                  className="text-black"
-                >
-                  <IconBrandInstagram size={30} />
-                </Link>
-                <Link
-                  href="https://discord.gg/sweetbeasts"
-                  className="text-black"
-                >
-                  <IconBrandDiscord size={30} />
-                </Link>
-                <Link
-                  href="https://www.tiktok.com/@sweetbeasts"
-                  className="text-black"
-                >
-                  <IconBrandTiktok size={30} />
-                </Link>
-              </Section>
             </Section>
 
-            {/* Footer Section with Copyright and Unsubscribe */}
-            <Section className="mt-8 text-center text-xs text-gray-500">
-              <Text>© 2024 SweetBeasts, All Rights Reserved</Text>
-              <Text>432 W Gorham St, Madison, WI 53703</Text>
-              <Link
-                href={`${baseURL}/unsubscribe`}
-                className="text-blue-500 underline"
-              >
-                Unsubscribe
-              </Link>
+            <Section className="text-center mt-20">
+              <table className="w-full">
+                <tr className="w-full">
+                  <td align="center">
+                    <Img alt="SweetBeasts Logo" height="64" src={logoURL} />
+                  </td>
+                </tr>
+                <tr className="w-full">
+                  <td align="center">
+                    <Text className="my-[8px] text-[16px] font-semibold leading-[24px] text-gray-900">
+                      SweetBeasts
+                    </Text>
+                    <Text className="mb-0 mt-[4px] text-[16px] leading-[24px] text-gray-500">
+                      Live Sweet
+                    </Text>
+                  </td>
+                </tr>
+                <tr>
+                  <td align="center">
+                    <Row className="table-cell h-[44px] w-[56px] align-bottom">
+                      <Column className="pr-[8px]">
+                        <Link href={INSTAGRAM_URL}>
+                          <Img
+                            alt="Instagram"
+                            height="36"
+                            src={INSTAGRAM_LOGO}
+                          />
+                        </Link>
+                      </Column>
+                      <Column className="pr-[8px]">
+                        <Link href={TIKTOK_URL}>
+                          <Img alt="TikTok" height="36" src={TIKTOK_LOGO} />
+                        </Link>
+                      </Column>
+                      <Column>
+                        <Link href={DISCORD_URL}>
+                          <Img alt="Discord" height="36" src={DISCORD_LOGO} />
+                        </Link>
+                      </Column>
+                    </Row>
+                  </td>
+                </tr>
+                <tr>
+                  <td align="center">
+                    <Text className="my-[8px] text-xs font-semibold leading-[24px] text-gray-500">
+                      © 2024 SweetBeasts, All Rights Reserved
+                    </Text>
+                    <Text className="my-[8px] text-xs font-semibold leading-[24px] text-gray-500">
+                      432 W Gorham St, Madison, WI 53703
+                    </Text>
+                    <Text className="my-[8px] text-xs font-semibold leading-[24px] text-gray-500">
+                      support@sweetbeasts.shop
+                    </Text>
+                    <Link
+                      href={`${baseURL}/unsubscribe`}
+                      className="text-blue-500 underline"
+                    >
+                      Unsubscribe
+                    </Link>
+                  </td>
+                </tr>
+              </table>
             </Section>
           </Container>
         </Body>
