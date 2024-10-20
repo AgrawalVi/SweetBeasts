@@ -17,7 +17,7 @@ const PrivacyPolicy = () => {
           Privacy Policy
         </CardTitle>
         <CardDescription className="text-center">
-          Effective Date: xx July 2024
+          Effective Date: 20 October 2024
         </CardDescription>
       </CardHeader>
       <CardContent>
