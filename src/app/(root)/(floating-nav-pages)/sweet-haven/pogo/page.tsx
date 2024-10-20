@@ -32,19 +32,28 @@ export default function PogoLorePage() {
         Follow our socials to stay updated!
       </div>
       <div className="flex flex-row flex-wrap items-center justify-center gap-4 pt-12 md:gap-10">
-        <video controls className="h-[600px] w-auto rounded-md bg-muted/80">
+        <video
+          controls
+          className="h-[600px] bg-cover bg-center w-auto rounded-md bg-[url('/plushie-animations/pogo/pogo-flames-thumbnail.webp')]"
+        >
           <source
             src="/plushie-animations/pogo/pogo-flames.mp4"
             type="video/mp4"
           />
         </video>
-        <video controls className="h-[600px] w-auto rounded-md bg-muted/80">
+        <video
+          controls
+          className="h-[600px] bg-center bg-cover w-auto rounded-md bg-[url('/plushie-animations/pogo/friendship-thumbnail.webp')]"
+        >
           <source
             src="/plushie-animations/pogo/friendship-video.mp4"
             type="video/mp4"
           />
         </video>
-        <video controls className="h-[600px] w-auto rounded-md bg-muted/80">
+        <video
+          controls
+          className="h-[600px] bg-center bg-cover w-auto rounded-md bg-[url('/plushie-animations/pogo/pogo-pool-thumbnail.webp')]"
+        >
           <source
             src="/plushie-animations/pogo/pogo-pool.mp4"
             type="video/mp4"
