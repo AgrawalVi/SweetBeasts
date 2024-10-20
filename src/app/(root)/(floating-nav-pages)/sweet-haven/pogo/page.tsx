@@ -8,7 +8,7 @@ const rightSvgs = ['/plushie artwork R-06.svg', '/plushie artwork R-07.svg']
 export default function PogoLorePage() {
   return (
     <main className="relative pt-10">
-      <SVGDecoration leftSvgs={leftSvgs} rightSvgs={rightSvgs} />
+      {/* <SVGDecoration leftSvgs={leftSvgs} rightSvgs={rightSvgs} /> */}
       <div className="flex flex-col items-center gap-4">
         <div className="header-gradient text-center text-5xl sm:text-6xl md:text-7xl">
           Pogo's Story
@@ -23,7 +23,7 @@ export default function PogoLorePage() {
         </div>
       </div>
       <div className="header-gradient text-center text-3xl sm:text-4xl md:text-5xl">
-        See Pogo in Action
+        See Pogo in Action:
       </div>
       <div className="header-gradient text-center text-3xl sm:text-4xl md:text-5xl">
         Animations from Sweet Haven!
@@ -41,6 +41,12 @@ export default function PogoLorePage() {
         <video controls className="h-[600px] w-auto rounded-md bg-muted/80">
           <source
             src="/plushie-animations/pogo/friendship-video.mp4"
+            type="video/mp4"
+          />
+        </video>
+        <video controls className="h-[600px] w-auto rounded-md bg-muted/80">
+          <source
+            src="/plushie-animations/pogo/pogo-pool.mp4"
             type="video/mp4"
           />
         </video>
