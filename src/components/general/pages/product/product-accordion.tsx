@@ -17,10 +17,10 @@ export default function ProductAccordion() {
           Description
         </AccordionTrigger>
         <AccordionContent className="flex text-base">
-          Pogo, our debut plushie, embodies a dream brought to life! Crafted
-          with a luxuriously soft exterior and a snuggly interior, Pogo is
-          designed to be your ideal cuddle buddy. Experience the perfect blend
-          of comfort and charm with Pogo at your side!
+          Pogo, our debut plushie, is the adorable fusion of a peach and a
+          penguin! Crafted with a luxuriously soft exterior and a squishy
+          interior, Pogo is designed to be your ideal cuddle buddy. Experience
+          the perfect blend of comfort and charm with Pogo at your side!
         </AccordionContent>
       </AccordionItem>
       <AccordionItem value="details" className="relative">
@@ -32,7 +32,12 @@ export default function ProductAccordion() {
           <ul className="list-inside list-disc pl-2">
             <li>11 x 9.8 x 11 inches</li>
             <li>Smooth, soft, high-quality fabric</li>
-            <li>Polyester filling for extra cuddliness :)</li>
+            <li>Polyester filling for extra cuddliness</li>
+            <li>Embroidered eyes and blush for a charming, handcrafted look</li>
+            <li>
+              Each purchase directly supports our charitable initiatives,
+              spreading joy and making a positive impact on the world
+            </li>
           </ul>
         </AccordionContent>
       </AccordionItem>
