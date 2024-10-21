@@ -6,6 +6,12 @@ import { Mail } from 'lucide-react'
 
 import { WobbleCard } from '@/components/aceternity/wobble-card'
 import ContactForm from '@/components/general/pages/contact-us/contact-us-form'
+import { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: 'Contact Us',
+  description: "All methods to contact the SweetBeasts team"
+}
 
 export default function WobbleCardDemo() {
   return (

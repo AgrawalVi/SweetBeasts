@@ -1,6 +1,12 @@
 import React from 'react'
+import { Metadata } from 'next'
 
 import FAQSection, { FAQItem } from '@/components/sections/faq/faq-section'
+
+export const metadata: Metadata = {
+  title: 'FAQs',
+  description: 'Frequently Asked Questions about SweetBeasts',
+}
 
 const plushiesFAQ: FAQItem[] = [
   {

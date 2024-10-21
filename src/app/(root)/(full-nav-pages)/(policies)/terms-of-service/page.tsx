@@ -1,8 +1,11 @@
-'use client'
-
 import React from 'react'
+import { Metadata } from 'next'
 
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+
+export const metadata: Metadata = {
+  title: 'Terms of Service',
+}
 
 export default function TermsOfService() {
   return (
@@ -191,7 +194,7 @@ export default function TermsOfService() {
             related website for any violation of these prohibited uses.
           </p>
 
-          <h2 className="p-gradient my-4 text-center font-coiny text-2xl bg-[length:100%_1.3333em] bg-[length:100%_1.3333em]">
+          <h2 className="p-gradient my-4 text-center font-coiny text-2xl bg-[length:100%_1.3333em]">
             SECTION 11 - DISCLAIMER OF WARRANTIES; LIMITATION OF LIABILITY
           </h2>
           <p className="my-4">

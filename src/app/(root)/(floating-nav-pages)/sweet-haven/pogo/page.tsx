@@ -1,9 +1,16 @@
+import { Metadata } from 'next'
+
 import SVGDecoration from '@/components/custom/svg-component'
 import TextSection from '@/components/custom/text-section'
 
 // SVG paths for left and right sides
 const leftSvgs = ['/plushie artwork R-04.svg', '/plushie artwork R-06.svg']
 const rightSvgs = ['/plushie artwork R-06.svg', '/plushie artwork R-07.svg']
+
+export const metadata: Metadata = {
+  title: "Pogo's Story",
+  description: "Discover Pogo's story and journey",
+}
 
 export default function PogoLorePage() {
   return (

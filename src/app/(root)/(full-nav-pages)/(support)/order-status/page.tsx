@@ -3,6 +3,12 @@ import { Suspense } from 'react'
 import FindOrderInformation from '@/components/general/pages/view-order/find-order-information'
 import { OrderStatusForm } from '@/components/general/pages/view-order/order-status-form'
 import OrderStatusSkeleton from '@/components/skeletons/orders/order-status-skeleton'
+import { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: 'Order Status',
+  description: "Track your order's status"
+}
 
 export default function TrackOrder({
   searchParams,

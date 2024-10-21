@@ -1,8 +1,11 @@
-'use client'
-
 import React from 'react'
 
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+import { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: 'Return Policy',
+}
 
 export default function ReturnPolicy() {
   return (

@@ -1,3 +1,4 @@
+import { Metadata } from 'next'
 import { redirect } from 'next/navigation'
 
 import ImageDialog from '@/components/custom/image-dialog'
@@ -10,6 +11,25 @@ import PriceSection from '@/components/general/pages/product/price-section'
 import ProductAccordion from '@/components/general/pages/product/product-accordion'
 import { getProductByName } from '@/data/shop/product'
 
+type Props = {
+  params: { product: string }
+}
+
+export const generateMetadata = async ({
+  params,
+}: Props): Promise<Metadata> => {
+  const product = await getProductByName(params.product.toLowerCase())
+
+  if (!product) {
+    return { title: 'Product Not Found' }
+  }
+
+  return {
+    title: product.name,
+    description: product.description,
+  }
+}
+
 export default async function Pogo({
   params,
   searchParams,
@@ -20,7 +40,7 @@ export default async function Pogo({
   const product = await getProductByName(params.product.toLowerCase())
 
   if (!product) {
-    redirect('/')
+    redirect('/products')
   }
 
   if (params.product !== product.name.toLowerCase()) {

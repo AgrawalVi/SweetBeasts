@@ -32,7 +32,10 @@ const josefinSans = Josefin_Sans({
 })
 
 export const metadata: Metadata = {
-  title: 'SweetBeasts',
+  title: {
+    default: 'SweetBeasts',
+    template: '%s | SweetBeasts',
+  },
   description: 'Luxurious Plushies Blending Fruits & Animals',
   icons: {
     icon: '/icon.svg',

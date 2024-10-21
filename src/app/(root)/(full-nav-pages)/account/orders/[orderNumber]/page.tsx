@@ -1,3 +1,4 @@
+import type { Metadata } from 'next'
 import Link from 'next/link'
 import { redirect } from 'next/navigation'
 import { OrderWithData } from '@/types'
@@ -10,6 +11,19 @@ import OrderDetails from '@/components/general/pages/checkout-success/order-deta
 import OrderStatusBar from '@/components/general/pages/view-order/order-status-bar'
 import OrderSummary from '@/components/general/pages/view-order/order-summary'
 import { getOrderWithDataByEmailAndOrderNumber } from '@/data/shop/orders'
+
+type Props = {
+  params: { orderNumber: string }
+}
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const orderNumber = params.orderNumber
+
+  return {
+    title: `Order {orderNumber}`,
+    description: `Details for order ${orderNumber}`,
+  }
+}
 
 export default async function OrderPage({
   params,

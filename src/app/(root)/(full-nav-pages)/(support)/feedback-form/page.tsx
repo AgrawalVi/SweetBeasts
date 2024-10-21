@@ -1,4 +1,10 @@
 import FeedbackForm from '@/components/general/feedback/form'
+import { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: 'Give Feedback',
+  description: "Feedback form for SweetBeasts"
+}
 
 export default function FeedbackFormPage() {
   return (
