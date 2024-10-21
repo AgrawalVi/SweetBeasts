@@ -14,7 +14,7 @@ export default function TermsOfService() {
       </CardHeader>
       <CardContent>
         <div className="text-left">
-          <p className="mb-4 text-lg">
+          <p className="my-4 text-lg">
             Welcome to SweetBeasts! Please read these Terms of Service carefully
             before proceeding to use our website. Your access to and use of the
             site constitutes your acceptance of these Terms. If you do not agree
@@ -24,10 +24,10 @@ export default function TermsOfService() {
             customers, merchants, vendors, and contributors of content.
           </p>
 
-          <h2 className="p-gradient mb-4 text-center font-coiny text-2xl bg-[length:100%_1.3333em]">
+          <h2 className="p-gradient my-4 text-center font-coiny text-2xl bg-[length:100%_1.3333em]">
             SECTION 1 - TERMS APPLICABLE TO ONLINE STORE
           </h2>
-          <p className="mb-4">
+          <p className="my-4">
             By accepting these Terms of Service, you affirm that you have
             reached the age required by law in your jurisdiction, or that you
             have authorized any minor dependents to use this site under your
@@ -38,10 +38,10 @@ export default function TermsOfService() {
             our Services.
           </p>
 
-          <h2 className="p-gradient mb-4 text-center font-coiny text-2xl bg-[length:100%_1.3333em]">
+          <h2 className="p-gradient my-4 text-center font-coiny text-2xl bg-[length:100%_1.3333em]">
             SECTION 2 - GENERAL CONDITIONS
           </h2>
-          <p className="mb-4">
+          <p className="my-4">
             We reserve the right to refuse service to anyone for any reason at
             any time. You understand that your content (excluding credit card
             information) may be transferred unencrypted and could undergo
@@ -55,10 +55,10 @@ export default function TermsOfService() {
             permission.
           </p>
 
-          <h2 className="p-gradient mb-4 text-center font-coiny text-2xl bg-[length:100%_1.3333em]">
+          <h2 className="p-gradient my-4 text-center font-coiny text-2xl bg-[length:100%_1.3333em]">
             SECTION 3 - INFORMATION ACCURACY, COMPLETENESS, AND TIMELINESS
           </h2>
-          <p className="mb-4">
+          <p className="my-4">
             We do not warrant the accuracy, completeness, or timeliness of
             information provided on this site. The content is offered for
             general informational purposes only and should not be relied upon as
@@ -71,10 +71,10 @@ export default function TermsOfService() {
             agree that it is your responsibility to monitor changes to our site.
           </p>
 
-          <h2 className="p-gradient mb-4 text-center font-coiny text-2xl bg-[length:100%_1.3333em]">
+          <h2 className="p-gradient my-4 text-center font-coiny text-2xl bg-[length:100%_1.3333em]">
             SECTION 4 - MODIFICATIONS TO THE SERVICE AND PRICES
           </h2>
-          <p className="mb-4">
+          <p className="my-4">
             Product prices are subject to change without prior notice. We
             reserve the right to modify or discontinue the Service, or any part
             of it, at any time without prior notice. We shall not be liable to
@@ -82,10 +82,10 @@ export default function TermsOfService() {
             suspensions, or discontinuations of the Service.
           </p>
 
-          <h2 className="p-gradient mb-4 text-center font-coiny text-2xl bg-[length:100%_1.3333em]">
+          <h2 className="p-gradient my-4 text-center font-coiny text-2xl bg-[length:100%_1.3333em]">
             SECTION 5 - ACCURACY OF BILLING AND ACCOUNT INFORMATION
           </h2>
-          <p className="mb-4">
+          <p className="my-4">
             We retain the right to decline any order you place with us. We may,
             at our discretion, restrict or cancel quantities purchased per
             person, household, or order. These limitations may apply to orders
@@ -101,10 +101,10 @@ export default function TermsOfService() {
             For more information, please refer to our Returns Policy.
           </p>
 
-          <h2 className="p-gradient mb-4 text-center font-coiny text-2xl bg-[length:100%_1.3333em]">
+          <h2 className="p-gradient my-4 text-center font-coiny text-2xl bg-[length:100%_1.3333em]">
             SECTION 6 - OPTIONAL TOOLS
           </h2>
-          <p className="mb-4">
+          <p className="my-4">
             We may grant you access to third-party tools that we neither monitor
             nor control, and for which we have no input. You acknowledge and
             agree that such tools are provided 'as is' and 'as available,'
@@ -120,10 +120,10 @@ export default function TermsOfService() {
             services will also be governed by these Terms of Service.
           </p>
 
-          <h2 className="p-gradient mb-4 text-center font-coiny text-2xl bg-[length:100%_1.3333em]">
+          <h2 className="p-gradient my-4 text-center font-coiny text-2xl bg-[length:100%_1.3333em]">
             SECTION 7 - THIRD-PARTY LINKS
           </h2>
-          <p className="mb-4">
+          <p className="my-4">
             Some content, products, and services available through our Service
             may include materials from third parties. Third-party links on this
             site may redirect you to websites that are not affiliated with us.
@@ -138,18 +138,18 @@ export default function TermsOfService() {
             should be directed to the respective third party.
           </p>
 
-          <h2 className="p-gradient mb-4 text-center font-coiny text-2xl bg-[length:100%_1.3333em]">
+          <h2 className="p-gradient my-4 text-center font-coiny text-2xl bg-[length:100%_1.3333em]">
             SECTION 8 - PERSONAL INFORMATION
           </h2>
-          <p className="mb-4">
+          <p className="my-4">
             Your provision of personal information through the store is
             regulated by our Privacy Policy.
           </p>
 
-          <h2 className="p-gradient mb-4 text-center font-coiny text-2xl bg-[length:100%_1.3333em]">
+          <h2 className="p-gradient my-4 text-center font-coiny text-2xl bg-[length:100%_1.3333em]">
             SECTION 9 - ERRORS, INACCURACIES AND OMISSIONS
           </h2>
-          <p className="mb-4">
+          <p className="my-4">
             At times, our site or the Service may contain typographical errors,
             inaccuracies, or omissions related to product descriptions, pricing,
             promotions, offers, product shipping charges, transit times, and
@@ -166,10 +166,10 @@ export default function TermsOfService() {
             modified or updated.
           </p>
 
-          <h2 className="p-gradient mb-4 text-center font-coiny text-2xl bg-[length:100%_1.3333em]">
+          <h2 className="p-gradient my-4 text-center font-coiny text-2xl bg-[length:100%_1.3333em]">
             SECTION 10 - PROHIBITED USES
           </h2>
-          <p className="mb-4">
+          <p className="my-4">
             Beyond the prohibitions outlined in the Terms of Service, you are
             expressly prohibited from using the site or its content: (a) for any
             unlawful purpose; (b) to encourage others to engage in unlawful
@@ -191,10 +191,10 @@ export default function TermsOfService() {
             related website for any violation of these prohibited uses.
           </p>
 
-          <h2 className="p-gradient mb-4 text-center font-coiny text-2xl bg-[length:100%_1.3333em] bg-[length:100%_1.3333em]">
+          <h2 className="p-gradient my-4 text-center font-coiny text-2xl bg-[length:100%_1.3333em] bg-[length:100%_1.3333em]">
             SECTION 11 - DISCLAIMER OF WARRANTIES; LIMITATION OF LIABILITY
           </h2>
-          <p className="mb-4">
+          <p className="my-4">
             We do not guarantee, represent, or warrant that your use of our
             service will be uninterrupted, timely, secure, or error-free. We do
             not warrant that the results obtained from the use of the service
@@ -229,10 +229,10 @@ export default function TermsOfService() {
             the maximum extent permitted by law.
           </p>
 
-          <h2 className="p-gradient mb-4 text-center font-coiny text-2xl bg-[length:100%_1.3333em]">
+          <h2 className="p-gradient my-4 text-center font-coiny text-2xl bg-[length:100%_1.3333em]">
             SECTION 12 - TERMINATION
           </h2>
-          <p className="mb-4">
+          <p className="my-4">
             The obligations and liabilities of the parties incurred before the
             termination date shall survive the termination of this agreement for
             all purposes. These Terms of Service are effective unless and until
@@ -246,10 +246,10 @@ export default function TermsOfService() {
             deny you access to our Services (or any part thereof) accordingly.
           </p>
 
-          <h2 className="p-gradient mb-4 text-center font-coiny text-2xl bg-[length:100%_1.3333em]">
+          <h2 className="p-gradient my-4 text-center font-coiny text-2xl bg-[length:100%_1.3333em]">
             SECTION 13 - ENTIRE AGREEMENT
           </h2>
-          <p className="mb-4">
+          <p className="my-4">
             The failure of SweetBeasts, LLC. to enforce any right or provision
             of these Terms of Service shall not be construed as a waiver of such
             right or provision. These Terms of Service, along with any policies
@@ -264,10 +264,10 @@ export default function TermsOfService() {
             against SweetBeasts, LLC. as the drafting party.
           </p>
 
-          <h2 className="p-gradient mb-4 text-center font-coiny text-2xl bg-[length:100%_1.3333em]">
+          <h2 className="p-gradient my-4 text-center font-coiny text-2xl bg-[length:100%_1.3333em]">
             SECTION 14 - CHANGES TO TERMS OF SERVICE
           </h2>
-          <p className="mb-4">
+          <p className="my-4">
             You can view the most recent version of the Terms of Service at any
             time on this page. We reserve the right, at our sole discretion, to
             update, modify, or replace any part of these Terms of Service by
@@ -278,28 +278,28 @@ export default function TermsOfService() {
             acceptance of those changes.
           </p>
 
-          <h2 className="p-gradient mb-4 text-center font-coiny text-2xl bg-[length:100%_1.3333em]">
+          <h2 className="p-gradient my-4 text-center font-coiny text-2xl bg-[length:100%_1.3333em]">
             SECTION 15 - CONTACT INFORMATION
           </h2>
-          <p className="mb-4">
+          <p className="my-4">
             If you have any questions about these Terms of Service, please
             contact us at support@sweetbeasts.shop.
           </p>
 
-          <h2 className="p-gradient mb-4 text-center font-coiny text-2xl bg-[length:100%_1.3333em]">
+          {/* <h2 className="p-gradient my-4 text-center font-coiny text-2xl bg-[length:100%_1.3333em]">
             SECTION 18 - GOVERNING LAW
           </h2>
-          <p className="mb-4">
+          <p className="my-4">
             These Terms of Service and any separate agreements whereby we
             provide you Services shall be governed by and construed in
             accordance with the laws of SweetBeasts, LLC., 1234 SweetBeast Ave.,
             Anytown CA 90001, United States.
           </p>
 
-          <h2 className="p-gradient mb-4 text-center font-coiny text-2xl bg-[length:100%_1.3333em]">
+          <h2 className="p-gradient my-4 text-center font-coiny text-2xl bg-[length:100%_1.3333em]">
             SECTION 15 - SEVERABILITY
           </h2>
-          <p className="mb-4">
+          <p className="my-4">
             In the event that any provision of these Terms of Service is
             determined to be unlawful, void or unenforceable, such provision
             shall nonetheless be enforceable to the fullest extent permitted by
@@ -309,10 +309,10 @@ export default function TermsOfService() {
             provisions.
           </p>
 
-          <h2 className="p-gradient mb-4 text-center font-coiny text-2xl bg-[length:100%_1.3333em]">
+          <h2 className="p-gradient my-4 text-center font-coiny text-2xl bg-[length:100%_1.3333em]">
             SECTION 14 - INDEMNIFICATION
           </h2>
-          <p className="mb-4">
+          <p className="my-4">
             You agree to indemnify, defend and hold harmless SweetBeasts, LLC.
             and our parent, subsidiaries, affiliates, partners, officers,
             directors, agents, contractors, licensors, service providers,
@@ -323,10 +323,10 @@ export default function TermsOfService() {
             violation of any law or the rights of a third-party.
           </p>
 
-          <h2 className="p-gradient mb-4 text-center font-coiny text-2xl bg-[length:100%_1.3333em]">
+          <h2 className="p-gradient my-4 text-center font-coiny text-2xl bg-[length:100%_1.3333em]">
             SECTION 9 - USER COMMENTS, FEEDBACK AND OTHER SUBMISSIONS
           </h2>
-          <p className="mb-4">
+          <p className="my-4">
             If, at our request, you send certain specific submissions (for
             example contest entries) or without a request from us you send
             creative ideas, suggestions, proposals, plans, or other materials,
@@ -355,10 +355,10 @@ export default function TermsOfService() {
             you or any third-party.
           </p>
 
-          <h2 className="p-gradient mb-4 text-center font-coiny text-2xl bg-[length:100%_1.3333em]">
+          <h2 className="p-gradient my-4 text-center font-coiny text-2xl bg-[length:100%_1.3333em]">
             SECTION 5 - PRODUCTS OR SERVICES (if applicable)
           </h2>
-          <p className="mb-4">
+          <p className="my-4">
             Certain products or services may be available exclusively online
             through the website. These products or services may have limited
             quantities and are subject to return or exchange only according to
@@ -377,7 +377,7 @@ export default function TermsOfService() {
             not warrant that the quality of any products, services, information,
             or other material purchased or obtained by you will meet your
             expectations, or that any errors in the Service will be corrected.
-          </p>
+          </p> */}
         </div>
       </CardContent>
     </Card>
