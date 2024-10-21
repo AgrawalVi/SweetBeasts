@@ -2,6 +2,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { CircleArrowDown } from 'lucide-react'
 
+import BouncingArrowDown from '@/components/custom/bouncing-arrow'
 import { WobbleButton } from '@/components/custom/wobble-button'
 
 import IntroducingProduct from './introducting-product'
@@ -30,7 +31,7 @@ export default function HomeProductHero() {
           </WobbleButton>
         </div>
       </div>
-      <CircleArrowDown className="animate-bounce z-[30] absolute bottom-10 big-phone:bottom-12 text-primary-foreground h-7 w-7 big-phone:h-10 big-phone:w-10" />
+      <BouncingArrowDown className="animate-bounce z-[30] absolute bottom-10 big-phone:bottom-12 text-primary-foreground h-7 w-7 big-phone:h-10 big-phone:w-10 cursor-pointer" />
     </div>
   )
 }
