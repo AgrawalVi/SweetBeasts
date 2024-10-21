@@ -30,7 +30,7 @@ const PrivacyPolicy = () => {
             use to collect it, and how we utilize it.
           </p>
 
-          <h2 className="p-gradient mb-4 text-center font-coiny text-2xl font-semibold">
+          <h2 className="p-gradient mb-4 text-center font-coiny text-2xl bg-[length:100%_1.3333em]">
             1.0 Information You Provide Directly
           </h2>
           <p className="mb-4">
@@ -58,7 +58,7 @@ const PrivacyPolicy = () => {
             </li>
           </ul>
 
-          <h2 className="p-gradient mb-4 text-center font-coiny text-2xl font-semibold">
+          <h2 className="p-gradient mb-4 text-center font-coiny text-2xl bg-[length:100%_1.3333em]">
             2.0 Information We Collect from Third Parties
           </h2>
           <p className="mb-4">
@@ -107,7 +107,7 @@ const PrivacyPolicy = () => {
             </a>
           </div>
 
-          <h2 className="p-gradient mb-4 text-center font-coiny text-2xl font-semibold">
+          <h2 className="p-gradient mb-4 text-center font-coiny text-2xl bg-[length:100%_1.3333em]">
             3.0 How We Use Information
           </h2>
           <p className="mb-4">
@@ -137,7 +137,7 @@ const PrivacyPolicy = () => {
             <li>Enforcing our agreements and policies</li>
           </ul>
 
-          <h2 className="p-gradient mb-4 text-center font-coiny text-2xl font-semibold">
+          <h2 className="p-gradient mb-4 text-center font-coiny text-2xl bg-[length:100%_1.3333em]">
             4.0 Data Retention
           </h2>
           <p className="mb-4">
@@ -146,7 +146,7 @@ const PrivacyPolicy = () => {
             longer retention period is required or permitted by law.
           </p>
 
-          <h2 className="p-gradient mb-4 text-center font-coiny text-2xl font-semibold">
+          <h2 className="p-gradient mb-4 text-center font-coiny text-2xl bg-[length:100%_1.3333em]">
             5.0 Disclosure of your personal data
           </h2>
           <p className="mb-4">
@@ -155,7 +155,7 @@ const PrivacyPolicy = () => {
             information with other third parties.
           </p>
 
-          <h2 className="p-gradient mb-4 text-center font-coiny text-2xl font-semibold">
+          <h2 className="p-gradient mb-4 text-center font-coiny text-2xl bg-[length:100%_1.3333em]">
             6.0 Your Rights and Choices
           </h2>
           <p className="mb-4">
@@ -181,7 +181,7 @@ const PrivacyPolicy = () => {
             </li>
           </ul>
 
-          <h2 className="p-gradient mb-4 text-center font-coiny text-2xl font-semibold">
+          <h2 className="p-gradient mb-4 text-center font-coiny text-2xl bg-[length:100%_1.3333em]">
             7.0 Data Security
           </h2>
           <p className="mb-4">
@@ -199,7 +199,7 @@ const PrivacyPolicy = () => {
             we share with or receive from them.
           </p>
 
-          <h2 className="p-gradient mb-4 text-center font-coiny text-2xl font-semibold">
+          <h2 className="p-gradient mb-4 text-center font-coiny text-2xl bg-[length:100%_1.3333em]">
             8.0 Changes to This Privacy Policy
           </h2>
           <p className="mb-4">
@@ -210,7 +210,7 @@ const PrivacyPolicy = () => {
             signifies your acceptance of the updated policy.
           </p>
 
-          <h2 className="p-gradient mb-4 text-center font-coiny text-2xl font-semibold">
+          <h2 className="p-gradient mb-4 text-center font-coiny text-2xl bg-[length:100%_1.3333em]">
             9.0 Personal Data of Minors
           </h2>
           <p className="mb-4">
@@ -232,7 +232,7 @@ const PrivacyPolicy = () => {
             that information.
           </p>
 
-          <h2 className="p-gradient mb-4 text-center font-coiny text-2xl font-semibold">
+          <h2 className="p-gradient mb-4 text-center font-coiny text-2xl bg-[length:100%_1.3333em]">
             10.0 Contact Us
           </h2>
           <p className="mb-4 text-center">
