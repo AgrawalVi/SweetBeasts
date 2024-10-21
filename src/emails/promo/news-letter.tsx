@@ -30,7 +30,7 @@ export default function Newsletter(): JSX.Element {
   return (
     <Html>
       <Head>
-        <title>SweetBeasts NewsLetter</title>
+        <title>SweetBeasts Newsletter</title>
       </Head>
       <Preview>SweetBeasts Newsletter</Preview>
       <Tailwind>
@@ -39,64 +39,66 @@ export default function Newsletter(): JSX.Element {
             <Section className="px-[32px] pt-[20px]">
               <Row>
                 <Column align="center">
-                  <Img
-                    alt="SweetBeasts Logo"
-                    height="100"
-                    src={logoWithTextURL}
-                  />
-                </Column>
-              </Row>
-              <Row className="mt-[40px]">
-                <Column
-                  align="center"
-                  className="bg-pink-100 rounded-lg border-white border-2"
-                >
-                  <table>
-                    <tr>
-                      <td>
-                        <Link
-                          href={`${baseURL}/products`}
-                          className="mx-2 text-center text-xs text-black"
-                        >
-                          Shop All
-                        </Link>
-                      </td>
-                      <td>
-                        <Link
-                          href={`${baseURL}/new-arrivals`}
-                          className="mx-2 text-center text-xs text-black"
-                        >
-                          New Arrivals
-                        </Link>
-                      </td>
-                      <td>
-                        <Link
-                          href={TIKTOK_URL}
-                          className="mx-2 text-center text-xs text-black"
-                        >
-                          Social Media
-                        </Link>
-                      </td>
-                      <td>
-                        <Link
-                          href={`${baseURL}/about-us`}
-                          className="mx-2 text-center text-xs text-black"
-                        >
-                          About Us
-                        </Link>
-                      </td>
-                    </tr>
-                  </table>
+                  <Link href={baseURL}>
+                    <Img
+                      alt="SweetBeasts Logo"
+                      height="100"
+                      src={logoWithTextURL}
+                    />
+                  </Link>
                 </Column>
               </Row>
             </Section>
 
+            <Row className="mt-[40px]">
+              <Column
+                align="center"
+                className="bg-pink-100 rounded-lg border-white border-2"
+              >
+                <table className="table-fixed w-full">
+                  <tr>
+                    <td className="w-1/4 text-center align-middle">
+                      <Link
+                        href={`${baseURL}/products`}
+                        className="text-sm text-black"
+                      >
+                        Shop All
+                      </Link>
+                    </td>
+                    <td className="w-1/4 text-center align-middle">
+                      <Link
+                        href={`${baseURL}/new-arrivals`}
+                        className="text-sm text-black"
+                      >
+                        New Arrivals
+                      </Link>
+                    </td>
+                    <td className="w-1/4 text-center align-middle">
+                      <Link href={INSTAGRAM_URL} className="text-sm text-black">
+                        Social Media
+                      </Link>
+                    </td>
+                    <td className="w-1/4 text-center align-middle">
+                      <Link
+                        href={`${baseURL}/about-us`}
+                        className="text-sm text-black"
+                      >
+                        About Us
+                      </Link>
+                    </td>
+                  </tr>
+                </table>
+              </Column>
+            </Row>
+
             {/* Image Section */}
-            <Img
-              src="https://www.sweetbeasts.shop/newsletter/new-signup/pogo-leaf-hole-art.webp"
-              alt="Sweet Haven Banner"
-              className="my-4 w-full rounded-lg"
-            />
+            <Link href={baseURL}>
+              <Img
+                src="https://www.sweetbeasts.shop/newsletter/new-signup/pogo-leaf-hole-art.webp"
+                alt="Sweet Haven Banner"
+                className="my-4 w-full rounded-lg"
+              />
+            </Link>
 
             {/* Centered Text Below the Image */}
             <Section className="text-center">
@@ -121,12 +123,13 @@ export default function Newsletter(): JSX.Element {
             </Row>
 
             <Section className="my-8 flex flex-col items-center justify-center">
-              {/* Left Side - Image */}
-              <Img
-                src="https://www.sweetbeasts.shop/newsletter/new-signup/pogo-tree.webp"
-                alt="Side Image"
-                className="mx-auto mb-4 w-full max-w-lg rounded-lg" // Ensures image is centered
-              />
+              <Link href={baseURL}>
+                <Img
+                  src="https://www.sweetbeasts.shop/newsletter/new-signup/pogo-tree.webp"
+                  alt="Side Image"
+                  className="mx-auto mb-4 w-full max-w-lg rounded-lg" // Ensures image is centered
+                />
+              </Link>
 
               {/* Right Side - Text Box */}
               <Section className="w-full rounded-lg bg-pink-100 p-4 text-center text-black">
@@ -153,38 +156,38 @@ export default function Newsletter(): JSX.Element {
               </Column>
             </Row>
 
-            <Section className="mt-8 flex flex-col items-center rounded-lg bg-blue-200 p-6 text-center text-black">
-              <Text className="mb-2 text-lg font-bold">
-                Plushies with a Purpose
-              </Text>
-              <Text className="max-w-xl text-sm">
-                By choosing SweetBeasts, you’re joining a community dedicated to
-                making the world a better place! A portion of every purchase
-                goes to hunger relief and wildlife conservation charities. Every
-                plushie you take home helps build a more caring, connected, and
-                compassionate world.
-              </Text>
+            <Section className="my-8 flex flex-col items-center justify-center">
+              <Link href={baseURL}>
+                <Img
+                  src="https://www.sweetbeasts.shop/newsletter/new-signup/charity-emblem.png"
+                  alt="New Collection Image"
+                  className="mx-auto w-1/2"
+                />
+              </Link>
+              <Section className="mt-8 flex flex-col items-center rounded-lg bg-blue-200 p-6 text-center text-black">
+                <Text className="mb-2 text-lg font-bold">
+                  Plushies with a Purpose
+                </Text>
+                <Text className="max-w-xl text-sm">
+                  By choosing SweetBeasts, you’re joining a community dedicated
+                  to making the world a better place! A portion of every
+                  purchase goes to hunger relief and wildlife conservation
+                  charities. Every plushie you take home helps build a more
+                  caring, connected, and compassionate world.
+                </Text>
+              </Section>
             </Section>
 
-            <Section className="mt-6 flex w-full flex-col items-center justify-center text-center">
-              <Img
-                src="https://www.sweetbeasts.shop/newsletter/new-signup/charity-emblem.png"
-                alt="New Collection Image"
-                className="mx-auto mb-4 w-1/2" // Ensures image is centered
-              />
-              <Link
-                href={`${baseURL}/contributions`}
-                className="inline-block rounded-lg bg-white px-6 py-2 font-semibold text-black"
-                style={{
-                  display: 'flex',
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                  width: 'fit-content',
-                }} // Ensures the button is only as wide as its content
-              >
-                Our Contributions
-              </Link>
-            </Section>
+            <Row>
+              <Column align="center">
+                <Link
+                  href={`${baseURL}/contributions`}
+                  className="rounded-lg bg-white px-6 py-2 my-8 font-semibold text-black"
+                >
+                  Our Contributions
+                </Link>
+              </Column>
+            </Row>
 
             {/* Footer Section with Social Media and Support Links */}
             <Section className="mt-8 text-center bg-purple-200 p-6 rounded-lg text-black">
@@ -197,7 +200,7 @@ export default function Newsletter(): JSX.Element {
               </Text>
             </Section>
 
-            <Section className="text-center mt-20">
+            <Section className="text-center mt-12">
               <table className="w-full">
                 <tr className="w-full">
                   <td align="center">
@@ -242,7 +245,9 @@ export default function Newsletter(): JSX.Element {
                 <tr>
                   <td align="center">
                     <Text className="my-[8px] text-xs font-semibold leading-[24px] text-gray-500">
-                      © 2024 SweetBeasts, All Rights Reserved
+                      © 2024 A Wild Bonobo, Inc. All Rights Reserved.
+                      <br />
+                      SweetBeasts is a trademark of A Wild Bonobo, Inc.
                     </Text>
                     <Text className="my-[8px] text-xs font-semibold leading-[24px] text-gray-500">
                       432 W Gorham St, Madison, WI 53703
@@ -252,7 +257,7 @@ export default function Newsletter(): JSX.Element {
                     </Text>
                     <Link
                       href={`${baseURL}/unsubscribe`}
-                      className="text-blue-500 underline"
+                      className="text-blue-500 underline text-[10pt]"
                     >
                       Unsubscribe
                     </Link>
