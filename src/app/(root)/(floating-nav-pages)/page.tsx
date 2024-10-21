@@ -4,9 +4,9 @@ import HomeWhySweetBeastsHero from '@/components/general/pages/home/heros/home-w
 
 export default function Home() {
   return (
-    <main className="flex flex-col items-start justify-start bg-background">
+    <main className="flex flex-col items-start justify-start">
       <HomeProductHero />
-      <div className="relative w-full items-center bg-dot-black/20 dark:bg-dot-white/15">
+      <div className="w-full items-center">
         <HomeSweetbeastsMission />
         <HomeWhySweetBeastsHero />
       </div>
