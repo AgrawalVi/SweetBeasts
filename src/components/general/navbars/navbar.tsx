@@ -19,7 +19,7 @@ export function Navbar({ className }: { className?: string }) {
 
   return (
     <main className="sticky top-0 z-50">
-      <div className="relative hidden w-screen items-center justify-center border-b border-muted bg-background py-4 md:flex">
+      <div className="relative hidden w-full items-center justify-center border-b border-muted bg-background py-4 md:flex">
         <div className="grid w-full max-w-2xl grid-cols-3 items-center justify-between lg:max-w-4xl 2xl:max-w-6xl">
           <div className="inline-flex justify-start">
             <Link
@@ -46,7 +46,7 @@ export function Navbar({ className }: { className?: string }) {
       </div>
       <div
         className={cn(
-          'block w-screen space-y-2 border-b bg-background transition-all duration-300 ease-in-out md:hidden',
+          'block w-full space-y-2 border-b bg-background transition-all duration-300 ease-in-out md:hidden',
           expanded
             ? 'grid h-[114px] grid-rows-2' // not sure why this is needed, but it is for some reason
             : 'grid h-16 grid-rows-2',
