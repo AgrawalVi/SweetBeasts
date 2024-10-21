@@ -6,7 +6,6 @@ export default function HomeWhySweetBeastsHero() {
       <div className="header-gradient text-4xl sm:text-5xl md:text-7xl">
         Why SweetBeasts
       </div>
-      {/* Add a divider line here */}
       <div className="mx-auto mt-2 h-1 w-20 rounded-3xl bg-muted-foreground"></div>
       <ReasonsForSweetBeastsGrid />
     </div>
