@@ -33,7 +33,7 @@ export default function PogoLorePage() {
         See Pogo in Action:
       </div>
       <div className="header-gradient text-center text-3xl sm:text-4xl md:text-5xl">
-        Animations from Sweet Haven!
+        Animations from Sweet Haven
       </div>
       <div className="p-gradient text-center text-xl sm:text-3xl">
         Follow our socials to stay updated!
