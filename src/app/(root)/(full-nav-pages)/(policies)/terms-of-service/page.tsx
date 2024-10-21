@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 
 export default function TermsOfService() {
   return (
-    <Card className="justify-self-center flex max-w-4xl flex-col px-4 py-8 w-full">
+    <Card className="mx-auto flex max-w-4xl flex-col px-4 py-8 w-full">
       <CardHeader>
         <CardTitle className="header-gradient text-center text-6xl">
           Terms of Service
