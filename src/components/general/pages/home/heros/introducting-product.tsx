@@ -22,6 +22,13 @@ export default function IntroducingProduct({
         containerClassName='py-0'
       >
         <CardBody className="group/card flex h-full w-full flex-col items-center justify-center rounded-none border-none">
+        <CardItem
+            as="div"
+            translateZ="50"
+            className="sm:text-56xl text-center font-coiny text-[2.5rem] text-rose-400 transition-all big-phone:text-6xl"
+          >
+            Introducing
+          </CardItem>
           <CardItem
             as="h1"
             translateZ="50"
