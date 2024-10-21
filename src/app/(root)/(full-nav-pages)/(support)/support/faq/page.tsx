@@ -1,12 +1,5 @@
 import React from 'react'
 
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from '@/components/ui/accordion'
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import FAQSection, { FAQItem } from '@/components/sections/faq/faq-section'
 
 const plushiesFAQ: FAQItem[] = [
@@ -36,12 +29,14 @@ const purchasingShippingFAQ: FAQItem[] = [
   {
     question: 'How long will it take to receive my order?',
     answer:
-      'Orders are typically processed within XX-XX business days. Shipping times vary depending on your location but generally range from XX-XX business days.',
+      'Orders are typically processed within 1-2 business days. Shipping times vary depending on your location but generally range from 2-5 business days.',
   },
   {
     question: 'Do you offer wholesale or bulk purchasing options?',
     answer:
-      'Yes, we offer wholesale pricing and bulk purchasing options for retailers and organizations interested in carrying our plushies. Please contact our sales team for more information.',
+      'Yes, we offer wholesale pricing and bulk purchasing options for retailers and organizations interested in carrying our plushies. Please contact us for more information.',
+    link: '/support/contact-us',
+    linkText: 'Contact Us',
   },
 ]
 
@@ -70,19 +65,19 @@ const returnsExchangesFAQ: FAQItem[] = [
     question: 'Can I cancel or modify my order after it has been placed?',
     answer:
       'Orders can typically be canceled or modified within 24 hours of placement. Please contact our customer service team immediately with your order details to request changes.',
-    link: '/support/contact-us',
+    link: '/return-policy',
   },
   {
     question: 'What should I do if I receive a defective or damaged item?',
     answer:
       'If you receive a defective or damaged item, please contact our customer service team immediately with your order details and photos of the issue. We will resolve the matter as quickly as possible.',
-    link: '/support/contact-us',
+    link: '/return-policy',
   },
   {
     question: 'Can I exchange my plushie for a different one?',
     answer:
       'We may offer exchanges for damaged plushies within 2 weeks (14 days) of delivery. Please contact our customer service team with your order details and photos of the damage to initiate the exchange process. We will assess the situation and work with you to find a suitable solution.',
-    link: '/support/contact-us',
+    link: '/return-policy',
   },
   {
     question: 'How long does it take to process a refund?',
@@ -101,13 +96,14 @@ const otherFAQ: FAQItem[] = [
   {
     question: 'Do you offer any discounts or promotions?',
     answer:
-      'Yes, we periodically offer discounts and promotions. These may include seasonal sales, bundle discounts, or special offers. Check our website or follow us on social media for the latest deals.',
+      'Yes, we periodically offer discounts and promotions. These may include seasonal sales, bundle discounts, or special offers. Check out our website, sign up for our newsletter, and follow us on social media for the latest deals.',
   },
   {
     question: 'How can I contact your customer service team?',
     answer:
       'You can reach our customer service team via Email, Instagram, Discord, or filling out the form on our contact page. We are here to assist you with any questions, concerns, or feedback you may have.',
     link: '/support/contact-us',
+    linkText: 'Contact Us',
   },
 ]
 
@@ -117,35 +113,18 @@ export default function FAQ() {
       <h1 className="header-gradient mb-4 text-center text-6xl font-bold">
         Frequently Asked Questions
       </h1>
-      <FAQSection
-        content={plushiesFAQ}
-        title="About Our Plushies"
-        subtitle="Information about our plushies"
-      />
+      <FAQSection content={plushiesFAQ} title="About Our Plushies" />
 
       <FAQSection
         content={purchasingShippingFAQ}
         title="Purchasing and Shipping"
-        subtitle="Information about purchasing and shipping"
       />
 
-      <FAQSection
-        content={charityDonationsFAQ}
-        title="Charity and Donations"
-        subtitle="Information about our charity and donations"
-      />
+      <FAQSection content={charityDonationsFAQ} title="Charity and Donations" />
 
-      <FAQSection
-        content={returnsExchangesFAQ}
-        title="Returns and Exchanges"
-        subtitle="Information about returns and exchanges"
-      />
+      <FAQSection content={returnsExchangesFAQ} title="Returns and Exchanges" />
 
-      <FAQSection
-        content={otherFAQ}
-        title="Other"
-        subtitle="Miscellaneous information"
-      />
+      <FAQSection content={otherFAQ} title="Other" />
     </>
   )
 }

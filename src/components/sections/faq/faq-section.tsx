@@ -15,6 +15,7 @@ export type FAQItem = {
   question: string
   answer: string
   link?: string
+  linkText?: string
 }
 
 interface FAQSectionProps {
@@ -34,7 +35,9 @@ export default function FAQSection({
         <h3 className="h2-gradient text-center text-xl font-bold sm:text-3xl">
           {title}
         </h3>
-        <h4 className="mb-4 text-center text-muted-foreground">{subtitle}</h4>
+        {subtitle && (
+          <h4 className="mb-4 text-center text-muted-foreground">{subtitle}</h4>
+        )}
         <div className="not-prose mt-4 flex flex-col gap-4 md:mt-8">
           {content.map((item, index) => (
             <Accordion key={index} type="single" collapsible>
@@ -52,7 +55,8 @@ export default function FAQSection({
                       href={item.link}
                       className="mt-2 flex w-full items-center opacity-60 transition-all hover:opacity-100"
                     >
-                      Learn more <ArrowUpRight className="ml-1" size="16" />
+                      {item.linkText || 'Learn more'}{' '}
+                      <ArrowUpRight className="ml-1" size="16" />
                     </a>
                   )}
                 </AccordionContent>
