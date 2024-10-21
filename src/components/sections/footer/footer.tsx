@@ -39,6 +39,10 @@ const footerLinks = {
       href: '/feedback-form',
     },
     {
+      name: 'Sweet Haven',
+      href: '/sweet-haven',
+    },
+    {
       name: 'FAQ',
       href: '/support/faq',
     },
@@ -145,7 +149,11 @@ export default function Footer() {
           </Link>
         </div>
         <div className="text-center text-xs sm:text-sm">
-          © 2024 SweetBeasts Inc. All Rights Reserved.
+          © 2024 A Wild Bonobo, Inc.
+          <br />
+          SweetBeasts is a trademark of A Wild Bonobo, Inc.
+          <br />
+          All Rights Reserved.
         </div>
       </div>
     </main>
