@@ -67,7 +67,7 @@ export default function SweetCards() {
         <Card
           title="TRANSFORMATION"
           icon={<T_Icon />}
-          description="Our plushies do more than just entertain. They inspire change. By encouraging global awareness and a healthier lifestyle, each plushie empowers individuals with a sense of responsibility to contribute to society as a whole, leading to a more connected community"
+          description="Our plushies do more than just entertain. They inspire change. By encouraging global awareness and a healthier lifestyle, each plushie empowers individuals with a sense of responsibility to contribute to society as a whole, leading to a more connected community."
         >
           <CanvasRevealEffect
             animationSpeed={3}
