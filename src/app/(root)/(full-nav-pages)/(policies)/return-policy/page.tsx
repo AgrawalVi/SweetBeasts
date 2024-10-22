@@ -1,7 +1,7 @@
 import React from 'react'
+import { Metadata } from 'next'
 
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
-import { Metadata } from 'next'
 
 export const metadata: Metadata = {
   title: 'Return Policy',
@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 
 export default function ReturnPolicy() {
   return (
-    <Card className="mx-auto mb-24 flex max-w-4xl flex-col px-4 py-8">
+    <Card className="mx-auto flex max-w-4xl flex-col px-4 py-8">
       <CardHeader>
         <CardTitle className="header-gradient text-center text-6xl">
           Return Policy
@@ -24,7 +24,7 @@ export default function ReturnPolicy() {
             process as easy as possible.
           </p>
 
-          <h2 className="p-gradient mb-4 text-center text-3xl font-semibold">
+          <h2 className="p-gradient mb-4 text-center font-coiny text-2xl bg-[length:100%_1.3333em]">
             Returns
           </h2>
           <p className="mb-4">
@@ -33,7 +33,7 @@ export default function ReturnPolicy() {
             still attached.
           </p>
 
-          <h2 className="p-gradient mb-4 text-center text-3xl font-semibold">
+          <h2 className="p-gradient mb-4 text-center font-coiny text-2xl bg-[length:100%_1.3333em]">
             Refunds
           </h2>
           <p className="mb-4">
@@ -42,7 +42,7 @@ export default function ReturnPolicy() {
             allow 5-7 business days for the refund to appear in your account.
           </p>
 
-          <h2 className="p-gradient mb-4 text-center text-3xl font-semibold">
+          <h2 className="p-gradient mb-4 text-center font-coiny text-2xl bg-[length:100%_1.3333em]">
             Shipping
           </h2>
           <p className="mb-4">
@@ -51,7 +51,7 @@ export default function ReturnPolicy() {
             handling charges are non-refundable.
           </p>
 
-          <h2 className="p-gradient mb-4 text-center text-3xl font-semibold">
+          <h2 className="p-gradient mb-4 text-center font-coiny text-2xl bg-[length:100%_1.3333em]">
             Contact Us
           </h2>
           <p>

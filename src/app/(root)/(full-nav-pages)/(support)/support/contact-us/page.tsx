@@ -107,7 +107,7 @@ export default function WobbleCardDemo() {
                 />
               </h2>
               <p className="mt-2 max-w-[20rem] text-center text-base text-gray-200">
-                Send us a message on Instagram
+                Send us a message on Instagram.
               </p>
               <Link
                 href={`${INSTAGRAM_URL}`}

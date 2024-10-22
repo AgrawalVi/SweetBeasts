@@ -22,9 +22,9 @@ export default function TermsOfService() {
             before proceeding to use our website. Your access to and use of the
             site constitutes your acceptance of these Terms. If you do not agree
             with any part of these Terms, you should refrain from using our
-            website or availing of our services. These Terms of Service apply to
-            all users of the site, including but not limited to browsers,
-            customers, merchants, vendors, and contributors of content.
+            website or our services. These Terms of Service apply to all users
+            of the site, including but not limited to browsers, customers,
+            merchants, vendors, and contributors of content.
           </p>
 
           <h2 className="p-gradient my-4 text-center font-coiny text-2xl bg-[length:100%_1.3333em]">
@@ -253,18 +253,18 @@ export default function TermsOfService() {
             SECTION 13 - ENTIRE AGREEMENT
           </h2>
           <p className="my-4">
-            The failure of SweetBeasts, LLC. to enforce any right or provision
+            The failure of A Wild Bonobo Inc. to enforce any right or provision
             of these Terms of Service shall not be construed as a waiver of such
             right or provision. These Terms of Service, along with any policies
-            or operating rules posted by SweetBeasts, LLC. on this site or
+            or operating rules posted by A Wild Bonobo Inc. on this site or
             regarding the Service, constitute the entire agreement and
-            understanding between you and SweetBeasts, LLC. governing your use
+            understanding between you and A Wild Bonobo Inc. governing your use
             of the Service, superseding any prior or contemporaneous agreements,
             communications, and proposals, whether oral or written, between you
-            and SweetBeasts, LLC. (including, but not limited to, any prior
+            and A Wild Bonobo Inc. (including, but not limited to, any prior
             versions of the Terms of Service). Any ambiguities in the
             interpretation of these Terms of Service shall not be construed
-            against SweetBeasts, LLC. as the drafting party.
+            against A Wild Bonobo Inc. as the drafting party.
           </p>
 
           <h2 className="p-gradient my-4 text-center font-coiny text-2xl bg-[length:100%_1.3333em]">

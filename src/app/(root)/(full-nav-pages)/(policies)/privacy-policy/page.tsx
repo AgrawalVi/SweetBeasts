@@ -16,7 +16,7 @@ export const metadata: Metadata = {
 
 const PrivacyPolicy = () => {
   return (
-    <Card className="mx-auto flex min-h-screen max-w-4xl flex-col px-4 py-8">
+    <Card className="mx-auto flex max-w-4xl flex-col px-4 py-8">
       <CardHeader>
         <CardTitle className="header-gradient text-center text-6xl">
           Privacy Policy
@@ -224,13 +224,7 @@ const PrivacyPolicy = () => {
             to the processing of their data according to their local laws. We do
             not intentionally collect personal information from those under 16.
             If you are a parent or guardian and learn that your child has shared
-            personal information with us, please{' '}
-            <Link
-              href="support/contact-us"
-              className="underline underline-offset-2"
-            >
-              get in touch with us
-            </Link>{' '}
+            personal information with us, please get in touch with us
             immediately. If we find out that we have inadvertently gathered
             personal information from a minor under 16 without proper
             verification or parental consent, we will take measures to delete
