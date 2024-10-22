@@ -142,9 +142,6 @@ export default async function Pogo({
 
         <LoreTeaser />
 
-        {/* Use the SVGDecoration component */}
-        {/* <SVGDecoration leftSvgs={leftSvgs} rightSvgs={rightSvgs} /> */}
-
         <ImageGrid images={images} className="w-full rounded-md" />
       </div>
     </main>

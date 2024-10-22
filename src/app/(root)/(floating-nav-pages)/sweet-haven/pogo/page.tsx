@@ -25,7 +25,7 @@ export default function PogoLorePage() {
       <div className="flex flex-col items-center gap-4">
         <div className="header-gradient text-center text-5xl sm:text-6xl md:text-7xl flex">
           Pogo
-          <HalfPeachSVG className="h-4 w-4 sm:h-6 sm:w-6 md:h-8 md:w-8 rotate-90 scale-y-[-1]" />
+          <HalfPeachSVG className="size-4 sm:size-6 md:size-8 rotate-90 scale-y-[-1]" />
           s Story
         </div>
         <div className="p-gradient text-center text-xl sm:text-3xl">

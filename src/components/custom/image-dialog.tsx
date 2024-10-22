@@ -12,6 +12,7 @@ import {
 } from '@/components/ui/dialog'
 
 import { BackgroundGradient } from '../aceternity/background-gradient'
+import ZoomableImage from './zoomable-image'
 
 interface ImageDialogProps {
   src: string
@@ -56,10 +57,8 @@ export default function ImageDialog({
               <Image
                 src={src}
                 alt={alt}
-                layout="responsive"
                 width={width}
                 height={height}
-                objectFit="cover"
                 className="mx-auto h-auto w-full max-w-[85vw] rounded-md sm:max-w-[70vw] md:max-w-[50vw] lg:max-w-[40vw] xl:max-w-[30vw]"
               />
             </div>
@@ -74,10 +73,8 @@ export default function ImageDialog({
             <Image
               src={src}
               alt={alt}
-              layout="responsive"
               width={width}
               height={height}
-              objectFit="cover"
               className="mx-auto h-auto w-full max-w-[85vw] rounded-md sm:max-w-[70vw] md:max-w-[50vw] lg:max-w-[40vw] xl:max-w-[30vw]"
             />
           </div>
@@ -86,13 +83,7 @@ export default function ImageDialog({
       <DialogOverlay className="bg-black/60" />
       <DialogContent className="flex items-center justify-center p-0">
         <div className="relative h-auto w-full max-w-[85vw] sm:max-w-[70vw] md:max-w-[60vw] lg:max-w-[50vw] xl:max-w-[40vw]">
-          <Image
-            src={src}
-            alt={alt}
-            width={800}
-            height={800}
-            className="mx-auto h-auto max-h-[80vh] w-full rounded-lg object-contain"
-          />
+          <ZoomableImage src={src} alt={alt} />
         </div>
       </DialogContent>
     </Dialog>
