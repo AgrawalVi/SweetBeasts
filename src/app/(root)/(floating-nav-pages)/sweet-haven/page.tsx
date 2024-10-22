@@ -1,7 +1,13 @@
 import React from 'react'
+import { Metadata } from 'next'
 
 import TextSection from '@/components/custom/text-section'
 import LoreCard from '@/components/general/sweet-haven/lore-card'
+
+export const metadata: Metadata = {
+  title: 'Sweet Haven',
+  description: 'Discover the story behind every plushie',
+}
 
 export default function PogoLorePage() {
   return (

@@ -1,12 +1,15 @@
-'use client'
-
 import React from 'react'
 
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+import { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: 'Return Policy',
+}
 
 export default function ReturnPolicy() {
   return (
-    <Card className="mx-auto mb-24 flex min-h-[70vh] max-w-4xl flex-col px-4 py-8">
+    <Card className="mx-auto mb-24 flex max-w-4xl flex-col px-4 py-8">
       <CardHeader>
         <CardTitle className="header-gradient text-center text-6xl">
           Return Policy

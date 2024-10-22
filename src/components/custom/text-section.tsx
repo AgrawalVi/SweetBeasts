@@ -23,7 +23,7 @@ const TextSection = ({
   return (
     <main
       className={cn(
-        'm-10 max-w-[60rem] rounded-xl bg-background p-5 text-base shadow-pink-light transition-all duration-1000 hover:scale-[1.01] hover:shadow-pink-strong dark:shadow-teal-light dark:hover:shadow-teal-strong sm:p-8 md:text-lg',
+        'm-10 max-w-[60rem] rounded-xl bg-background p-5 text-base shadow-pink-light transition-all duration-1000 hover:scale-[1.01] hover:shadow-pink-strong dark:shadow-teal-light dark:hover:shadow-teal-strong sm:p-8 md:text-lg z-5 relative',
         className,
       )}
     >

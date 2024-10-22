@@ -13,16 +13,16 @@ export default function IntroducingProduct({
   return (
     <div
       className={cn(
-        'relative m-0 flex h-full w-full items-center justify-center p-0',
+        'relative m-0 flex h-full w-full items-center justify-center',
         className,
       )}
     >
       <CardContainer
         className="m-0 h-full w-full rounded-none p-0 shadow-none"
-        containerClassName="py-10"
+        containerClassName='py-0'
       >
         <CardBody className="group/card flex h-full w-full flex-col items-center justify-center rounded-none border-none">
-          <CardItem
+        <CardItem
             as="div"
             translateZ="50"
             className="sm:text-56xl text-center font-coiny text-[2.5rem] text-rose-400 transition-all big-phone:text-6xl"

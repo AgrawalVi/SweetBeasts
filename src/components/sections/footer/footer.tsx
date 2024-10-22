@@ -39,6 +39,10 @@ const footerLinks = {
       href: '/feedback-form',
     },
     {
+      name: 'Sweet Haven',
+      href: '/sweet-haven',
+    },
+    {
       name: 'FAQ',
       href: '/support/faq',
     },
@@ -55,7 +59,7 @@ export default function Footer() {
       <div className="hidden w-full justify-center md:flex">
         <div className="grid w-full grid-cols-6">
           <div className="relative col-span-4 flex w-full flex-col items-center justify-center xl:col-span-3">
-            <JoinEmailListForm />
+            <JoinEmailListForm className="max-w-2xl" />
           </div>
           <div className="col-span-2 flex flex-col justify-center xl:col-span-3 xl:flex-row xl:space-x-24">
             <div className="flex flex-col">
@@ -145,7 +149,11 @@ export default function Footer() {
           </Link>
         </div>
         <div className="text-center text-xs sm:text-sm">
-          © 2024 SweetBeasts Inc. All Rights Reserved.
+          © 2024 A Wild Bonobo, Inc. All Rights Reserved.
+          <br />
+          SweetBeasts is a trademark of A Wild Bonobo, Inc.
+          <br />
+          
         </div>
       </div>
     </main>

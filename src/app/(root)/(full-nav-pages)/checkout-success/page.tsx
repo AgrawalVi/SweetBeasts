@@ -1,3 +1,4 @@
+import { Metadata } from 'next'
 import Link from 'next/link'
 import { OrderWithData } from '@/types'
 
@@ -7,6 +8,10 @@ import OrderDetails from '@/components/general/pages/checkout-success/order-deta
 import OrderStatusBar from '@/components/general/pages/view-order/order-status-bar'
 import OrderSummary from '@/components/general/pages/view-order/order-summary'
 import { getOrderWithDataByStripeSessionId } from '@/data/shop/orders'
+
+export const metadata: Metadata = {
+  title: 'Thank you for your order',
+}
 
 export default async function CheckoutSuccess({
   searchParams,

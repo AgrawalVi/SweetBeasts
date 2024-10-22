@@ -25,9 +25,11 @@ import { addToEmailList } from '@/actions/customer/email-list'
 
 const JoinEmailListForm = ({
   showText = true,
+  className,
   inputClassName,
 }: {
   showText?: boolean
+  className?: string
   inputClassName?: string
 }) => {
   const { toast } = useToast()
@@ -58,7 +60,7 @@ const JoinEmailListForm = ({
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className="relative z-10 flex w-full flex-col items-center space-y-4"
+        className={cn("relative z-10 flex w-full flex-col items-center space-y-4", className)}
       >
         <FormField
           control={form.control}

@@ -3,6 +3,12 @@ import { Suspense } from 'react'
 import { Card } from '@/components/ui/card'
 import { OrdersPageContent } from '@/components/general/pages/account/orders/orders-page-content'
 import OrderPageContentSkeleton from '@/components/skeletons/account/order-page-content-skeleton'
+import { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: 'Your Orders',
+  description: "All your orders from SweetBeasts",
+}
 
 export default function OrdersPage() {
   return (

@@ -32,7 +32,10 @@ const josefinSans = Josefin_Sans({
 })
 
 export const metadata: Metadata = {
-  title: 'SweetBeasts',
+  title: {
+    default: 'SweetBeasts',
+    template: '%s | SweetBeasts',
+  },
   description: 'Luxurious Plushies Blending Fruits & Animals',
   icons: {
     icon: '/icon.svg',
@@ -61,9 +64,7 @@ export default async function RootLayout({
                 enableSystem
                 disableTransitionOnChange
               >
-                <div className="flex min-h-screen w-full bg-background">
-                  {children}
-                </div>
+                <div className="flex min-h-dvh w-full">{children}</div>
                 <Analytics />
                 <link rel="icon" href="/favicon.ico" sizes="any" />
                 <Toaster />

@@ -1,6 +1,13 @@
+import { Metadata } from 'next'
+
 import { TextGenerateEffect } from '@/components/aceternity/text-generate-effect'
 import TextSection from '@/components/custom/text-section'
 import SweetCards from '@/components/general/pages/about-us/sweet-cards'
+
+export const metadata: Metadata = {
+  title: 'About Us',
+  description: 'Learn more about the origin and mission of SweetBeasts',
+}
 
 export default function AboutUsPage() {
   return (

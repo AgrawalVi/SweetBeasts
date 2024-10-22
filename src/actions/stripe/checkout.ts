@@ -14,6 +14,7 @@ import {
   getProductVariantWithParentById,
 } from '@/data/shop/product'
 import { addStripeCustomerIdToUser, getUserById } from '@/data/shop/user'
+import { treadmill } from 'ldrs'
 
 export const createCheckoutSession = async (
   cart: CartItem[],
@@ -90,6 +91,7 @@ export const createCheckoutSession = async (
     automatic_tax: {
       enabled: true,
     },
+    allow_promotion_codes: true,
     custom_text: {
       after_submit: {
         message: 'Thank you for your order!',
