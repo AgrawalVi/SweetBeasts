@@ -1,8 +1,8 @@
 import Link from 'next/link'
 import { OrderWithData } from '@/types'
+import { format } from 'date-fns'
 import { ChevronRight, CircleArrowOutUpRight } from 'lucide-react'
 
-import { formatDate } from '@/lib/date-functions'
 import { formatPrice } from '@/lib/utils'
 import { Card } from '@/components/ui/card'
 
@@ -15,7 +15,7 @@ export default function OrderCard({ order }: { order: OrderWithData }) {
         <div className="flex flex-col space-y-1">
           <div className="text-sm font-semibold">Order {order.orderNumber}</div>
           <div className="text-xs text-muted-foreground">
-            Placed {formatDate(order.createdAt)}
+            Placed {format(order.createdAt.toLocaleDateString(), 'PPP')}
           </div>
         </div>
         <div className="flex flex-col space-y-1 text-right">

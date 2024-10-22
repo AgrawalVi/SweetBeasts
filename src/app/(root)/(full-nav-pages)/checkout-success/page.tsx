@@ -1,8 +1,8 @@
 import { Metadata } from 'next'
 import Link from 'next/link'
 import { OrderWithData } from '@/types'
+import { format } from 'date-fns'
 
-import { formatDate } from '@/lib/date-functions'
 import { CheckoutSuccessLoader } from '@/components/general/pages/checkout-success/multi-step-loader'
 import OrderDetails from '@/components/general/pages/checkout-success/order-details'
 import OrderStatusBar from '@/components/general/pages/view-order/order-status-bar'
@@ -61,7 +61,9 @@ export default async function CheckoutSuccess({
                 </div>
                 <div className="flex flex-col text-center text-sm text-muted-foreground sm:text-base lg:text-end">
                   <div>Order {order.orderNumber}</div>
-                  <div>Placed {formatDate(order.createdAt)}</div>
+                  <div>
+                    Placed {format(order.createdAt.toLocaleDateString(), 'PPP')}
+                  </div>
                 </div>
               </div>
               <div className="h-full max-w-6xl flex-col items-start justify-start space-y-4 xl:grid xl:grid-cols-2 xl:gap-4 xl:space-y-0">

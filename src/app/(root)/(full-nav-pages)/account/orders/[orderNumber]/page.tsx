@@ -2,10 +2,10 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { redirect } from 'next/navigation'
 import { OrderWithData } from '@/types'
+import { format } from 'date-fns'
 import { ChevronLeft } from 'lucide-react'
 
 import { currentUser } from '@/lib/auth'
-import { formatDate } from '@/lib/date-functions'
 import { Button } from '@/components/ui/button'
 import OrderDetails from '@/components/general/pages/checkout-success/order-details'
 import OrderStatusBar from '@/components/general/pages/view-order/order-status-bar'
@@ -65,7 +65,9 @@ export default async function OrderPage({
         </Link>
         <div className="flex flex-col text-center text-sm text-muted-foreground sm:text-end sm:text-base">
           <div>Order {order.orderNumber}</div>
-          <div>Placed {formatDate(order.createdAt)}</div>
+          <div>
+            Placed {format(order.createdAt.toLocaleDateString(), 'PPP')}
+          </div>
         </div>
       </div>
       <div className="h-full max-w-5xl flex-col items-start justify-start space-y-4 xl:grid xl:grid-cols-2 xl:gap-4 xl:space-y-0">

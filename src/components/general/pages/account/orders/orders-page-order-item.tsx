@@ -1,6 +1,6 @@
 import { OrderWithData } from '@/types'
+import { format } from 'date-fns'
 
-import { formatDate } from '@/lib/date-functions'
 import { formatPrice } from '@/lib/utils'
 import { CardDescription } from '@/components/ui/card'
 
@@ -19,7 +19,9 @@ export default function OrdersPageOrderItem({
     <div className="flex h-full w-full items-center space-x-4 py-2">
       <div className="flex flex-col items-start space-y-0.5">
         <div>Order {order.orderNumber}</div>
-        <CardDescription>{formatDate(order.createdAt)}</CardDescription>
+        <CardDescription>
+          {format(order.createdAt.toLocaleDateString(), 'PPP')}
+        </CardDescription>
       </div>
       <div className="flex flex-col items-end space-y-0.5">
         <div>{formatPrice(order.totalPaidInCents)}</div>
