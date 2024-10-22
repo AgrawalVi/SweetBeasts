@@ -24,22 +24,17 @@ export default function SVGDecoration({
     (_, i) => `${marginTop + (i * availableHeight) / (N - 1)}%`,
   )
 
-  const leftPositions = decor_svgs.map(
-    (_, i) => `${Math.sin(i) * 2.5 - 10}%`,
-  )
+  const leftPositions = decor_svgs.map((_, i) => `${Math.sin(i) * 2.5 - 7.5}%`) // -12.5 to -7.5
 
   const rightPositions = decor_svgs.map(
-    (_, i) => `${-Math.sin(i) * 2.5 + 105}%`,
+    (_, i) => `${-Math.sin(i) * 2.5 + 103.5}%`, // 107.5 to 112.5
   )
 
   // Calculate rotations for a subtle effect
-  const rotations = decor_svgs.map(
-    (_, i) => Math.floor(Math.sin(i) * 15), 
-  )
-  
+  const rotations = decor_svgs.map((_, i) => Math.floor(Math.sin(i) * 15))
 
   return (
-    <div className="pointer-events-none absolute inset-0 hidden md:block">
+    <div className="pointer-events-none absolute inset-0 hidden min-[1325px]:block">
       <div className="absolute w-full h-full">
         {decor_svgs.map((src, ind) => (
           <Image
@@ -66,10 +61,10 @@ export default function SVGDecoration({
             width={40}
             height={40}
             className="absolute"
-            style={{  
+            style={{
               top: topPositions[ind],
               left: rightPositions[ind],
-              transform: `rotate(${rotations[ind]}deg)`,
+              transform: `scaleX(-1) rotate(${rotations[ind]}deg)`, // Flip along vertical axis
             }}
           />
         ))}
