@@ -1,10 +1,16 @@
 import { Metadata } from 'next'
+import Image from 'next/image'
 
 import SVGDecoration from '@/components/custom/svg-component'
 import TextSection from '@/components/custom/text-section'
+import HalfPeachSVG from '@/components/general/sweet-haven/pogo/half-peach'
 
 // SVG paths for left and right sides
-const decor_svgs = ['/SVGs/pogo/full-peach-one-leaf.svg', '/SVGs/pogo/full-peach-two-leaves.svg', '/SVGs/pogo/half-peach.svg']
+const decor_svgs = [
+  '/SVGs/pogo/full-peach-one-leaf.svg',
+  '/SVGs/pogo/full-peach-two-leaves.svg',
+  '/SVGs/pogo/half-peach.svg',
+]
 const plushie_svg = '/SVGs/pogo/pogo-drawing.svg'
 
 export const metadata: Metadata = {
@@ -17,8 +23,10 @@ export default function PogoLorePage() {
     <main className="relative pt-10">
       <SVGDecoration decor_svgs={decor_svgs} plushie_svg={plushie_svg} />
       <div className="flex flex-col items-center gap-4">
-        <div className="header-gradient text-center text-5xl sm:text-6xl md:text-7xl">
-          Pogo's Story
+        <div className="header-gradient text-center text-5xl sm:text-6xl md:text-7xl flex">
+          Pogo
+          <HalfPeachSVG className="h-4 w-4 sm:h-6 sm:w-6 md:h-8 md:w-8 rotate-90 scale-y-[-1]" />
+          s Story
         </div>
         <div className="p-gradient text-center text-xl sm:text-3xl">
           Meet Pogo, the Peach Penguin!
