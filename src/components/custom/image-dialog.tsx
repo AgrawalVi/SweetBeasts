@@ -82,7 +82,7 @@ export default function ImageDialog({
       </DialogTrigger>
       <DialogOverlay className="bg-black/60" />
       <DialogContent className="flex items-center justify-center p-0">
-        <div className="relative h-auto w-full max-w-[85vw] sm:max-w-[70vw] md:max-w-[60vw] lg:max-w-[50vw] xl:max-w-[40vw]">
+        <div className="relative h-full w-full sm:max-w-[70vw] md:max-w-[60vw] lg:max-w-[50vw] xl:max-w-[40vw]">
           <ZoomableImage src={src} alt={alt} />
         </div>
       </DialogContent>
