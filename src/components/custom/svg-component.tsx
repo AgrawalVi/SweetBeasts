@@ -1,40 +1,76 @@
+'use client'
+
 import Image from 'next/image'
 
 interface SVGDecorationProps {
-  leftSvgs: string[]
-  rightSvgs: string[]
+  decor_svgs: string[]
+  plushie_svg: string
 }
 
 export default function SVGDecoration({
-  leftSvgs,
-  rightSvgs,
+  decor_svgs,
+  plushie_svg,
 }: SVGDecorationProps) {
+  // Triple the array to have more SVGs (total of 9 if original length is 3)
+  decor_svgs = [...decor_svgs, ...decor_svgs, ...decor_svgs]
+
+  const N = decor_svgs.length // Total number of SVGs (9 in this case)
+
+  const marginTop = 5
+  const marginBottom = 5
+  const availableHeight = 100 - marginTop - marginBottom
+
+  const topPositions = decor_svgs.map(
+    (_, i) => `${marginTop + (i * availableHeight) / (N - 1)}%`,
+  )
+
+  const leftPositions = decor_svgs.map(
+    (_, i) => `${Math.sin(i) * 2.5 - 10}%`,
+  )
+
+  const rightPositions = decor_svgs.map(
+    (_, i) => `${-Math.sin(i) * 2.5 + 105}%`,
+  )
+
+  // Calculate rotations for a subtle effect
+  const rotations = decor_svgs.map(
+    (_, i) => Math.floor(Math.sin(i) * 15), 
+  )
+  
+
   return (
     <div className="pointer-events-none absolute inset-0 hidden md:block">
-      {/* Left side SVGs */}
-      <div className="absolute left-[-20%] top-[10%]">
-        {leftSvgs.map((src, index) => (
+      <div className="absolute w-full h-full">
+        {decor_svgs.map((src, ind) => (
           <Image
-            key={index}
+            key={ind}
             src={src}
-            alt={`SVG Left ${index + 1}`}
-            width={350}
-            height={350}
-            className=""
+            alt={`SVG ${ind + 1}`}
+            width={40}
+            height={40}
+            className="absolute"
+            style={{
+              top: topPositions[ind],
+              left: leftPositions[ind],
+              transform: `rotate(${rotations[ind]}deg)`,
+            }}
           />
         ))}
       </div>
-
-      {/* Right side SVGs */}
-      <div className="absolute right-[-25%] top-[10%] flex flex-col space-y-12">
-        {rightSvgs.map((src, index) => (
+      <div className="absolute w-full h-full">
+        {decor_svgs.map((src, ind) => (
           <Image
-            key={index}
+            key={ind}
             src={src}
-            alt={`SVG Right ${index + 1}`}
-            width={350}
-            height={350}
-            className="h-[350px] w-[350px]"
+            alt={`SVG ${ind + 1}`}
+            width={40}
+            height={40}
+            className="absolute"
+            style={{  
+              top: topPositions[ind],
+              left: rightPositions[ind],
+              transform: `rotate(${rotations[ind]}deg)`,
+            }}
           />
         ))}
       </div>

@@ -4,8 +4,8 @@ import SVGDecoration from '@/components/custom/svg-component'
 import TextSection from '@/components/custom/text-section'
 
 // SVG paths for left and right sides
-const leftSvgs = ['/plushie artwork R-04.svg', '/plushie artwork R-06.svg']
-const rightSvgs = ['/plushie artwork R-06.svg', '/plushie artwork R-07.svg']
+const decor_svgs = ['/SVGs/pogo/full-peach-one-leaf.svg', '/SVGs/pogo/full-peach-two-leaves.svg', '/SVGs/pogo/half-peach.svg']
+const plushie_svg = '/SVGs/pogo/pogo-drawing.svg'
 
 export const metadata: Metadata = {
   title: "Pogo's Story",
@@ -15,7 +15,7 @@ export const metadata: Metadata = {
 export default function PogoLorePage() {
   return (
     <main className="relative pt-10">
-      {/* <SVGDecoration leftSvgs={leftSvgs} rightSvgs={rightSvgs} /> */}
+      <SVGDecoration decor_svgs={decor_svgs} plushie_svg={plushie_svg} />
       <div className="flex flex-col items-center gap-4">
         <div className="header-gradient text-center text-5xl sm:text-6xl md:text-7xl">
           Pogo's Story
