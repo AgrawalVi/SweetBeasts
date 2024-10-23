@@ -140,6 +140,30 @@ export default function OrderConfirmedUserEmail({
               </div>
             </Section>
             <Hr className="my-4 border-pink-300" />
+            
+            {/* Add Shipping Address Section */}
+            <Section>
+              <Heading className="text-2xl font-bold text-black">
+                Shipping Address
+              </Heading>
+              <Text className="text-lg text-black">{recipientName}</Text>
+              {shippingAddress.addressLine1 && (
+                <Text className="text-lg text-black">
+                  {shippingAddress.addressLine1}
+                </Text>
+              )}
+              {shippingAddress.addressLine2 && (
+                <Text className="text-lg text-black">
+                  {shippingAddress.addressLine2}
+                </Text>
+              )}
+              <Text className="text-lg text-black">
+                {shippingAddress.city}, {shippingAddress.state}{' '}
+                {shippingAddress.zipCode}
+              </Text>
+            </Section>
+
+            <Hr className="my-4 border-pink-300" />
             <Text className="text-center text-sm text-black">
               If you have any questions, feel free to contact us at
               support@example.com.
