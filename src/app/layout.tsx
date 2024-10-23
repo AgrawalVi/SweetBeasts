@@ -10,11 +10,12 @@ import './globals.css'
 import { auth } from '@/auth'
 import { SessionProvider } from 'next-auth/react'
 
-import { CSPostHogProvider } from '@/hooks/posthog-provider'
+import { PHProvider } from '@/hooks/posthog-provider'
 import { NewsletterPopupProvider } from '@/hooks/use-popup'
 import { ShoppingCartProvider } from '@/hooks/use-shopping-cart'
 import NewsletterPopup from '@/components/general/newsletter-popup/popup'
 import NavigationEvents from '@/components/navigation-events'
+import PostHogPageView from '@/components/posthog-page-view'
 
 const nunito = Nunito({
   subsets: ['latin'],
@@ -52,7 +53,7 @@ export default async function RootLayout({
 
   return (
     <html lang="en" suppressHydrationWarning>
-      <CSPostHogProvider>
+      <PHProvider>
         <body
           className={`${nunito.variable} ${josefinSans.variable} ${coiny.variable}`}
         >
@@ -68,6 +69,7 @@ export default async function RootLayout({
                 >
                   <div className="flex min-h-dvh w-full">{children}</div>
                   <Analytics />
+                  <PostHogPageView />
                   <link rel="icon" href="/favicon.ico" sizes="any" />
                   <Toaster />
                   <NavigationEvents />
@@ -76,7 +78,7 @@ export default async function RootLayout({
             </NewsletterPopupProvider>
           </SessionProvider>
         </body>
-      </CSPostHogProvider>
+      </PHProvider>
     </html>
   )
 }
