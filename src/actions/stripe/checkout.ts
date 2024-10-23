@@ -92,6 +92,9 @@ export const createCheckoutSession = async (
       enabled: true,
     },
     allow_promotion_codes: true,
+    consent_collection: {
+      promotions: 'auto',
+    },
     custom_text: {
       after_submit: {
         message: 'Thank you for your order!',

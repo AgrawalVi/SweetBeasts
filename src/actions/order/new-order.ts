@@ -4,13 +4,12 @@ import Stripe from 'stripe'
 import { v4 as uuidv4 } from 'uuid'
 
 import { db } from '@/lib/db'
-import { sendOrderConfirmationEmail } from '@/lib/resend'
+import { addToGeneralEmailList, sendOrderConfirmationEmail } from '@/lib/resend'
 import { stripe } from '@/lib/stripe'
 import { notEmpty } from '@/lib/utils'
 import { getAddressByAddressAndEmail } from '@/data/shop/address'
 import { createGuestUser, getGuestUserByEmail } from '@/data/shop/guest-user'
 import {
-  deleteOpenCheckoutSessionById,
   deleteOpenCheckoutSessionByStripeCheckoutSessionId,
   getAllOpenCheckoutSessionsWithProductByProductId,
 } from '@/data/shop/open-checkout-session'
@@ -86,11 +85,15 @@ export const createOrder = async (
   // get order information from event
   const timePlaced = new Date(event.created * 1000)
 
+  
   // get user and create an order in the database
-
   let stripeCustomer
-
+  
   const email = checkoutSession.customer_details?.email as string
+  
+  if (checkoutSession.consent?.promotions === 'opt_in') {
+    addToGeneralEmailList(email)
+  }
 
   let user
   let guestUser
