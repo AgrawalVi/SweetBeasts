@@ -10,6 +10,7 @@ import './globals.css'
 import { auth } from '@/auth'
 import { SessionProvider } from 'next-auth/react'
 
+import { CSPostHogProvider } from '@/hooks/posthog-provider'
 import { NewsletterPopupProvider } from '@/hooks/use-popup'
 import { ShoppingCartProvider } from '@/hooks/use-shopping-cart'
 import NewsletterPopup from '@/components/general/newsletter-popup/popup'
@@ -51,29 +52,31 @@ export default async function RootLayout({
 
   return (
     <html lang="en" suppressHydrationWarning>
-      <body
-        className={`${nunito.variable} ${josefinSans.variable} ${coiny.variable}`}
-      >
-        <SessionProvider session={session}>
-          <NewsletterPopupProvider>
-            <NewsletterPopup />
-            <ShoppingCartProvider>
-              <ThemeProvider
-                attribute="class"
-                defaultTheme="system"
-                enableSystem
-                disableTransitionOnChange
-              >
-                <div className="flex min-h-dvh w-full">{children}</div>
-                <Analytics />
-                <link rel="icon" href="/favicon.ico" sizes="any" />
-                <Toaster />
-                <NavigationEvents />
-              </ThemeProvider>
-            </ShoppingCartProvider>
-          </NewsletterPopupProvider>
-        </SessionProvider>
-      </body>
+      <CSPostHogProvider>
+        <body
+          className={`${nunito.variable} ${josefinSans.variable} ${coiny.variable}`}
+        >
+          <SessionProvider session={session}>
+            <NewsletterPopupProvider>
+              <NewsletterPopup />
+              <ShoppingCartProvider>
+                <ThemeProvider
+                  attribute="class"
+                  defaultTheme="system"
+                  enableSystem
+                  disableTransitionOnChange
+                >
+                  <div className="flex min-h-dvh w-full">{children}</div>
+                  <Analytics />
+                  <link rel="icon" href="/favicon.ico" sizes="any" />
+                  <Toaster />
+                  <NavigationEvents />
+                </ThemeProvider>
+              </ShoppingCartProvider>
+            </NewsletterPopupProvider>
+          </SessionProvider>
+        </body>
+      </CSPostHogProvider>
     </html>
   )
 }
