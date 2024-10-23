@@ -141,8 +141,7 @@ export default function OrderConfirmedUserEmail({
             </Section>
             <Hr className="my-4 border-pink-300" />
             <Text className="text-center text-sm text-black">
-              If you have any questions, feel free to contact us at
-              support@example.com.
+              If you have any questions, reply to this email.
             </Text>
             <Text className="my-2 text-center text-xs text-gray-400">
               © {new Date().getFullYear()} SweetBeasts. All rights reserved.
