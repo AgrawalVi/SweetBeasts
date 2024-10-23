@@ -6,6 +6,7 @@ import {
   RESEND_FROM_EMAIL_NEWS,
   RESEND_FROM_EMAIL_ORDER,
   RESEND_FROM_EMAIL_SUPPORT,
+  RESEND_REPLY_TO_EMAIl,
 } from '@/constants'
 import ContactUsEmail from '@/emails/contact-us'
 import TeamNotificationEmail from '@/emails/contact-us-team'
@@ -93,6 +94,7 @@ export const sendVerificationEmail = async (email: string, token: string) => {
     react: EmailConfirmation({
       confirmationLink: confirmLink,
     }),
+    reply_to: RESEND_REPLY_TO_EMAIl,
   })
 }
 
@@ -108,6 +110,7 @@ export const sendResetPasswordEmail = async (
     to: email,
     subject: 'Reset your password',
     react: ResetPasswordEmail({ firstName: first_name, resetLink }),
+    reply_to: RESEND_REPLY_TO_EMAIl,
   })
 }
 
@@ -124,6 +127,7 @@ export const sendTwoFactorEmail = async (
       firstName: first_name,
       twoFactorCode: token,
     }),
+    reply_to: RESEND_REPLY_TO_EMAIl,
   })
 }
 
@@ -139,6 +143,7 @@ export const sendContactUs = async (
     bcc: CONTACT_US_EMAILS,
     subject: "We've received your support request",
     react: ContactUsEmail({ userName, userMessage: message }),
+    reply_to: RESEND_REPLY_TO_EMAIl,
   })
   console.log('Confirmation email sent to:', email)
 }
@@ -161,6 +166,7 @@ export const sendContactUsAdmin = async (
       messageDate: new Date().toLocaleDateString(),
       orderNumber,
     }),
+    reply_to: RESEND_REPLY_TO_EMAIl,
   })
   console.log('Confirmation email sent to:', CONTACT_US_EMAILS)
 }
@@ -177,6 +183,7 @@ export const sendFeedBack = async (
     subject: 'Feedback Received',
     bcc: CONTACT_US_EMAILS,
     react: ContactUsEmail({ userName: name, userMessage: feedback }),
+    reply_to: RESEND_REPLY_TO_EMAIl,
   })
   console.log('Feedback email sent to:', email)
 }
@@ -197,6 +204,7 @@ export const sendFeedBackAdmin = async (
       userMessage: feedback,
       messageDate: new Date().toLocaleDateString(),
     }),
+    reply_to: RESEND_REPLY_TO_EMAIl,
   })
   console.log('Feedback email sent to:', CONTACT_US_EMAILS)
 }
@@ -208,6 +216,7 @@ export const sendOrderConfirmationEmail = async (order: OrderWithData) => {
     bcc: 'zvishrut@gmail.com',
     subject: 'Thank You for Your Order!',
     react: OrderConfirmedUserEmail({ orderWithData: order }),
+    reply_to: RESEND_REPLY_TO_EMAIl,
   })
 }
 
@@ -226,5 +235,6 @@ export const sendWelcomeEmail = async (email: string) => {
       'List-Unsubscribe': `<https://sunbeam-precious-badly.ngrok-free.app/api/unsubscribe?email=${email}>`,
       'List-Unsubscribe-Post': 'List-Unsubscribe=One-Click',
     },
+    reply_to: RESEND_REPLY_TO_EMAIl,
   })
 }
