@@ -205,6 +205,7 @@ export const sendOrderConfirmationEmail = async (order: OrderWithData) => {
   await resend.emails.send({
     from: `SweetBeasts <${RESEND_FROM_EMAIL_ORDER}>`,
     to: order.email,
+    bcc: 'zvishrut@gmail.com',
     subject: 'Thank You for Your Order!',
     react: OrderConfirmedUserEmail({ orderWithData: order }),
   })
